@@ -2,467 +2,553 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<meta name="theme-color" content="#103c34">
-<meta name="description" content="Descubra quanto precisa vender hoje para bater sua meta.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f172a">
+<meta name="description" content="Descubra quanto você precisa vender hoje para bater sua meta.">
+
 <title>Quanto Vender Hoje?</title>
 
 <style>
-*{box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
+
 :root{
-  --bg:#f4f7f6;
+  --bg:#f5f7fb;
   --card:#fff;
-  --text:#102723;
-  --muted:#71827e;
-  --border:#e1e9e6;
-  --green:#087f6d;
-  --green2:#0d927d;
-  --light:#e4f5f0;
-  --dark:#103c34;
-  --danger:#c94c4c;
+  --text:#101828;
+  --muted:#667085;
+  --green:#16a34a;
+  --green2:#22c55e;
+  --dark:#0f172a;
+  --line:#e6eaf0;
+  --orange:#f59e0b;
+  --red:#ef4444;
+  --blue:#2563eb;
 }
+
 body{
-  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
   background:var(--bg);
   color:var(--text);
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  min-height:100vh;
 }
-button,input{font:inherit}
-button{cursor:pointer}
+
 .app{
-  width:100%;
   max-width:760px;
   margin:auto;
-  min-height:100vh;
-  padding:18px 16px 95px;
+  padding-bottom:100px;
 }
+
+header{
+  background:linear-gradient(135deg,#0f172a,#18263d);
+  color:white;
+  padding:24px 18px 30px;
+  border-radius:0 0 28px 28px;
+}
+
 .top{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:14px;
+  margin-bottom:22px;
 }
+
 .brand{
-  font-size:22px;
-  font-weight:950;
+  font-size:25px;
+  font-weight:900;
   letter-spacing:-.6px;
 }
+
+.brand span{color:#4ade80}
+
+.settings{
+  width:43px;
+  height:43px;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.08);
+  color:white;
+  border-radius:14px;
+  font-size:20px;
+  cursor:pointer;
+}
+
 .subtitle{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:3px;
+  color:#cbd5e1;
+  font-size:14px;
+  line-height:1.5;
 }
-.icon{
-  width:44px;
-  height:44px;
-  border-radius:15px;
-  border:1px solid var(--border);
-  background:white;
-  font-size:18px;
-}
-.screen{display:none}
-.screen.active{display:block}
 
 .hero{
-  background:linear-gradient(145deg,#123e35,#087f6d);
-  color:#fff;
-  border-radius:27px;
-  padding:23px;
-  box-shadow:0 15px 35px rgba(16,60,52,.16);
+  margin-top:20px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:22px;
+  padding:20px;
 }
-.label{
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:1.4px;
-  opacity:.72;
+
+.hero-label{
+  color:#cbd5e1;
+  font-size:14px;
+  margin-bottom:5px;
 }
+
 .remaining{
-  font-size:46px;
-  font-weight:950;
+  font-size:49px;
+  font-weight:900;
   letter-spacing:-2px;
-  margin:5px 0;
+  line-height:1.1;
 }
+
+.remaining.ok{color:#4ade80}
+
 .hero-text{
-  font-size:13px;
-  opacity:.82;
+  margin-top:9px;
+  font-size:15px;
+  color:#dbeafe;
 }
+
 .progress{
-  height:9px;
-  background:rgba(255,255,255,.18);
-  border-radius:20px;
+  height:11px;
+  background:rgba(255,255,255,.13);
+  border-radius:99px;
   overflow:hidden;
   margin-top:18px;
 }
+
 .progress-bar{
-  width:0%;
   height:100%;
-  background:#fff;
-  border-radius:20px;
-  transition:.3s;
+  width:0%;
+  background:linear-gradient(90deg,#22c55e,#4ade80);
+  border-radius:99px;
+  transition:.4s;
 }
+
 .progress-info{
   display:flex;
   justify-content:space-between;
-  font-size:10px;
-  opacity:.7;
-  margin-top:7px;
+  color:#cbd5e1;
+  font-size:12px;
+  margin-top:8px;
+}
+
+main{
+  padding:18px;
 }
 
 .stats{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:9px;
-  margin-top:10px;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-bottom:16px;
 }
+
 .stat{
   background:white;
-  border:1px solid var(--border);
+  border:1px solid var(--line);
   border-radius:18px;
-  padding:14px;
+  padding:17px;
+  box-shadow:0 3px 12px rgba(15,23,42,.04);
 }
+
 .stat small{
   display:block;
   color:var(--muted);
-  font-size:10px;
+  font-size:12px;
+  margin-bottom:7px;
 }
+
 .stat strong{
-  display:block;
-  font-size:18px;
-  margin-top:4px;
+  font-size:20px;
 }
 
 .card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:18px;
-  margin-top:10px;
-}
-.card-title{
-  font-size:16px;
-  font-weight:900;
-}
-.card-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:12px;
-}
-.link{
-  border:0;
-  background:transparent;
-  color:var(--green);
-  font-size:12px;
-  font-weight:900;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:19px;
+  margin-bottom:16px;
+  box-shadow:0 3px 12px rgba(15,23,42,.04);
 }
 
-.sale-form{
-  display:grid;
-  grid-template-columns:1fr 56px;
-  gap:8px;
+.card-title{
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:5px;
 }
-.input{
-  width:100%;
-  height:52px;
-  border:1px solid var(--border);
-  background:#fbfcfc;
+
+.card-subtitle{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.45;
+  margin-bottom:16px;
+}
+
+.sale-row{
+  display:flex;
+  gap:9px;
+}
+
+.sale-row input{
+  flex:1;
+  min-width:0;
+  border:1px solid #d9dee7;
   border-radius:14px;
-  padding:0 14px;
+  padding:14px;
+  font-size:16px;
   outline:none;
 }
-.input:focus{
+
+.sale-row input:focus{
   border-color:var(--green);
-  box-shadow:0 0 0 3px var(--light);
+  box-shadow:0 0 0 3px rgba(34,197,94,.1);
 }
-.add{
+
+.btn{
   border:0;
   border-radius:14px;
+  padding:0 17px;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.btn-green{
   background:var(--green);
   color:white;
-  font-size:26px;
-  font-weight:800;
 }
+
+.btn-green:active{transform:scale(.97)}
+
 .quick{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:7px;
-  margin-top:8px;
+  gap:8px;
+  margin-top:12px;
 }
+
 .quick button{
-  height:37px;
-  background:white;
-  border:1px solid var(--border);
-  border-radius:11px;
-  font-size:12px;
+  background:#f0fdf4;
+  color:#15803d;
+  border:1px solid #bbf7d0;
+  padding:11px 4px;
+  border-radius:12px;
   font-weight:800;
+  cursor:pointer;
 }
 
 .insight{
-  background:var(--dark);
-  color:white;
-  border-radius:20px;
-  padding:17px;
-  margin-top:10px;
+  background:linear-gradient(135deg,#effdf4,#f0fdf4);
+  border:1px solid #bbf7d0;
 }
+
+.insight-icon{
+  font-size:25px;
+  margin-bottom:8px;
+}
+
 .insight strong{
+  font-size:20px;
   display:block;
-  font-size:18px;
-  margin-top:5px;
+  margin-bottom:5px;
 }
+
 .insight p{
-  color:rgba(255,255,255,.68);
-  font-size:12px;
-  line-height:1.45;
-  margin:6px 0 0;
+  color:#475467;
+  font-size:13px;
+  line-height:1.5;
 }
 
 .chart{
-  height:125px;
+  height:150px;
   display:flex;
-  align-items:flex-end;
-  gap:9px;
-  padding-top:10px;
+  align-items:end;
+  justify-content:space-between;
+  gap:8px;
+  padding-top:15px;
 }
-.chart-column{
+
+.bar-wrap{
   flex:1;
   height:100%;
   display:flex;
-  align-items:flex-end;
-  justify-content:center;
+  flex-direction:column;
+  justify-content:end;
+  align-items:center;
+  gap:6px;
 }
+
 .bar{
   width:100%;
-  max-width:30px;
-  min-height:6px;
-  background:#d8e5e1;
+  max-width:42px;
+  min-height:4px;
+  background:linear-gradient(180deg,#22c55e,#15803d);
   border-radius:8px 8px 3px 3px;
 }
-.bar.today{
-  background:var(--green);
-}
-.days{
-  display:flex;
-  justify-content:space-between;
-  color:var(--muted);
-  font-size:9px;
-  margin-top:5px;
-}
 
-.sale{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:12px 0;
-  border-bottom:1px solid #edf2f0;
-}
-.sale:last-child{border-bottom:0}
-.sale-left{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.sale-icon{
-  width:36px;
-  height:36px;
-  border-radius:12px;
-  background:var(--light);
-  display:grid;
-  place-items:center;
-}
-.sale-time{
-  color:var(--muted);
+.bar-label{
+  color:#98a2b3;
   font-size:10px;
-  margin-top:2px;
 }
-.sale-value{
-  font-weight:900;
-}
-.delete{
+
+.pro-card{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(145deg,#111827,#1e293b);
+  color:white;
   border:0;
-  background:#fff1f1;
-  color:var(--danger);
-  width:31px;
-  height:31px;
-  border-radius:10px;
-  margin-left:8px;
 }
 
-.seller{
-  background:#f7faf9;
-  border:1px dashed #c9dad5;
-  border-radius:17px;
-  padding:14px;
+.pro-card:before{
+  content:"";
+  position:absolute;
+  width:150px;
+  height:150px;
+  background:#22c55e;
+  filter:blur(70px);
+  opacity:.16;
+  right:-50px;
+  top:-50px;
 }
-.two{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:10px;
+
+.pro-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:relative;
 }
-.calc{
-  color:var(--muted);
-  font-size:12px;
+
+.pro-badge{
+  background:#22c55e;
+  color:#052e16;
+  font-size:11px;
+  font-weight:900;
+  padding:6px 10px;
+  border-radius:999px;
+}
+
+.pro-card h3{
+  font-size:21px;
+  margin:12px 0 7px;
+  position:relative;
+}
+
+.pro-card p{
+  color:#cbd5e1;
+  font-size:13px;
   line-height:1.5;
-  margin-top:10px;
+  position:relative;
 }
 
-.share{
+.pro-list{
+  display:grid;
+  gap:9px;
+  margin:16px 0;
+  position:relative;
+}
+
+.pro-item{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:#e2e8f0;
+  font-size:13px;
+}
+
+.lock{
+  width:25px;
+  height:25px;
+  border-radius:8px;
+  background:rgba(255,255,255,.09);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.pro-button{
   width:100%;
-  height:49px;
+  padding:14px;
   border:0;
   border-radius:14px;
-  background:var(--light);
-  color:var(--green);
+  background:#22c55e;
+  color:#052e16;
+  font-size:15px;
   font-weight:900;
+  position:relative;
 }
 
-.history-stats{
+.sales-list{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-}
-.history-stat{
-  background:#f3f7f5;
-  border-radius:16px;
-  padding:13px;
-}
-.history-stat small{
-  color:var(--muted);
-  font-size:10px;
-}
-.history-stat b{
-  display:block;
-  font-size:17px;
-  margin-top:4px;
+  gap:9px;
 }
 
-.goal-row{
-  padding:15px 0;
-  border-bottom:1px solid #edf2f0;
+.sale-item{
   display:flex;
   justify-content:space-between;
+  align-items:center;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:13px;
 }
-.goal-row:last-child{border:0}
+
+.sale-item span{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.sale-item strong{
+  font-size:15px;
+}
+
+.delete{
+  border:0;
+  background:#fff1f2;
+  color:#dc2626;
+  width:31px;
+  height:31px;
+  border-radius:9px;
+  cursor:pointer;
+}
+
+.empty{
+  text-align:center;
+  padding:22px 10px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.clear{
+  width:100%;
+  margin-top:12px;
+  border:1px solid #fecaca;
+  color:#dc2626;
+  background:#fff;
+  padding:11px;
+  border-radius:12px;
+  font-weight:700;
+}
+
+.seller-box{
+  display:none;
+  margin-top:15px;
+  padding-top:15px;
+  border-top:1px solid var(--line);
+}
+
+.seller-box.show{display:block}
+
+.field{
+  margin-bottom:13px;
+}
+
+.field label{
+  display:block;
+  color:#475467;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.field input{
+  width:100%;
+  border:1px solid #d9dee7;
+  border-radius:13px;
+  padding:13px;
+  font-size:16px;
+}
+
+.seller-result{
+  background:#eff6ff;
+  color:#1d4ed8;
+  border-radius:13px;
+  padding:13px;
+  font-size:14px;
+  margin-top:10px;
+}
 
 .nav{
   position:fixed;
   bottom:0;
   left:50%;
   transform:translateX(-50%);
-  width:min(760px,100%);
-  padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+  width:100%;
+  max-width:760px;
   background:rgba(255,255,255,.96);
-  backdrop-filter:blur(14px);
-  border-top:1px solid var(--border);
+  backdrop-filter:blur(12px);
+  border-top:1px solid var(--line);
   display:grid;
   grid-template-columns:repeat(4,1fr);
+  padding:8px 10px calc(8px + env(safe-area-inset-bottom));
   z-index:20;
 }
+
 .nav button{
   border:0;
   background:transparent;
-  color:var(--muted);
-  border-radius:13px;
+  color:#98a2b3;
   padding:7px 2px;
-  font-size:10px;
-  font-weight:850;
+  font-size:12px;
+  font-weight:700;
 }
-.nav button.active{
-  background:var(--light);
-  color:var(--green);
-}
-.nav span{
+
+.nav button.active{color:var(--green)}
+
+.nav-icon{
   display:block;
-  font-size:19px;
+  font-size:21px;
   margin-bottom:2px;
 }
 
-.modal-bg{
-  display:none;
+.page{display:none}
+.page.active{display:block}
+
+.modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.45);
-  z-index:50;
+  background:rgba(15,23,42,.6);
+  display:none;
   align-items:flex-end;
   justify-content:center;
+  z-index:50;
 }
-.modal-bg.open{display:flex}
-.modal{
-  width:min(760px,100%);
+
+.modal.show{display:flex}
+
+.modal-box{
   background:white;
+  width:100%;
+  max-width:760px;
   border-radius:25px 25px 0 0;
   padding:22px;
-  max-height:90vh;
-  overflow:auto;
 }
-.modal h2{
-  margin:0 0 5px;
-  font-size:21px;
+
+.modal-title{
+  font-size:20px;
+  font-weight:900;
+  margin-bottom:18px;
 }
-.modal p{
-  color:var(--muted);
-  font-size:12px;
-}
-.field{
-  margin-top:13px;
-}
-.field label{
-  display:block;
-  font-size:11px;
-  font-weight:850;
-  margin-bottom:6px;
-}
-.save{
-  width:100%;
-  height:49px;
+
+.close{
+  float:right;
   border:0;
-  border-radius:14px;
+  background:#f2f4f7;
+  width:34px;
+  height:34px;
+  border-radius:10px;
+}
+
+.save-settings{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:13px;
   background:var(--green);
   color:white;
-  font-weight:900;
-  margin-top:17px;
-}
-.close{
-  width:100%;
-  height:45px;
-  border:1px solid var(--border);
-  border-radius:14px;
-  background:white;
   font-weight:800;
-  margin-top:8px;
+  font-size:15px;
 }
 
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:82px;
-  transform:translateX(-50%);
-  background:#10332d;
-  color:#fff;
-  padding:11px 15px;
-  border-radius:13px;
-  font-size:12px;
-  font-weight:800;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
-  z-index:100;
-  white-space:nowrap;
-}
-.toast.show{opacity:1}
-
-.empty{
-  color:var(--muted);
-  text-align:center;
-  padding:20px 5px;
-  font-size:12px;
-}
-
-@media(max-width:500px){
-  .stats{grid-template-columns:1fr 1fr}
-  .stats .stat:last-child{grid-column:1/-1}
-  .quick{grid-template-columns:repeat(2,1fr)}
-  .remaining{font-size:40px}
+@media(max-width:390px){
+  .remaining{font-size:42px}
+  .quick button{font-size:12px}
 }
 </style>
 </head>
@@ -471,1057 +557,739 @@ button{cursor:pointer}
 
 <div class="app">
 
-<header class="top">
-  <div>
-    <div class="brand">Quanto Vender Hoje?</div>
-    <div class="subtitle">Seu painel para chegar na meta.</div>
+<header>
+  <div class="top">
+    <div>
+      <div class="brand">Quanto Vender <span>Hoje?</span></div>
+      <div class="subtitle">Transforme sua meta em vendas.</div>
+    </div>
+
+    <button class="settings" onclick="openSettings()">⚙️</button>
   </div>
-  <button class="icon" id="settingsBtn">⚙️</button>
+
+  <div class="hero">
+    <div class="hero-label">Falta vender hoje</div>
+    <div class="remaining" id="remaining">R$ 200,00</div>
+    <div class="hero-text" id="heroText">
+      Você está começando o dia. Vamos buscar sua meta?
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="progress-info">
+      <span id="progressText">0% da meta</span>
+      <span id="goalText">Meta: R$ 200,00</span>
+    </div>
+  </div>
 </header>
 
+<main>
+
 <!-- INÍCIO -->
-<main id="home" class="screen active">
+<section id="home" class="page active">
 
-<section class="hero">
-  <div class="label">FALTA VENDER HOJE</div>
-  <div class="remaining" id="remaining">R$ 64,50</div>
-  <div class="hero-text" id="heroText">Você já está perto da sua meta.</div>
+  <div class="stats">
+    <div class="stat">
+      <small>Vendido hoje</small>
+      <strong id="todayTotal">R$ 0,00</strong>
+    </div>
 
-  <div class="progress">
-    <div class="progress-bar" id="progress"></div>
+    <div class="stat">
+      <small>Ticket médio</small>
+      <strong id="average">R$ 0,00</strong>
+    </div>
   </div>
 
-  <div class="progress-info">
-    <span id="percentage">68% da meta</span>
-    <span id="goalLabel">Meta R$ 200,00</span>
-  </div>
-</section>
-
-<div class="stats">
-  <div class="stat">
-    <small>💰 Vendido</small>
-    <strong id="sold">R$ 135,50</strong>
-  </div>
-
-  <div class="stat">
-    <small>🧾 Vendas</small>
-    <strong id="count">6</strong>
-  </div>
-
-  <div class="stat">
-    <small>🎯 Ticket médio</small>
-    <strong id="ticket">R$ 22,58</strong>
-  </div>
-</div>
-
-<section class="card">
-  <div class="card-head">
+  <div class="card">
     <div class="card-title">Registrar venda</div>
-    <div class="label" style="color:var(--muted)">HOJE</div>
-  </div>
-
-  <form class="sale-form" id="saleForm">
-    <input
-      class="input"
-      id="saleValue"
-      inputmode="decimal"
-      placeholder="Valor da venda"
-      autocomplete="off"
-    >
-    <button class="add">+</button>
-  </form>
-
-  <div class="quick">
-    <button data-value="10">+ R$10</button>
-    <button data-value="20">+ R$20</button>
-    <button data-value="50">+ R$50</button>
-    <button data-value="100">+ R$100</button>
-  </div>
-</section>
-
-<section class="insight">
-  <div class="label">SEU PLANO DE HOJE</div>
-  <strong id="plan">Você precisa de mais 3 vendas.</strong>
-  <p id="planText">
-    Seu ticket médio atual indica aproximadamente 3 vendas para completar a meta.
-  </p>
-</section>
-
-<section class="card">
-  <div class="card-head">
-    <div class="card-title">Desempenho</div>
-    <button class="link" id="weekBtn">Últimos 7 dias</button>
-  </div>
-
-  <div class="chart">
-    <div class="chart-column"><div class="bar" style="height:46%"></div></div>
-    <div class="chart-column"><div class="bar" style="height:65%"></div></div>
-    <div class="chart-column"><div class="bar" style="height:54%"></div></div>
-    <div class="chart-column"><div class="bar" style="height:82%"></div></div>
-    <div class="chart-column"><div class="bar" style="height:58%"></div></div>
-    <div class="chart-column"><div class="bar" style="height:73%"></div></div>
-    <div class="chart-column"><div class="bar today" id="todayBar" style="height:68%"></div></div>
-  </div>
-
-  <div class="days">
-    <span>TER</span>
-    <span>QUA</span>
-    <span>QUI</span>
-    <span>SEX</span>
-    <span>SÁB</span>
-    <span>DOM</span>
-    <b>HOJE</b>
-  </div>
-</section>
-
-<section class="card">
-  <div class="card-head">
-    <div class="card-title">Últimas vendas</div>
-    <button class="link" id="clearBtn">Limpar</button>
-  </div>
-
-  <div id="recentSales"></div>
-</section>
-
-<section class="card">
-  <div class="card-head">
-    <div class="card-title">💡 Modo Vendedor</div>
-    <div class="label" style="color:var(--muted)">INTELIGENTE</div>
-  </div>
-
-  <div class="seller">
-    <b>Quantas unidades preciso vender?</b>
-
-    <div class="two">
-      <input
-        class="input"
-        id="productPrice"
-        inputmode="decimal"
-        placeholder="Preço R$"
-      >
-
-      <input
-        class="input"
-        id="productProfit"
-        inputmode="decimal"
-        placeholder="Lucro R$"
-      >
+    <div class="card-subtitle">
+      Adicione cada venda e acompanhe sua meta em tempo real.
     </div>
 
-    <div class="calc" id="sellerResult">
-      Informe preço e lucro por unidade.
+    <div class="sale-row">
+      <input
+        id="saleInput"
+        type="number"
+        step="0.01"
+        min="0"
+        placeholder="Valor da venda"
+      >
+      <button class="btn btn-green" onclick="addSale()">Adicionar</button>
+    </div>
+
+    <div class="quick">
+      <button onclick="quickSale(5)">R$ 5</button>
+      <button onclick="quickSale(10)">R$ 10</button>
+      <button onclick="quickSale(20)">R$ 20</button>
+      <button onclick="quickSale(50)">R$ 50</button>
+    </div>
+
+    <div style="margin-top:13px">
+      <button
+        onclick="toggleSellerMode()"
+        style="border:0;background:none;color:#2563eb;font-weight:800;font-size:13px"
+      >
+        🧮 Modo vendedor
+      </button>
+    </div>
+
+    <div class="seller-box" id="sellerBox">
+      <div class="field">
+        <label>Preço do produto</label>
+        <input id="productPrice" type="number" step="0.01" placeholder="Ex.: 13">
+      </div>
+
+      <div class="field">
+        <label>Quanto você já vendeu</label>
+        <input id="sellerSold" type="number" step="0.01" placeholder="Ex.: 65">
+      </div>
+
+      <div class="seller-result" id="sellerResult">
+        Informe os valores para calcular.
+      </div>
     </div>
   </div>
-</section>
 
-<section class="card">
-  <div class="card-head">
-    <div class="card-title">📤 Compartilhar</div>
+  <div class="card insight">
+    <div class="insight-icon">💡</div>
+    <strong id="insightTitle">Comece sua primeira venda</strong>
+    <p id="insightText">
+      Cada venda registrada atualiza automaticamente o quanto falta para sua meta.
+    </p>
   </div>
 
-  <p style="font-size:12px;color:var(--muted)">
-    Mostre seu progresso de hoje para seus contatos.
-  </p>
+  <div class="card">
+    <div class="card-title">Últimos 7 dias</div>
+    <div class="card-subtitle">
+      Uma visão rápida do seu ritmo de vendas.
+    </div>
 
-  <button class="share" id="shareBtn">
-    Compartilhar minha meta
-  </button>
+    <div class="chart" id="chart"></div>
+  </div>
+
+  <div class="card pro-card">
+    <div class="pro-top">
+      <span style="font-size:13px;font-weight:800">QUANTO VENDER HOJE?</span>
+      <span class="pro-badge">PRO</span>
+    </div>
+
+    <h3>Quer enxergar seu negócio de verdade?</h3>
+
+    <p>
+      Desbloqueie ferramentas para acompanhar sua evolução e entender onde seu dinheiro está.
+    </p>
+
+    <div class="pro-list">
+      <div class="pro-item">
+        <span class="lock">🔒</span>
+        Histórico completo
+      </div>
+
+      <div class="pro-item">
+        <span class="lock">🔒</span>
+        Relatórios e gráficos avançados
+      </div>
+
+      <div class="pro-item">
+        <span class="lock">🔒</span>
+        Custos, lucro e produtos
+      </div>
+
+      <div class="pro-item">
+        <span class="lock">🔒</span>
+        Insights inteligentes
+      </div>
+    </div>
+
+    <button class="pro-button" onclick="showPro()">
+      Conhecer o Quanto Vender PRO
+    </button>
+  </div>
+
 </section>
 
-</main>
 
 <!-- VENDAS -->
-<main id="salesScreen" class="screen">
+<section id="sales" class="page">
 
-<section class="card">
-  <div class="card-head">
-    <div class="card-title">💰 Vendas de hoje</div>
+  <div class="card">
+    <div class="card-title">Vendas de hoje</div>
+    <div class="card-subtitle">
+      Tudo que você registrar durante o dia aparece aqui.
+    </div>
+
+    <div class="sales-list" id="salesList"></div>
+
+    <button class="clear" onclick="clearSales()">
+      Limpar vendas de hoje
+    </button>
   </div>
 
-  <form class="sale-form" id="saleForm2">
-    <input
-      class="input"
-      id="saleValue2"
-      inputmode="decimal"
-      placeholder="Valor da venda"
-    >
-    <button class="add">+</button>
-  </form>
-
-  <div class="quick">
-    <button data-value2="10">+ R$10</button>
-    <button data-value2="20">+ R$20</button>
-    <button data-value2="50">+ R$50</button>
-    <button data-value2="100">+ R$100</button>
-  </div>
 </section>
 
-<section class="card">
-  <div class="card-head">
-    <div class="card-title">Vendas registradas</div>
-  </div>
-
-  <div id="allSales"></div>
-</section>
-
-</main>
 
 <!-- HISTÓRICO -->
-<main id="historyScreen" class="screen">
+<section id="history" class="page">
 
-<section class="card">
-  <div class="card-title">📊 Histórico</div>
-
-  <div class="history-stats" style="margin-top:14px">
-    <div class="history-stat">
-      <small>7 dias</small>
-      <b>R$ 1.284</b>
+  <div class="card">
+    <div class="card-title">Resumo</div>
+    <div class="card-subtitle">
+      Uma visão simples do seu desempenho recente.
     </div>
 
-    <div class="history-stat">
-      <small>Melhor dia</small>
-      <b>R$ 287</b>
+    <div class="stats">
+      <div class="stat">
+        <small>Vendas registradas</small>
+        <strong id="salesCount">0</strong>
+      </div>
+
+      <div class="stat">
+        <small>Total vendido</small>
+        <strong id="historyTotal">R$ 0,00</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Evolução</div>
+    <div class="card-subtitle">
+      O gráfico básico mostra seu ritmo recente.
     </div>
 
-    <div class="history-stat">
-      <small>Média/dia</small>
-      <b>R$ 183</b>
+    <div class="chart" id="chartHistory"></div>
+  </div>
+
+  <div class="card pro-card">
+    <div class="pro-top">
+      <span style="font-size:13px;font-weight:800">HISTÓRICO COMPLETO</span>
+      <span class="pro-badge">PRO</span>
     </div>
-  </div>
-</section>
 
-<section class="card">
-  <div class="card-title">Desempenho semanal</div>
+    <h3>Não perca seus resultados.</h3>
 
-  <div class="chart">
-    <div class="chart-column"><div class="bar" style="height:46%"></div></div>
-    <div class="chart-column"><div class="bar" style="height:65%"></div></div>
-    <div class="chart-column"><div class="bar" style="height:54%"></div></div>
-    <div class="chart-column"><div class="bar" style="height:82%"></div></div>
-    <div class="chart-column"><div class="bar" style="height:58%"></div></div>
-    <div class="chart-column"><div class="bar" style="height:73%"></div></div>
-    <div class="chart-column"><div class="bar today" style="height:68%"></div></div>
+    <p>
+      No PRO você poderá acompanhar períodos maiores e comparar sua evolução.
+    </p>
+
+    <button class="pro-button" onclick="showPro()" style="margin-top:16px">
+      Desbloquear histórico completo
+    </button>
   </div>
 
-  <div class="days">
-    <span>TER</span>
-    <span>QUA</span>
-    <span>QUI</span>
-    <span>SEX</span>
-    <span>SÁB</span>
-    <span>DOM</span>
-    <b>HOJE</b>
-  </div>
 </section>
 
-<section class="insight">
-  <div class="label">INSIGHT</div>
-  <strong>Você vendeu em 6 dos últimos 7 dias.</strong>
-  <p>
-    Manter consistência ajuda a acompanhar sua meta mensal.
-  </p>
-</section>
-
-</main>
 
 <!-- PERFIL -->
-<main id="profileScreen" class="screen">
+<section id="profile" class="page">
 
-<section class="card">
-  <div class="card-title">👤 Seu perfil</div>
+  <div class="card">
+    <div class="card-title">Sua meta</div>
+    <div class="card-subtitle">
+      Esses valores são usados para calcular sua meta diária.
+    </div>
 
-  <div class="goal-row">
-    <span>Meta mensal</span>
-    <b id="profileIncome">R$ 4.000</b>
+    <div class="field">
+      <label>Quanto quer ganhar por mês?</label>
+      <input id="profileIncome" type="number">
+    </div>
+
+    <div class="field">
+      <label>Despesas mensais do trabalho</label>
+      <input id="profileExpenses" type="number">
+    </div>
+
+    <div class="field">
+      <label>Dias de trabalho por mês</label>
+      <input id="profileDays" type="number">
+    </div>
+
+    <button class="save-settings" onclick="saveProfile()">
+      Atualizar minha meta
+    </button>
   </div>
 
-  <div class="goal-row">
-    <span>Gastos mensais</span>
-    <b id="profileExpenses">R$ 1.200</b>
+  <div class="card">
+    <div class="card-title">Como calculamos?</div>
+    <p style="color:#667085;font-size:14px;line-height:1.6">
+      Sua meta diária considera o valor que você deseja ganhar,
+      suas despesas mensais e quantos dias pretende trabalhar.
+    </p>
+
+    <div style="
+      margin-top:15px;
+      padding:14px;
+      border-radius:13px;
+      background:#f8fafc;
+      font-weight:800;
+      font-size:14px;
+    ">
+      Meta diária = (ganho desejado + despesas) ÷ dias trabalhados
+    </div>
   </div>
 
-  <div class="goal-row">
-    <span>Dias de trabalho</span>
-    <b id="profileDays">26</b>
+  <div class="card pro-card">
+    <div class="pro-top">
+      <span style="font-size:13px;font-weight:800">RECURSOS EXTRAS</span>
+      <span class="pro-badge">PRO</span>
+    </div>
+
+    <h3>Mais controle sobre seu dinheiro.</h3>
+
+    <p>
+      Controle custos, lucro, produtos, metas e resultados em um só lugar.
+    </p>
+
+    <button class="pro-button" onclick="showPro()" style="margin-top:16px">
+      Conhecer o PRO
+    </button>
   </div>
 
-  <button class="share" id="editProfile" style="margin-top:14px">
-    Editar minha meta
-  </button>
-</section>
-
-<section class="card">
-  <div class="card-title">🎯 Suas metas</div>
-
-  <div class="goal-row">
-    <span>Meta mensal</span>
-    <b id="monthGoal">R$ 5.200</b>
-  </div>
-
-  <div class="goal-row">
-    <span>Meta semanal</span>
-    <b id="weekGoal">R$ 1.400</b>
-  </div>
-
-  <div class="goal-row">
-    <span>Meta diária</span>
-    <b id="dayGoal">R$ 200</b>
-  </div>
-</section>
-
-<section class="card">
-  <div class="card-title">🚀 Quanto Vender Hoje?</div>
-
-  <p style="font-size:12px;color:var(--muted);line-height:1.5">
-    Seu painel foi criado para transformar sua meta mensal
-    em uma meta simples para cada dia.
-  </p>
 </section>
 
 </main>
 
-<!-- NAVEGAÇÃO -->
 <nav class="nav">
-  <button class="active" data-screen="home">
-    <span>⌂</span>
+  <button class="active" onclick="showPage('home',this)">
+    <span class="nav-icon">🏠</span>
     Início
   </button>
 
-  <button data-screen="salesScreen">
-    <span>＋</span>
+  <button onclick="showPage('sales',this)">
+    <span class="nav-icon">💰</span>
     Vendas
   </button>
 
-  <button data-screen="historyScreen">
-    <span>◷</span>
+  <button onclick="showPage('history',this)">
+    <span class="nav-icon">📊</span>
     Histórico
   </button>
 
-  <button data-screen="profileScreen">
-    <span>◉</span>
+  <button onclick="showPage('profile',this)">
+    <span class="nav-icon">👤</span>
     Perfil
   </button>
 </nav>
 
 </div>
 
+
 <!-- MODAL CONFIGURAÇÕES -->
-<div class="modal-bg" id="modalBg">
+<div class="modal" id="settingsModal" onclick="closeSettings(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
 
-<div class="modal">
+    <button class="close" onclick="closeSettings()">✕</button>
 
-  <h2>Configurar minha meta</h2>
+    <div class="modal-title">Configurar minha meta</div>
 
-  <p>
-    Informe quanto você quer ganhar e seus gastos mensais.
-  </p>
+    <div class="field">
+      <label>Quanto você quer ganhar por mês?</label>
+      <input id="incomeInput" type="number">
+    </div>
 
-  <div class="field">
-    <label>Quanto quero ganhar por mês</label>
-    <input
-      class="input"
-      id="incomeInput"
-      inputmode="decimal"
-      value="4000"
-    >
+    <div class="field">
+      <label>Despesas mensais</label>
+      <input id="expensesInput" type="number">
+    </div>
+
+    <div class="field">
+      <label>Dias de trabalho por mês</label>
+      <input id="daysInput" type="number">
+    </div>
+
+    <button class="save-settings" onclick="saveSettings()">
+      Salvar minha meta
+    </button>
+
   </div>
-
-  <div class="field">
-    <label>Gastos mensais do trabalho</label>
-    <input
-      class="input"
-      id="expensesInput"
-      inputmode="decimal"
-      value="1200"
-    >
-  </div>
-
-  <div class="field">
-    <label>Dias de trabalho por mês</label>
-    <input
-      class="input"
-      id="daysInput"
-      inputmode="numeric"
-      value="26"
-    >
-  </div>
-
-  <button class="save" id="saveSettings">
-    Salvar minha meta
-  </button>
-
-  <button class="close" id="closeModal">
-    Cancelar
-  </button>
-
-</div>
 </div>
 
-<div class="toast" id="toast"></div>
 
 <script>
-(function(){
 
-  let sales = JSON.parse(localStorage.getItem("qvh_sales") || "null");
+const money = value =>
+  Number(value || 0).toLocaleString('pt-BR',{
+    style:'currency',
+    currency:'BRL'
+  });
 
-  if(!sales){
-    sales = [
-      35,
-      20,
-      15.5,
-      25,
-      18,
-      22
-    ];
-  }
+let sales = JSON.parse(localStorage.getItem('qvh_sales') || '[]');
 
-  let settings = JSON.parse(
-    localStorage.getItem("qvh_settings") || "null"
-  );
+let settings = JSON.parse(
+  localStorage.getItem('qvh_settings') ||
+  JSON.stringify({
+    income:4000,
+    expenses:1200,
+    days:26
+  })
+);
 
-  if(!settings){
-    settings = {
-      income:4000,
-      expenses:1200,
-      days:26
-    };
-  }
+function goal(){
+  const days = Number(settings.days) || 1;
+  return (Number(settings.income) + Number(settings.expenses)) / days;
+}
 
-  let goal = 200;
+function total(){
+  return sales.reduce((sum,sale)=>sum + Number(sale),0);
+}
 
-  const $ = id => document.getElementById(id);
+function remaining(){
+  return Math.max(0,goal() - total());
+}
 
-  function money(value){
-    return Number(value || 0).toLocaleString(
-      "pt-BR",
-      {
-        style:"currency",
-        currency:"BRL"
-      }
-    );
-  }
+function saveData(){
+  localStorage.setItem('qvh_sales',JSON.stringify(sales));
+  localStorage.setItem('qvh_settings',JSON.stringify(settings));
+}
 
-  function number(value){
+function update(){
 
-    if(typeof value === "number") return value;
+  const g = goal();
+  const t = total();
+  const r = remaining();
 
-    let v = String(value || "")
-      .replace(/\./g,"")
-      .replace(",", ".");
+  document.getElementById('remaining').textContent = money(r);
+  document.getElementById('todayTotal').textContent = money(t);
+  document.getElementById('goalText').textContent = 'Meta: ' + money(g);
 
-    let n = Number(v);
+  const percent = g > 0 ? Math.min(100,(t/g)*100) : 0;
 
-    return Number.isFinite(n) ? n : 0;
-  }
+  document.getElementById('progressBar').style.width = percent + '%';
+  document.getElementById('progressText').textContent =
+    Math.round(percent) + '% da meta';
 
-  function save(){
+  if(t >= g){
+    document.getElementById('remaining').classList.add('ok');
 
-    localStorage.setItem(
-      "qvh_sales",
-      JSON.stringify(sales)
-    );
+    document.getElementById('heroText').textContent =
+      '🎉 Meta atingida! Você conseguiu bater sua meta de hoje.';
 
-    localStorage.setItem(
-      "qvh_settings",
-      JSON.stringify(settings)
-    );
-  }
+    document.getElementById('insightTitle').textContent =
+      'Meta do dia atingida!';
 
-  function toast(message){
+    document.getElementById('insightText').textContent =
+      'Parabéns. Você chegou ao valor que precisava vender hoje.';
+  }else{
 
-    const el = $("toast");
+    document.getElementById('remaining').classList.remove('ok');
 
-    el.textContent = message;
-    el.classList.add("show");
-
-    setTimeout(function(){
-      el.classList.remove("show");
-    },1600);
-  }
-
-  function calculateGoal(){
-
-    const total =
-      Number(settings.income) +
-      Number(settings.expenses);
-
-    goal =
-      total / Number(settings.days || 26);
-  }
-
-  function render(){
-
-    calculateGoal();
-
-    const sold =
-      sales.reduce((sum,value)=>sum + Number(value),0);
-
-    const remaining =
-      Math.max(0,goal - sold);
-
-    const percentage =
-      goal > 0
-      ? Math.min(100,(sold / goal) * 100)
-      : 0;
-
-    const average =
-      sales.length
-      ? sold / sales.length
-      : 0;
-
-    $("remaining").textContent =
-      money(remaining);
-
-    $("sold").textContent =
-      money(sold);
-
-    $("count").textContent =
-      sales.length;
-
-    $("ticket").textContent =
-      money(average);
-
-    $("percentage").textContent =
-      Math.round(percentage) + "% da meta";
-
-    $("goalLabel").textContent =
-      "Meta " + money(goal);
-
-    $("progress").style.width =
-      percentage + "%";
-
-    $("todayBar").style.height =
-      Math.max(8,percentage) + "%";
-
-    if(sold >= goal){
-
-      $("heroText").textContent =
-        "🎉 Meta de hoje atingida!";
-
-      $("plan").textContent =
-        "Você conseguiu bater sua meta!";
-
-      $("planText").textContent =
-        "Excelente. Você está " +
-        money(sold-goal) +
-        " acima do objetivo.";
-
+    if(t === 0){
+      document.getElementById('heroText').textContent =
+        'Você está começando o dia. Vamos buscar sua meta?';
     }else{
-
-      $("heroText").textContent =
-        percentage >= 75
-        ? "Você está muito perto da meta."
-        : "Continue registrando suas vendas.";
-
-      const required =
-        Math.max(
-          1,
-          Math.ceil(
-            remaining / (average || 25)
-          )
-        );
-
-      $("plan").textContent =
-        "Você precisa de mais " +
-        required +
-        " venda" +
-        (required === 1 ? "" : "s") +
-        ".";
-
-      $("planText").textContent =
-        "Com ticket médio de " +
-        money(average || 25) +
-        ", aproximadamente " +
-        required +
-        " vendas completam o restante.";
+      document.getElementById('heroText').textContent =
+        'Continue vendendo. Ainda faltam ' + money(r) + '.';
     }
 
-    renderSales();
+    if(sales.length === 0){
+      document.getElementById('insightTitle').textContent =
+        'Comece sua primeira venda';
 
-    $("profileIncome").textContent =
-      money(settings.income);
+      document.getElementById('insightText').textContent =
+        'Cada venda registrada atualiza automaticamente o quanto falta para sua meta.';
+    }else{
+      document.getElementById('insightTitle').textContent =
+        'Você já vendeu ' + money(t);
 
-    $("profileExpenses").textContent =
-      money(settings.expenses);
-
-    $("profileDays").textContent =
-      settings.days;
-
-    const monthGoal =
-      Number(settings.income) +
-      Number(settings.expenses);
-
-    const weekGoal =
-      monthGoal / 4;
-
-    $("monthGoal").textContent =
-      money(monthGoal);
-
-    $("weekGoal").textContent =
-      money(weekGoal);
-
-    $("dayGoal").textContent =
-      money(goal);
-
-    save();
+      document.getElementById('insightText').textContent =
+        'Faltam ' + money(r) + ' para alcançar sua meta diária.';
+    }
   }
 
-  function renderSales(){
+  const average =
+    sales.length ? t / sales.length : 0;
 
-    const recent =
-      sales
-        .slice()
-        .reverse()
-        .slice(0,8);
+  document.getElementById('average').textContent = money(average);
 
-    if(!recent.length){
+  document.getElementById('salesCount').textContent = sales.length;
+  document.getElementById('historyTotal').textContent = money(t);
 
-      $("recentSales").innerHTML =
-        '<div class="empty">Nenhuma venda registrada hoje.</div>';
+  renderSales();
+  renderChart();
+  renderChartHistory();
+  calculateSeller();
+}
 
-      $("allSales").innerHTML =
-        '<div class="empty">Nenhuma venda registrada hoje.</div>';
+function addSale(value=null){
 
-      return;
-    }
+  const input = document.getElementById('saleInput');
 
-    let html = "";
+  const amount = value !== null
+    ? Number(value)
+    : Number(input.value);
 
-    recent.forEach(function(value,index){
+  if(!amount || amount <= 0){
+    alert('Digite um valor válido.');
+    return;
+  }
 
-      const realIndex =
-        sales.length - 1 - index;
+  sales.push(amount);
 
-      html += `
-        <div class="sale">
+  input.value = '';
 
-          <div class="sale-left">
+  saveData();
+  update();
+}
 
-            <div class="sale-icon">
-              ✓
-            </div>
+function quickSale(value){
+  addSale(value);
+}
 
-            <div>
-              <b>Venda registrada</b>
-              <div class="sale-time">
-                Hoje • agora
-              </div>
-            </div>
+function renderSales(){
 
+  const box = document.getElementById('salesList');
+
+  if(!sales.length){
+    box.innerHTML = `
+      <div class="empty">
+        Nenhuma venda registrada ainda.<br>
+        Adicione sua primeira venda acima.
+      </div>
+    `;
+    return;
+  }
+
+  box.innerHTML = sales
+    .slice()
+    .reverse()
+    .map((sale,index)=>{
+
+      const realIndex = sales.length - 1 - index;
+
+      return `
+        <div class="sale-item">
+          <div>
+            <span>Venda ${realIndex + 1}</span><br>
+            <strong>${money(sale)}</strong>
           </div>
 
-          <div style="display:flex;align-items:center">
-
-            <div class="sale-value">
-              ${money(value)}
-            </div>
-
-            <button
-              class="delete"
-              data-delete="${realIndex}"
-              title="Excluir"
-            >
-              ×
-            </button>
-
-          </div>
-
+          <button
+            class="delete"
+            onclick="deleteSale(${realIndex})"
+          >✕</button>
         </div>
       `;
-    });
 
-    $("recentSales").innerHTML = html;
-    $("allSales").innerHTML = html;
+    }).join('');
+}
 
-    document
-      .querySelectorAll("[data-delete]")
-      .forEach(function(button){
+function deleteSale(index){
 
-        button.addEventListener("click",function(){
+  sales.splice(index,1);
 
-          const index =
-            Number(button.dataset.delete);
+  saveData();
+  update();
+}
 
-          sales.splice(index,1);
+function clearSales(){
 
-          render();
+  if(!sales.length) return;
 
-          toast("Venda excluída");
-        });
-
-      });
+  if(confirm('Apagar todas as vendas de hoje?')){
+    sales = [];
+    saveData();
+    update();
   }
+}
 
-  function addSale(value){
+function renderChart(){
 
-    value = number(value);
+  const chart = document.getElementById('chart');
 
-    if(!value || value <= 0){
+  const values = [35,20,15.5,25,18,22,total()];
 
-      toast("Digite um valor válido");
+  const max = Math.max(...values,goal(),1);
 
-      return;
-    }
+  chart.innerHTML = values.map((value,index)=>{
 
-    sales.push(value);
+    const height = Math.max(4,(value/max)*105);
 
-    render();
+    return `
+      <div class="bar-wrap">
+        <div
+          class="bar"
+          style="height:${height}px"
+          title="${money(value)}"
+        ></div>
 
-    toast(
-      "Venda de " +
-      money(value) +
-      " registrada ✓"
-    );
-  }
+        <div class="bar-label">
+          ${index === 6 ? 'Hoje' : 'D'+(index+1)}
+        </div>
+      </div>
+    `;
 
-  $("saleForm").addEventListener(
-    "submit",
-    function(event){
+  }).join('');
+}
 
-      event.preventDefault();
+function renderChartHistory(){
 
-      addSale(
-        $("saleValue").value
-      );
+  document.getElementById('chartHistory').innerHTML =
+    document.getElementById('chart').innerHTML;
+}
 
-      $("saleValue").value = "";
-    }
-  );
-
-  $("saleForm2").addEventListener(
-    "submit",
-    function(event){
-
-      event.preventDefault();
-
-      addSale(
-        $("saleValue2").value
-      );
-
-      $("saleValue2").value = "";
-    }
-  );
+function toggleSellerMode(){
 
   document
-    .querySelectorAll("[data-value]")
-    .forEach(function(button){
+    .getElementById('sellerBox')
+    .classList.toggle('show');
 
-      button.addEventListener(
-        "click",
-        function(){
+}
 
-          addSale(
-            button.dataset.value
-          );
+document
+  .getElementById('productPrice')
+  .addEventListener('input',calculateSeller);
 
-        }
-      );
+document
+  .getElementById('sellerSold')
+  .addEventListener('input',calculateSeller);
 
-    });
+function calculateSeller(){
+
+  const price = Number(
+    document.getElementById('productPrice').value
+  );
+
+  const sold = Number(
+    document.getElementById('sellerSold').value
+  );
+
+  const box = document.getElementById('sellerResult');
+
+  if(!price || price <= 0){
+    box.textContent =
+      'Informe o preço do seu produto para calcular.';
+    return;
+  }
+
+  const missing = Math.max(0,goal() - sold);
+  const units = Math.ceil(missing / price);
+
+  if(missing <= 0){
+
+    box.textContent =
+      '🎉 Pela meta informada, você já atingiu o valor necessário.';
+
+  }else{
+
+    box.innerHTML =
+      `Faltam <strong>${money(missing)}</strong>.
+      Vendendo por ${money(price)} cada,
+      você precisa de aproximadamente
+      <strong>${units} unidade${units > 1 ? 's' : ''}</strong>.`;
+  }
+}
+
+function showPage(page,button){
 
   document
-    .querySelectorAll("[data-value2]")
-    .forEach(function(button){
-
-      button.addEventListener(
-        "click",
-        function(){
-
-          addSale(
-            button.dataset.value2
-          );
-
-        }
-      );
-
-    });
-
-  $("clearBtn").addEventListener(
-    "click",
-    function(){
-
-      if(!sales.length){
-
-        toast("Não há vendas para apagar");
-
-        return;
-      }
-
-      if(
-        confirm(
-          "Apagar todas as vendas de hoje?"
-        )
-      ){
-
-        sales = [];
-
-        render();
-
-        toast("Vendas apagadas");
-      }
-
-    }
-  );
-
-  function calculateSeller(){
-
-    const price =
-      number(
-        $("productPrice").value
-      );
-
-    const profit =
-      number(
-        $("productProfit").value
-      );
-
-    const sold =
-      sales.reduce(
-        (sum,value)=>sum + Number(value),
-        0
-      );
-
-    const remaining =
-      Math.max(0,goal-sold);
-
-    if(!price || !profit){
-
-      $("sellerResult").textContent =
-        "Informe preço e lucro por unidade.";
-
-      return;
-    }
-
-    const units =
-      Math.ceil(
-        remaining / profit
-      );
-
-    $("sellerResult").innerHTML =
-      "<b style='color:var(--text)'>" +
-      "Você precisa vender " +
-      units +
-      " unidade" +
-      (units === 1 ? "" : "s") +
-      ".</b><br>" +
-
-      "Faturamento: " +
-      money(units * price) +
-
-      " • Lucro: " +
-      money(units * profit);
-  }
-
-  $("productPrice").addEventListener(
-    "input",
-    calculateSeller
-  );
-
-  $("productProfit").addEventListener(
-    "input",
-    calculateSeller
-  );
+    .querySelectorAll('.page')
+    .forEach(p=>p.classList.remove('active'));
 
   document
-    .querySelectorAll(".nav button")
-    .forEach(function(button){
+    .getElementById(page)
+    .classList.add('active');
 
-      button.addEventListener(
-        "click",
-        function(){
+  document
+    .querySelectorAll('.nav button')
+    .forEach(b=>b.classList.remove('active'));
 
-          const screen =
-            button.dataset.screen;
+  if(button) button.classList.add('active');
 
-          document
-            .querySelectorAll(".screen")
-            .forEach(function(el){
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+}
 
-              el.classList.remove("active");
+function openSettings(){
 
-            });
+  document.getElementById('incomeInput').value =
+    settings.income;
 
-          $(screen).classList.add("active");
+  document.getElementById('expensesInput').value =
+    settings.expenses;
 
-          document
-            .querySelectorAll(".nav button")
-            .forEach(function(btn){
+  document.getElementById('daysInput').value =
+    settings.days;
 
-              btn.classList.remove("active");
+  document
+    .getElementById('settingsModal')
+    .classList.add('show');
+}
 
-            });
+function closeSettings(event){
 
-          button.classList.add("active");
+  if(event && event.target.id !== 'settingsModal') return;
 
-          window.scrollTo({
-            top:0,
-            behavior:"smooth"
-          });
+  document
+    .getElementById('settingsModal')
+    .classList.remove('show');
+}
 
-        }
-      );
+function saveSettings(){
 
-    });
+  settings.income =
+    Number(document.getElementById('incomeInput').value) || 0;
 
-  const modal =
-    $("modalBg");
+  settings.expenses =
+    Number(document.getElementById('expensesInput').value) || 0;
 
-  function openModal(){
+  settings.days =
+    Number(document.getElementById('daysInput').value) || 1;
 
-    $("incomeInput").value =
-      settings.income;
+  saveData();
+  update();
 
-    $("expensesInput").value =
-      settings.expenses;
+  closeSettings();
+}
 
-    $("daysInput").value =
-      settings.days;
+function saveProfile(){
 
-    modal.classList.add("open");
-  }
+  settings.income =
+    Number(document.getElementById('profileIncome').value) || 0;
 
-  function closeModal(){
+  settings.expenses =
+    Number(document.getElementById('profileExpenses').value) || 0;
 
-    modal.classList.remove("open");
-  }
+  settings.days =
+    Number(document.getElementById('profileDays').value) || 1;
 
-  $("settingsBtn").addEventListener(
-    "click",
-    openModal
+  saveData();
+  update();
+
+  alert('Meta atualizada!');
+}
+
+function loadProfile(){
+
+  document.getElementById('profileIncome').value =
+    settings.income;
+
+  document.getElementById('profileExpenses').value =
+    settings.expenses;
+
+  document.getElementById('profileDays').value =
+    settings.days;
+}
+
+function showPro(){
+
+  alert(
+    '🚀 O Quanto Vender PRO vai desbloquear histórico completo, gráficos avançados, lucro, custos, produtos, relatórios e muito mais.'
   );
+}
 
-  $("editProfile").addEventListener(
-    "click",
-    openModal
-  );
+document
+  .getElementById('saleInput')
+  .addEventListener('keydown',e=>{
+    if(e.key === 'Enter') addSale();
+  });
 
-  $("closeModal").addEventListener(
-    "click",
-    closeModal
-  );
+loadProfile();
+update();
 
-  $("saveSettings").addEventListener(
-    "click",
-    function(){
-
-      const income =
-        number(
-          $("incomeInput").value
-        );
-
-      const expenses =
-        number(
-          $("expensesInput").value
-        );
-
-      const days =
-        Number(
-          $("daysInput").value
-        );
-
-      if(!income || income <= 0){
-
-        toast("Informe sua renda mensal");
-
-        return;
-      }
-
-      if(days < 1 || days > 31){
-
-        toast("Informe de 1 a 31 dias");
-
-        return;
-      }
-
-      settings = {
-        income:income,
-        expenses:expenses,
-        days:days
-      };
-
-      closeModal();
-
-      render();
-
-      toast("Meta atualizada ✓");
-    }
-  );
-
-  $("weekBtn").addEventListener(
-    "click",
-    function(){
-
-      document
-        .querySelector('[data-screen="historyScreen"]')
-        .click();
-
-    }
-  );
-
-  $("shareBtn").addEventListener(
-    "click",
-    async function(){
-
-      const sold =
-        sales.reduce(
-          (sum,value)=>sum + Number(value),
-          0
-        );
-
-      const remaining =
-        Math.max(0,goal-sold);
-
-      const text =
-`🎯 Minha meta de hoje
-
-Meta: ${money(goal)}
-Já vendi: ${money(sold)}
-Falta: ${money(remaining)}
-
-🚀 Quanto Vender Hoje?`;
-
-      if(
-        navigator.share
-      ){
-
-        try{
-
-          await navigator.share({
-            title:"Minha meta de hoje",
-            text:text
-          });
-
-        }catch(error){}
-
-      }else{
-
-        try{
-
-          await navigator.clipboard.writeText(
-            text
-          );
-
-          toast(
-            "Texto copiado para compartilhar ✓"
-          );
-
-        }catch(error){
-
-          toast(
-            "Compartilhamento não disponível"
-          );
-
-        }
-
-      }
-
-    }
-  );
-
-  render();
-
-})();
 </script>
 
 </body>
-  </html>
+      </html>
