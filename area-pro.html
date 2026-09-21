@@ -307,16 +307,45 @@ input:focus,select:focus{
 }
 
 .quick{
-  padding:12px 5px;
+  padding:15px 5px;
   border:1px solid var(--line);
   background:#101f33;
   color:white;
-  border-radius:12px;
+  border-radius:13px;
   font-weight:bold;
+  font-size:15px;
+  transition:.15s;
 }
 
 .quick:active{
-  transform:scale(.97);
+  transform:scale(.96);
+  border-color:var(--green);
+}
+
+.quick-label{
+  font-size:10px;
+  color:var(--muted);
+  text-align:center;
+  margin-bottom:7px;
+}
+
+.fast-sale{
+  background:
+    radial-gradient(circle at 100% 0%,rgba(33,212,123,.12),transparent 40%),
+    linear-gradient(145deg,#0d1d2f,#0b1727);
+  border-color:rgba(33,212,123,.22);
+}
+
+.fast-title{
+  font-size:15px;
+  font-weight:bold;
+}
+
+.fast-sub{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:4px;
+  margin-bottom:13px;
 }
 
 .payment-grid{
@@ -375,6 +404,7 @@ input:focus,select:focus{
   border-radius:20px;
   font-size:10px;
   font-weight:bold;
+  white-space:nowrap;
 }
 
 .status.paid{
@@ -500,6 +530,47 @@ input:focus,select:focus{
   line-height:1.5;
 }
 
+.motivation{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 100% 0%,rgba(33,212,123,.18),transparent 38%),
+    linear-gradient(145deg,#10233a,#0d1a2b);
+  border:1px solid rgba(33,212,123,.25);
+}
+
+.motivation-icon{
+  font-size:25px;
+  margin-bottom:8px;
+}
+
+.motivation-title{
+  font-size:15px;
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+.motivation-text{
+  color:#c8d6e5;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.motivation-progress{
+  margin-top:12px;
+  height:5px;
+  background:#17283c;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.motivation-progress div{
+  height:100%;
+  background:linear-gradient(90deg,var(--green2),var(--green));
+  border-radius:10px;
+  transition:.4s;
+}
+
 .empty{
   text-align:center;
   padding:25px 10px;
@@ -551,16 +622,17 @@ input:focus,select:focus{
   background:#13253a;
   border:1px solid #29415d;
   color:white;
-  padding:12px 16px;
-  border-radius:12px;
+  padding:13px 16px;
+  border-radius:13px;
   font-size:12px;
   opacity:0;
   pointer-events:none;
   transition:.25s;
   z-index:100;
   width:max-content;
-  max-width:90%;
+  max-width:92%;
   text-align:center;
+  box-shadow:0 10px 35px rgba(0,0,0,.3);
 }
 
 .toast.show{
@@ -662,7 +734,10 @@ input:focus,select:focus{
 
 <main>
 
-<!-- DASHBOARD -->
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
 <section id="dashboard" class="page active">
 
   <h2>Seu painel</h2>
@@ -670,7 +745,10 @@ input:focus,select:focus{
 
   <div class="card hero">
     <div class="label">Falta para sua meta principal</div>
-    <div class="big-number green" id="dashMissing">R$ 0,00</div>
+
+    <div class="big-number green" id="dashMissing">
+      R$ 0,00
+    </div>
 
     <div class="progress">
       <div class="progress-bar" id="dashProgress"></div>
@@ -682,76 +760,139 @@ input:focus,select:focus{
     </div>
   </div>
 
+
+  <!-- INCENTIVO -->
+  <div class="card motivation">
+
+    <div class="motivation-icon" id="motivationIcon">
+      🚀
+    </div>
+
+    <div class="motivation-title" id="motivationTitle">
+      Vamos começar!
+    </div>
+
+    <div class="motivation-text" id="motivationText">
+      Registre sua primeira venda e acompanhe seu progresso.
+    </div>
+
+    <div class="motivation-progress">
+      <div id="motivationProgress"></div>
+    </div>
+
+  </div>
+
+
   <div class="grid">
+
     <div class="stat">
       <div class="name">Vendido hoje</div>
-      <div class="value green" id="dashToday">R$ 0,00</div>
+      <div class="value green" id="dashToday">
+        R$ 0,00
+      </div>
     </div>
 
     <div class="stat">
       <div class="name">Falta hoje</div>
-      <div class="value" id="dashTodayMissing">R$ 0,00</div>
+      <div class="value" id="dashTodayMissing">
+        R$ 0,00
+      </div>
     </div>
 
     <div class="stat">
       <div class="name">Lucro estimado</div>
-      <div class="value green" id="dashProfit">R$ 0,00</div>
+      <div class="value green" id="dashProfit">
+        R$ 0,00
+      </div>
     </div>
 
     <div class="stat">
       <div class="name">Ticket médio</div>
-      <div class="value" id="dashTicket">R$ 0,00</div>
+      <div class="value" id="dashTicket">
+        R$ 0,00
+      </div>
     </div>
+
   </div>
 
+
   <div class="card">
+
     <div class="section-title">
       <h3>Meta de hoje</h3>
       <span id="dailyTargetLabel">—</span>
     </div>
 
-    <div class="big-number" id="dailyTarget">R$ 0,00</div>
+    <div class="big-number" id="dailyTarget">
+      R$ 0,00
+    </div>
+
     <p class="muted" style="font-size:11px;margin-top:5px">
       Valor necessário para alcançar sua meta.
     </p>
+
   </div>
 
+
   <div class="card">
+
     <div class="section-title">
       <h3>Últimos 7 dias</h3>
       <span>Vendas pagas</span>
     </div>
 
     <div class="chart" id="dashboardChart"></div>
+
   </div>
 
+
   <div class="card">
+
     <div class="section-title">
       <h3>Insight</h3>
     </div>
+
     <div class="insight" id="dashboardInsight">
       Registre suas primeiras vendas para receber um insight.
     </div>
+
   </div>
 
+
   <div class="card">
+
     <div class="section-title">
       <h3>Vendas recentes</h3>
-      <button class="btn btn-small" onclick="goPage('historico')">Ver tudo</button>
+
+      <button
+        class="btn btn-small"
+        onclick="goPage('historico')">
+        Ver tudo
+      </button>
     </div>
+
     <div id="dashboardSales"></div>
+
   </div>
 
 </section>
 
 
-<!-- METAS -->
+<!-- =====================================================
+     METAS
+===================================================== -->
+
 <section id="metas" class="page">
 
   <h2>Metas</h2>
-  <p class="subtitle">Crie objetivos e acompanhe seu progresso.</p>
+  <p class="subtitle">
+    Crie objetivos e acompanhe seu progresso.
+  </p>
 
-  <button class="btn btn-green" onclick="openGoalModal()" style="margin-bottom:15px">
+  <button
+    class="btn btn-green"
+    onclick="openGoalModal()"
+    style="margin-bottom:15px">
     ＋ Criar nova meta
   </button>
 
@@ -760,11 +901,61 @@ input:focus,select:focus{
 </section>
 
 
-<!-- VENDAS -->
+<!-- =====================================================
+     VENDAS
+===================================================== -->
+
 <section id="vendas" class="page">
 
   <h2>Nova venda</h2>
-  <p class="subtitle">Registre rapidamente o que você vendeu.</p>
+
+  <p class="subtitle">
+    Registre rapidamente o que você vendeu.
+  </p>
+
+
+  <!-- VENDA RÁPIDA -->
+
+  <div class="card fast-sale">
+
+    <div class="fast-title">
+      ⚡ Venda rápida
+    </div>
+
+    <div class="fast-sub">
+      Escolha o valor e registre em poucos toques.
+    </div>
+
+    <div class="quick-grid">
+
+      <button
+        class="quick"
+        onclick="quickSale(5)">
+        R$5
+      </button>
+
+      <button
+        class="quick"
+        onclick="quickSale(10)">
+        R$10
+      </button>
+
+      <button
+        class="quick"
+        onclick="quickSale(20)">
+        R$20
+      </button>
+
+      <button
+        class="quick"
+        onclick="quickSale(50)">
+        R$50
+      </button>
+
+    </div>
+
+  </div>
+
 
   <div class="card">
 
@@ -772,57 +963,141 @@ input:focus,select:focus{
 
       <div>
         <label>Valor da venda</label>
-        <input id="saleValue" type="number" step="0.01" inputmode="decimal" placeholder="Ex.: 10">
+
+        <input
+          id="saleValue"
+          type="number"
+          step="0.01"
+          inputmode="decimal"
+          placeholder="Ex.: 10">
       </div>
 
-      <div class="quick-grid">
-        <button class="quick" onclick="quickValue(5)">R$5</button>
-        <button class="quick" onclick="quickValue(10)">R$10</button>
-        <button class="quick" onclick="quickValue(20)">R$20</button>
-        <button class="quick" onclick="quickValue(50)">R$50</button>
-      </div>
 
       <div>
-        <label>Produto (opcional)</label>
+
+        <div class="quick-label">
+          Valor rápido
+        </div>
+
+        <div class="quick-grid">
+
+          <button
+            class="quick"
+            onclick="quickValue(5)">
+            R$5
+          </button>
+
+          <button
+            class="quick"
+            onclick="quickValue(10)">
+            R$10
+          </button>
+
+          <button
+            class="quick"
+            onclick="quickValue(20)">
+            R$20
+          </button>
+
+          <button
+            class="quick"
+            onclick="quickValue(50)">
+            R$50
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <label>
+          Produto (opcional)
+        </label>
+
         <select id="saleProduct">
-          <option value="">Venda avulsa</option>
+          <option value="">
+            Venda avulsa
+          </option>
         </select>
+
       </div>
 
-      <div>
-        <label>Quantidade</label>
-        <input id="saleQuantity" type="number" min="1" value="1" inputmode="numeric">
-      </div>
 
       <div>
-        <label>Forma de pagamento</label>
+
+        <label>
+          Quantidade
+        </label>
+
+        <input
+          id="saleQuantity"
+          type="number"
+          min="1"
+          value="1"
+          inputmode="numeric">
+
+      </div>
+
+
+      <div>
+
+        <label>
+          Forma de pagamento
+        </label>
 
         <div class="payment-grid">
-          <button id="payPix" class="payment selected" onclick="selectPayment('PIX')">
+
+          <button
+            id="payPix"
+            class="payment selected"
+            onclick="selectPayment('PIX')">
             📱 PIX
           </button>
 
-          <button id="payCash" class="payment" onclick="selectPayment('Dinheiro')">
+          <button
+            id="payCash"
+            class="payment"
+            onclick="selectPayment('Dinheiro')">
             💵 Dinheiro
           </button>
+
         </div>
+
       </div>
 
+
       <div>
-        <label>Status da venda</label>
+
+        <label>
+          Status da venda
+        </label>
 
         <div class="payment-grid">
-          <button id="statusPaid" class="payment selected" onclick="selectStatus('pago')">
+
+          <button
+            id="statusPaid"
+            class="payment selected"
+            onclick="selectStatus('pago')">
             ✅ Pago
           </button>
 
-          <button id="statusPending" class="payment" onclick="selectStatus('pendente')">
+          <button
+            id="statusPending"
+            class="payment"
+            onclick="selectStatus('pendente')">
             🟡 Pendente
           </button>
+
         </div>
+
       </div>
 
-      <button class="btn btn-green" onclick="registerSale()">
+
+      <button
+        class="btn btn-green"
+        onclick="registerSale()">
         Registrar venda
       </button>
 
@@ -830,36 +1105,67 @@ input:focus,select:focus{
 
   </div>
 
+
   <div class="grid">
-    <div class="stat">
-      <div class="name">Vendido hoje</div>
-      <div class="value green" id="salesToday">R$ 0,00</div>
-    </div>
 
     <div class="stat">
-      <div class="name">Vendas hoje</div>
-      <div class="value" id="salesCountToday">0</div>
+      <div class="name">Vendido hoje</div>
+
+      <div
+        class="value green"
+        id="salesToday">
+        R$ 0,00
+      </div>
     </div>
+
+
+    <div class="stat">
+
+      <div class="name">
+        Vendas hoje
+      </div>
+
+      <div
+        class="value"
+        id="salesCountToday">
+        0
+      </div>
+
+    </div>
+
   </div>
+
 
   <div class="section-title">
     <h3>Vendas de hoje</h3>
   </div>
 
+
   <div class="card">
+
     <div id="todaySalesList"></div>
+
   </div>
 
 </section>
 
 
-<!-- PRODUTOS -->
+<!-- =====================================================
+     PRODUTOS
+===================================================== -->
+
 <section id="produtos" class="page">
 
   <h2>Produtos</h2>
-  <p class="subtitle">Veja preço, custo, lucro e margem.</p>
 
-  <button class="btn btn-green" onclick="openProductModal()" style="margin-bottom:15px">
+  <p class="subtitle">
+    Veja preço, custo, lucro e margem.
+  </p>
+
+  <button
+    class="btn btn-green"
+    onclick="openProductModal()"
+    style="margin-bottom:15px">
     ＋ Cadastrar produto
   </button>
 
@@ -868,85 +1174,193 @@ input:focus,select:focus{
 </section>
 
 
-<!-- HISTÓRICO -->
+<!-- =====================================================
+     HISTÓRICO
+===================================================== -->
+
 <section id="historico" class="page">
 
   <h2>Histórico</h2>
-  <p class="subtitle">Todas as suas vendas registradas.</p>
+
+  <p class="subtitle">
+    Todas as suas vendas registradas.
+  </p>
+
 
   <div class="grid">
-    <div class="stat">
-      <div class="name">Receita paga</div>
-      <div class="value green" id="historyRevenue">R$ 0,00</div>
-    </div>
 
     <div class="stat">
-      <div class="name">Vendas</div>
-      <div class="value" id="historyCount">0</div>
+
+      <div class="name">
+        Receita paga
+      </div>
+
+      <div
+        class="value green"
+        id="historyRevenue">
+        R$ 0,00
+      </div>
+
     </div>
+
+
+    <div class="stat">
+
+      <div class="name">
+        Vendas
+      </div>
+
+      <div
+        class="value"
+        id="historyCount">
+        0
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="card" style="margin-top:14px">
+
+  <div
+    class="card"
+    style="margin-top:14px">
+
     <div id="historyList"></div>
+
   </div>
 
-  <button class="btn btn-red" onclick="clearSales()">
+
+  <button
+    class="btn btn-red"
+    onclick="clearSales()">
     Apagar todas as vendas
   </button>
 
 </section>
 
 
-<!-- RELATÓRIOS -->
+<!-- =====================================================
+     RELATÓRIOS
+===================================================== -->
+
 <section id="relatorios" class="page">
 
   <h2>Relatórios</h2>
-  <p class="subtitle">Resumo financeiro do seu negócio.</p>
+
+  <p class="subtitle">
+    Resumo financeiro do seu negócio.
+  </p>
+
 
   <div class="grid">
-    <div class="stat">
-      <div class="name">Receita paga</div>
-      <div class="value green" id="reportRevenue">R$ 0,00</div>
-    </div>
 
     <div class="stat">
-      <div class="name">Lucro estimado</div>
-      <div class="value green" id="reportProfit">R$ 0,00</div>
+
+      <div class="name">
+        Receita paga
+      </div>
+
+      <div
+        class="value green"
+        id="reportRevenue">
+        R$ 0,00
+      </div>
+
     </div>
 
-    <div class="stat">
-      <div class="name">Ticket médio</div>
-      <div class="value" id="reportTicket">R$ 0,00</div>
-    </div>
 
     <div class="stat">
-      <div class="name">Vendas pagas</div>
-      <div class="value" id="reportSales">0</div>
+
+      <div class="name">
+        Lucro estimado
+      </div>
+
+      <div
+        class="value green"
+        id="reportProfit">
+        R$ 0,00
+      </div>
+
     </div>
+
+
+    <div class="stat">
+
+      <div class="name">
+        Ticket médio
+      </div>
+
+      <div
+        class="value"
+        id="reportTicket">
+        R$ 0,00
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="name">
+        Vendas pagas
+      </div>
+
+      <div
+        class="value"
+        id="reportSales">
+        0
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="card" style="margin-top:14px">
+
+  <div
+    class="card"
+    style="margin-top:14px">
 
     <div class="section-title">
       <h3>Resumo financeiro</h3>
     </div>
 
+
     <div class="report-row">
+
       <span>Receita</span>
-      <strong id="finRevenue">R$ 0,00</strong>
+
+      <strong id="finRevenue">
+        R$ 0,00
+      </strong>
+
     </div>
 
+
     <div class="report-row">
+
       <span>Custo estimado</span>
-      <strong id="finCost">R$ 0,00</strong>
+
+      <strong id="finCost">
+        R$ 0,00
+      </strong>
+
     </div>
 
+
     <div class="report-row">
+
       <span>Lucro estimado</span>
-      <strong class="green" id="finProfit">R$ 0,00</strong>
+
+      <strong
+        class="green"
+        id="finProfit">
+        R$ 0,00
+      </strong>
+
     </div>
 
   </div>
+
 
   <div class="card">
 
@@ -954,27 +1368,54 @@ input:focus,select:focus{
       <h3>Meta principal</h3>
     </div>
 
+
     <div class="report-row">
+
       <span>Meta</span>
-      <strong id="goalReportValue">R$ 0,00</strong>
+
+      <strong id="goalReportValue">
+        R$ 0,00
+      </strong>
+
     </div>
 
+
     <div class="report-row">
+
       <span>Realizado</span>
-      <strong id="goalReportRealized">R$ 0,00</strong>
+
+      <strong id="goalReportRealized">
+        R$ 0,00
+      </strong>
+
     </div>
 
+
     <div class="report-row">
+
       <span>Falta</span>
-      <strong id="goalReportMissing">R$ 0,00</strong>
+
+      <strong id="goalReportMissing">
+        R$ 0,00
+      </strong>
+
     </div>
 
+
     <div class="report-row">
+
       <span>Progresso</span>
-      <strong class="green" id="goalReportPercent">0%</strong>
+
+      <strong
+        class="green"
+        id="goalReportPercent">
+        0%
+      </strong>
+
     </div>
 
   </div>
+
 
   <div class="card">
 
@@ -982,22 +1423,37 @@ input:focus,select:focus{
       <h3>Ferramentas</h3>
     </div>
 
-    <button class="btn btn-blue" onclick="backupData()" style="margin-bottom:9px">
+
+    <button
+      class="btn btn-blue"
+      onclick="backupData()"
+      style="margin-bottom:9px">
       💾 Fazer backup dos dados
     </button>
 
-    <button class="btn btn-green" onclick="shareResult()" style="margin-bottom:9px">
+
+    <button
+      class="btn btn-green"
+      onclick="shareResult()"
+      style="margin-bottom:9px">
       📤 Compartilhar meu resultado
     </button>
 
-    <button class="btn" onclick="location.href='./'">
+
+    <button
+      class="btn"
+      onclick="location.href='./'">
       ← Voltar para o app gratuito
     </button>
 
   </div>
 
+
   <div class="notice">
-    Seus dados desta versão ficam armazenados neste dispositivo. O backup permite guardar uma cópia das informações.
+
+    Seus dados desta versão ficam armazenados neste dispositivo.
+    O backup permite guardar uma cópia das informações.
+
   </div>
 
 </section>
@@ -1005,31 +1461,64 @@ input:focus,select:focus{
 </main>
 
 
+<!-- =====================================================
+     NAVEGAÇÃO
+===================================================== -->
+
 <nav class="bottom-nav">
 
-  <button class="nav-btn active" data-page="dashboard" onclick="goPage('dashboard')">
+  <button
+    class="nav-btn active"
+    data-page="dashboard"
+    onclick="goPage('dashboard')">
+
     <span class="icon">⌂</span>
     Início
+
   </button>
 
-  <button class="nav-btn" data-page="metas" onclick="goPage('metas')">
+
+  <button
+    class="nav-btn"
+    data-page="metas"
+    onclick="goPage('metas')">
+
     <span class="icon">🎯</span>
     Metas
+
   </button>
 
-  <button class="nav-btn" data-page="vendas" onclick="goPage('vendas')">
+
+  <button
+    class="nav-btn"
+    data-page="vendas"
+    onclick="goPage('vendas')">
+
     <span class="icon">＋</span>
     Vendas
+
   </button>
 
-  <button class="nav-btn" data-page="produtos" onclick="goPage('produtos')">
+
+  <button
+    class="nav-btn"
+    data-page="produtos"
+    onclick="goPage('produtos')">
+
     <span class="icon">📦</span>
     Produtos
+
   </button>
 
-  <button class="nav-btn" data-page="relatorios" onclick="goPage('relatorios')">
+
+  <button
+    class="nav-btn"
+    data-page="relatorios"
+    onclick="goPage('relatorios')">
+
     <span class="icon">📊</span>
     Relatórios
+
   </button>
 
 </nav>
@@ -1037,45 +1526,100 @@ input:focus,select:focus{
 </div>
 
 
-<!-- MODAL META -->
-<div class="modal" id="goalModal">
+<!-- =====================================================
+     MODAL META
+===================================================== -->
+
+<div
+  class="modal"
+  id="goalModal">
 
   <div class="modal-box">
 
     <div class="modal-head">
+
       <div>
+
         <h3>Nova meta</h3>
-        <p class="muted" style="font-size:11px;margin-top:4px">
+
+        <p
+          class="muted"
+          style="font-size:11px;margin-top:4px">
           Defina quanto você quer alcançar.
         </p>
+
       </div>
 
-      <button class="close" onclick="closeModal('goalModal')">×</button>
+
+      <button
+        class="close"
+        onclick="closeModal('goalModal')">
+        ×
+      </button>
+
     </div>
+
 
     <div class="form">
 
       <div>
-        <label>Nome da meta</label>
-        <input id="goalName" placeholder="Ex.: Meta do mês">
+
+        <label>
+          Nome da meta
+        </label>
+
+        <input
+          id="goalName"
+          placeholder="Ex.: Meta do mês">
+
       </div>
+
 
       <div>
-        <label>Valor da meta</label>
-        <input id="goalValue" type="number" step="0.01" inputmode="decimal" placeholder="Ex.: 6000">
+
+        <label>
+          Valor da meta
+        </label>
+
+        <input
+          id="goalValue"
+          type="number"
+          step="0.01"
+          inputmode="decimal"
+          placeholder="Ex.: 6000">
+
       </div>
+
 
       <div>
-        <label>Data inicial</label>
-        <input id="goalStart" type="date">
+
+        <label>
+          Data inicial
+        </label>
+
+        <input
+          id="goalStart"
+          type="date">
+
       </div>
+
 
       <div>
-        <label>Data final</label>
-        <input id="goalEnd" type="date">
+
+        <label>
+          Data final
+        </label>
+
+        <input
+          id="goalEnd"
+          type="date">
+
       </div>
 
-      <button class="btn btn-green" onclick="createGoal()">
+
+      <button
+        class="btn btn-green"
+        onclick="createGoal()">
         Criar meta
       </button>
 
@@ -1086,40 +1630,90 @@ input:focus,select:focus{
 </div>
 
 
-<!-- MODAL PRODUTO -->
-<div class="modal" id="productModal">
+<!-- =====================================================
+     MODAL PRODUTO
+===================================================== -->
+
+<div
+  class="modal"
+  id="productModal">
 
   <div class="modal-box">
 
     <div class="modal-head">
+
       <div>
+
         <h3>Novo produto</h3>
-        <p class="muted" style="font-size:11px;margin-top:4px">
+
+        <p
+          class="muted"
+          style="font-size:11px;margin-top:4px">
           Cadastre preço e custo para calcular seu lucro.
         </p>
+
       </div>
 
-      <button class="close" onclick="closeModal('productModal')">×</button>
+
+      <button
+        class="close"
+        onclick="closeModal('productModal')">
+        ×
+      </button>
+
     </div>
+
 
     <div class="form">
 
       <div>
-        <label>Nome do produto</label>
-        <input id="productName" placeholder="Ex.: Kit Mentos">
+
+        <label>
+          Nome do produto
+        </label>
+
+        <input
+          id="productName"
+          placeholder="Ex.: Kit Mentos">
+
       </div>
+
 
       <div>
-        <label>Preço de venda</label>
-        <input id="productPrice" type="number" step="0.01" inputmode="decimal" placeholder="Ex.: 10">
+
+        <label>
+          Preço de venda
+        </label>
+
+        <input
+          id="productPrice"
+          type="number"
+          step="0.01"
+          inputmode="decimal"
+          placeholder="Ex.: 10">
+
       </div>
+
 
       <div>
-        <label>Custo do produto</label>
-        <input id="productCost" type="number" step="0.01" inputmode="decimal" placeholder="Ex.: 3">
+
+        <label>
+          Custo do produto
+        </label>
+
+        <input
+          id="productCost"
+          type="number"
+          step="0.01"
+          inputmode="decimal"
+          placeholder="Ex.: 3">
+
       </div>
 
-      <button class="btn btn-green" onclick="createProduct()">
+
+      <button
+        class="btn btn-green"
+        onclick="createProduct()">
         Cadastrar produto
       </button>
 
@@ -1130,10 +1724,14 @@ input:focus,select:focus{
 </div>
 
 
-<div class="toast" id="toast"></div>
+<div
+  class="toast"
+  id="toast">
+</div>
 
 
 <script>
+
 /* =========================================================
    DADOS
 ========================================================= */
@@ -1151,19 +1749,40 @@ let selectedPayment = "PIX";
 let selectedStatus = "pago";
 
 
-function loadJSON(key, fallback){
+function loadJSON(key,fallback){
+
   try{
-    const data = JSON.parse(localStorage.getItem(key));
-    return Array.isArray(data) ? data : fallback;
+
+    const data =
+      JSON.parse(localStorage.getItem(key));
+
+    return Array.isArray(data)
+      ? data
+      : fallback;
+
   }catch(e){
+
     return fallback;
   }
 }
 
+
 function saveAll(){
-  localStorage.setItem(SALES_KEY, JSON.stringify(sales));
-  localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products));
-  localStorage.setItem(GOALS_KEY, JSON.stringify(goals));
+
+  localStorage.setItem(
+    SALES_KEY,
+    JSON.stringify(sales)
+  );
+
+  localStorage.setItem(
+    PRODUCTS_KEY,
+    JSON.stringify(products)
+  );
+
+  localStorage.setItem(
+    GOALS_KEY,
+    JSON.stringify(goals)
+  );
 }
 
 
@@ -1172,15 +1791,21 @@ function saveAll(){
 ========================================================= */
 
 function money(value){
+
   value = Number(value) || 0;
 
-  return value.toLocaleString("pt-BR",{
-    style:"currency",
-    currency:"BRL"
-  });
+  return value.toLocaleString(
+    "pt-BR",
+    {
+      style:"currency",
+      currency:"BRL"
+    }
+  );
 }
 
+
 function esc(value){
+
   return String(value ?? "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
@@ -1189,85 +1814,145 @@ function esc(value){
     .replace(/'/g,"&#039;");
 }
 
+
 function todayISO(){
+
   const d = new Date();
 
-  const y = d.getFullYear();
-  const m = String(d.getMonth()+1).padStart(2,"0");
-  const day = String(d.getDate()).padStart(2,"0");
+  const y =
+    d.getFullYear();
+
+  const m =
+    String(d.getMonth()+1).padStart(2,"0");
+
+  const day =
+    String(d.getDate()).padStart(2,"0");
 
   return `${y}-${m}-${day}`;
 }
+
 
 function dateISO(date){
+
   const d = new Date(date);
 
-  if(isNaN(d.getTime())) return todayISO();
+  if(isNaN(d.getTime())){
+    return todayISO();
+  }
 
-  const y = d.getFullYear();
-  const m = String(d.getMonth()+1).padStart(2,"0");
-  const day = String(d.getDate()).padStart(2,"0");
+  const y =
+    d.getFullYear();
+
+  const m =
+    String(d.getMonth()+1).padStart(2,"0");
+
+  const day =
+    String(d.getDate()).padStart(2,"0");
 
   return `${y}-${m}-${day}`;
 }
 
+
 function formatDate(value){
-  const d = new Date(value);
 
-  if(isNaN(d.getTime())) return "Data desconhecida";
+  const d =
+    new Date(value);
 
-  return d.toLocaleDateString("pt-BR",{
-    day:"2-digit",
-    month:"2-digit",
-    year:"numeric"
-  });
+  if(isNaN(d.getTime())){
+    return "Data desconhecida";
+  }
+
+  return d.toLocaleDateString(
+    "pt-BR",
+    {
+      day:"2-digit",
+      month:"2-digit",
+      year:"numeric"
+    }
+  );
 }
+
 
 function formatTime(value){
-  const d = new Date(value);
 
-  if(isNaN(d.getTime())) return "";
+  const d =
+    new Date(value);
 
-  return d.toLocaleTimeString("pt-BR",{
-    hour:"2-digit",
-    minute:"2-digit"
-  });
+  if(isNaN(d.getTime())){
+    return "";
+  }
+
+  return d.toLocaleTimeString(
+    "pt-BR",
+    {
+      hour:"2-digit",
+      minute:"2-digit"
+    }
+  );
 }
+
 
 function daysBetween(start,end){
-  const a = new Date(start+"T00:00:00");
-  const b = new Date(end+"T00:00:00");
 
-  const diff = Math.ceil((b-a)/(1000*60*60*24));
+  const a =
+    new Date(start+"T00:00:00");
 
-  return Math.max(1,diff+1);
+  const b =
+    new Date(end+"T00:00:00");
+
+  const diff =
+    Math.ceil(
+      (b-a) /
+      (1000*60*60*24)
+    );
+
+  return Math.max(
+    1,
+    diff+1
+  );
 }
+
 
 function clamp(n,min,max){
-  return Math.min(max,Math.max(min,n));
+
+  return Math.min(
+    max,
+    Math.max(min,n)
+  );
 }
 
-function showToast(message){
-  const toast = document.getElementById("toast");
 
-  toast.textContent = message;
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent =
+    message;
+
   toast.classList.add("show");
 
-  clearTimeout(window.toastTimer);
+  clearTimeout(
+    window.toastTimer
+  );
 
-  window.toastTimer = setTimeout(()=>{
-    toast.classList.remove("show");
-  },2200);
+  window.toastTimer =
+    setTimeout(()=>{
+
+      toast.classList.remove("show");
+
+    },2600);
 }
 
 
 /* =========================================================
-   NORMALIZAÇÃO DAS VENDAS
+   NORMALIZAÇÃO
 ========================================================= */
 
 function normalizeSale(s){
 
-  if(typeof s === "number"){
+  if(typeof s==="number"){
+
     return {
       id:"legacy_"+Math.random(),
       value:Number(s),
@@ -1279,6 +1964,7 @@ function normalizeSale(s){
     };
   }
 
+
   const value =
     Number(
       s.value ??
@@ -1288,11 +1974,13 @@ function normalizeSale(s){
       0
     ) || 0;
 
+
   const product =
     s.product ??
     s.productName ??
     s.nomeProduto ??
     "";
+
 
   const quantity =
     Number(
@@ -1302,25 +1990,48 @@ function normalizeSale(s){
       1
     ) || 1;
 
+
   const date =
     s.date ??
     s.createdAt ??
     s.data ??
     new Date().toISOString();
 
+
   return {
     ...s,
-    id:s.id || ("sale_"+Date.now()+"_"+Math.random().toString(36).slice(2)),
+
+    id:
+      s.id ||
+      (
+        "sale_" +
+        Date.now() +
+        "_" +
+        Math.random()
+          .toString(36)
+          .slice(2)
+      ),
+
     value,
     product,
     quantity,
-    payment:s.payment || s.formaPagamento || "Dinheiro",
-    status:s.status || "pago",
+
+    payment:
+      s.payment ||
+      s.formaPagamento ||
+      "Dinheiro",
+
+    status:
+      s.status ||
+      "pago",
+
     date
   };
 }
 
-sales = sales.map(normalizeSale);
+
+sales =
+  sales.map(normalizeSale);
 
 
 /* =========================================================
@@ -1329,30 +2040,49 @@ sales = sales.map(normalizeSale);
 
 function goPage(page){
 
-  document.querySelectorAll(".page").forEach(p=>{
-    p.classList.remove("active");
-  });
+  document
+    .querySelectorAll(".page")
+    .forEach(p=>{
+      p.classList.remove("active");
+    });
 
-  const target = document.getElementById(page);
+
+  const target =
+    document.getElementById(page);
+
 
   if(target){
+
     target.classList.add("active");
+
   }
 
-  document.querySelectorAll(".nav-btn").forEach(btn=>{
-    btn.classList.remove("active");
-  });
 
-  const nav = document.querySelector(`[data-page="${page}"]`);
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
+
+
+  const nav =
+    document.querySelector(
+      `[data-page="${page}"]`
+    );
+
 
   if(nav){
+
     nav.classList.add("active");
+
   }
+
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
+
 
   renderAll();
 }
@@ -1364,32 +2094,76 @@ function goPage(page){
 
 function selectPayment(payment){
 
-  selectedPayment = payment;
+  selectedPayment =
+    payment;
 
-  document.getElementById("payPix").classList.toggle(
-    "selected",
-    payment === "PIX"
-  );
 
-  document.getElementById("payCash").classList.toggle(
-    "selected",
-    payment === "Dinheiro"
-  );
+  document
+    .getElementById("payPix")
+    .classList.toggle(
+      "selected",
+      payment==="PIX"
+    );
+
+
+  document
+    .getElementById("payCash")
+    .classList.toggle(
+      "selected",
+      payment==="Dinheiro"
+    );
 }
+
 
 function selectStatus(status){
 
-  selectedStatus = status;
+  selectedStatus =
+    status;
 
-  document.getElementById("statusPaid").classList.toggle(
-    "selected",
-    status === "pago"
-  );
 
-  document.getElementById("statusPending").classList.toggle(
-    "selected",
-    status === "pendente"
-  );
+  document
+    .getElementById("statusPaid")
+    .classList.toggle(
+      "selected",
+      status==="pago"
+    );
+
+
+  document
+    .getElementById("statusPending")
+    .classList.toggle(
+      "selected",
+      status==="pendente"
+    );
+}
+
+
+/* =========================================================
+   VENDA RÁPIDA
+========================================================= */
+
+function quickValue(value){
+
+  document
+    .getElementById("saleValue")
+    .value =
+    value;
+
+  document
+    .getElementById("saleValue")
+    .focus();
+}
+
+
+function quickSale(value){
+
+  document
+    .getElementById("saleValue")
+    .value =
+    value;
+
+
+  registerSale();
 }
 
 
@@ -1397,115 +2171,269 @@ function selectStatus(status){
    VENDAS
 ========================================================= */
 
-function quickValue(value){
-  document.getElementById("saleValue").value = value;
-}
-
 function registerSale(){
 
-  const value = Number(
-    document.getElementById("saleValue").value
-  );
+  const value =
+    Number(
+      document
+        .getElementById("saleValue")
+        .value
+    );
 
-  if(!value || value <= 0){
-    showToast("Digite um valor válido.");
+
+  if(!value || value<=0){
+
+    showToast(
+      "Digite um valor válido."
+    );
+
     return;
   }
 
+
   const productSelect =
-    document.getElementById("saleProduct");
+    document.getElementById(
+      "saleProduct"
+    );
+
 
   const product =
-    productSelect.value || "";
+    productSelect.value ||
+    "";
+
 
   const quantity =
-    Number(document.getElementById("saleQuantity").value) || 1;
+    Number(
+      document
+        .getElementById("saleQuantity")
+        .value
+    ) || 1;
+
+
+  const statusAtRegister =
+    selectedStatus;
+
+
+  const paymentAtRegister =
+    selectedPayment;
+
 
   const sale = {
-    id:"sale_"+Date.now()+"_"+Math.random().toString(36).slice(2),
+
+    id:
+      "sale_" +
+      Date.now() +
+      "_" +
+      Math.random()
+        .toString(36)
+        .slice(2),
+
     value:value,
+
     product:product,
+
     quantity:quantity,
-    payment:selectedPayment,
-    status:selectedStatus,
-    date:new Date().toISOString()
+
+    payment:
+      paymentAtRegister,
+
+    status:
+      statusAtRegister,
+
+    date:
+      new Date().toISOString()
+
   };
+
 
   sales.push(sale);
 
   saveAll();
 
-  document.getElementById("saleValue").value = "";
-  document.getElementById("saleQuantity").value = "1";
 
-  showToast(
-    selectedStatus === "pago"
-      ? "✅ Venda registrada como paga."
-      : "🟡 Venda registrada como pendente."
-  );
+  document
+    .getElementById("saleValue")
+    .value = "";
+
+
+  document
+    .getElementById("saleQuantity")
+    .value = "1";
+
+
+  if(statusAtRegister==="pago"){
+
+    const phrases = [
+      "🔥 Boa! Mais uma venda para sua meta.",
+      "💪 É isso! Venda registrada.",
+      "🚀 Mandou bem! Continue nesse ritmo.",
+      "🎯 Mais uma venda aproximando você do objetivo.",
+      "💰 Boa! Seu resultado está crescendo."
+    ];
+
+    showToast(
+      phrases[
+        Math.floor(
+          Math.random()*phrases.length
+        )
+      ]
+    );
+
+  }else{
+
+    showToast(
+      "🟡 Venda registrada. Quando receber o PIX, confirme aqui."
+    );
+
+  }
+
 
   renderAll();
+
+
+  setTimeout(()=>{
+
+    if(
+      statusAtRegister==="pago" &&
+      document.getElementById(
+        "vendas"
+      ).classList.contains("active")
+    ){
+
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+
+    }
+
+  },100);
+
 }
 
 
 /* =========================================================
-   ALTERAR STATUS DA VENDA
+   ALTERAR STATUS
 ========================================================= */
 
 function markPaid(id){
 
-  const sale = sales.find(s=>s.id===id);
+  const sale =
+    sales.find(
+      s=>s.id===id
+    );
+
 
   if(!sale) return;
 
-  sale.status = "pago";
+
+  sale.status =
+    "pago";
+
 
   saveAll();
 
-  showToast("✅ Venda marcada como paga.");
+
+  const messages = [
+    "💚 PIX confirmado! Essa venda já conta para sua meta.",
+    "✅ Recebimento confirmado! Boa.",
+    "🔥 Mais uma venda paga. Continue!",
+    "💰 Dinheiro confirmado. Sua meta ficou mais perto."
+  ];
+
+
+  showToast(
+    messages[
+      Math.floor(
+        Math.random()*messages.length
+      )
+    ]
+  );
+
 
   renderAll();
 }
+
 
 function markPending(id){
 
-  const sale = sales.find(s=>s.id===id);
+  const sale =
+    sales.find(
+      s=>s.id===id
+    );
+
 
   if(!sale) return;
 
-  sale.status = "pendente";
+
+  sale.status =
+    "pendente";
+
 
   saveAll();
 
-  showToast("🟡 Venda voltou para pendente.");
+
+  showToast(
+    "🟡 Venda voltou para pendente."
+  );
+
 
   renderAll();
 }
+
 
 function cancelSale(id){
 
-  const sale = sales.find(s=>s.id===id);
+  const sale =
+    sales.find(
+      s=>s.id===id
+    );
+
 
   if(!sale) return;
 
-  sale.status = "cancelado";
+
+  sale.status =
+    "cancelado";
+
 
   saveAll();
 
-  showToast("Venda cancelada.");
+
+  showToast(
+    "Venda cancelada."
+  );
+
 
   renderAll();
 }
 
+
 function deleteSale(id){
 
-  if(!confirm("Excluir esta venda?")) return;
+  if(
+    !confirm(
+      "Excluir esta venda?"
+    )
+  ){
 
-  sales = sales.filter(s=>s.id!==id);
+    return;
+  }
+
+
+  sales =
+    sales.filter(
+      s=>s.id!==id
+    );
+
 
   saveAll();
 
-  showToast("Venda excluída.");
+
+  showToast(
+    "Venda excluída."
+  );
+
 
   renderAll();
 }
@@ -1516,86 +2444,182 @@ function deleteSale(id){
 ========================================================= */
 
 function openProductModal(){
-  document.getElementById("productModal").classList.add("show");
+
+  document
+    .getElementById("productModal")
+    .classList.add("show");
 }
+
 
 function createProduct(){
 
   const name =
-    document.getElementById("productName").value.trim();
+    document
+      .getElementById("productName")
+      .value
+      .trim();
+
 
   const price =
-    Number(document.getElementById("productPrice").value);
+    Number(
+      document
+        .getElementById("productPrice")
+        .value
+    );
+
 
   const cost =
-    Number(document.getElementById("productCost").value);
+    Number(
+      document
+        .getElementById("productCost")
+        .value
+    );
+
 
   if(!name){
-    showToast("Digite o nome do produto.");
+
+    showToast(
+      "Digite o nome do produto."
+    );
+
     return;
   }
 
-  if(!price || price <= 0){
-    showToast("Digite um preço válido.");
+
+  if(!price || price<=0){
+
+    showToast(
+      "Digite um preço válido."
+    );
+
     return;
   }
 
-  if(cost < 0 || isNaN(cost)){
-    showToast("Digite um custo válido.");
+
+  if(
+    cost<0 ||
+    isNaN(cost)
+  ){
+
+    showToast(
+      "Digite um custo válido."
+    );
+
     return;
   }
+
 
   const product = {
-    id:"product_"+Date.now(),
+
+    id:
+      "product_" +
+      Date.now(),
+
     name:name,
+
     price:price,
+
     cost:cost,
-    profit:price-cost,
-    margin:price ? ((price-cost)/price)*100 : 0
+
+    profit:
+      price-cost,
+
+    margin:
+      price
+        ? ((price-cost)/price)*100
+        : 0
+
   };
+
 
   products.push(product);
 
   saveAll();
 
-  document.getElementById("productName").value = "";
-  document.getElementById("productPrice").value = "";
-  document.getElementById("productCost").value = "";
 
-  closeModal("productModal");
+  document
+    .getElementById("productName")
+    .value = "";
 
-  showToast("📦 Produto cadastrado.");
+
+  document
+    .getElementById("productPrice")
+    .value = "";
+
+
+  document
+    .getElementById("productCost")
+    .value = "";
+
+
+  closeModal(
+    "productModal"
+  );
+
+
+  showToast(
+    "📦 Produto cadastrado."
+  );
+
 
   renderAll();
 }
+
 
 function deleteProduct(id){
 
-  if(!confirm("Excluir este produto?")) return;
+  if(
+    !confirm(
+      "Excluir este produto?"
+    )
+  ){
 
-  products = products.filter(p=>p.id!==id);
+    return;
+  }
+
+
+  products =
+    products.filter(
+      p=>p.id!==id
+    );
+
 
   saveAll();
 
-  showToast("Produto excluído.");
+
+  showToast(
+    "Produto excluído."
+  );
+
 
   renderAll();
 }
+
 
 function renderProductSelect(){
 
   const select =
-    document.getElementById("saleProduct");
+    document.getElementById(
+      "saleProduct"
+    );
+
 
   if(!select) return;
 
+
   select.innerHTML =
-    `<option value="">Venda avulsa</option>` +
-    products.map(p=>
-      `<option value="${esc(p.name)}">
-        ${esc(p.name)} — ${money(p.price)}
-      </option>`
-    ).join("");
+    `<option value="">
+      Venda avulsa
+    </option>` +
+
+    products
+      .map(p=>
+        `<option value="${esc(p.name)}">
+          ${esc(p.name)}
+          — ${money(p.price)}
+        </option>`
+      )
+      .join("");
 }
 
 
@@ -1605,112 +2629,225 @@ function renderProductSelect(){
 
 function openGoalModal(){
 
-  document.getElementById("goalModal").classList.add("show");
+  document
+    .getElementById("goalModal")
+    .classList.add("show");
 
-  document.getElementById("goalStart").value =
+
+  document
+    .getElementById("goalStart")
+    .value =
     todayISO();
 
-  const d = new Date();
 
-  d.setDate(d.getDate()+29);
+  const d =
+    new Date();
 
-  document.getElementById("goalEnd").value =
+
+  d.setDate(
+    d.getDate()+29
+  );
+
+
+  document
+    .getElementById("goalEnd")
+    .value =
     dateISO(d);
 }
+
 
 function createGoal(){
 
   const name =
-    document.getElementById("goalName").value.trim();
+    document
+      .getElementById("goalName")
+      .value
+      .trim();
+
 
   const value =
-    Number(document.getElementById("goalValue").value);
+    Number(
+      document
+        .getElementById("goalValue")
+        .value
+    );
+
 
   const start =
-    document.getElementById("goalStart").value;
+    document
+      .getElementById("goalStart")
+      .value;
+
 
   const end =
-    document.getElementById("goalEnd").value;
+    document
+      .getElementById("goalEnd")
+      .value;
+
 
   if(!name){
-    showToast("Digite um nome para a meta.");
+
+    showToast(
+      "Digite um nome para a meta."
+    );
+
     return;
   }
 
-  if(!value || value <= 0){
-    showToast("Digite o valor da meta.");
+
+  if(!value || value<=0){
+
+    showToast(
+      "Digite o valor da meta."
+    );
+
     return;
   }
+
 
   if(!start || !end){
-    showToast("Informe as datas.");
+
+    showToast(
+      "Informe as datas."
+    );
+
     return;
   }
 
-  if(end < start){
-    showToast("A data final deve ser depois da inicial.");
+
+  if(end<start){
+
+    showToast(
+      "A data final deve ser depois da inicial."
+    );
+
     return;
   }
+
 
   const goal = {
-    id:"goal_"+Date.now(),
+
+    id:
+      "goal_" +
+      Date.now(),
+
     name:name,
+
     value:value,
+
     start:start,
+
     end:end,
-    createdAt:new Date().toISOString()
+
+    createdAt:
+      new Date().toISOString()
+
   };
+
 
   goals.push(goal);
 
   saveAll();
 
-  document.getElementById("goalName").value = "";
-  document.getElementById("goalValue").value = "";
 
-  closeModal("goalModal");
+  document
+    .getElementById("goalName")
+    .value = "";
 
-  showToast("🎯 Meta criada.");
+
+  document
+    .getElementById("goalValue")
+    .value = "";
+
+
+  closeModal(
+    "goalModal"
+  );
+
+
+  showToast(
+    "🎯 Meta criada. Agora é buscar!"
+  );
+
 
   renderAll();
 }
+
 
 function deleteGoal(id){
 
-  if(!confirm("Excluir esta meta?")) return;
+  if(
+    !confirm(
+      "Excluir esta meta?"
+    )
+  ){
 
-  goals = goals.filter(g=>g.id!==id);
+    return;
+  }
+
+
+  goals =
+    goals.filter(
+      g=>g.id!==id
+    );
+
 
   saveAll();
 
-  showToast("Meta excluída.");
+
+  showToast(
+    "Meta excluída."
+  );
+
 
   renderAll();
 }
 
+
 function getMainGoal(){
 
-  if(!goals.length) return null;
+  if(!goals.length){
+    return null;
+  }
 
-  const today = todayISO();
+
+  const today =
+    todayISO();
+
 
   const active =
-    goals.find(g=>today >= g.start && today <= g.end);
+    goals.find(
+      g=>
+        today>=g.start &&
+        today<=g.end
+    );
+
 
   return active || goals[0];
 }
+
 
 function goalRevenue(goal){
 
   if(!goal) return 0;
 
+
   return sales
-    .filter(s=>
-      s.status === "pago" &&
-      dateISO(s.date) >= goal.start &&
-      dateISO(s.date) <= goal.end
+
+    .filter(
+      s=>
+        s.status==="pago" &&
+
+        dateISO(s.date)>=goal.start &&
+
+        dateISO(s.date)<=goal.end
     )
-    .reduce((sum,s)=>sum+s.value,0);
+
+    .reduce(
+      (sum,s)=>
+        sum+s.value,
+      0
+    );
 }
 
 
@@ -1719,66 +2856,518 @@ function goalRevenue(goal){
 ========================================================= */
 
 function paidSales(){
-  return sales.filter(s=>s.status==="pago");
+
+  return sales.filter(
+    s=>s.status==="pago"
+  );
 }
+
 
 function todaySales(){
 
-  const today = todayISO();
+  const today =
+    todayISO();
 
-  return sales.filter(s=>
-    dateISO(s.date)===today &&
-    s.status!=="cancelado"
+
+  return sales.filter(
+    s=>
+      dateISO(s.date)===today &&
+      s.status!=="cancelado"
   );
 }
+
 
 function todayPaidSales(){
 
-  const today = todayISO();
+  const today =
+    todayISO();
 
-  return sales.filter(s=>
-    dateISO(s.date)===today &&
-    s.status==="pago"
+
+  return sales.filter(
+    s=>
+      dateISO(s.date)===today &&
+      s.status==="pago"
   );
 }
+
 
 function saleProduct(sale){
 
-  return products.find(p=>
-    p.name.toLowerCase() ===
-    String(sale.product || "").toLowerCase()
+  return products.find(
+    p=>
+      p.name.toLowerCase() ===
+      String(
+        sale.product || ""
+      ).toLowerCase()
   );
 }
 
+
 function saleProfit(sale){
 
-  const product = saleProduct(sale);
+  const product =
+    saleProduct(sale);
+
 
   if(product){
+
     return Math.max(
       0,
-      (product.price-product.cost) *
-      Math.max(1,Number(sale.quantity)||1)
+      (
+        product.price -
+        product.cost
+      ) *
+      Math.max(
+        1,
+        Number(
+          sale.quantity
+        ) || 1
+      )
     );
   }
 
-  return sale.value * .4;
+
+  return sale.value*.4;
 }
+
 
 function totalProfit(list){
 
   return list.reduce(
-    (sum,s)=>sum+saleProfit(s),
+    (sum,s)=>
+      sum+saleProfit(s),
     0
   );
 }
 
+
 function totalRevenue(list){
 
   return list.reduce(
-    (sum,s)=>sum+s.value,
+    (sum,s)=>
+      sum+s.value,
     0
   );
+}
+
+
+/* =========================================================
+   META DIÁRIA
+========================================================= */
+
+function calculateDailyTarget(goal){
+
+  if(!goal) return 0;
+
+
+  const today =
+    todayISO();
+
+
+  const realized =
+    goalRevenue(goal);
+
+
+  const missing =
+    Math.max(
+      0,
+      Number(goal.value)-realized
+    );
+
+
+  if(today<goal.start){
+
+    return Number(goal.value) /
+      daysBetween(
+        goal.start,
+        goal.end
+      );
+  }
+
+
+  if(today>goal.end){
+
+    return missing;
+  }
+
+
+  const remainingDays =
+    daysBetween(
+      today,
+      goal.end
+    );
+
+
+  return remainingDays>0
+    ? missing/remainingDays
+    : missing;
+}
+
+
+/* =========================================================
+   MENSAGENS DE INCENTIVO
+========================================================= */
+
+function getMotivation(){
+
+  const goal =
+    getMainGoal();
+
+
+  const today =
+    todayPaidSales();
+
+
+  const todayValue =
+    totalRevenue(today);
+
+
+  const goalRealized =
+    goal
+      ? goalRevenue(goal)
+      : 0;
+
+
+  const goalValue =
+    goal
+      ? Number(goal.value)
+      : 0;
+
+
+  const goalPercent =
+    goalValue>0
+      ? (goalRealized/goalValue)*100
+      : 0;
+
+
+  const dailyTarget =
+    calculateDailyTarget(goal);
+
+
+  const dailyPercent =
+    dailyTarget>0
+      ? (todayValue/dailyTarget)*100
+      : 0;
+
+
+  /* META PRINCIPAL ATINGIDA */
+
+  if(
+    goal &&
+    goalRealized>=goalValue
+  ){
+
+    return {
+
+      icon:"🏆",
+
+      title:"META ATINGIDA!",
+
+      text:[
+        "Você conseguiu. Hoje é dia de comemorar esse resultado.",
+        "Meta batida! Seu trabalho está virando resultado.",
+        "Você chegou lá. Agora aproveite a conquista.",
+        "Objetivo alcançado! Mandou muito bem."
+      ][
+        Math.floor(
+          Math.random()*4
+        )
+      ],
+
+      percent:100
+
+    };
+  }
+
+
+  /* META DO DIA ATINGIDA */
+
+  if(
+    dailyTarget>0 &&
+    todayValue>=dailyTarget
+  ){
+
+    return {
+
+      icon:"🔥",
+
+      title:"Meta de hoje alcançada!",
+
+      text:[
+        "Você já fez o necessário para hoje. Excelente ritmo.",
+        "Hoje já está garantido. Se continuar, tudo que vier é extra.",
+        "Mandou bem! Sua meta diária já foi alcançada.",
+        "Você está no caminho certo. Hoje já rendeu."
+      ][
+        Math.floor(
+          Math.random()*4
+        )
+      ],
+
+      percent:100
+
+    };
+  }
+
+
+  /* 75% */
+
+  if(
+    dailyTarget>0 &&
+    dailyPercent>=75
+  ){
+
+    return {
+
+      icon:"🎯",
+
+      title:"Está muito perto!",
+
+      text:[
+        `Você já fez ${dailyPercent.toFixed(0)}% da meta de hoje.`,
+        "Falta pouco. Continue mais um pouco.",
+        "A reta final chegou. Você está quase lá.",
+        "Mais algumas vendas e você fecha sua meta."
+      ][
+        Math.floor(
+          Math.random()*4
+        )
+      ],
+
+      percent:Math.min(
+        100,
+        dailyPercent
+      )
+
+    };
+  }
+
+
+  /* 50% */
+
+  if(
+    dailyTarget>0 &&
+    dailyPercent>=50
+  ){
+
+    return {
+
+      icon:"💪",
+
+      title:"Passou da metade!",
+
+      text:[
+        "Boa! Você já percorreu metade do caminho.",
+        "O dia está andando. Continue nesse ritmo.",
+        "Você já fez uma boa parte. Agora é buscar o restante.",
+        "Tá avançando! Mais algumas vendas."
+      ][
+        Math.floor(
+          Math.random()*4
+        )
+      ],
+
+      percent:Math.min(
+        100,
+        dailyPercent
+      )
+
+    };
+  }
+
+
+  /* 25% */
+
+  if(
+    dailyTarget>0 &&
+    dailyPercent>=25
+  ){
+
+    return {
+
+      icon:"🚀",
+
+      title:"Boa! Você já começou.",
+
+      text:[
+        "Cada venda conta. Continue construindo seu resultado.",
+        "Você já saiu do zero. Agora é manter o ritmo.",
+        "Primeiro passo dado. Vamos buscar a próxima venda.",
+        "O importante é continuar avançando."
+      ][
+        Math.floor(
+          Math.random()*4
+        )
+      ],
+
+      percent:Math.min(
+        100,
+        dailyPercent
+      )
+
+    };
+  }
+
+
+  /* PRIMEIRA VENDA */
+
+  if(today.length===1){
+
+    return {
+
+      icon:"🔥",
+
+      title:"A primeira saiu!",
+
+      text:[
+        "Boa! Todo resultado começa com a primeira venda.",
+        "Começou bem. Agora vamos buscar a próxima.",
+        "Primeira venda registrada. Bora continuar!",
+        "É isso! O dia começou."
+      ][
+        Math.floor(
+          Math.random()*4
+        )
+      ],
+
+      percent:
+        dailyTarget>0
+          ? Math.min(
+              100,
+              dailyPercent
+            )
+          : 5
+
+    };
+  }
+
+
+  /* VENDAS REGISTRADAS */
+
+  if(today.length>1){
+
+    return {
+
+      icon:"💰",
+
+      title:"Você está vendendo!",
+
+      text:[
+        "Continue nesse ritmo e acompanhe sua meta.",
+        "Cada venda aproxima você do objetivo.",
+        "Boa sequência. Continue focado.",
+        "Seu resultado está crescendo venda por venda."
+      ][
+        Math.floor(
+          Math.random()*4
+        )
+      ],
+
+      percent:
+        dailyTarget>0
+          ? Math.min(
+              100,
+              dailyPercent
+            )
+          : 10
+
+    };
+  }
+
+
+  /* SEM VENDA */
+
+  if(goal){
+
+    return {
+
+      icon:"🚀",
+
+      title:"Vamos começar!",
+
+      text:[
+        "Não precisa fazer tudo de uma vez. Comece pela primeira venda.",
+        "Toda meta começa com uma venda. Bora buscar a primeira.",
+        "Seu objetivo está aqui. Agora é transformar plano em venda.",
+        "Comece pequeno. Uma venda por vez."
+      ][
+        Math.floor(
+          Math.random()*4
+        )
+      ],
+
+      percent:0
+
+    };
+  }
+
+
+  return {
+
+    icon:"🎯",
+
+    title:"Defina seu objetivo",
+
+    text:
+      "Crie uma meta e deixe o app acompanhar seu progresso com você.",
+
+    percent:0
+
+  };
+}
+
+
+function renderMotivation(){
+
+  const data =
+    getMotivation();
+
+
+  const icon =
+    document.getElementById(
+      "motivationIcon"
+    );
+
+
+  const title =
+    document.getElementById(
+      "motivationTitle"
+    );
+
+
+  const text =
+    document.getElementById(
+      "motivationText"
+    );
+
+
+  const progress =
+    document.getElementById(
+      "motivationProgress"
+    );
+
+
+  if(!icon) return;
+
+
+  icon.textContent =
+    data.icon;
+
+
+  title.textContent =
+    data.title;
+
+
+  text.textContent =
+    data.text;
+
+
+  progress.style.width =
+    clamp(
+      data.percent || 0,
+      0,
+      100
+    )+"%";
 }
 
 
@@ -1788,65 +3377,136 @@ function totalRevenue(list){
 
 function renderDashboard(){
 
-  const goal = getMainGoal();
+  const goal =
+    getMainGoal();
 
-  const paid = paidSales();
 
-  const today = todayPaidSales();
+  const paid =
+    paidSales();
 
-  const todayRevenue = totalRevenue(today);
 
-  const revenue = totalRevenue(paid);
+  const today =
+    todayPaidSales();
 
-  const profit = totalProfit(paid);
 
-  let goalValue = goal ? Number(goal.value) : 0;
+  const todayRevenue =
+    totalRevenue(today);
 
-  let realized = goal ? goalRevenue(goal) : revenue;
 
-  let missing =
-    Math.max(0,goalValue-realized);
+  const revenue =
+    totalRevenue(paid);
 
-  let percent =
-    goalValue > 0
-      ? clamp((realized/goalValue)*100,0,100)
+
+  const profit =
+    totalProfit(paid);
+
+
+  let goalValue =
+    goal
+      ? Number(goal.value)
       : 0;
 
-  document.getElementById("dashMissing").textContent =
+
+  let realized =
+    goal
+      ? goalRevenue(goal)
+      : revenue;
+
+
+  let missing =
+    Math.max(
+      0,
+      goalValue-realized
+    );
+
+
+  let percent =
+    goalValue>0
+      ? clamp(
+          (realized/goalValue)*100,
+          0,
+          100
+        )
+      : 0;
+
+
+  document
+    .getElementById("dashMissing")
+    .textContent =
     money(missing);
 
-  document.getElementById("dashRealized").textContent =
-    money(realized)+" vendidos";
 
-  document.getElementById("dashPercent").textContent =
+  document
+    .getElementById("dashRealized")
+    .textContent =
+    money(realized)+
+    " vendidos";
+
+
+  document
+    .getElementById("dashPercent")
+    .textContent =
     percent.toFixed(0)+"%";
 
-  document.getElementById("dashProgress").style.width =
+
+  document
+    .getElementById("dashProgress")
+    .style.width =
     percent+"%";
 
-  document.getElementById("dashToday").textContent =
+
+  document
+    .getElementById("dashToday")
+    .textContent =
     money(todayRevenue);
 
-  const dailyTarget = calculateDailyTarget(goal);
 
-  document.getElementById("dashTodayMissing").textContent =
-    money(Math.max(0,dailyTarget-todayRevenue));
+  const dailyTarget =
+    calculateDailyTarget(goal);
 
-  document.getElementById("dashProfit").textContent =
+
+  document
+    .getElementById("dashTodayMissing")
+    .textContent =
+    money(
+      Math.max(
+        0,
+        dailyTarget-todayRevenue
+      )
+    );
+
+
+  document
+    .getElementById("dashProfit")
+    .textContent =
     money(profit);
 
-  document.getElementById("dashTicket").textContent =
+
+  document
+    .getElementById("dashTicket")
+    .textContent =
     paid.length
-      ? money(revenue/paid.length)
+      ? money(
+          revenue/paid.length
+        )
       : money(0);
 
-  document.getElementById("dailyTarget").textContent =
+
+  document
+    .getElementById("dailyTarget")
+    .textContent =
     money(dailyTarget);
 
-  document.getElementById("dailyTargetLabel").textContent =
+
+  document
+    .getElementById("dailyTargetLabel")
+    .textContent =
     goal
       ? `${formatDate(goal.start)} → ${formatDate(goal.end)}`
       : "Crie uma meta";
+
+
+  renderMotivation();
 
   renderChart();
 
@@ -1855,102 +3515,152 @@ function renderDashboard(){
   renderDashboardSales();
 }
 
-function calculateDailyTarget(goal){
-
-  if(!goal) return 0;
-
-  const today = todayISO();
-
-  const realized = goalRevenue(goal);
-
-  const missing =
-    Math.max(0,Number(goal.value)-realized);
-
-  if(today < goal.start){
-    return Number(goal.value) /
-      daysBetween(goal.start,goal.end);
-  }
-
-  if(today > goal.end){
-    return missing;
-  }
-
-  const remainingDays =
-    daysBetween(today,goal.end);
-
-  return remainingDays > 0
-    ? missing/remainingDays
-    : missing;
-}
 
 function renderChart(){
 
   const chart =
-    document.getElementById("dashboardChart");
+    document.getElementById(
+      "dashboardChart"
+    );
+
 
   const days = [];
 
-  for(let i=6;i>=0;i--){
 
-    const d = new Date();
+  for(
+    let i=6;
+    i>=0;
+    i--
+  ){
 
-    d.setDate(d.getDate()-i);
+    const d =
+      new Date();
 
-    const iso = dateISO(d);
+
+    d.setDate(
+      d.getDate()-i
+    );
+
+
+    const iso =
+      dateISO(d);
+
 
     const value =
       sales
-        .filter(s=>
-          s.status==="pago" &&
-          dateISO(s.date)===iso
+
+        .filter(
+          s=>
+            s.status==="pago" &&
+            dateISO(s.date)===iso
         )
-        .reduce((sum,s)=>sum+s.value,0);
+
+        .reduce(
+          (sum,s)=>
+            sum+s.value,
+          0
+        );
+
 
     days.push({
       date:d,
       value:value
     });
+
   }
 
+
   const max =
-    Math.max(...days.map(d=>d.value),1);
+    Math.max(
+      ...days.map(
+        d=>d.value
+      ),
+      1
+    );
+
 
   chart.innerHTML =
-    days.map(d=>{
+    days
+      .map(d=>{
 
-      const height =
-        Math.max(4,(d.value/max)*115);
+        const height =
+          Math.max(
+            4,
+            (d.value/max)*115
+          );
 
-      return `
-        <div class="bar-wrap">
-          <div style="font-size:8px;color:#8ea0b7">
-            ${d.value ? money(d.value).replace("R$","") : ""}
+
+        return `
+
+          <div class="bar-wrap">
+
+            <div
+              style="
+                font-size:8px;
+                color:#8ea0b7
+              ">
+
+              ${
+                d.value
+                  ? money(d.value)
+                      .replace("R$","")
+                  : ""
+              }
+
+            </div>
+
+
+            <div
+              class="bar"
+              style="
+                height:${height}px
+              ">
+            </div>
+
+
+            <div class="bar-label">
+
+              ${
+                d.date
+                  .toLocaleDateString(
+                    "pt-BR",
+                    {
+                      weekday:"short"
+                    }
+                  )
+                  .replace(".","")
+              }
+
+            </div>
+
           </div>
 
-          <div class="bar" style="height:${height}px"></div>
+        `;
 
-          <div class="bar-label">
-            ${d.date.toLocaleDateString("pt-BR",{weekday:"short"}).replace(".","")}
-          </div>
-        </div>
-      `;
-
-    }).join("");
+      })
+      .join("");
 }
+
 
 function renderInsight(){
 
   const el =
-    document.getElementById("dashboardInsight");
+    document.getElementById(
+      "dashboardInsight"
+    );
+
 
   const today =
     todayPaidSales();
 
+
   const todayValue =
     totalRevenue(today);
 
+
   const goal =
     getMainGoal();
+
 
   if(!today.length){
 
@@ -1960,10 +3670,15 @@ function renderInsight(){
     return;
   }
 
+
   const target =
     calculateDailyTarget(goal);
 
-  if(target && todayValue >= target){
+
+  if(
+    target &&
+    todayValue>=target
+  ){
 
     el.innerHTML =
       "🔥 <strong>Meta diária alcançada!</strong> Você já atingiu o valor necessário para hoje.";
@@ -1971,10 +3686,15 @@ function renderInsight(){
     return;
   }
 
+
   if(target){
 
     const missing =
-      Math.max(0,target-todayValue);
+      Math.max(
+        0,
+        target-todayValue
+      );
+
 
     el.innerHTML =
       `Faltam <strong>${money(missing)}</strong> para alcançar sua meta de hoje.`;
@@ -1982,31 +3702,53 @@ function renderInsight(){
     return;
   }
 
+
   el.textContent =
     "Continue registrando suas vendas para acompanhar seu desempenho.";
 }
 
+
 function renderDashboardSales(){
 
   const el =
-    document.getElementById("dashboardSales");
+    document.getElementById(
+      "dashboardSales"
+    );
+
 
   const recent =
     [...sales]
-      .filter(s=>s.status!=="cancelado")
-      .sort((a,b)=>new Date(b.date)-new Date(a.date))
+
+      .filter(
+        s=>s.status!=="cancelado"
+      )
+
+      .sort(
+        (a,b)=>
+          new Date(b.date) -
+          new Date(a.date)
+      )
+
       .slice(0,4);
+
 
   if(!recent.length){
 
     el.innerHTML =
-      `<div class="empty">Nenhuma venda registrada.</div>`;
+      `
+        <div class="empty">
+          Nenhuma venda registrada.
+        </div>
+      `;
 
     return;
   }
 
+
   el.innerHTML =
-    recent.map(saleHTML).join("");
+    recent
+      .map(saleHTML)
+      .join("");
 }
 
 
@@ -2018,30 +3760,54 @@ function renderTodaySales(){
 
   const list =
     todaySales()
-      .sort((a,b)=>new Date(b.date)-new Date(a.date));
+      .sort(
+        (a,b)=>
+          new Date(b.date) -
+          new Date(a.date)
+      );
+
 
   const paid =
     todayPaidSales();
 
-  document.getElementById("salesToday").textContent =
-    money(totalRevenue(paid));
 
-  document.getElementById("salesCountToday").textContent =
+  document
+    .getElementById("salesToday")
+    .textContent =
+    money(
+      totalRevenue(paid)
+    );
+
+
+  document
+    .getElementById("salesCountToday")
+    .textContent =
     paid.length;
 
+
   const el =
-    document.getElementById("todaySalesList");
+    document.getElementById(
+      "todaySalesList"
+    );
+
 
   if(!list.length){
 
     el.innerHTML =
-      `<div class="empty">Nenhuma venda hoje.</div>`;
+      `
+        <div class="empty">
+          Nenhuma venda hoje.
+        </div>
+      `;
 
     return;
   }
 
+
   el.innerHTML =
-    list.map(saleHTML).join("");
+    list
+      .map(saleHTML)
+      .join("");
 }
 
 
@@ -2051,88 +3817,164 @@ function renderTodaySales(){
 
 function saleHTML(sale){
 
-  let statusClass = "pending";
-  let statusText = "🟡 Pendente";
+  let statusClass =
+    "pending";
 
-  if(sale.status==="pago"){
-    statusClass = "paid";
-    statusText = "✅ Pago";
+
+  let statusText =
+    "🟡 Pendente";
+
+
+  if(
+    sale.status==="pago"
+  ){
+
+    statusClass =
+      "paid";
+
+    statusText =
+      "✅ Pago";
+
   }
 
-  if(sale.status==="cancelado"){
-    statusClass = "cancelled";
-    statusText = "✕ Cancelado";
+
+  if(
+    sale.status==="cancelado"
+  ){
+
+    statusClass =
+      "cancelled";
+
+    statusText =
+      "✕ Cancelado";
+
   }
+
 
   const product =
     sale.product
       ? `<span>${esc(sale.product)}</span>`
       : `<span>Venda avulsa</span>`;
 
+
   let actions = "";
 
-  if(sale.status==="pendente"){
+
+  if(
+    sale.status==="pendente"
+  ){
 
     actions += `
-      <button class="btn btn-small btn-green"
+
+      <button
+        class="btn btn-small btn-green"
         onclick="markPaid('${sale.id}')">
+
         ✅ PIX recebido
+
       </button>
+
     `;
 
+
     actions += `
-      <button class="btn btn-small btn-red"
+
+      <button
+        class="btn btn-small btn-red"
         onclick="cancelSale('${sale.id}')">
+
         Cancelar
+
       </button>
+
     `;
+
   }
 
-  if(sale.status==="pago"){
+
+  if(
+    sale.status==="pago"
+  ){
 
     actions += `
-      <button class="btn btn-small"
+
+      <button
+        class="btn btn-small"
         onclick="markPending('${sale.id}')">
+
         ↩ Voltar pendente
+
       </button>
+
     `;
+
   }
+
 
   actions += `
-    <button class="btn btn-small btn-red"
+
+    <button
+      class="btn btn-small btn-red"
       onclick="deleteSale('${sale.id}')">
+
       Excluir
+
     </button>
+
   `;
 
+
   return `
+
     <div class="sale-item">
 
       <div class="sale-top">
 
         <div>
+
           <div class="sale-value">
+
             ${money(sale.value)}
+
           </div>
+
 
           <div class="sale-meta">
+
             ${product}
-            · ${esc(sale.payment || "Dinheiro")}
-            · ${formatTime(sale.date)}
+
+            ·
+            ${esc(
+              sale.payment ||
+              "Dinheiro"
+            )}
+
+            ·
+            ${formatTime(sale.date)}
+
           </div>
+
         </div>
 
-        <span class="status ${statusClass}">
+
+        <span
+          class="status ${statusClass}">
+
           ${statusText}
+
         </span>
 
       </div>
 
+
       <div class="sale-actions">
+
         ${actions}
+
       </div>
 
     </div>
+
   `;
 }
 
@@ -2144,72 +3986,126 @@ function saleHTML(sale){
 function renderProducts(){
 
   const el =
-    document.getElementById("productsList");
+    document.getElementById(
+      "productsList"
+    );
+
 
   if(!products.length){
 
     el.innerHTML =
       `
-      <div class="card">
-        <div class="empty">
-          Nenhum produto cadastrado.<br><br>
-          Cadastre seus produtos para calcular automaticamente o lucro.
+
+        <div class="card">
+
+          <div class="empty">
+
+            Nenhum produto cadastrado.
+
+            <br><br>
+
+            Cadastre seus produtos para
+            calcular automaticamente o lucro.
+
+          </div>
+
         </div>
-      </div>
+
       `;
 
     return;
   }
 
+
   el.innerHTML =
-    products.map(p=>{
+    products
+      .map(p=>{
 
-      const profit =
-        Number(p.price)-Number(p.cost);
+        const profit =
+          Number(p.price) -
+          Number(p.cost);
 
-      const margin =
-        Number(p.price)>0
-          ? (profit/Number(p.price))*100
-          : 0;
 
-      return `
-        <div class="card product-card">
+        const margin =
+          Number(p.price)>0
+            ? (
+                profit /
+                Number(p.price)
+              )*100
+            : 0;
 
-          <div class="product-info">
-            <strong>${esc(p.name)}</strong>
 
-            <small>
-              Venda: ${money(p.price)}
-              · Custo: ${money(p.cost)}
-            </small>
+        return `
 
-            <small>
-              Margem: ${margin.toFixed(1)}%
-            </small>
+          <div
+            class="card product-card">
+
+            <div
+              class="product-info">
+
+              <strong>
+                ${esc(p.name)}
+              </strong>
+
+
+              <small>
+
+                Venda:
+                ${money(p.price)}
+
+                ·
+
+                Custo:
+                ${money(p.cost)}
+
+              </small>
+
+
+              <small>
+
+                Margem:
+                ${margin.toFixed(1)}%
+
+              </small>
+
+            </div>
+
+
+            <div
+              class="product-profit">
+
+              <strong>
+                ${money(profit)}
+              </strong>
+
+
+              <small
+                class="muted">
+
+                lucro/un.
+
+              </small>
+
+
+              <br>
+
+
+              <button
+                class="btn btn-small btn-red"
+                onclick="deleteProduct('${p.id}')">
+
+                Excluir
+
+              </button>
+
+            </div>
+
           </div>
 
-          <div class="product-profit">
+        `;
 
-            <strong>${money(profit)}</strong>
-
-            <small class="muted">
-              lucro/un.
-            </small>
-
-            <br>
-
-            <button
-              class="btn btn-small btn-red"
-              onclick="deleteProduct('${p.id}')">
-              Excluir
-            </button>
-
-          </div>
-
-        </div>
-      `;
-
-    }).join("");
+      })
+      .join("");
 }
 
 
@@ -2220,125 +4116,215 @@ function renderProducts(){
 function renderGoals(){
 
   const el =
-    document.getElementById("goalsList");
+    document.getElementById(
+      "goalsList"
+    );
+
 
   if(!goals.length){
 
     el.innerHTML =
       `
-      <div class="card">
-        <div class="empty">
-          Você ainda não criou nenhuma meta.
+
+        <div class="card">
+
+          <div class="empty">
+
+            Você ainda não criou nenhuma meta.
+
+          </div>
+
         </div>
-      </div>
+
       `;
 
     return;
   }
 
+
   const mainGoal =
     getMainGoal();
 
+
   el.innerHTML =
-    goals.map(goal=>{
+    goals
+      .map(goal=>{
 
-      const realized =
-        goalRevenue(goal);
+        const realized =
+          goalRevenue(goal);
 
-      const missing =
-        Math.max(0,Number(goal.value)-realized);
 
-      const percent =
-        Number(goal.value)>0
-          ? clamp((realized/goal.value)*100,0,100)
-          : 0;
+        const missing =
+          Math.max(
+            0,
+            Number(goal.value) -
+            realized
+          );
 
-      const isMain =
-        mainGoal &&
-        mainGoal.id===goal.id;
 
-      return `
-        <div class="card goal-card ${isMain ? "main":""}">
+        const percent =
+          Number(goal.value)>0
+            ? clamp(
+                (
+                  realized /
+                  goal.value
+                )*100,
+                0,
+                100
+              )
+            : 0;
 
-          <div class="goal-head">
 
-            <div>
+        const isMain =
+          mainGoal &&
+          mainGoal.id===goal.id;
 
-              <div class="goal-name">
-                ${esc(goal.name)}
+
+        return `
+
+          <div
+            class="
+              card
+              goal-card
+              ${isMain ? "main":""}
+            ">
+
+
+            <div
+              class="goal-head">
+
+              <div>
+
+                <div
+                  class="goal-name">
+
+                  ${esc(goal.name)}
+
+                </div>
+
+
+                <div
+                  class="goal-date">
+
+                  ${formatDate(goal.start)}
+
+                  →
+
+                  ${formatDate(goal.end)}
+
+                </div>
+
               </div>
 
-              <div class="goal-date">
-                ${formatDate(goal.start)}
-                →
-                ${formatDate(goal.end)}
+
+              <button
+                class="delete-x"
+                onclick="deleteGoal('${goal.id}')">
+
+                ×
+
+              </button>
+
+            </div>
+
+
+            <div
+              style="margin-top:15px">
+
+              <div class="progress">
+
+                <div
+                  class="progress-bar"
+                  style="
+                    width:${percent}%
+                  ">
+                </div>
+
+              </div>
+
+
+              <div
+                class="progress-info">
+
+                <span>
+
+                  ${money(realized)}
+                  de
+                  ${money(goal.value)}
+
+                </span>
+
+
+                <span>
+
+                  ${percent.toFixed(0)}%
+
+                </span>
+
               </div>
 
             </div>
 
+
+            <div
+              style="
+                display:grid;
+                grid-template-columns:1fr 1fr;
+                gap:10px;
+                margin-top:15px;
+              ">
+
+
+              <div class="stat">
+
+                <div class="name">
+                  Falta
+                </div>
+
+                <div
+                  class="value green">
+
+                  ${money(missing)}
+
+                </div>
+
+              </div>
+
+
+              <div class="stat">
+
+                <div class="name">
+                  Por dia
+                </div>
+
+                <div class="value">
+
+                  ${money(
+                    calculateDailyTarget(goal)
+                  )}
+
+                </div>
+
+              </div>
+
+            </div>
+
+
             <button
-              class="delete-x"
-              onclick="deleteGoal('${goal.id}')">
-              ×
+              class="btn btn-green"
+              style="margin-top:12px"
+              onclick="goPage('vendas')">
+
+              ＋ Registrar venda
+
             </button>
 
           </div>
 
-          <div style="margin-top:15px">
+        `;
 
-            <div class="progress">
-              <div
-                class="progress-bar"
-                style="width:${percent}%">
-              </div>
-            </div>
-
-            <div class="progress-info">
-              <span>
-                ${money(realized)} de ${money(goal.value)}
-              </span>
-
-              <span>
-                ${percent.toFixed(0)}%
-              </span>
-            </div>
-
-          </div>
-
-          <div style="
-            display:grid;
-            grid-template-columns:1fr 1fr;
-            gap:10px;
-            margin-top:15px;
-          ">
-
-            <div class="stat">
-              <div class="name">Falta</div>
-              <div class="value green">
-                ${money(missing)}
-              </div>
-            </div>
-
-            <div class="stat">
-              <div class="name">Por dia</div>
-              <div class="value">
-                ${money(calculateDailyTarget(goal))}
-              </div>
-            </div>
-
-          </div>
-
-          <button
-            class="btn btn-green"
-            style="margin-top:12px"
-            onclick="goPage('vendas')">
-            ＋ Registrar venda
-          </button>
-
-        </div>
-      `;
-
-    }).join("");
+      })
+      .join("");
 }
 
 
@@ -2351,49 +4337,92 @@ function renderHistory(){
   const paid =
     paidSales();
 
-  document.getElementById("historyRevenue").textContent =
-    money(totalRevenue(paid));
 
-  document.getElementById("historyCount").textContent =
+  document
+    .getElementById(
+      "historyRevenue"
+    )
+    .textContent =
+    money(
+      totalRevenue(paid)
+    );
+
+
+  document
+    .getElementById(
+      "historyCount"
+    )
+    .textContent =
     paid.length;
+
 
   const list =
     [...sales]
-      .sort((a,b)=>new Date(b.date)-new Date(a.date));
+      .sort(
+        (a,b)=>
+          new Date(b.date) -
+          new Date(a.date)
+      );
+
 
   const el =
-    document.getElementById("historyList");
+    document.getElementById(
+      "historyList"
+    );
+
 
   if(!list.length){
 
     el.innerHTML =
-      `<div class="empty">Nenhuma venda registrada.</div>`;
+      `
+        <div class="empty">
+          Nenhuma venda registrada.
+        </div>
+      `;
 
     return;
   }
 
+
   el.innerHTML =
-    list.map(saleHTML).join("");
+    list
+      .map(saleHTML)
+      .join("");
 }
+
 
 function clearSales(){
 
   if(!sales.length){
-    showToast("Não há vendas para apagar.");
+
+    showToast(
+      "Não há vendas para apagar."
+    );
+
     return;
   }
 
-  if(!confirm(
-    "Tem certeza que deseja apagar TODAS as vendas?"
-  )){
+
+  if(
+    !confirm(
+      "Tem certeza que deseja apagar TODAS as vendas?"
+    )
+  ){
+
     return;
   }
+
 
   sales = [];
 
+
   saveAll();
 
-  showToast("Histórico apagado.");
+
+  showToast(
+    "Histórico apagado."
+  );
+
 
   renderAll();
 }
@@ -2408,81 +4437,177 @@ function renderReports(){
   const paid =
     paidSales();
 
+
   const revenue =
     totalRevenue(paid);
+
 
   const profit =
     totalProfit(paid);
 
+
   const cost =
-    Math.max(0,revenue-profit);
+    Math.max(
+      0,
+      revenue-profit
+    );
+
 
   const ticket =
     paid.length
       ? revenue/paid.length
       : 0;
 
-  document.getElementById("reportRevenue").textContent =
+
+  document
+    .getElementById(
+      "reportRevenue"
+    )
+    .textContent =
     money(revenue);
 
-  document.getElementById("reportProfit").textContent =
+
+  document
+    .getElementById(
+      "reportProfit"
+    )
+    .textContent =
     money(profit);
 
-  document.getElementById("reportTicket").textContent =
+
+  document
+    .getElementById(
+      "reportTicket"
+    )
+    .textContent =
     money(ticket);
 
-  document.getElementById("reportSales").textContent =
+
+  document
+    .getElementById(
+      "reportSales"
+    )
+    .textContent =
     paid.length;
 
-  document.getElementById("finRevenue").textContent =
+
+  document
+    .getElementById(
+      "finRevenue"
+    )
+    .textContent =
     money(revenue);
 
-  document.getElementById("finCost").textContent =
+
+  document
+    .getElementById(
+      "finCost"
+    )
+    .textContent =
     money(cost);
 
-  document.getElementById("finProfit").textContent =
+
+  document
+    .getElementById(
+      "finProfit"
+    )
+    .textContent =
     money(profit);
+
 
   const goal =
     getMainGoal();
+
 
   if(goal){
 
     const realized =
       goalRevenue(goal);
 
+
     const missing =
-      Math.max(0,Number(goal.value)-realized);
+      Math.max(
+        0,
+        Number(goal.value) -
+        realized
+      );
+
 
     const percent =
       Number(goal.value)>0
-        ? clamp((realized/goal.value)*100,0,100)
+        ? clamp(
+            (
+              realized /
+              goal.value
+            )*100,
+            0,
+            100
+          )
         : 0;
 
-    document.getElementById("goalReportValue").textContent =
+
+    document
+      .getElementById(
+        "goalReportValue"
+      )
+      .textContent =
       money(goal.value);
 
-    document.getElementById("goalReportRealized").textContent =
+
+    document
+      .getElementById(
+        "goalReportRealized"
+      )
+      .textContent =
       money(realized);
 
-    document.getElementById("goalReportMissing").textContent =
+
+    document
+      .getElementById(
+        "goalReportMissing"
+      )
+      .textContent =
       money(missing);
 
-    document.getElementById("goalReportPercent").textContent =
+
+    document
+      .getElementById(
+        "goalReportPercent"
+      )
+      .textContent =
       percent.toFixed(0)+"%";
 
   }else{
 
-    document.getElementById("goalReportValue").textContent =
+    document
+      .getElementById(
+        "goalReportValue"
+      )
+      .textContent =
       money(0);
 
-    document.getElementById("goalReportRealized").textContent =
+
+    document
+      .getElementById(
+        "goalReportRealized"
+      )
+      .textContent =
       money(0);
 
-    document.getElementById("goalReportMissing").textContent =
+
+    document
+      .getElementById(
+        "goalReportMissing"
+      )
+      .textContent =
       money(0);
 
-    document.getElementById("goalReportPercent").textContent =
+
+    document
+      .getElementById(
+        "goalReportPercent"
+      )
+      .textContent =
       "0%";
   }
 }
@@ -2495,39 +4620,86 @@ function renderReports(){
 function backupData(){
 
   const data = {
-    app:"Quanto Vender Hoje? PRO",
-    exportedAt:new Date().toISOString(),
-    sales:sales,
-    products:products,
-    goals:goals,
-    settings:loadJSON(SETTINGS_KEY,{})
+
+    app:
+      "Quanto Vender Hoje? PRO",
+
+    exportedAt:
+      new Date().toISOString(),
+
+    sales:
+      sales,
+
+    products:
+      products,
+
+    goals:
+      goals,
+
+    settings:
+      loadJSON(
+        SETTINGS_KEY,
+        {}
+      )
+
   };
+
 
   const blob =
     new Blob(
-      [JSON.stringify(data,null,2)],
-      {type:"application/json"}
+      [
+        JSON.stringify(
+          data,
+          null,
+          2
+        )
+      ],
+      {
+        type:
+          "application/json"
+      }
     );
 
+
   const url =
-    URL.createObjectURL(blob);
+    URL.createObjectURL(
+      blob
+    );
+
 
   const a =
-    document.createElement("a");
+    document.createElement(
+      "a"
+    );
 
-  a.href = url;
+
+  a.href =
+    url;
+
+
   a.download =
     "quanto-vender-hoje-backup.json";
 
-  document.body.appendChild(a);
+
+  document
+    .body
+    .appendChild(a);
+
 
   a.click();
 
+
   a.remove();
 
-  URL.revokeObjectURL(url);
 
-  showToast("💾 Backup criado.");
+  URL.revokeObjectURL(
+    url
+  );
+
+
+  showToast(
+    "💾 Backup criado."
+  );
 }
 
 
@@ -2537,27 +4709,30 @@ function backupData(){
 
 async function shareResult(){
 
-  const paid =
-    paidSales();
-
   const today =
     todayPaidSales();
+
 
   const goal =
     getMainGoal();
 
+
   const todayValue =
     totalRevenue(today);
+
 
   const missing =
     goal
       ? Math.max(
           0,
-          calculateDailyTarget(goal)-todayValue
+          calculateDailyTarget(goal) -
+          todayValue
         )
       : 0;
 
+
   const text =
+
 `📊 Meu resultado de hoje
 
 💰 Vendas: ${money(todayValue)}
@@ -2566,48 +4741,67 @@ async function shareResult(){
 
 Estou acompanhando tudo pelo Quanto Vender Hoje? PRO.`;
 
+
   try{
 
     if(
       navigator.share &&
       navigator.canShare &&
-      navigator.canShare({text:text})
+      navigator.canShare({
+        text:text
+      })
     ){
 
       await navigator.share({
-        title:"Quanto Vender Hoje?",
+        title:
+          "Quanto Vender Hoje?",
         text:text
       });
 
       return;
     }
+
 
     if(navigator.share){
 
       await navigator.share({
-        title:"Quanto Vender Hoje?",
+        title:
+          "Quanto Vender Hoje?",
         text:text
       });
 
       return;
     }
 
-    await navigator.clipboard.writeText(text);
 
-    showToast("Resultado copiado para compartilhar.");
+    await navigator.clipboard
+      .writeText(text);
+
+
+    showToast(
+      "Resultado copiado para compartilhar."
+    );
 
   }catch(e){
 
     try{
 
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard
+        .writeText(text);
 
-      showToast("Resultado copiado.");
+
+      showToast(
+        "Resultado copiado."
+      );
 
     }catch(err){
 
-      showToast("Não foi possível compartilhar.");
+      showToast(
+        "Não foi possível compartilhar."
+      );
+
     }
+
   }
 }
 
@@ -2621,22 +4815,39 @@ function closeModal(id){
   const el =
     document.getElementById(id);
 
+
   if(el){
-    el.classList.remove("show");
+
+    el.classList.remove(
+      "show"
+    );
+
   }
 }
 
-document.querySelectorAll(".modal").forEach(modal=>{
 
-  modal.addEventListener("click",e=>{
+document
+  .querySelectorAll(".modal")
+  .forEach(modal=>{
 
-    if(e.target===modal){
-      modal.classList.remove("show");
-    }
+    modal.addEventListener(
+      "click",
+      e=>{
+
+        if(
+          e.target===modal
+        ){
+
+          modal.classList.remove(
+            "show"
+          );
+
+        }
+
+      }
+    );
 
   });
-
-});
 
 
 /* =========================================================
@@ -2670,4 +4881,4 @@ renderAll();
 </script>
 
 </body>
-  </html>
+        </html>
