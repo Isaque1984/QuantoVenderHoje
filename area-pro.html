@@ -571,6 +571,122 @@ input:focus,select:focus{
   transition:.4s;
 }
 
+
+/* =========================================================
+   NOVA MENSAGEM MOTIVACIONAL TEMPORÁRIA
+========================================================= */
+
+.motivation-toast{
+  position:fixed;
+  left:50%;
+  bottom:105px;
+  width:calc(100% - 30px);
+  max-width:680px;
+  transform:translateX(-50%) translateY(30px) scale(.96);
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(33,212,123,.22),
+      transparent 42%
+    ),
+    linear-gradient(
+      145deg,
+      #102b40,
+      #0b1829
+    );
+  border:1px solid rgba(33,212,123,.45);
+  border-radius:22px;
+  padding:22px 20px;
+  text-align:center;
+  opacity:0;
+  pointer-events:none;
+  z-index:150;
+  box-shadow:
+    0 18px 55px rgba(0,0,0,.5),
+    0 0 35px rgba(33,212,123,.12);
+  visibility:hidden;
+}
+
+.motivation-toast.show{
+  visibility:visible;
+  animation:
+    motivationToastAnimation
+    7s
+    ease
+    forwards;
+}
+
+.motivation-toast-title{
+  font-size:24px;
+  line-height:1.2;
+  font-weight:900;
+  letter-spacing:-.4px;
+  color:#ffffff;
+  margin-bottom:9px;
+}
+
+.motivation-toast-text{
+  color:#cfe0ef;
+  font-size:15px;
+  line-height:1.45;
+  font-weight:500;
+}
+
+@keyframes motivationToastAnimation{
+
+  0%{
+    opacity:0;
+    transform:
+      translateX(-50%)
+      translateY(30px)
+      scale(.96);
+  }
+
+  10%{
+    opacity:1;
+    transform:
+      translateX(-50%)
+      translateY(0)
+      scale(1);
+  }
+
+  82%{
+    opacity:1;
+    transform:
+      translateX(-50%)
+      translateY(0)
+      scale(1);
+  }
+
+  100%{
+    opacity:0;
+    transform:
+      translateX(-50%)
+      translateY(-10px)
+      scale(.98);
+  }
+
+}
+
+@media(max-width:420px){
+
+  .motivation-toast{
+    bottom:100px;
+    padding:20px 16px;
+    border-radius:20px;
+  }
+
+  .motivation-toast-title{
+    font-size:22px;
+  }
+
+  .motivation-toast-text{
+    font-size:14px;
+  }
+
+}
+
+
 .empty{
   text-align:center;
   padding:25px 10px;
@@ -734,10 +850,6 @@ input:focus,select:focus{
 
 <main>
 
-<!-- =====================================================
-     DASHBOARD
-===================================================== -->
-
 <section id="dashboard" class="page active">
 
   <h2>Seu painel</h2>
@@ -760,8 +872,6 @@ input:focus,select:focus{
     </div>
   </div>
 
-
-  <!-- INCENTIVO -->
   <div class="card motivation">
 
     <div class="motivation-icon" id="motivationIcon">
@@ -781,7 +891,6 @@ input:focus,select:focus{
     </div>
 
   </div>
-
 
   <div class="grid">
 
@@ -815,7 +924,6 @@ input:focus,select:focus{
 
   </div>
 
-
   <div class="card">
 
     <div class="section-title">
@@ -833,7 +941,6 @@ input:focus,select:focus{
 
   </div>
 
-
   <div class="card">
 
     <div class="section-title">
@@ -844,7 +951,6 @@ input:focus,select:focus{
     <div class="chart" id="dashboardChart"></div>
 
   </div>
-
 
   <div class="card">
 
@@ -857,7 +963,6 @@ input:focus,select:focus{
     </div>
 
   </div>
-
 
   <div class="card">
 
@@ -878,10 +983,6 @@ input:focus,select:focus{
 </section>
 
 
-<!-- =====================================================
-     METAS
-===================================================== -->
-
 <section id="metas" class="page">
 
   <h2>Metas</h2>
@@ -901,10 +1002,6 @@ input:focus,select:focus{
 </section>
 
 
-<!-- =====================================================
-     VENDAS
-===================================================== -->
-
 <section id="vendas" class="page">
 
   <h2>Nova venda</h2>
@@ -912,9 +1009,6 @@ input:focus,select:focus{
   <p class="subtitle">
     Registre rapidamente o que você vendeu.
   </p>
-
-
-  <!-- VENDA RÁPIDA -->
 
   <div class="card fast-sale">
 
@@ -956,7 +1050,6 @@ input:focus,select:focus{
 
   </div>
 
-
   <div class="card">
 
     <div class="form">
@@ -971,7 +1064,6 @@ input:focus,select:focus{
           inputmode="decimal"
           placeholder="Ex.: 10">
       </div>
-
 
       <div>
 
@@ -1009,7 +1101,6 @@ input:focus,select:focus{
 
       </div>
 
-
       <div>
 
         <label>
@@ -1023,7 +1114,6 @@ input:focus,select:focus{
         </select>
 
       </div>
-
 
       <div>
 
@@ -1039,7 +1129,6 @@ input:focus,select:focus{
           inputmode="numeric">
 
       </div>
-
 
       <div>
 
@@ -1067,7 +1156,6 @@ input:focus,select:focus{
 
       </div>
 
-
       <div>
 
         <label>
@@ -1094,7 +1182,6 @@ input:focus,select:focus{
 
       </div>
 
-
       <button
         class="btn btn-green"
         onclick="registerSale()">
@@ -1104,7 +1191,6 @@ input:focus,select:focus{
     </div>
 
   </div>
-
 
   <div class="grid">
 
@@ -1117,7 +1203,6 @@ input:focus,select:focus{
         R$ 0,00
       </div>
     </div>
-
 
     <div class="stat">
 
@@ -1135,11 +1220,9 @@ input:focus,select:focus{
 
   </div>
 
-
   <div class="section-title">
     <h3>Vendas de hoje</h3>
   </div>
-
 
   <div class="card">
 
@@ -1149,10 +1232,6 @@ input:focus,select:focus{
 
 </section>
 
-
-<!-- =====================================================
-     PRODUTOS
-===================================================== -->
 
 <section id="produtos" class="page">
 
@@ -1174,10 +1253,6 @@ input:focus,select:focus{
 </section>
 
 
-<!-- =====================================================
-     HISTÓRICO
-===================================================== -->
-
 <section id="historico" class="page">
 
   <h2>Histórico</h2>
@@ -1185,7 +1260,6 @@ input:focus,select:focus{
   <p class="subtitle">
     Todas as suas vendas registradas.
   </p>
-
 
   <div class="grid">
 
@@ -1203,7 +1277,6 @@ input:focus,select:focus{
 
     </div>
 
-
     <div class="stat">
 
       <div class="name">
@@ -1220,7 +1293,6 @@ input:focus,select:focus{
 
   </div>
 
-
   <div
     class="card"
     style="margin-top:14px">
@@ -1228,7 +1300,6 @@ input:focus,select:focus{
     <div id="historyList"></div>
 
   </div>
-
 
   <button
     class="btn btn-red"
@@ -1239,10 +1310,6 @@ input:focus,select:focus{
 </section>
 
 
-<!-- =====================================================
-     RELATÓRIOS
-===================================================== -->
-
 <section id="relatorios" class="page">
 
   <h2>Relatórios</h2>
@@ -1250,7 +1317,6 @@ input:focus,select:focus{
   <p class="subtitle">
     Resumo financeiro do seu negócio.
   </p>
-
 
   <div class="grid">
 
@@ -1268,7 +1334,6 @@ input:focus,select:focus{
 
     </div>
 
-
     <div class="stat">
 
       <div class="name">
@@ -1283,7 +1348,6 @@ input:focus,select:focus{
 
     </div>
 
-
     <div class="stat">
 
       <div class="name">
@@ -1297,7 +1361,6 @@ input:focus,select:focus{
       </div>
 
     </div>
-
 
     <div class="stat">
 
@@ -1315,7 +1378,6 @@ input:focus,select:focus{
 
   </div>
 
-
   <div
     class="card"
     style="margin-top:14px">
@@ -1323,7 +1385,6 @@ input:focus,select:focus{
     <div class="section-title">
       <h3>Resumo financeiro</h3>
     </div>
-
 
     <div class="report-row">
 
@@ -1335,7 +1396,6 @@ input:focus,select:focus{
 
     </div>
 
-
     <div class="report-row">
 
       <span>Custo estimado</span>
@@ -1345,7 +1405,6 @@ input:focus,select:focus{
       </strong>
 
     </div>
-
 
     <div class="report-row">
 
@@ -1361,13 +1420,11 @@ input:focus,select:focus{
 
   </div>
 
-
   <div class="card">
 
     <div class="section-title">
       <h3>Meta principal</h3>
     </div>
-
 
     <div class="report-row">
 
@@ -1379,7 +1436,6 @@ input:focus,select:focus{
 
     </div>
 
-
     <div class="report-row">
 
       <span>Realizado</span>
@@ -1390,7 +1446,6 @@ input:focus,select:focus{
 
     </div>
 
-
     <div class="report-row">
 
       <span>Falta</span>
@@ -1400,7 +1455,6 @@ input:focus,select:focus{
       </strong>
 
     </div>
-
 
     <div class="report-row">
 
@@ -1416,13 +1470,11 @@ input:focus,select:focus{
 
   </div>
 
-
   <div class="card">
 
     <div class="section-title">
       <h3>Ferramentas</h3>
     </div>
-
 
     <button
       class="btn btn-blue"
@@ -1431,14 +1483,12 @@ input:focus,select:focus{
       💾 Fazer backup dos dados
     </button>
 
-
     <button
       class="btn btn-green"
       onclick="shareResult()"
       style="margin-bottom:9px">
       📤 Compartilhar meu resultado
     </button>
-
 
     <button
       class="btn"
@@ -1447,7 +1497,6 @@ input:focus,select:focus{
     </button>
 
   </div>
-
 
   <div class="notice">
 
@@ -1461,10 +1510,6 @@ input:focus,select:focus{
 </main>
 
 
-<!-- =====================================================
-     NAVEGAÇÃO
-===================================================== -->
-
 <nav class="bottom-nav">
 
   <button
@@ -1477,7 +1522,6 @@ input:focus,select:focus{
 
   </button>
 
-
   <button
     class="nav-btn"
     data-page="metas"
@@ -1487,7 +1531,6 @@ input:focus,select:focus{
     Metas
 
   </button>
-
 
   <button
     class="nav-btn"
@@ -1499,7 +1542,6 @@ input:focus,select:focus{
 
   </button>
 
-
   <button
     class="nav-btn"
     data-page="produtos"
@@ -1509,7 +1551,6 @@ input:focus,select:focus{
     Produtos
 
   </button>
-
 
   <button
     class="nav-btn"
@@ -1525,10 +1566,6 @@ input:focus,select:focus{
 
 </div>
 
-
-<!-- =====================================================
-     MODAL META
-===================================================== -->
 
 <div
   class="modal"
@@ -1550,7 +1587,6 @@ input:focus,select:focus{
 
       </div>
 
-
       <button
         class="close"
         onclick="closeModal('goalModal')">
@@ -1558,7 +1594,6 @@ input:focus,select:focus{
       </button>
 
     </div>
-
 
     <div class="form">
 
@@ -1573,7 +1608,6 @@ input:focus,select:focus{
           placeholder="Ex.: Meta do mês">
 
       </div>
-
 
       <div>
 
@@ -1590,7 +1624,6 @@ input:focus,select:focus{
 
       </div>
 
-
       <div>
 
         <label>
@@ -1602,7 +1635,6 @@ input:focus,select:focus{
           type="date">
 
       </div>
-
 
       <div>
 
@@ -1616,7 +1648,6 @@ input:focus,select:focus{
 
       </div>
 
-
       <button
         class="btn btn-green"
         onclick="createGoal()">
@@ -1629,10 +1660,6 @@ input:focus,select:focus{
 
 </div>
 
-
-<!-- =====================================================
-     MODAL PRODUTO
-===================================================== -->
 
 <div
   class="modal"
@@ -1654,7 +1681,6 @@ input:focus,select:focus{
 
       </div>
 
-
       <button
         class="close"
         onclick="closeModal('productModal')">
@@ -1662,7 +1688,6 @@ input:focus,select:focus{
       </button>
 
     </div>
-
 
     <div class="form">
 
@@ -1677,7 +1702,6 @@ input:focus,select:focus{
           placeholder="Ex.: Kit Mentos">
 
       </div>
-
 
       <div>
 
@@ -1694,7 +1718,6 @@ input:focus,select:focus{
 
       </div>
 
-
       <div>
 
         <label>
@@ -1710,7 +1733,6 @@ input:focus,select:focus{
 
       </div>
 
-
       <button
         class="btn btn-green"
         onclick="createProduct()">
@@ -1719,6 +1741,29 @@ input:focus,select:focus{
 
     </div>
 
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     MENSAGEM MOTIVACIONAL GRANDE
+===================================================== -->
+
+<div
+  class="motivation-toast"
+  id="motivationToast">
+
+  <div
+    class="motivation-toast-title"
+    id="motivationToastTitle">
+    🔥 Boa! Mais uma venda!
+  </div>
+
+  <div
+    class="motivation-toast-text"
+    id="motivationToastText">
+    Cada venda conta. Bora buscar a próxima!
   </div>
 
 </div>
@@ -1942,6 +1987,64 @@ function showToast(message){
       toast.classList.remove("show");
 
     },2600);
+}
+
+
+/* =========================================================
+   NOVA MENSAGEM MOTIVACIONAL
+========================================================= */
+
+function showMotivation(title,text){
+
+  const box =
+    document.getElementById(
+      "motivationToast"
+    );
+
+  const titleEl =
+    document.getElementById(
+      "motivationToastTitle"
+    );
+
+  const textEl =
+    document.getElementById(
+      "motivationToastText"
+    );
+
+
+  if(!box || !titleEl || !textEl){
+    return;
+  }
+
+
+  titleEl.textContent =
+    title;
+
+  textEl.textContent =
+    text;
+
+
+  clearTimeout(
+    window.motivationTimer
+  );
+
+
+  /* Reinicia a animação mesmo se outra mensagem
+     aparecer antes dos 7 segundos. */
+
+  box.classList.remove("show");
+
+  void box.offsetWidth;
+
+  box.classList.add("show");
+
+
+  window.motivationTimer =
+    setTimeout(()=>{
+
+      box.classList.remove("show");
+
+    },7000);
 }
 
 
@@ -2264,25 +2367,63 @@ function registerSale(){
   if(statusAtRegister==="pago"){
 
     const phrases = [
-      "🔥 Boa! Mais uma venda para sua meta.",
-      "💪 É isso! Venda registrada.",
-      "🚀 Mandou bem! Continue nesse ritmo.",
-      "🎯 Mais uma venda aproximando você do objetivo.",
-      "💰 Boa! Seu resultado está crescendo."
+
+      {
+        title:"🔥 Boa! Mais uma venda!",
+        text:"Cada venda conta. Bora buscar a próxima!"
+      },
+
+      {
+        title:"💪 É isso!",
+        text:"Venda registrada. Continue nesse ritmo!"
+      },
+
+      {
+        title:"🚀 Mandou bem!",
+        text:"Você está construindo seu resultado venda por venda."
+      },
+
+      {
+        title:"🎯 Mais uma para a meta!",
+        text:"Seu objetivo ficou um pouco mais perto."
+      },
+
+      {
+        title:"💰 Boa!",
+        text:"Seu resultado está crescendo. Continue!"
+      }
+
     ];
 
-    showToast(
+
+    const message =
       phrases[
         Math.floor(
           Math.random()*phrases.length
         )
-      ]
+      ];
+
+
+    showMotivation(
+      message.title,
+      message.text
+    );
+
+
+    showToast(
+      message.title
     );
 
   }else{
 
+    showMotivation(
+      "🟡 Venda registrada!",
+      "Quando receber o PIX, confirme aqui para ela entrar na sua meta."
+    );
+
+
     showToast(
-      "🟡 Venda registrada. Quando receber o PIX, confirme aqui."
+      "🟡 Venda pendente registrada."
     );
 
   }
@@ -2335,19 +2476,46 @@ function markPaid(id){
 
 
   const messages = [
-    "💚 PIX confirmado! Essa venda já conta para sua meta.",
-    "✅ Recebimento confirmado! Boa.",
-    "🔥 Mais uma venda paga. Continue!",
-    "💰 Dinheiro confirmado. Sua meta ficou mais perto."
+
+    {
+      title:"💚 PIX recebido!",
+      text:"Essa venda agora conta para sua meta. Muito bem!"
+    },
+
+    {
+      title:"✅ Recebimento confirmado!",
+      text:"Mais uma venda paga. Sua meta ficou mais perto."
+    },
+
+    {
+      title:"🔥 Mais uma venda paga!",
+      text:"Continue nesse ritmo e busque a próxima."
+    },
+
+    {
+      title:"💰 Dinheiro confirmado!",
+      text:"Seu resultado cresceu mais uma vez."
+    }
+
   ];
 
 
-  showToast(
+  const message =
     messages[
       Math.floor(
         Math.random()*messages.length
       )
-    ]
+    ];
+
+
+  showMotivation(
+    message.title,
+    message.text
+  );
+
+
+  showToast(
+    message.title
   );
 
 
@@ -2765,6 +2933,12 @@ function createGoal(){
   );
 
 
+  showMotivation(
+    "🎯 Meta criada!",
+    "Agora é transformar seu objetivo em vendas. Bora buscar!"
+  );
+
+
   showToast(
     "🎯 Meta criada. Agora é buscar!"
   );
@@ -3050,8 +3224,6 @@ function getMotivation(){
       : 0;
 
 
-  /* META PRINCIPAL ATINGIDA */
-
   if(
     goal &&
     goalRealized>=goalValue
@@ -3080,8 +3252,6 @@ function getMotivation(){
   }
 
 
-  /* META DO DIA ATINGIDA */
-
   if(
     dailyTarget>0 &&
     todayValue>=dailyTarget
@@ -3109,8 +3279,6 @@ function getMotivation(){
     };
   }
 
-
-  /* 75% */
 
   if(
     dailyTarget>0 &&
@@ -3143,8 +3311,6 @@ function getMotivation(){
   }
 
 
-  /* 50% */
-
   if(
     dailyTarget>0 &&
     dailyPercent>=50
@@ -3175,8 +3341,6 @@ function getMotivation(){
     };
   }
 
-
-  /* 25% */
 
   if(
     dailyTarget>0 &&
@@ -3209,8 +3373,6 @@ function getMotivation(){
   }
 
 
-  /* PRIMEIRA VENDA */
-
   if(today.length===1){
 
     return {
@@ -3242,8 +3404,6 @@ function getMotivation(){
   }
 
 
-  /* VENDAS REGISTRADAS */
-
   if(today.length>1){
 
     return {
@@ -3274,8 +3434,6 @@ function getMotivation(){
     };
   }
 
-
-  /* SEM VENDA */
 
   if(goal){
 
@@ -3609,14 +3767,12 @@ function renderChart(){
 
             </div>
 
-
             <div
               class="bar"
               style="
                 height:${height}px
               ">
             </div>
-
 
             <div class="bar-label">
 
@@ -4881,4 +5037,4 @@ renderAll();
 </script>
 
 </body>
-        </html>
+      </html>
