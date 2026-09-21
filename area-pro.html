@@ -1,0 +1,2432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<title>Área PRO — Quanto Vender Hoje?</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#07111f;
+  color:#f8fafc;
+  min-height:100vh;
+}
+
+button,input{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.app{
+  max-width:760px;
+  margin:auto;
+  padding-bottom:90px;
+}
+
+/* HEADER */
+
+.header{
+  padding:20px 18px 22px;
+  background:
+    radial-gradient(circle at 90% 0%,rgba(34,197,94,.18),transparent 32%),
+    linear-gradient(145deg,#07111f,#0d1b2d);
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:900;
+}
+
+.logo span{
+  color:#4ade80;
+}
+
+.pro-badge{
+  background:#22c55e;
+  color:#052e16;
+  font-size:11px;
+  font-weight:900;
+  padding:7px 12px;
+  border-radius:999px;
+}
+
+.greeting{
+  margin-top:24px;
+}
+
+.greeting small{
+  color:#64748b;
+  font-size:12px;
+}
+
+.greeting h1{
+  font-size:27px;
+  line-height:1.15;
+  margin-top:6px;
+  letter-spacing:-.7px;
+}
+
+.greeting p{
+  color:#94a3b8;
+  font-size:13px;
+  margin-top:8px;
+  line-height:1.5;
+}
+
+/* MAIN */
+
+main{
+  padding:17px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+/* GOAL */
+
+.goal-card{
+  background:
+    radial-gradient(circle at 100% 0%,rgba(74,222,128,.18),transparent 38%),
+    linear-gradient(145deg,#12253a,#0c1828);
+  border:1px solid rgba(74,222,128,.16);
+  border-radius:23px;
+  padding:20px;
+  margin-bottom:14px;
+}
+
+.goal-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.goal-label{
+  color:#94a3b8;
+  font-size:12px;
+}
+
+.goal-value{
+  font-size:39px;
+  font-weight:900;
+  letter-spacing:-1.5px;
+  margin-top:7px;
+}
+
+.goal-value span{
+  color:#64748b;
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:0;
+}
+
+.goal-icon{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  background:rgba(34,197,94,.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+}
+
+.progress{
+  height:10px;
+  background:rgba(255,255,255,.08);
+  border-radius:99px;
+  overflow:hidden;
+  margin-top:17px;
+}
+
+.progress-bar{
+  width:0%;
+  height:100%;
+  background:linear-gradient(90deg,#16a34a,#4ade80);
+  border-radius:99px;
+  transition:.4s;
+}
+
+.goal-bottom{
+  display:flex;
+  justify-content:space-between;
+  margin-top:9px;
+  font-size:11px;
+  color:#94a3b8;
+}
+
+.goal-bottom strong{
+  color:#4ade80;
+}
+
+/* CARDS */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.card{
+  background:#0d1a2b;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:18px;
+  padding:16px;
+}
+
+.card-label{
+  color:#94a3b8;
+  font-size:11px;
+  margin-bottom:7px;
+}
+
+.card-value{
+  font-size:22px;
+  font-weight:900;
+}
+
+.green{
+  color:#4ade80;
+}
+
+.blue{
+  color:#60a5fa;
+}
+
+.orange{
+  color:#fbbf24;
+}
+
+/* SECTIONS */
+
+.section{
+  margin-bottom:16px;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.section-title h2{
+  font-size:17px;
+}
+
+.section-title span{
+  color:#64748b;
+  font-size:10px;
+  font-weight:800;
+}
+
+/* CHART */
+
+.chart-card{
+  background:#0d1a2b;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:19px;
+  padding:16px;
+}
+
+.chart{
+  height:185px;
+  display:flex;
+  align-items:end;
+  gap:7px;
+  padding-top:20px;
+}
+
+.bar-wrap{
+  flex:1;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:end;
+  gap:6px;
+}
+
+.bar-value{
+  color:#94a3b8;
+  font-size:8px;
+}
+
+.bar{
+  width:100%;
+  max-width:34px;
+  min-height:5px;
+  background:linear-gradient(180deg,#4ade80,#16a34a);
+  border-radius:7px 7px 3px 3px;
+  transition:.4s;
+}
+
+.day{
+  color:#64748b;
+  font-size:9px;
+}
+
+/* INSIGHT */
+
+.insight{
+  background:
+    linear-gradient(145deg,rgba(34,197,94,.13),rgba(13,26,43,.9));
+  border:1px solid rgba(34,197,94,.16);
+  border-radius:19px;
+  padding:17px;
+}
+
+.insight-head{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:9px;
+}
+
+.insight-icon{
+  width:37px;
+  height:37px;
+  background:rgba(34,197,94,.12);
+  border-radius:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.insight h3{
+  font-size:15px;
+}
+
+.insight p{
+  color:#cbd5e1;
+  font-size:12px;
+  line-height:1.55;
+}
+
+/* PRODUCTS */
+
+.products{
+  display:grid;
+  gap:9px;
+}
+
+.product{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#101f32;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:14px;
+  padding:12px;
+}
+
+.product-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.product-icon{
+  width:38px;
+  height:38px;
+  background:#17283e;
+  border-radius:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+}
+
+.product-name{
+  font-size:13px;
+  font-weight:800;
+}
+
+.product-info{
+  color:#64748b;
+  font-size:10px;
+  margin-top:3px;
+}
+
+.product-profit{
+  text-align:right;
+}
+
+.product-profit strong{
+  color:#4ade80;
+  font-size:13px;
+}
+
+.product-profit small{
+  display:block;
+  color:#64748b;
+  font-size:9px;
+}
+
+/* BUTTONS */
+
+.primary{
+  width:100%;
+  border:0;
+  border-radius:13px;
+  padding:14px;
+  background:#22c55e;
+  color:#052e16;
+  font-size:14px;
+  font-weight:900;
+}
+
+.secondary{
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:12px;
+  padding:12px 14px;
+  background:#101f32;
+  color:#e2e8f0;
+  font-size:12px;
+  font-weight:800;
+}
+
+.danger{
+  border:1px solid rgba(239,68,68,.2);
+  border-radius:12px;
+  padding:12px 14px;
+  background:rgba(239,68,68,.08);
+  color:#fca5a5;
+  font-size:12px;
+  font-weight:800;
+}
+
+/* FORM */
+
+.form-card{
+  background:#0d1a2b;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:19px;
+  padding:17px;
+}
+
+.label{
+  display:block;
+  color:#94a3b8;
+  font-size:11px;
+  margin-bottom:6px;
+}
+
+.input{
+  width:100%;
+  padding:13px;
+  background:#101f32;
+  border:1px solid rgba(255,255,255,.09);
+  color:#fff;
+  border-radius:12px;
+  font-size:15px;
+  outline:none;
+  margin-bottom:11px;
+}
+
+.input:focus{
+  border-color:rgba(74,222,128,.5);
+}
+
+/* HISTORY */
+
+.sale-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:13px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.sale-row:last-child{
+  border-bottom:0;
+}
+
+.sale-left strong{
+  display:block;
+  font-size:13px;
+}
+
+.sale-left span{
+  color:#64748b;
+  font-size:10px;
+  display:block;
+  margin-top:4px;
+}
+
+.sale-right{
+  text-align:right;
+}
+
+.sale-right strong{
+  color:#4ade80;
+  font-size:14px;
+}
+
+.delete-sale{
+  border:0;
+  background:transparent;
+  color:#64748b;
+  font-size:16px;
+  margin-left:7px;
+}
+
+/* REPORT */
+
+.report-box{
+  background:#0d1a2b;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:19px;
+  padding:17px;
+  margin-bottom:11px;
+}
+
+.report-line{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  font-size:12px;
+}
+
+.report-line:last-child{
+  border-bottom:0;
+}
+
+.report-line span{
+  color:#94a3b8;
+}
+
+.report-line strong{
+  color:#f8fafc;
+}
+
+/* PROFILE */
+
+.profile-head{
+  text-align:center;
+  padding:15px 0 22px;
+}
+
+.avatar{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  margin:auto;
+  background:linear-gradient(145deg,#22c55e,#15803d);
+  color:#052e16;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  font-weight:900;
+}
+
+.profile-head h2{
+  margin-top:10px;
+  font-size:19px;
+}
+
+.profile-head p{
+  color:#64748b;
+  font-size:11px;
+  margin-top:4px;
+}
+
+.setting{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.setting:last-child{
+  border-bottom:0;
+}
+
+.setting strong{
+  font-size:13px;
+}
+
+.setting span{
+  display:block;
+  color:#64748b;
+  font-size:10px;
+  margin-top:4px;
+}
+
+/* NAV */
+
+.bottom-nav{
+  position:fixed;
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:760px;
+  padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+  background:rgba(7,17,31,.94);
+  backdrop-filter:blur(14px);
+  border-top:1px solid rgba(255,255,255,.08);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+  z-index:10;
+}
+
+.bottom-nav button{
+  border:0;
+  background:transparent;
+  color:#64748b;
+  border-radius:12px;
+  padding:7px 3px;
+  font-size:9px;
+  font-weight:800;
+}
+
+.bottom-nav button.active{
+  color:#4ade80;
+  background:rgba(34,197,94,.07);
+}
+
+.nav-icon{
+  display:block;
+  font-size:18px;
+  margin-bottom:3px;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:82px;
+  transform:translate(-50%,20px);
+  background:#17283e;
+  border:1px solid rgba(255,255,255,.08);
+  color:#fff;
+  padding:12px 16px;
+  border-radius:12px;
+  font-size:12px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:50;
+  width:max-content;
+  max-width:90%;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* EMPTY */
+
+.empty{
+  text-align:center;
+  padding:28px 15px;
+  color:#64748b;
+  font-size:12px;
+}
+
+.empty-icon{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+/* MOBILE */
+
+@media(max-width:390px){
+  .goal-value{
+    font-size:34px;
+  }
+
+  .greeting h1{
+    font-size:24px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+
+  <div class="top">
+
+    <div class="logo">
+      Quanto Vender <span>Hoje?</span>
+    </div>
+
+    <div class="pro-badge">PRO</div>
+
+  </div>
+
+  <div class="greeting">
+
+    <small>ÁREA DE MEMBROS</small>
+
+    <h1 id="greetingTitle">
+      Seu painel profissional 👋
+    </h1>
+
+    <p>
+      Acompanhe suas vendas, metas e lucro em um só lugar.
+    </p>
+
+  </div>
+
+</header>
+
+
+<main>
+
+<!-- ================= DASHBOARD ================= -->
+
+<section id="dashboard" class="page active">
+
+  <div class="goal-card">
+
+    <div class="goal-top">
+
+      <div>
+
+        <div class="goal-label">
+          Meta de faturamento do mês
+        </div>
+
+        <div class="goal-value">
+          <span id="monthRevenue">R$ 0,00</span>
+          <span id="monthGoal">/ R$ 0,00</span>
+        </div>
+
+      </div>
+
+      <div class="goal-icon">🎯</div>
+
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" id="monthProgress"></div>
+    </div>
+
+    <div class="goal-bottom">
+
+      <span id="monthRemaining">
+        R$ 0,00 restantes
+      </span>
+
+      <strong id="monthPercent">
+        0%
+      </strong>
+
+    </div>
+
+  </div>
+
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-label">Faturamento hoje</div>
+      <div class="card-value green" id="todayRevenue">
+        R$ 0,00
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Lucro estimado</div>
+      <div class="card-value blue" id="todayProfit">
+        R$ 0,00
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Ticket médio</div>
+      <div class="card-value orange" id="averageTicket">
+        R$ 0,00
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Vendas hoje</div>
+      <div class="card-value" id="todaySales">
+        0
+      </div>
+    </div>
+
+  </div>
+
+
+  <section class="section">
+
+    <div class="section-title">
+      <h2>Desempenho da semana</h2>
+      <span>ÚLTIMOS 7 DIAS</span>
+    </div>
+
+    <div class="chart-card">
+
+      <div class="chart" id="weekChart"></div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-title">
+      <h2>Insight do negócio</h2>
+      <span>PRO</span>
+    </div>
+
+    <div class="insight">
+
+      <div class="insight-head">
+
+        <div class="insight-icon">💡</div>
+
+        <h3 id="insightTitle">
+          Analisando suas vendas...
+        </h3>
+
+      </div>
+
+      <p id="insightText">
+        Registre vendas para começar a receber análises do seu negócio.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="section-title">
+      <h2>Produtos</h2>
+      <span>MAIOR MARGEM</span>
+    </div>
+
+    <div class="card">
+
+      <div class="products" id="dashboardProducts"></div>
+
+      <button
+        class="secondary"
+        style="width:100%;margin-top:12px"
+        onclick="openPage('products')"
+      >
+        Gerenciar produtos
+      </button>
+
+    </div>
+
+  </section>
+
+</section>
+
+
+<!-- ================= HISTÓRICO ================= -->
+
+<section id="history" class="page">
+
+  <div class="section-title">
+    <h2>Histórico de vendas</h2>
+    <span>COMPLETO</span>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-label">Total vendido</div>
+      <div class="card-value green" id="historyTotal">
+        R$ 0,00
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Quantidade</div>
+      <div class="card-value" id="historyCount">
+        0
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div id="salesList"></div>
+
+  </div>
+
+  <button
+    class="danger"
+    style="width:100%;margin-top:12px"
+    onclick="clearSales()"
+  >
+    Limpar histórico local
+  </button>
+
+</section>
+
+
+<!-- ================= PRODUTOS ================= -->
+
+<section id="products" class="page">
+
+  <div class="section-title">
+    <h2>Meus produtos</h2>
+    <span>PRO</span>
+  </div>
+
+  <div class="form-card">
+
+    <label class="label">Nome do produto</label>
+
+    <input
+      class="input"
+      id="productName"
+      placeholder="Ex.: Pavê"
+    >
+
+    <label class="label">Preço de venda</label>
+
+    <input
+      class="input"
+      id="productPrice"
+      type="number"
+      step="0.01"
+      placeholder="13,00"
+    >
+
+    <label class="label">Custo do produto</label>
+
+    <input
+      class="input"
+      id="productCost"
+      type="number"
+      step="0.01"
+      placeholder="6,00"
+    >
+
+    <button
+      class="primary"
+      onclick="addProduct()"
+    >
+      + Adicionar produto
+    </button>
+
+  </div>
+
+  <div style="height:12px"></div>
+
+  <div class="card">
+
+    <div class="products" id="productsList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= RELATÓRIOS ================= -->
+
+<section id="reports" class="page">
+
+  <div class="section-title">
+    <h2>Relatórios</h2>
+    <span>PRO</span>
+  </div>
+
+  <div class="report-box">
+
+    <div class="report-line">
+      <span>Faturamento total</span>
+      <strong id="reportRevenue">R$ 0,00</strong>
+    </div>
+
+    <div class="report-line">
+      <span>Total de vendas</span>
+      <strong id="reportSales">0</strong>
+    </div>
+
+    <div class="report-line">
+      <span>Ticket médio</span>
+      <strong id="reportTicket">R$ 0,00</strong>
+    </div>
+
+    <div class="report-line">
+      <span>Lucro estimado</span>
+      <strong id="reportProfit">R$ 0,00</strong>
+    </div>
+
+  </div>
+
+
+  <div class="report-box">
+
+    <div class="section-title">
+      <h2>Meta mensal</h2>
+      <span>RESUMO</span>
+    </div>
+
+    <div class="report-line">
+      <span>Meta</span>
+      <strong id="reportGoal">R$ 0,00</strong>
+    </div>
+
+    <div class="report-line">
+      <span>Realizado</span>
+      <strong id="reportDone">R$ 0,00</strong>
+    </div>
+
+    <div class="report-line">
+      <span>Falta</span>
+      <strong id="reportMissing">R$ 0,00</strong>
+    </div>
+
+    <div class="report-line">
+      <span>Percentual</span>
+      <strong id="reportPercent">0%</strong>
+    </div>
+
+  </div>
+
+
+  <button
+    class="secondary"
+    style="width:100%"
+    onclick="exportData()"
+  >
+    ⬇️ Exportar meus dados
+  </button>
+
+</section>
+
+
+<!-- ================= PERFIL ================= -->
+
+<section id="profile" class="page">
+
+  <div class="profile-head">
+
+    <div class="avatar">
+      PRO
+    </div>
+
+    <h2>Minha conta PRO</h2>
+
+    <p id="profileEmail">
+      Assinatura ativa
+    </p>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="setting">
+
+      <div>
+        <strong>Meta mensal</strong>
+        <span>Definida no aplicativo principal</span>
+      </div>
+
+      <strong id="profileGoal">R$ 0</strong>
+
+    </div>
+
+
+    <div class="setting">
+
+      <div>
+        <strong>Modo PRO</strong>
+        <span>Área de membros liberada</span>
+      </div>
+
+      <strong class="green">ATIVO</strong>
+
+    </div>
+
+
+    <div class="setting">
+
+      <div>
+        <strong>Dados</strong>
+        <span>Armazenados neste dispositivo</span>
+      </div>
+
+      <strong>LOCAL</strong>
+
+    </div>
+
+  </div>
+
+
+  <div style="height:12px"></div>
+
+  <button
+    class="secondary"
+    style="width:100%"
+    onclick="sharePro()"
+  >
+    📤 Compartilhar Quanto Vender Hoje?
+  </button>
+
+
+  <div style="height:8px"></div>
+
+  <button
+    class="danger"
+    style="width:100%"
+    onclick="goHome()"
+  >
+    ← Voltar para o aplicativo
+  </button>
+
+</section>
+
+</main>
+
+
+<!-- NAVEGAÇÃO -->
+
+<nav class="bottom-nav">
+
+  <button
+    class="active"
+    data-page="dashboard"
+    onclick="openPage('dashboard')"
+  >
+    <span class="nav-icon">📊</span>
+    Dashboard
+  </button>
+
+  <button
+    data-page="history"
+    onclick="openPage('history')"
+  >
+    <span class="nav-icon">📚</span>
+    Histórico
+  </button>
+
+  <button
+    data-page="products"
+    onclick="openPage('products')"
+  >
+    <span class="nav-icon">📦</span>
+    Produtos
+  </button>
+
+  <button
+    data-page="reports"
+    onclick="openPage('reports')"
+  >
+    <span class="nav-icon">📈</span>
+    Relatórios
+  </button>
+
+</nav>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* ================= DADOS ================= */
+
+let sales = [];
+let settings = {
+  income: 4000,
+  expenses: 1200,
+  days: 26
+};
+
+let products = [];
+
+
+/* ================= CARREGAR ================= */
+
+function loadData(){
+
+  try{
+
+    const savedSales =
+      localStorage.getItem('qvh_sales');
+
+    if(savedSales){
+      sales = JSON.parse(savedSales);
+    }
+
+  }catch(e){
+    sales = [];
+  }
+
+
+  try{
+
+    const savedSettings =
+      localStorage.getItem('qvh_settings');
+
+    if(savedSettings){
+
+      settings = {
+        ...settings,
+        ...JSON.parse(savedSettings)
+      };
+
+    }
+
+  }catch(e){}
+
+
+  try{
+
+    const savedProducts =
+      localStorage.getItem('qvh_products');
+
+    if(savedProducts){
+      products = JSON.parse(savedProducts);
+    }
+
+  }catch(e){
+    products = [];
+  }
+
+}
+
+
+function saveProducts(){
+
+  localStorage.setItem(
+    'qvh_products',
+    JSON.stringify(products)
+  );
+
+}
+
+
+/* ================= FORMATAÇÃO ================= */
+
+function money(value){
+
+  return Number(value || 0).toLocaleString(
+    'pt-BR',
+    {
+      style:'currency',
+      currency:'BRL'
+    }
+  );
+
+}
+
+
+function parseMoney(value){
+
+  return Number(
+    String(value)
+      .replace(',', '.')
+  ) || 0;
+
+}
+
+
+function dateKey(date){
+
+  const d = new Date(date);
+
+  const y = d.getFullYear();
+
+  const m = String(
+    d.getMonth()+1
+  ).padStart(2,'0');
+
+  const day = String(
+    d.getDate()
+  ).padStart(2,'0');
+
+  return `${y}-${m}-${day}`;
+
+}
+
+
+function todayKey(){
+
+  return dateKey(new Date());
+
+}
+
+
+/* ================= VENDAS ================= */
+
+function normalizeSales(){
+
+  return sales.map((sale,index)=>{
+
+    let value = 0;
+
+    if(typeof sale === 'number'){
+      value = sale;
+    }
+
+    else if(typeof sale === 'object'){
+
+      value =
+        Number(
+          sale.value ??
+          sale.amount ??
+          sale.valor ??
+          0
+        );
+
+    }
+
+    return {
+      ...(
+        typeof sale === 'object'
+        ? sale
+        : {}
+      ),
+      value:value,
+      date:
+        (
+          sale &&
+          typeof sale === 'object' &&
+          sale.date
+        )
+        ? sale.date
+        : new Date().toISOString(),
+      _index:index
+    };
+
+  });
+
+}
+
+
+function todaySales(){
+
+  const today = todayKey();
+
+  return normalizeSales()
+    .filter(s => dateKey(s.date) === today);
+
+}
+
+
+function totalSales(list){
+
+  return list.reduce(
+    (sum,s) => sum + Number(s.value || 0),
+    0
+  );
+
+}
+
+
+/* ================= META ================= */
+
+function monthlyGoal(){
+
+  const income =
+    Number(settings.income || 0);
+
+  const expenses =
+    Number(settings.expenses || 0);
+
+  return income + expenses;
+
+}
+
+
+/* ================= DASHBOARD ================= */
+
+function updateDashboard(){
+
+  const all =
+    normalizeSales();
+
+  const today =
+    todaySales();
+
+  const todayTotal =
+    totalSales(today);
+
+  const month =
+    new Date().getMonth();
+
+  const year =
+    new Date().getFullYear();
+
+  const monthSales =
+    all.filter(s=>{
+
+      const d = new Date(s.date);
+
+      return (
+        d.getMonth() === month &&
+        d.getFullYear() === year
+      );
+
+    });
+
+  const monthTotal =
+    totalSales(monthSales);
+
+  const goal =
+    monthlyGoal();
+
+  const remaining =
+    Math.max(goal - monthTotal,0);
+
+  const percent =
+    goal > 0
+    ? Math.min((monthTotal / goal) * 100,100)
+    : 0;
+
+  document.getElementById(
+    'monthRevenue'
+  ).textContent = money(monthTotal);
+
+  document.getElementById(
+    'monthGoal'
+  ).textContent = '/ ' + money(goal);
+
+  document.getElementById(
+    'monthRemaining'
+  ).textContent =
+    remaining > 0
+    ? money(remaining) + ' restantes'
+    : 'Meta alcançada 🎉';
+
+  document.getElementById(
+    'monthPercent'
+  ).textContent =
+    percent.toFixed(1) + '%';
+
+  document.getElementById(
+    'monthProgress'
+  ).style.width =
+    percent + '%';
+
+
+  document.getElementById(
+    'todayRevenue'
+  ).textContent =
+    money(todayTotal);
+
+
+  document.getElementById(
+    'todaySales'
+  ).textContent =
+    today.length;
+
+
+  const ticket =
+    today.length
+    ? todayTotal / today.length
+    : 0;
+
+  document.getElementById(
+    'averageTicket'
+  ).textContent =
+    money(ticket);
+
+
+  const profit =
+    calculateProfit(today);
+
+  document.getElementById(
+    'todayProfit'
+  ).textContent =
+    money(profit);
+
+
+  document.getElementById(
+    'profileGoal'
+  ).textContent =
+    money(goal);
+
+  updateChart(all);
+  updateInsight(all);
+  updateReports(all);
+  renderProducts();
+
+}
+
+
+/* ================= LUCRO ================= */
+
+function calculateProfit(list){
+
+  const total =
+    totalSales(list);
+
+  /*
+    Se não houver produtos cadastrados,
+    usamos uma estimativa simples de 40%.
+  */
+
+  if(!products.length){
+    return total * 0.40;
+  }
+
+  let profit = 0;
+
+  list.forEach(sale=>{
+
+    if(
+      sale.product &&
+      products.length
+    ){
+
+      const product =
+        products.find(
+          p =>
+            p.name.toLowerCase()
+            === String(sale.product).toLowerCase()
+        );
+
+      if(product){
+
+        const price =
+          Number(product.price);
+
+        const cost =
+          Number(product.cost);
+
+        const quantity =
+          Number(sale.quantity || 1);
+
+        profit +=
+          (price - cost) * quantity;
+
+        return;
+
+      }
+
+    }
+
+    profit +=
+      Number(sale.value || 0) * 0.40;
+
+  });
+
+  return profit;
+
+}
+
+
+/* ================= GRÁFICO ================= */
+
+function updateChart(all){
+
+  const container =
+    document.getElementById('weekChart');
+
+  container.innerHTML = '';
+
+  const days = [];
+
+  for(let i=6;i>=0;i--){
+
+    const d = new Date();
+
+    d.setHours(0,0,0,0);
+
+    d.setDate(
+      d.getDate() - i
+    );
+
+    days.push(d);
+
+  }
+
+
+  const values =
+    days.map(d=>{
+
+      const key =
+        dateKey(d);
+
+      return totalSales(
+        all.filter(
+          s => dateKey(s.date) === key
+        )
+      );
+
+    });
+
+
+  const max =
+    Math.max(...values,1);
+
+
+  days.forEach((d,i)=>{
+
+    const value =
+      values[i];
+
+    const height =
+      Math.max(
+        7,
+        (value / max) * 125
+      );
+
+
+    const wrap =
+      document.createElement('div');
+
+    wrap.className =
+      'bar-wrap';
+
+    const valueText =
+      document.createElement('span');
+
+    valueText.className =
+      'bar-value';
+
+    valueText.textContent =
+      value > 0
+      ? money(value).replace('R$ ','R$')
+      : '—';
+
+
+    const bar =
+      document.createElement('div');
+
+    bar.className =
+      'bar';
+
+    bar.style.height =
+      height + 'px';
+
+
+    const day =
+      document.createElement('span');
+
+    day.className =
+      'day';
+
+    if(i === 6){
+
+      day.textContent =
+        'Hoje';
+
+    }else{
+
+      day.textContent =
+        d.toLocaleDateString(
+          'pt-BR',
+          {weekday:'short'}
+        ).replace('.','');
+
+    }
+
+
+    wrap.appendChild(valueText);
+    wrap.appendChild(bar);
+    wrap.appendChild(day);
+
+    container.appendChild(wrap);
+
+  });
+
+}
+
+
+/* ================= INSIGHT ================= */
+
+function updateInsight(all){
+
+  const title =
+    document.getElementById('insightTitle');
+
+  const text =
+    document.getElementById('insightText');
+
+
+  if(!all.length){
+
+    title.textContent =
+      'Comece registrando suas vendas';
+
+    text.textContent =
+      'Assim que você registrar vendas no aplicativo, o PRO poderá analisar seu faturamento, ticket médio e evolução.';
+
+    return;
+
+  }
+
+
+  const today =
+    todaySales();
+
+  if(today.length){
+
+    const total =
+      totalSales(today);
+
+    const ticket =
+      total / today.length;
+
+    title.textContent =
+      'Você já vendeu ' + money(total) + ' hoje';
+
+    text.textContent =
+      'Seu ticket médio de hoje está em ' +
+      money(ticket) +
+      '. Continue acompanhando o ritmo para chegar à sua meta.';
+
+    return;
+
+  }
+
+
+  title.textContent =
+    'Seu painel está pronto';
+
+  text.textContent =
+    'Registre suas vendas durante o dia para acompanhar em tempo real quanto já vendeu e quanto falta para sua meta.';
+
+}
+
+
+/* ================= PRODUTOS ================= */
+
+function addProduct(){
+
+  const name =
+    document.getElementById(
+      'productName'
+    ).value.trim();
+
+  const price =
+    parseMoney(
+      document.getElementById(
+        'productPrice'
+      ).value
+    );
+
+  const cost =
+    parseMoney(
+      document.getElementById(
+        'productCost'
+      ).value
+    );
+
+
+  if(!name){
+
+    showToast(
+      'Digite o nome do produto.'
+    );
+
+    return;
+
+  }
+
+
+  if(price <= 0){
+
+    showToast(
+      'Digite um preço válido.'
+    );
+
+    return;
+
+  }
+
+
+  if(cost < 0){
+
+    showToast(
+      'Digite um custo válido.'
+    );
+
+    return;
+
+  }
+
+
+  products.push({
+
+    id:Date.now(),
+
+    name:name,
+
+    price:price,
+
+    cost:cost
+
+  });
+
+
+  saveProducts();
+
+  document.getElementById(
+    'productName'
+  ).value = '';
+
+  document.getElementById(
+    'productPrice'
+  ).value = '';
+
+  document.getElementById(
+    'productCost'
+  ).value = '';
+
+
+  renderProducts();
+
+  showToast(
+    'Produto adicionado! ✓'
+  );
+
+}
+
+
+function renderProducts(){
+
+  const list =
+    document.getElementById(
+      'productsList'
+    );
+
+  const dashboard =
+    document.getElementById(
+      'dashboardProducts'
+    );
+
+
+  if(!products.length){
+
+    const empty =
+      `
+      <div class="empty">
+        <div class="empty-icon">📦</div>
+        Nenhum produto cadastrado ainda.
+      </div>
+      `;
+
+    list.innerHTML =
+      empty;
+
+    dashboard.innerHTML =
+      empty;
+
+    return;
+
+  }
+
+
+  const sorted =
+    [...products].sort(
+      (a,b)=>{
+
+        const ma =
+          (a.price-a.cost) / a.price;
+
+        const mb =
+          (b.price-b.cost) / b.price;
+
+        return mb-ma;
+
+      }
+    );
+
+
+  list.innerHTML =
+    sorted.map(
+      productHTML
+    ).join('');
+
+
+  dashboard.innerHTML =
+    sorted
+      .slice(0,3)
+      .map(productHTML)
+      .join('');
+
+}
+
+
+function productHTML(p){
+
+  const margin =
+    p.price > 0
+    ? ((p.price-p.cost)/p.price)*100
+    : 0;
+
+  const profit =
+    p.price-p.cost;
+
+
+  return `
+    <div class="product">
+
+      <div class="product-left">
+
+        <div class="product-icon">
+          📦
+        </div>
+
+        <div>
+
+          <div class="product-name">
+            ${escapeHTML(p.name)}
+          </div>
+
+          <div class="product-info">
+            ${money(p.price)}
+            venda ·
+            ${money(p.cost)}
+            custo
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="product-profit">
+
+        <strong>
+          ${margin.toFixed(0)}%
+        </strong>
+
+        <small>
+          +${money(profit)}
+        </small>
+
+        <button
+          class="delete-sale"
+          onclick="deleteProduct(${p.id})"
+        >
+          ×
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+function deleteProduct(id){
+
+  products =
+    products.filter(
+      p => p.id !== id
+    );
+
+  saveProducts();
+
+  renderProducts();
+
+  showToast(
+    'Produto removido.'
+  );
+
+}
+
+
+/* ================= HISTÓRICO ================= */
+
+function updateHistory(){
+
+  const all =
+    normalizeSales();
+
+  const total =
+    totalSales(all);
+
+
+  document.getElementById(
+    'historyTotal'
+  ).textContent =
+    money(total);
+
+
+  document.getElementById(
+    'historyCount'
+  ).textContent =
+    all.length;
+
+
+  const list =
+    document.getElementById(
+      'salesList'
+    );
+
+
+  if(!all.length){
+
+    list.innerHTML =
+      `
+      <div class="empty">
+        <div class="empty-icon">📚</div>
+        Nenhuma venda registrada ainda.
+      </div>
+      `;
+
+    return;
+
+  }
+
+
+  const ordered =
+    [...all].reverse();
+
+
+  list.innerHTML =
+    ordered.map(
+      sale=>{
+
+        const date =
+          new Date(sale.date);
+
+        const dateText =
+          date.toLocaleDateString(
+            'pt-BR'
+          );
+
+        const timeText =
+          date.toLocaleTimeString(
+            'pt-BR',
+            {
+              hour:'2-digit',
+              minute:'2-digit'
+            }
+          );
+
+
+        return `
+          <div class="sale-row">
+
+            <div class="sale-left">
+
+              <strong>
+                ${sale.product
+                  ? escapeHTML(sale.product)
+                  : 'Venda'}
+              </strong>
+
+              <span>
+                ${dateText} · ${timeText}
+              </span>
+
+            </div>
+
+            <div class="sale-right">
+
+              <strong>
+                ${money(sale.value)}
+              </strong>
+
+              <button
+                class="delete-sale"
+                onclick="deleteSale(${sale._index})"
+              >
+                ×
+              </button>
+
+            </div>
+
+          </div>
+        `;
+
+      }
+    ).join('');
+
+}
+
+
+function deleteSale(index){
+
+  if(!confirm(
+    'Excluir esta venda?'
+  )){
+    return;
+  }
+
+
+  sales.splice(
+    index,
+    1
+  );
+
+
+  localStorage.setItem(
+    'qvh_sales',
+    JSON.stringify(sales)
+  );
+
+
+  refresh();
+
+  showToast(
+    'Venda excluída.'
+  );
+
+}
+
+
+function clearSales(){
+
+  if(!sales.length){
+    showToast(
+      'O histórico já está vazio.'
+    );
+    return;
+  }
+
+
+  if(!confirm(
+    'Tem certeza que deseja apagar todas as vendas deste dispositivo?'
+  )){
+    return;
+  }
+
+
+  sales = [];
+
+
+  localStorage.setItem(
+    'qvh_sales',
+    JSON.stringify(sales)
+  );
+
+
+  refresh();
+
+  showToast(
+    'Histórico limpo.'
+  );
+
+}
+
+
+/* ================= RELATÓRIOS ================= */
+
+function updateReports(all){
+
+  const total =
+    totalSales(all);
+
+  const count =
+    all.length;
+
+  const ticket =
+    count
+    ? total / count
+    : 0;
+
+  const profit =
+    calculateProfit(all);
+
+  const goal =
+    monthlyGoal();
+
+  const missing =
+    Math.max(goal-total,0);
+
+  const percent =
+    goal
+    ? Math.min((total/goal)*100,100)
+    : 0;
+
+
+  document.getElementById(
+    'reportRevenue'
+  ).textContent =
+    money(total);
+
+  document.getElementById(
+    'reportSales'
+  ).textContent =
+    count;
+
+  document.getElementById(
+    'reportTicket'
+  ).textContent =
+    money(ticket);
+
+  document.getElementById(
+    'reportProfit'
+  ).textContent =
+    money(profit);
+
+  document.getElementById(
+    'reportGoal'
+  ).textContent =
+    money(goal);
+
+  document.getElementById(
+    'reportDone'
+  ).textContent =
+    money(total);
+
+  document.getElementById(
+    'reportMissing'
+  ).textContent =
+    money(missing);
+
+  document.getElementById(
+    'reportPercent'
+  ).textContent =
+    percent.toFixed(1)+'%';
+
+}
+
+
+/* ================= NAVEGAÇÃO ================= */
+
+function openPage(page){
+
+  document
+    .querySelectorAll('.page')
+    .forEach(
+      p => p.classList.remove('active')
+    );
+
+
+  const target =
+    document.getElementById(page);
+
+  if(target){
+    target.classList.add('active');
+  }
+
+
+  document
+    .querySelectorAll('.bottom-nav button')
+    .forEach(btn=>{
+
+      btn.classList.toggle(
+        'active',
+        btn.dataset.page === page
+      );
+
+    });
+
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+
+
+  if(page === 'history'){
+    updateHistory();
+  }
+
+}
+
+
+/* ================= EXPORTAR ================= */
+
+function exportData(){
+
+  const data = {
+
+    app:
+      'Quanto Vender Hoje? PRO',
+
+    exportadoEm:
+      new Date().toISOString(),
+
+    configuracoes:
+      settings,
+
+    vendas:
+      normalizeSales(),
+
+    produtos:
+      products
+
+  };
+
+
+  const blob =
+    new Blob(
+      [
+        JSON.stringify(
+          data,
+          null,
+          2
+        )
+      ],
+      {
+        type:'application/json'
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+  const a =
+    document.createElement('a');
+
+  a.href =
+    url;
+
+  a.download =
+    'quanto-vender-hoje-backup.json';
+
+  a.click();
+
+  URL.revokeObjectURL(url);
+
+  showToast(
+    'Backup exportado! ✓'
+  );
+
+}
+
+
+/* ================= COMPARTILHAR ================= */
+
+async function sharePro(){
+
+  const text =
+    'Estou usando o Quanto Vender Hoje? para acompanhar minhas metas e vendas.';
+
+  try{
+
+    if(navigator.share){
+
+      await navigator.share({
+        title:'Quanto Vender Hoje?',
+        text:text,
+        url:location.origin
+      });
+
+    }else{
+
+      await navigator.clipboard.writeText(
+        location.origin
+      );
+
+      showToast(
+        'Link copiado!'
+      );
+
+    }
+
+  }catch(e){}
+
+}
+
+
+/* ================= VOLTAR ================= */
+
+function goHome(){
+
+  location.href =
+    './';
+
+}
+
+
+/* ================= UTIL ================= */
+
+function escapeHTML(text){
+
+  return String(text)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+
+}
+
+
+function showToast(message){
+
+  const toast =
+    document.getElementById(
+      'toast'
+    );
+
+  toast.textContent =
+    message;
+
+  toast.classList.add(
+    'show'
+  );
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+  window.toastTimer =
+    setTimeout(
+      ()=>{
+        toast.classList.remove(
+          'show'
+        );
+      },
+      2500
+    );
+
+}
+
+
+/* ================= REFRESH ================= */
+
+function refresh(){
+
+  loadData();
+
+  updateDashboard();
+
+  updateHistory();
+
+}
+
+
+/* ================= INICIAR ================= */
+
+loadData();
+
+refresh();
+
+</script>
+
+</body>
+  </html>
