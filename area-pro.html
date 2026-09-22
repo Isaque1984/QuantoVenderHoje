@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#07111f">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Quanto Vender Hoje? — Área PRO</title>
+<title>Sellium — Área PRO</title>
 
 <style>
 :root{
@@ -635,7 +635,7 @@ label{
 
   <div class="header">
     <div class="brand">
-      Quanto Vender Hoje?
+      Sellium
       <small>Área de Membros</small>
     </div>
     <div class="pro-badge">PRO</div>
@@ -1143,7 +1143,7 @@ label{
     </div>
 
     <div class="card">
-      <div class="card-title">Quanto Vender Hoje?</div>
+      <div class="card-title">Sellium</div>
 
       <div class="mini" style="line-height:1.6">
         Seu resultado considera somente vendas pagas.
@@ -1243,10 +1243,6 @@ let selectedPayment = "pix";
 let selectedStatus = "pago";
 
 
-/* =========================
-   STORAGE
-========================= */
-
 function saveSales(){
   localStorage.setItem("qvh_sales",JSON.stringify(sales));
 }
@@ -1263,10 +1259,6 @@ function saveExpenses(){
   localStorage.setItem("qvh_expenses",JSON.stringify(expenses));
 }
 
-
-/* =========================
-   NAVIGATION
-========================= */
 
 function goPage(page){
 
@@ -1299,10 +1291,6 @@ function goPage(page){
 }
 
 
-/* =========================
-   TOAST
-========================= */
-
 function showToast(message){
 
   const toast=document.getElementById("toast");
@@ -1318,10 +1306,6 @@ function showToast(message){
   },2600);
 }
 
-
-/* =========================
-   MOTIVATION
-========================= */
 
 function showMotivation(title,text){
 
@@ -1343,10 +1327,6 @@ function showMotivation(title,text){
   },7000);
 }
 
-
-/* =========================
-   PAYMENT
-========================= */
 
 function selectPayment(type){
 
@@ -1371,10 +1351,6 @@ function selectStatus(type){
     type==="pendente" ? "btn btn-yellow" : "btn";
 }
 
-
-/* =========================
-   SALES
-========================= */
 
 function normalizeSale(s){
 
@@ -1573,10 +1549,6 @@ function getSaleProfit(sale){
 }
 
 
-/* =========================
-   PRODUCTS
-========================= */
-
 function addProduct(){
 
   const name=document.getElementById("productName").value.trim();
@@ -1657,10 +1629,6 @@ function renderProductOptions(){
   }
 }
 
-
-/* =========================
-   GOALS
-========================= */
 
 function addGoal(){
 
@@ -1760,10 +1728,6 @@ function mainGoal(){
   return active || goals[0];
 }
 
-
-/* =========================
-   EXPENSES
-========================= */
 
 function addExpense(){
 
@@ -1874,10 +1838,6 @@ function monthRevenue(){
     .reduce((sum,s)=>sum+Number(s.value||0),0);
 }
 
-
-/* =========================
-   DASHBOARD
-========================= */
 
 function getMotivation(){
 
@@ -2144,10 +2104,6 @@ function renderDashboard(){
 }
 
 
-/* =========================
-   CHART
-========================= */
-
 function renderChart(){
 
   const container=document.getElementById("dashboardChart");
@@ -2226,10 +2182,6 @@ function renderChart(){
 }
 
 
-/* =========================
-   RECENT
-========================= */
-
 function renderRecent(){
 
   const box=document.getElementById("dashboardRecent");
@@ -2291,10 +2243,6 @@ function renderRecent(){
   }).join("");
 }
 
-
-/* =========================
-   GOALS RENDER
-========================= */
 
 function renderGoals(){
 
@@ -2407,10 +2355,6 @@ function renderGoals(){
     }).join("");
 }
 
-
-/* =========================
-   SALES RENDER
-========================= */
 
 function saleHTML(sale){
 
@@ -2553,10 +2497,6 @@ function renderSalesStats(){
 }
 
 
-/* =========================
-   PRODUCTS RENDER
-========================= */
-
 function renderProducts(){
 
   const box=document.getElementById("productsList");
@@ -2625,13 +2565,7 @@ function renderProducts(){
 }
 
 
-/* =========================
-   EXPENSE RENDER
-========================= */
-
 function renderExpenses(){
-
-  const today=todayISO();
 
   const month=monthExpenses();
 
@@ -2713,10 +2647,6 @@ function renderExpenses(){
 }
 
 
-/* =========================
-   HISTORY
-========================= */
-
 function renderHistory(){
 
   const revenue=paidSales().reduce(
@@ -2795,10 +2725,6 @@ function renderHistory(){
   box.innerHTML=all.map(x=>x.html).join("");
 }
 
-
-/* =========================
-   REPORTS
-========================= */
 
 function renderReports(){
 
@@ -2896,14 +2822,10 @@ function renderReports(){
 }
 
 
-/* =========================
-   BACKUP
-========================= */
-
 function backupData(){
 
   const data={
-    app:"Quanto Vender Hoje?",
+    app:"Sellium",
     version:"PRO",
     exportedAt:new Date().toISOString(),
     sales,
@@ -2925,7 +2847,7 @@ function backupData(){
   const a=document.createElement("a");
 
   a.href=url;
-  a.download="quanto-vender-hoje-backup.json";
+  a.download="sellium-backup.json";
 
   document.body.appendChild(a);
   a.click();
@@ -2936,10 +2858,6 @@ function backupData(){
   showToast("Backup completo baixado.");
 }
 
-
-/* =========================
-   SHARE
-========================= */
 
 async function shareResult(){
 
@@ -2952,7 +2870,7 @@ async function shareResult(){
   const profit=revenue-exp;
 
   const text=
-`📊 Meu resultado no Quanto Vender Hoje?
+`📊 Meu resultado no Sellium
 
 💰 Vendas: ${money(revenue)}
 💸 Despesas: ${money(exp)}
@@ -2965,7 +2883,7 @@ Acompanhe suas vendas e descubra quanto precisa vender para atingir sua meta.`;
     if(navigator.share){
 
       await navigator.share({
-        title:"Meu resultado",
+        title:"Meu resultado no Sellium",
         text
       });
 
@@ -2981,10 +2899,6 @@ Acompanhe suas vendas e descubra quanto precisa vender para atingir sua meta.`;
   }catch(e){}
 }
 
-
-/* =========================
-   CLEAR
-========================= */
 
 function clearAllData(){
 
@@ -3008,10 +2922,6 @@ function clearAllData(){
 }
 
 
-/* =========================
-   RENDER ALL
-========================= */
-
 function renderAll(){
 
   renderDashboard();
@@ -3026,16 +2936,10 @@ function renderAll(){
 }
 
 
-/* =========================
-   INIT
-========================= */
-
 selectPayment("pix");
 selectStatus("pago");
-
 renderAll();
 
 </script>
-
 </body>
-  </html>
+      </html>
