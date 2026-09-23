@@ -4,570 +4,364 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#07111f">
-
   <title>Sellium PRO</title>
 
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #07111f;
-      color: #f5f8fb;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, #12304d 0%, #07111f 45%, #030811 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding: 24px 16px;
     }
 
-    .top {
-      background: linear-gradient(135deg, #07111f, #102b45, #0f5f42);
-      padding: 35px 20px 30px;
-      text-align: center;
+    .container {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
     }
 
     .logo {
-      width: 78px;
-      height: 78px;
-      border-radius: 22px;
-      object-fit: cover;
-      margin-bottom: 12px;
+      text-align: center;
+      margin: 10px 0 28px;
     }
 
-    h1 {
-      margin: 5px 0;
-      font-size: 30px;
+    .logo h1 {
+      font-size: 34px;
+      letter-spacing: -1px;
     }
 
-    .subtitle {
+    .logo span {
+      color: #35d07f;
+    }
+
+    .logo p {
+      color: #aab8c8;
       margin-top: 8px;
-      color: #c9d5e0;
-      font-size: 15px;
+      font-size: 14px;
+    }
+
+    .card {
+      background: rgba(12, 27, 43, 0.94);
+      border: 1px solid rgba(74, 180, 255, 0.18);
+      border-radius: 22px;
+      padding: 26px 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
     }
 
     .pro-badge {
       display: inline-block;
-      margin-top: 14px;
-      padding: 7px 15px;
-      border-radius: 999px;
-      background: #21d47b;
-      color: #07111f;
-      font-weight: bold;
-      font-size: 13px;
+      background: linear-gradient(135deg, #35d07f, #1da1f2);
+      color: #04101b;
+      font-weight: 800;
+      padding: 7px 13px;
+      border-radius: 30px;
+      font-size: 12px;
+      margin-bottom: 14px;
     }
 
-    .container {
-      max-width: 600px;
-      margin: auto;
-      padding: 20px;
+    h2 {
+      font-size: 25px;
+      margin-bottom: 8px;
     }
 
-    .card {
-      background: #0d1b2d;
-      border: 1px solid #20354d;
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 16px;
-      box-shadow: 0 8px 25px rgba(0,0,0,.18);
-    }
-
-    .card h2 {
-      margin-top: 0;
-      color: #21d47b;
-      font-size: 21px;
-    }
-
-    .price {
-      text-align: center;
-      padding: 18px 0;
-    }
-
-    .price strong {
-      display: block;
-      font-size: 38px;
-      color: #21d47b;
-    }
-
-    .price span {
-      color: #91a4b9;
+    .description {
+      color: #aebdca;
       font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    .features {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 24px;
     }
 
     .feature {
       display: flex;
-      gap: 12px;
-      padding: 13px 0;
-      border-bottom: 1px solid #20354d;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,.035);
+      border-radius: 12px;
+      padding: 11px;
+      color: #dce7f1;
+      font-size: 14px;
     }
 
-    .feature:last-child {
-      border-bottom: 0;
+    .feature b {
+      color: #35d07f;
     }
 
-    .icon {
-      font-size: 23px;
-      min-width: 28px;
+    .price {
+      text-align: center;
+      margin: 22px 0;
     }
 
-    .feature strong {
+    .price strong {
+      font-size: 34px;
+    }
+
+    .price small {
+      color: #9baabb;
+      font-size: 13px;
+    }
+
+    .form-title {
+      font-size: 19px;
+      margin-bottom: 5px;
+    }
+
+    .form-description {
+      color: #8fa1b4;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    label {
       display: block;
-      margin-bottom: 4px;
-    }
-
-    .feature small {
-      color: #91a4b9;
-      line-height: 1.4;
+      color: #b9c7d5;
+      font-size: 13px;
+      margin: 13px 0 7px;
     }
 
     input {
       width: 100%;
-      padding: 15px;
-      margin: 8px 0;
+      padding: 14px;
       border-radius: 12px;
-      border: 1px solid #20354d;
-      background: #102238;
+      border: 1px solid #263b50;
+      background: #071522;
       color: #fff;
-      font-size: 16px;
       outline: none;
+      font-size: 15px;
     }
 
     input:focus {
-      border-color: #21d47b;
-    }
-
-    input::placeholder {
-      color: #71869d;
-    }
-
-    button {
-      width: 100%;
-      padding: 15px;
-      border: 0;
-      border-radius: 12px;
-      margin-top: 9px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .btn-green {
-      background: #21d47b;
-      color: #07111f;
-    }
-
-    .btn-green:hover {
-      background: #16b866;
-    }
-
-    .btn-dark {
-      background: #102238;
-      color: #f5f8fb;
-      border: 1px solid #20354d;
-    }
-
-    .link-button {
-      background: transparent;
-      color: #3da5ff;
-      font-size: 14px;
-      padding: 10px;
-    }
-
-    .status {
-      text-align: center;
-      padding: 13px;
-      margin-top: 12px;
-      border-radius: 12px;
-      background: #102238;
-      color: #91a4b9;
-      font-size: 14px;
-    }
-
-    .success {
-      background: rgba(33,212,123,.12);
-      color: #21d47b;
-    }
-
-    .error {
-      background: rgba(255,93,115,.12);
-      color: #ff7184;
-    }
-
-    .loading {
-      text-align: center;
-      padding: 30px 10px;
-    }
-
-    .small {
-      text-align: center;
-      color: #71869d;
-      font-size: 13px;
-      line-height: 1.5;
-      margin-top: 12px;
-    }
-
-    .back {
-      text-align: center;
-      margin: 25px 0;
-    }
-
-    .back a {
-      color: #3da5ff;
-      text-decoration: none;
-      font-weight: bold;
+      border-color: #35d07f;
     }
 
     .hidden {
       display: none !important;
     }
 
-    .secure {
-      text-align: center;
-      color: #71869d;
-      font-size: 13px;
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 13px;
+      padding: 15px;
       margin-top: 18px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, #35d07f, #21b968);
+      color: #04120a;
+    }
+
+    .primary:disabled {
+      opacity: .55;
+      cursor: wait;
+    }
+
+    .secondary {
+      background: transparent;
+      color: #56b9ff;
+      border: 1px solid #28516e;
+      margin-top: 10px;
+    }
+
+    .status {
+      min-height: 20px;
+      margin-top: 14px;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.4;
+      color: #aebdca;
+    }
+
+    .status.success {
+      color: #35d07f;
+    }
+
+    .status.error {
+      color: #ff7272;
+    }
+
+    .trial {
+      text-align: center;
+      color: #8fa1b4;
+      font-size: 12px;
+      margin-top: 14px;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      color: #8294a8;
+      text-decoration: none;
+      font-size: 13px;
+      margin-top: 20px;
+    }
+
+    .back:hover {
+      color: #fff;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="top">
-
-    <img
-      src="./icon-192.png"
-      class="logo"
-      alt="Sellium"
-      onerror="this.style.display='none'"
-    >
-
-    <h1>Sellium PRO</h1>
-
-    <div class="subtitle">
-      Mais controle para vender, organizar e acompanhar seu negócio.
-    </div>
-
-    <div class="pro-badge">
-      ✦ ÁREA PRO
-    </div>
-
-  </div>
-
-
   <div class="container">
 
-    <!-- BENEFÍCIOS -->
+    <div class="logo">
+      <h1>Selli<span>um</span></h1>
+      <p>Venda melhor. Controle tudo.</p>
+    </div>
 
     <div class="card">
 
-      <h2>🚀 Tenha o Sellium PRO</h2>
+      <div class="pro-badge">SELLIUM PRO</div>
+
+      <h2>Leve seu negócio para outro nível</h2>
+
+      <p class="description">
+        Tenha acesso aos recursos PRO do Sellium para organizar suas vendas,
+        produtos, metas, despesas e resultados.
+      </p>
+
+      <div class="features">
+        <div class="feature">✓ <b>Dashboard</b> completo</div>
+        <div class="feature">✓ Controle de <b>vendas e produtos</b></div>
+        <div class="feature">✓ <b>Metas</b> e acompanhamento</div>
+        <div class="feature">✓ Controle de <b>despesas</b></div>
+        <div class="feature">✓ <b>Relatórios</b> do negócio</div>
+        <div class="feature">✓ <b>Backup</b> dos seus dados</div>
+      </div>
 
       <div class="price">
         <strong>R$ 9,90</strong>
-        <span>por mês</span>
+        <small>/mês</small>
       </div>
 
-      <div class="feature">
-        <div class="icon">📊</div>
-        <div>
-          <strong>Dashboard completo</strong>
-          <small>
-            Acompanhe vendas, despesas, lucro e desempenho.
-          </small>
-        </div>
-      </div>
+      <h3 class="form-title" id="formTitle">
+        🔐 Criar minha conta PRO
+      </h3>
 
-      <div class="feature">
-        <div class="icon">🎯</div>
-        <div>
-          <strong>Metas</strong>
-          <small>
-            Crie e acompanhe suas metas de faturamento.
-          </small>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="icon">💵</div>
-        <div>
-          <strong>Controle de vendas</strong>
-          <small>
-            Registre suas vendas e acompanhe pagamentos.
-          </small>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="icon">📦</div>
-        <div>
-          <strong>Produtos</strong>
-          <small>
-            Cadastre preços, custos, lucro e margem.
-          </small>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="icon">💸</div>
-        <div>
-          <strong>Despesas</strong>
-          <small>
-            Registre seus gastos e veja o impacto no resultado.
-          </small>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="icon">📈</div>
-        <div>
-          <strong>Relatórios</strong>
-          <small>
-            Tenha uma visão mais completa do seu negócio.
-          </small>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="icon">💾</div>
-        <div>
-          <strong>Backup dos dados</strong>
-          <small>
-            Faça uma cópia dos seus dados quando quiser.
-          </small>
-        </div>
-      </div>
-
-    </div>
-
-
-    <!-- ÁREA DE ACESSO -->
-
-    <div class="card">
-
-      <h2 id="formTitle">
-        🔐 Acessar o Sellium PRO
-      </h2>
-
-      <p id="formDescription">
-        Crie sua conta ou entre para acessar sua Área PRO.
+      <p class="form-description" id="formDescription">
+        Crie sua conta para continuar.
       </p>
 
+      <label for="email">E-mail</label>
       <input
-        type="email"
         id="email"
-        placeholder="Seu e-mail"
+        type="email"
+        placeholder="seuemail@email.com"
         autocomplete="email"
       >
 
+      <label for="password">Senha</label>
       <input
-        type="password"
         id="password"
-        placeholder="Senha"
-        autocomplete="current-password"
+        type="password"
+        placeholder="Mínimo de 6 caracteres"
+        autocomplete="new-password"
       >
 
-      <div id="confirmArea" class="hidden">
-
+      <div id="confirmArea">
+        <label for="confirmPassword">Confirmar senha</label>
         <input
-          type="password"
           id="confirmPassword"
-          placeholder="Confirme sua senha"
+          type="password"
+          placeholder="Digite a senha novamente"
           autocomplete="new-password"
         >
-
       </div>
-
 
       <button
         id="mainButton"
-        class="btn-green"
+        class="primary"
         onclick="continuar()"
       >
         🚀 CRIAR CONTA PRO
       </button>
 
-
       <button
         id="toggleButton"
-        class="link-button"
+        class="secondary"
         onclick="alternarModo()"
       >
         Já tenho uma conta → Entrar
       </button>
 
+      <div id="status" class="status"></div>
 
-      <div id="status" class="status">
-        Preencha seus dados para continuar.
+      <div class="trial">
+        Assinatura mensal de R$ 9,90
       </div>
 
-
-      <div class="secure">
-        🔒 Seus dados ficam neste dispositivo.
-      </div>
-
-    </div>
-
-
-    <!-- ACESSO CONFIRMADO -->
-
-    <div
-      id="successArea"
-      class="card hidden"
-    >
-
-      <h2>🎉 Tudo certo!</h2>
-
-      <p>
-        Seu acesso foi confirmado. Você será encaminhado para a Área PRO.
-      </p>
-
-      <div class="status success">
-        ✓ Acesso PRO confirmado
-      </div>
-
-      <button
-        class="btn-green"
-        onclick="irParaPro()"
-      >
-        🚀 ENTRAR NA ÁREA PRO
-      </button>
-
-    </div>
-
-
-    <div class="back">
-
-      <a href="./index.html">
+      <a href="./index.html" class="back">
         ← Voltar para o Sellium
       </a>
 
     </div>
-
   </div>
-
 
 <script>
 
-  /*
-   * =========================================
-   * SELLium PRO
-   * =========================================
-   *
-   * Esta página é separada da area-pro.html.
-   *
-   * O pagamento/validação automática será
-   * conectado posteriormente.
-   *
-   * =========================================
-   */
-
+  const API_URL = "https://sellium-api.onrender.com";
 
   const EMAIL_KEY = "sellium_email";
+  const TOKEN_KEY = "sellium_token";
   const PRO_KEY = "sellium_pro";
 
   let modoCriarConta = true;
 
 
-  /* ================================
-     UTILIDADES
-  ================================= */
-
   function normalizarEmail(email) {
-
-    return String(email || "")
-      .trim()
-      .toLowerCase();
-
+    return String(email || "").trim().toLowerCase();
   }
 
 
-  function salvarEmail(email) {
-
-    try {
-
-      localStorage.setItem(
-        EMAIL_KEY,
-        normalizarEmail(email)
-      );
-
-    } catch (erro) {
-
-      console.log(
-        "Não foi possível salvar o e-mail."
-      );
-
-    }
-
-  }
-
-
-  function salvarPro() {
-
-    try {
-
-      localStorage.setItem(
-        PRO_KEY,
-        "true"
-      );
-
-    } catch (erro) {}
-
-  }
-
-
-  function mostrarStatus(
-    mensagem,
-    tipo = ""
-  ) {
-
-    const status =
-      document.getElementById("status");
+  function mostrarStatus(mensagem, tipo = "") {
+    const status = document.getElementById("status");
 
     status.className = "status";
 
     if (tipo) {
-
       status.classList.add(tipo);
-
     }
 
     status.textContent = mensagem;
-
   }
 
 
-  /* ================================
-     ALTERNAR MODO
-  ================================= */
-
   function alternarModo() {
 
-    modoCriarConta =
-      !modoCriarConta;
-
+    modoCriarConta = !modoCriarConta;
 
     const title =
-      document.getElementById(
-        "formTitle"
-      );
+      document.getElementById("formTitle");
 
     const description =
-      document.getElementById(
-        "formDescription"
-      );
+      document.getElementById("formDescription");
 
     const confirmArea =
-      document.getElementById(
-        "confirmArea"
-      );
+      document.getElementById("confirmArea");
 
     const mainButton =
-      document.getElementById(
-        "mainButton"
-      );
+      document.getElementById("mainButton");
 
     const toggleButton =
-      document.getElementById(
-        "toggleButton"
-      );
+      document.getElementById("toggleButton");
 
 
     if (modoCriarConta) {
@@ -578,16 +372,16 @@
       description.textContent =
         "Crie sua conta para continuar.";
 
-      confirmArea.classList.remove(
-        "hidden"
-      );
+      confirmArea.classList.remove("hidden");
 
       mainButton.textContent =
         "🚀 CRIAR CONTA PRO";
 
+      mainButton.onclick =
+        continuar;
+
       toggleButton.textContent =
         "Já tenho uma conta → Entrar";
-
 
     } else {
 
@@ -597,53 +391,34 @@
       description.textContent =
         "Entre com seu e-mail e senha.";
 
-      confirmArea.classList.add(
-        "hidden"
-      );
+      confirmArea.classList.add("hidden");
 
       mainButton.textContent =
         "🔐 ENTRAR NO PRO";
 
+      mainButton.onclick =
+        continuar;
+
       toggleButton.textContent =
         "Primeiro acesso? Criar minha conta";
-
     }
 
+    mostrarStatus("");
   }
 
 
-  /* ================================
-     CONTINUAR
-  ================================= */
-
-  function continuar() {
+  async function continuar() {
 
     const email =
       normalizarEmail(
-        document.getElementById(
-          "email"
-        ).value
+        document.getElementById("email").value
       );
 
     const password =
-      document.getElementById(
-        "password"
-      ).value;
+      document.getElementById("password").value;
 
 
-    if (!email) {
-
-      mostrarStatus(
-        "Digite seu e-mail.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    if (!email.includes("@")) {
+    if (!email || !email.includes("@")) {
 
       mostrarStatus(
         "Digite um e-mail válido.",
@@ -651,23 +426,10 @@
       );
 
       return;
-
     }
 
 
-    if (!password) {
-
-      mostrarStatus(
-        "Digite uma senha.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    if (password.length < 6) {
+    if (!password || password.length < 6) {
 
       mostrarStatus(
         "A senha precisa ter pelo menos 6 caracteres.",
@@ -675,29 +437,13 @@
       );
 
       return;
-
     }
 
 
     if (modoCriarConta) {
 
       const confirmPassword =
-        document.getElementById(
-          "confirmPassword"
-        ).value;
-
-
-      if (!confirmPassword) {
-
-        mostrarStatus(
-          "Confirme sua senha.",
-          "error"
-        );
-
-        return;
-
-      }
-
+        document.getElementById("confirmPassword").value;
 
       if (password !== confirmPassword) {
 
@@ -707,110 +453,325 @@
         );
 
         return;
-
       }
-
     }
 
 
-    /*
-     * Por enquanto salvamos o e-mail
-     * e preparamos o acesso.
-     *
-     * O pagamento e a validação real
-     * serão conectados na próxima etapa.
-     */
+    const button =
+      document.getElementById("mainButton");
 
-    salvarEmail(email);
-
-    salvarPro();
-
-
-    document.getElementById(
-      "formTitle"
-    ).textContent =
-      "🎉 Acesso preparado!";
-
-
-    document.getElementById(
-      "formDescription"
-    ).textContent =
-      "Agora você pode entrar na sua Área PRO.";
-
-
-    document.getElementById(
-      "mainButton"
-    ).classList.add(
-      "hidden"
-    );
-
-
-    document.getElementById(
-      "toggleButton"
-    ).classList.add(
-      "hidden"
-    );
-
+    button.disabled = true;
 
     mostrarStatus(
-      "✓ Dados confirmados. Entrando no PRO...",
-      "success"
+      "Conectando ao Sellium..."
     );
 
 
-    setTimeout(
-      function() {
+    try {
 
-        irParaPro();
+      const endpoint =
+        modoCriarConta
+          ? "/criar-conta-pro"
+          : "/login-pro";
 
-      },
-      700
-    );
 
+      const response =
+        await fetch(
+          API_URL + endpoint,
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
+
+            body: JSON.stringify({
+              email: email,
+              password: password
+            })
+          }
+        );
+
+
+      let data = {};
+
+      try {
+        data = await response.json();
+      } catch (e) {}
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          data.detail ||
+          data.message ||
+          "Não foi possível concluir."
+        );
+      }
+
+
+      if (data.token) {
+
+        localStorage.setItem(
+          TOKEN_KEY,
+          data.token
+        );
+      }
+
+
+      localStorage.setItem(
+        EMAIL_KEY,
+        email
+      );
+
+
+      const proAtivo =
+        data.pro === true ||
+        data.ativo === true;
+
+
+      localStorage.setItem(
+        PRO_KEY,
+        proAtivo
+          ? "true"
+          : "false"
+      );
+
+
+      if (proAtivo) {
+
+        mostrarStatus(
+          "✓ PRO ativo. Entrando na Área PRO...",
+          "success"
+        );
+
+        setTimeout(
+          irParaPro,
+          500
+        );
+
+        return;
+      }
+
+
+      mostrarStatus(
+        "✓ Conta criada. Agora vamos para a assinatura PRO.",
+        "success"
+      );
+
+
+      button.disabled = false;
+
+      button.textContent =
+        "💳 ASSINAR PRO";
+
+      button.onclick =
+        iniciarAssinatura;
+
+
+      document
+        .getElementById("toggleButton")
+        .classList.add("hidden");
+
+
+    } catch (erro) {
+
+      console.error(erro);
+
+      mostrarStatus(
+        erro.message ||
+        "Erro de conexão com o servidor.",
+        "error"
+      );
+
+      button.disabled = false;
+    }
   }
 
 
-  /* ================================
-     IR PARA ÁREA PRO
-  ================================= */
+  async function iniciarAssinatura() {
+
+    const token =
+      localStorage.getItem(
+        TOKEN_KEY
+      );
+
+
+    if (!token) {
+
+      mostrarStatus(
+        "Faça login novamente para continuar.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    const button =
+      document.getElementById(
+        "mainButton"
+      );
+
+    button.disabled = true;
+
+
+    mostrarStatus(
+      "Preparando assinatura..."
+    );
+
+
+    try {
+
+      const response =
+        await fetch(
+          API_URL + "/assinar",
+          {
+            method: "POST",
+
+            headers: {
+              "Authorization":
+                "Bearer " + token
+            }
+          }
+        );
+
+
+      let data = {};
+
+      try {
+        data = await response.json();
+      } catch (e) {}
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          data.detail ||
+          data.message ||
+          "Não foi possível iniciar a assinatura."
+        );
+      }
+
+
+      if (data.init_point) {
+
+        window.location.href =
+          data.init_point;
+
+        return;
+      }
+
+
+      throw new Error(
+        "O Mercado Pago não retornou o link da assinatura."
+      );
+
+
+    } catch (erro) {
+
+      console.error(erro);
+
+      mostrarStatus(
+        erro.message ||
+        "Erro ao iniciar assinatura.",
+        "error"
+      );
+
+      button.disabled = false;
+    }
+  }
+
 
   function irParaPro() {
 
     window.location.href =
       "./area-pro.html";
-
   }
 
 
-  /* ================================
-     INÍCIO
-  ================================= */
+  async function verificarSessao() {
+
+    const token =
+      localStorage.getItem(
+        TOKEN_KEY
+      );
+
+
+    if (!token) {
+      return;
+    }
+
+
+    try {
+
+      const response =
+        await fetch(
+          API_URL + "/verificar-sessao",
+          {
+            headers: {
+              "Authorization":
+                "Bearer " + token
+            }
+          }
+        );
+
+
+      if (!response.ok) {
+        return;
+      }
+
+
+      const data =
+        await response.json();
+
+
+      if (
+        data.pro === true ||
+        data.ativo === true
+      ) {
+
+        localStorage.setItem(
+          PRO_KEY,
+          "true"
+        );
+
+        mostrarStatus(
+          "✓ Sua conta PRO está ativa.",
+          "success"
+        );
+      }
+
+
+    } catch (erro) {
+
+      console.log(
+        "Sessão ainda não pôde ser verificada."
+      );
+    }
+  }
+
 
   window.addEventListener(
     "DOMContentLoaded",
     function() {
 
-      try {
+      const email =
+        localStorage.getItem(
+          EMAIL_KEY
+        );
 
-        const email =
-          localStorage.getItem(
-            EMAIL_KEY
-          );
 
-        if (email) {
+      if (email) {
 
-          document.getElementById(
-            "email"
-          ).value = email;
-
-        }
-
-      } catch (erro) {
-
-        console.log(erro);
-
+        document.getElementById(
+          "email"
+        ).value = email;
       }
 
+
+      verificarSessao();
     }
   );
 
