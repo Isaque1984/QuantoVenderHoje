@@ -2,618 +2,419 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0f172a">
-<meta name="description" content="Sellium: transforme sua meta de vendas em resultados.">
-
-<title>Sellium</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<title>Sellium — Área PRO</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
 :root{
-  --bg:#f5f7fb;
-  --card:#fff;
-  --text:#101828;
-  --muted:#667085;
-  --green:#16a34a;
-  --green2:#22c55e;
-  --dark:#0f172a;
-  --line:#e6eaf0;
-  --orange:#f59e0b;
-  --red:#ef4444;
-  --blue:#2563eb;
+ --bg:#07111f;
+ --card:#0d1b2d;
+ --card2:#102238;
+ --line:#20354d;
+ --text:#f5f8fb;
+ --muted:#91a4b9;
+ --green:#21d47b;
+ --green2:#16b866;
+ --blue:#3da5ff;
+ --yellow:#ffd166;
+ --red:#ff5d73;
+ --orange:#ff9f43;
 }
-
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
+ font-family:Arial,Helvetica,sans-serif;
+ background:var(--bg);
+ color:var(--text);
+ min-height:100vh;
 }
-
 .app{
-  max-width:760px;
-  margin:auto;
-  padding-bottom:100px;
+ max-width:760px;
+ margin:auto;
+ padding-bottom:100px;
 }
-
 header{
-  background:linear-gradient(135deg,#0f172a,#18263d);
-  color:white;
-  padding:24px 18px 30px;
-  border-radius:0 0 28px 28px;
+ padding:20px 16px 15px;
+ border-bottom:1px solid var(--line);
+ background:linear-gradient(180deg,#0a1829,#07111f);
+ position:sticky;
+ top:0;
+ z-index:10;
 }
-
 .top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:22px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
 }
-
 .brand{
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:-.6px;
+ font-size:24px;
+ font-weight:900;
 }
-
-.brand span{color:#4ade80}
-
-.settings{
-  width:43px;
-  height:43px;
-  border:1px solid rgba(255,255,255,.15);
-  background:rgba(255,255,255,.08);
-  color:white;
-  border-radius:14px;
-  font-size:20px;
-  cursor:pointer;
+.brand small{
+ display:block;
+ font-size:11px;
+ color:var(--muted);
+ font-weight:700;
+ margin-top:3px;
 }
-
-.subtitle{
-  color:#cbd5e1;
-  font-size:14px;
-  line-height:1.5;
-}
-
-.hero{
-  margin-top:20px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:22px;
-  padding:20px;
-}
-
-.hero-label{
-  color:#cbd5e1;
-  font-size:14px;
-  margin-bottom:5px;
-}
-
-.remaining{
-  font-size:49px;
-  font-weight:900;
-  letter-spacing:-2px;
-  line-height:1.1;
-}
-
-.remaining.ok{color:#4ade80}
-
-.hero-text{
-  margin-top:9px;
-  font-size:15px;
-  color:#dbeafe;
-}
-
-.progress{
-  height:11px;
-  background:rgba(255,255,255,.13);
-  border-radius:99px;
-  overflow:hidden;
-  margin-top:18px;
-}
-
-.progress-bar{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#22c55e,#4ade80);
-  border-radius:99px;
-  transition:.4s;
-}
-
-.progress-info{
-  display:flex;
-  justify-content:space-between;
-  color:#cbd5e1;
-  font-size:12px;
-  margin-top:8px;
-}
-
-main{
-  padding:18px;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  margin-bottom:16px;
-}
-
-.stat{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:17px;
-  box-shadow:0 3px 12px rgba(15,23,42,.04);
-}
-
-.stat small{
-  display:block;
-  color:var(--muted);
-  font-size:12px;
-  margin-bottom:7px;
-}
-
-.stat strong{
-  font-size:20px;
-}
-
-.card{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:19px;
-  margin-bottom:16px;
-  box-shadow:0 3px 12px rgba(15,23,42,.04);
-}
-
-.card-title{
-  font-size:18px;
-  font-weight:800;
-  margin-bottom:5px;
-}
-
-.card-subtitle{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.45;
-  margin-bottom:16px;
-}
-
-.sale-row{
-  display:flex;
-  gap:9px;
-}
-
-.sale-row input{
-  flex:1;
-  min-width:0;
-  border:1px solid #d9dee7;
-  border-radius:14px;
-  padding:14px;
-  font-size:16px;
-  outline:none;
-}
-
-.sale-row input:focus{
-  border-color:var(--green);
-  box-shadow:0 0 0 3px rgba(34,197,94,.1);
-}
-
-.btn{
-  border:0;
-  border-radius:14px;
-  padding:0 17px;
-  font-size:15px;
-  font-weight:800;
-  cursor:pointer;
-}
-
-.btn-green{
-  background:var(--green);
-  color:white;
-}
-
-.btn-green:active{transform:scale(.97)}
-
-.quick{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  margin-top:12px;
-}
-
-.quick button{
-  background:#f0fdf4;
-  color:#15803d;
-  border:1px solid #bbf7d0;
-  padding:11px 4px;
-  border-radius:12px;
-  font-weight:800;
-  cursor:pointer;
-}
-
-.insight{
-  background:linear-gradient(135deg,#effdf4,#f0fdf4);
-  border:1px solid #bbf7d0;
-}
-
-.insight-icon{
-  font-size:25px;
-  margin-bottom:8px;
-}
-
-.insight strong{
-  font-size:20px;
-  display:block;
-  margin-bottom:5px;
-}
-
-.insight p{
-  color:#475467;
-  font-size:13px;
-  line-height:1.5;
-}
-
-.chart{
-  height:150px;
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  gap:8px;
-  padding-top:15px;
-}
-
-.bar-wrap{
-  flex:1;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:end;
-  align-items:center;
-  gap:6px;
-}
-
-.bar{
-  width:100%;
-  max-width:42px;
-  min-height:4px;
-  background:linear-gradient(180deg,#22c55e,#15803d);
-  border-radius:8px 8px 3px 3px;
-}
-
-.bar-label{
-  color:#98a2b3;
-  font-size:10px;
-}
-
-.pro-card{
-  position:relative;
-  overflow:hidden;
-  background:linear-gradient(145deg,#111827,#1e293b);
-  color:white;
-  border:0;
-}
-
-.pro-card:before{
-  content:"";
-  position:absolute;
-  width:150px;
-  height:150px;
-  background:#22c55e;
-  filter:blur(70px);
-  opacity:.16;
-  right:-50px;
-  top:-50px;
-}
-
-.pro-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:relative;
-}
-
 .pro-badge{
-  background:#22c55e;
-  color:#052e16;
-  font-size:11px;
-  font-weight:900;
-  padding:6px 10px;
-  border-radius:999px;
+ background:var(--green);
+ color:#031b0e;
+ font-size:11px;
+ font-weight:900;
+ padding:6px 10px;
+ border-radius:999px;
 }
-
-.pro-card h3{
-  font-size:21px;
-  margin:12px 0 7px;
-  position:relative;
-}
-
-.pro-card p{
-  color:#cbd5e1;
-  font-size:13px;
-  line-height:1.5;
-  position:relative;
-}
-
-.pro-list{
-  display:grid;
-  gap:9px;
-  margin:16px 0;
-  position:relative;
-}
-
-.pro-item{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  color:#e2e8f0;
-  font-size:13px;
-}
-
-.lock{
-  width:25px;
-  height:25px;
-  border-radius:8px;
-  background:rgba(255,255,255,.09);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.pro-button{
-  width:100%;
-  padding:14px;
-  border:0;
-  border-radius:14px;
-  background:#22c55e;
-  color:#052e16;
-  font-size:15px;
-  font-weight:900;
-  position:relative;
-}
-
-.sales-list{
-  display:grid;
-  gap:9px;
-}
-
-.sale-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:12px;
-  border:1px solid var(--line);
-  border-radius:13px;
-}
-
-.sale-item span{
-  color:var(--muted);
-  font-size:13px;
-}
-
-.sale-item strong{
-  font-size:15px;
-}
-
-.delete{
-  border:0;
-  background:#fff1f2;
-  color:#dc2626;
-  width:31px;
-  height:31px;
-  border-radius:9px;
-  cursor:pointer;
-}
-
-.empty{
-  text-align:center;
-  padding:22px 10px;
-  color:var(--muted);
-  font-size:13px;
-}
-
-.clear{
-  width:100%;
-  margin-top:12px;
-  border:1px solid #fecaca;
-  color:#dc2626;
-  background:#fff;
-  padding:11px;
-  border-radius:12px;
-  font-weight:700;
-}
-
-.seller-box{
-  display:none;
-  margin-top:15px;
-  padding-top:15px;
-  border-top:1px solid var(--line);
-}
-
-.seller-box.show{display:block}
-
-.field{
-  margin-bottom:13px;
-}
-
-.field label{
-  display:block;
-  color:#475467;
-  font-size:13px;
-  font-weight:700;
-  margin-bottom:6px;
-}
-
-.field input{
-  width:100%;
-  border:1px solid #d9dee7;
-  border-radius:13px;
-  padding:13px;
-  font-size:16px;
-}
-
-.seller-result{
-  background:#eff6ff;
-  color:#1d4ed8;
-  border-radius:13px;
-  padding:13px;
-  font-size:14px;
-  margin-top:10px;
-}
-
-.nav{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:760px;
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(12px);
-  border-top:1px solid var(--line);
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  padding:8px 10px calc(8px + env(safe-area-inset-bottom));
-  z-index:20;
-}
-
-.nav button{
-  border:0;
-  background:transparent;
-  color:#98a2b3;
-  padding:7px 2px;
-  font-size:12px;
-  font-weight:700;
-}
-
-.nav button.active{color:var(--green)}
-
-.nav-icon{
-  display:block;
-  font-size:21px;
-  margin-bottom:2px;
-}
-
+main{padding:16px}
 .page{display:none}
 .page.active{display:block}
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(15,23,42,.6);
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
-  z-index:50;
+.card{
+ background:var(--card);
+ border:1px solid var(--line);
+ border-radius:18px;
+ padding:17px;
+ margin-bottom:14px;
 }
-
-.modal.show{display:flex}
-
-.modal-box{
-  background:white;
-  width:100%;
-  max-width:760px;
-  border-radius:25px 25px 0 0;
-  padding:22px;
+.card h2{
+ font-size:19px;
+ margin-bottom:5px;
 }
-
-.modal-title{
-  font-size:20px;
-  font-weight:900;
-  margin-bottom:18px;
+.card-sub{
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.5;
+ margin-bottom:14px;
 }
-
-.close{
-  float:right;
-  border:0;
-  background:#f2f4f7;
-  width:34px;
-  height:34px;
-  border-radius:10px;
+.stats{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:10px;
+ margin-bottom:14px;
 }
-
-.save-settings{
-  width:100%;
-  padding:14px;
-  border:0;
-  border-radius:13px;
-  background:var(--green);
-  color:white;
-  font-weight:800;
-  font-size:15px;
+.stat{
+ background:var(--card2);
+ border:1px solid var(--line);
+ border-radius:15px;
+ padding:14px;
 }
-
-/* COMPARTILHAMENTO */
+.stat small{
+ display:block;
+ color:var(--muted);
+ font-size:11px;
+ margin-bottom:6px;
+}
+.stat strong{
+ font-size:20px;
+}
+.form-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+}
+.field{
+ margin-bottom:11px;
+}
+.field label{
+ display:block;
+ color:var(--muted);
+ font-size:12px;
+ font-weight:700;
+ margin-bottom:6px;
+}
+input,select{
+ width:100%;
+ padding:12px;
+ border:1px solid var(--line);
+ border-radius:12px;
+ background:#09182a;
+ color:var(--text);
+ outline:none;
+ font-size:14px;
+}
+input:focus,select:focus{
+ border-color:var(--green);
+}
+button{
+ font-family:inherit;
+ cursor:pointer;
+}
+.btn{
+ border:0;
+ border-radius:12px;
+ padding:12px 15px;
+ font-weight:800;
+ font-size:13px;
+}
+.btn-green{
+ background:var(--green);
+ color:#031b0e;
+}
+.btn-blue{
+ background:var(--blue);
+ color:white;
+}
+.btn-red{
+ background:rgba(255,93,115,.12);
+ color:var(--red);
+ border:1px solid rgba(255,93,115,.25);
+}
+.btn-dark{
+ background:var(--card2);
+ color:var(--text);
+ border:1px solid var(--line);
+}
+.full{width:100%}
+.row{
+ display:flex;
+ gap:8px;
+ align-items:center;
+}
+.between{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+}
+.hero{
+ background:linear-gradient(135deg,#0e253c,#0b1829);
+ border:1px solid var(--line);
+ border-radius:20px;
+ padding:20px;
+ margin-bottom:14px;
+}
+.hero-label{
+ color:var(--muted);
+ font-size:12px;
+}
+.hero-value{
+ font-size:38px;
+ font-weight:900;
+ margin:5px 0;
+}
+.hero-text{
+ color:#c5d3e2;
+ font-size:13px;
+}
+.progress{
+ height:9px;
+ background:#15263a;
+ border-radius:99px;
+ overflow:hidden;
+ margin-top:14px;
+}
+.progress-bar{
+ height:100%;
+ width:0;
+ background:linear-gradient(90deg,var(--green2),var(--green));
+ border-radius:99px;
+}
+.progress-info{
+ display:flex;
+ justify-content:space-between;
+ color:var(--muted);
+ font-size:11px;
+ margin-top:6px;
+}
+.quick{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:7px;
+ margin:10px 0;
+}
+.quick button{
+ border:1px solid #24563e;
+ background:#0c2419;
+ color:var(--green);
+ border-radius:10px;
+ padding:10px 3px;
+ font-weight:800;
+}
+.item{
+ background:var(--card2);
+ border:1px solid var(--line);
+ border-radius:14px;
+ padding:12px;
+ margin-bottom:8px;
+}
+.item-title{
+ font-weight:800;
+ font-size:14px;
+}
+.item-sub{
+ color:var(--muted);
+ font-size:11px;
+ margin-top:4px;
+ line-height:1.4;
+}
+.badge{
+ display:inline-block;
+ padding:4px 7px;
+ border-radius:8px;
+ font-size:10px;
+ font-weight:800;
+}
+.badge-green{
+ background:rgba(33,212,123,.12);
+ color:var(--green);
+}
+.badge-yellow{
+ background:rgba(255,209,102,.12);
+ color:var(--yellow);
+}
+.badge-red{
+ background:rgba(255,93,115,.12);
+ color:var(--red);
+}
+.empty{
+ text-align:center;
+ color:var(--muted);
+ padding:20px 5px;
+ font-size:13px;
+}
+.chart{
+ height:180px;
+ display:flex;
+ align-items:flex-end;
+ gap:7px;
+ padding-top:15px;
+}
+.bar-wrap{
+ flex:1;
+ height:100%;
+ display:flex;
+ flex-direction:column;
+ justify-content:flex-end;
+ align-items:center;
+}
+.bar{
+ width:100%;
+ max-width:40px;
+ min-height:3px;
+ background:linear-gradient(180deg,var(--green),var(--green2));
+ border-radius:7px 7px 2px 2px;
+}
+.bar-label{
+ color:var(--muted);
+ font-size:9px;
+ margin-top:6px;
+}
+.goal-progress{
+ height:8px;
+ background:#17283b;
+ border-radius:99px;
+ overflow:hidden;
+ margin:9px 0 5px;
+}
+.goal-progress div{
+ height:100%;
+ background:var(--green);
+}
+.nav{
+ position:fixed;
+ bottom:0;
+ left:50%;
+ transform:translateX(-50%);
+ width:100%;
+ max-width:760px;
+ display:grid;
+ grid-template-columns:repeat(6,1fr);
+ background:rgba(7,17,31,.97);
+ border-top:1px solid var(--line);
+ padding:7px 5px calc(7px + env(safe-area-inset-bottom));
+ z-index:30;
+ backdrop-filter:blur(12px);
+}
+.nav button{
+ border:0;
+ background:none;
+ color:var(--muted);
+ font-size:10px;
+ font-weight:700;
+ padding:4px 1px;
+}
+.nav button.active{color:var(--green)}
+.nav-icon{
+ display:block;
+ font-size:19px;
+ margin-bottom:2px;
+}
+.toast{
+ position:fixed;
+ left:50%;
+ bottom:82px;
+ transform:translateX(-50%) translateY(20px);
+ background:#102238;
+ border:1px solid var(--line);
+ color:white;
+ padding:12px 15px;
+ border-radius:12px;
+ font-size:13px;
+ opacity:0;
+ pointer-events:none;
+ transition:.25s;
+ z-index:100;
+ max-width:90%;
+ text-align:center;
+}
+.toast.show{
+ opacity:1;
+ transform:translateX(-50%) translateY(0);
+}
+.motivation{
+ background:linear-gradient(135deg,#0b2a1c,#102238);
+ border:1px solid #1b5238;
+}
+.motivation strong{
+ display:block;
+ color:var(--green);
+ font-size:18px;
+ margin-bottom:5px;
+}
+.motivation p{
+ color:#c9d7e5;
+ font-size:13px;
+ line-height:1.5;
+}
 .share-card{
-  background:linear-gradient(135deg,#effdf4,#ffffff);
-  border:1px solid #bbf7d0;
-  border-radius:20px;
-  padding:18px;
-  margin-bottom:16px;
-  box-shadow:0 3px 12px rgba(15,23,42,.04);
+ background:linear-gradient(135deg,#0b2a1c,#0d1b2d);
+ border:1px solid #1b5238;
 }
-
-.share-content{
-  display:flex;
-  align-items:center;
-  gap:13px;
-}
-
-.share-icon{
-  width:52px;
-  height:52px;
-  border-radius:16px;
-  background:#16a34a;
-  color:#fff;
-  display:grid;
-  place-items:center;
-  font-size:26px;
-  flex:none;
-  box-shadow:0 6px 16px rgba(22,163,74,.25);
-}
-
 .share-card h3{
-  margin:0 0 4px;
-  font-size:18px;
+ font-size:17px;
+ margin-bottom:5px;
 }
-
 .share-card p{
-  margin:0;
-  color:#667085;
-  font-size:13px;
-  line-height:1.45;
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.5;
+ margin-bottom:12px;
 }
-
-.share-btn{
-  width:100%;
-  margin-top:14px;
-  border:0;
-  border-radius:14px;
-  padding:14px;
-  background:#16a34a;
-  color:#fff;
-  font-size:15px;
-  font-weight:800;
-  cursor:pointer;
+.pro-price{
+ color:var(--green);
+ font-size:30px;
+ font-weight:900;
+ margin:10px 0;
 }
-
-.share-btn:active{
-  transform:scale(.98);
+.pro-price small{
+ font-size:12px;
+ color:var(--muted);
+ font-weight:400;
 }
-
-.email-saved{
-  margin-top:7px;
-  color:#15803d;
-  font-size:12px;
-  font-weight:700;
+table{
+ width:100%;
+ border-collapse:collapse;
+ font-size:12px;
 }
-
-@media(max-width:390px){
-  .remaining{font-size:42px}
-  .quick button{font-size:12px}
+th,td{
+ text-align:left;
+ padding:9px 5px;
+ border-bottom:1px solid var(--line);
+}
+th{color:var(--muted)}
+@media(max-width:430px){
+ .form-grid{grid-template-columns:1fr}
+ .hero-value{font-size:33px}
+ .nav button{font-size:9px}
 }
 </style>
 </head>
@@ -623,1448 +424,1347 @@ main{
 <div class="app">
 
 <header>
-  <div class="top">
-    <div>
-      <div class="brand">Sellium</div>
-      <div class="subtitle">Transforme sua meta em vendas.</div>
-    </div>
-
-    <button class="settings" onclick="openSettings()">⚙️</button>
+ <div class="top">
+  <div class="brand">
+   Sellium
+   <small>Área de Membros</small>
   </div>
-
-  <div class="hero">
-    <div class="hero-label">Falta vender hoje</div>
-    <div class="remaining" id="remaining">R$ 200,00</div>
-    <div class="hero-text" id="heroText">
-      Você está começando o dia. Vamos buscar sua meta?
-    </div>
-
-    <div class="progress">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
-
-    <div class="progress-info">
-      <span id="progressText">0% da meta</span>
-      <span id="goalText">Meta: R$ 200,00</span>
-    </div>
-  </div>
+  <div class="pro-badge">PRO</div>
+ </div>
 </header>
 
 <main>
 
-<section id="home" class="page active">
+<!-- DASHBOARD -->
+<section id="dashboard" class="page active">
 
-  <div class="stats">
-    <div class="stat">
-      <small>Vendido hoje</small>
-      <strong id="todayTotal">R$ 0,00</strong>
-    </div>
+ <div class="hero">
+  <div class="hero-label">Resultado de hoje</div>
+  <div class="hero-value" id="dashRevenue">R$ 0,00</div>
+  <div class="hero-text" id="dashGoalText">Defina sua meta para acompanhar seu progresso.</div>
 
-    <div class="stat">
-      <small>Ticket médio</small>
-      <strong id="average">R$ 0,00</strong>
-    </div>
+  <div class="progress">
+   <div class="progress-bar" id="dashProgress"></div>
   </div>
 
-  <div class="card">
-    <div class="card-title">Registrar venda</div>
-    <div class="card-subtitle">
-      Adicione cada venda e acompanhe sua meta em tempo real.
-    </div>
-
-    <div class="sale-row">
-      <input
-        id="saleInput"
-        type="number"
-        step="0.01"
-        min="0"
-        placeholder="Valor da venda"
-      >
-      <button class="btn btn-green" onclick="addSale()">Adicionar</button>
-    </div>
-
-    <div class="quick">
-      <button onclick="quickSale(5)">R$ 5</button>
-      <button onclick="quickSale(10)">R$ 10</button>
-      <button onclick="quickSale(20)">R$ 20</button>
-      <button onclick="quickSale(50)">R$ 50</button>
-    </div>
-
-    <div style="margin-top:13px">
-      <button
-        onclick="toggleSellerMode()"
-        style="border:0;background:none;color:#2563eb;font-weight:800;font-size:13px"
-      >
-        🧮 Modo vendedor
-      </button>
-    </div>
-
-    <div class="seller-box" id="sellerBox">
-
-      <div class="field">
-        <label>Preço do produto</label>
-        <input id="productPrice" type="number" step="0.01" placeholder="Ex.: 13">
-      </div>
-
-      <div class="field">
-        <label>Quanto você já vendeu</label>
-        <input id="sellerSold" type="number" step="0.01" placeholder="Ex.: 65">
-      </div>
-
-      <div class="seller-result" id="sellerResult">
-        Informe os valores para calcular.
-      </div>
-
-    </div>
+  <div class="progress-info">
+   <span id="dashPercent">0%</span>
+   <span id="dashGoal">Meta: R$ 0,00</span>
   </div>
+ </div>
 
-  <div class="card insight">
-    <div class="insight-icon">💡</div>
+ <div class="motivation card">
+  <strong id="motivationTitle">Vamos começar!</strong>
+  <p id="motivationText">Cada venda registrada aproxima você da sua meta.</p>
+ </div>
 
-    <strong id="insightTitle">
-      Comece sua primeira venda
-    </strong>
-
-    <p id="insightText">
-      Cada venda registrada atualiza automaticamente o quanto falta para sua meta.
-    </p>
+ <div class="stats">
+  <div class="stat">
+   <small>Vendas pagas</small>
+   <strong id="statPaid">0</strong>
   </div>
-
-  <div class="card">
-
-    <div class="card-title">
-      Últimos 7 dias
-    </div>
-
-    <div class="card-subtitle">
-      Uma visão rápida do seu ritmo de vendas.
-    </div>
-
-    <div class="chart" id="chart"></div>
-
+  <div class="stat">
+   <small>Despesas hoje</small>
+   <strong id="statExpenses">R$ 0,00</strong>
   </div>
-
-  <!-- COMPARTILHAR -->
-  <div class="share-card">
-
-    <div class="share-content">
-
-      <div class="share-icon">
-        📤
-      </div>
-
-      <div>
-        <h3>Compartilhe o Sellium</h3>
-
-        <p>
-          Convide um amigo para organizar as vendas e acompanhar a meta.
-        </p>
-      </div>
-
-    </div>
-
-    <button
-      class="share-btn"
-      onclick="compartilharSellium()"
-    >
-      📤 Compartilhar com um amigo
-    </button>
-
+  <div class="stat">
+   <small>Lucro estimado</small>
+   <strong id="statProfit">R$ 0,00</strong>
   </div>
-
-  <div class="card pro-card">
-
-    <div class="pro-top">
-
-      <span style="font-size:13px;font-weight:800">
-        SELLIUM
-      </span>
-
-      <span class="pro-badge">
-        PRO
-      </span>
-
-    </div>
-
-    <h3>
-      Quer enxergar seu negócio de verdade?
-    </h3>
-
-    <p>
-      Desbloqueie ferramentas para acompanhar sua evolução e entender onde seu dinheiro está.
-    </p>
-
-    <div class="pro-list">
-
-      <div class="pro-item">
-        <span class="lock">🔒</span>
-        Histórico completo
-      </div>
-
-      <div class="pro-item">
-        <span class="lock">🔒</span>
-        Relatórios e gráficos avançados
-      </div>
-
-      <div class="pro-item">
-        <span class="lock">🔒</span>
-        Custos, lucro e produtos
-      </div>
-
-      <div class="pro-item">
-        <span class="lock">🔒</span>
-        Insights inteligentes
-      </div>
-
-    </div>
-
-    <button class="pro-button" onclick="showPro()">
-      Conhecer o Sellium PRO
-    </button>
-
+  <div class="stat">
+   <small>Ticket médio</small>
+   <strong id="statTicket">R$ 0,00</strong>
   </div>
+ </div>
+
+ <div class="card">
+  <h2>🎯 Minha principal meta</h2>
+  <div id="mainGoalBox"></div>
+ </div>
+
+ <div class="card">
+  <h2>📊 Últimos 7 dias</h2>
+  <div class="card-sub">Veja rapidamente o ritmo das suas vendas.</div>
+  <div class="chart" id="chart"></div>
+ </div>
+
+ <div class="card">
+  <h2>🕘 Movimentações recentes</h2>
+  <div id="recent"></div>
+ </div>
+
+ <div class="share-card card">
+  <h3>📤 Compartilhe o Sellium</h3>
+  <p>Indique o Sellium para um amigo que também vende e quer controlar melhor suas metas.</p>
+  <button class="btn btn-green full" onclick="shareResult()">
+   📤 Compartilhar com um amigo
+  </button>
+ </div>
 
 </section>
 
+<!-- METAS -->
+<section id="goals" class="page">
+
+ <div class="card">
+  <h2>🎯 Nova meta</h2>
+  <div class="card-sub">Crie metas para acompanhar seus objetivos.</div>
+
+  <div class="field">
+   <label>Nome da meta</label>
+   <input id="goalName" placeholder="Ex.: Comprar minha moto">
+  </div>
+
+  <div class="field">
+   <label>Valor da meta</label>
+   <input id="goalValue" type="number" step="0.01" placeholder="10000">
+  </div>
+
+  <div class="form-grid">
+   <div class="field">
+    <label>Já tenho</label>
+    <input id="goalStart" type="number" step="0.01" placeholder="0">
+   </div>
+   <div class="field">
+    <label>Data limite</label>
+    <input id="goalEnd" type="date">
+   </div>
+  </div>
+
+  <button class="btn btn-green full" onclick="addGoal()">Adicionar meta</button>
+ </div>
+
+ <div class="card">
+  <h2>Minhas metas</h2>
+  <div id="goalsList"></div>
+ </div>
+
+</section>
+
+<!-- VENDAS -->
 <section id="sales" class="page">
 
-  <div class="card">
+ <div class="card">
+  <h2>💰 Registrar venda</h2>
+  <div class="card-sub">Registre suas vendas e acompanhe pagamentos.</div>
 
-    <div class="card-title">
-      Vendas de hoje
-    </div>
-
-    <div class="card-subtitle">
-      Tudo que você registrar durante o dia aparece aqui.
-    </div>
-
-    <div class="sales-list" id="salesList"></div>
-
-    <button class="clear" onclick="clearSales()">
-      Limpar vendas de hoje
-    </button>
-
+  <div class="quick">
+   <button onclick="quickValue(5)">R$5</button>
+   <button onclick="quickValue(10)">R$10</button>
+   <button onclick="quickValue(20)">R$20</button>
+   <button onclick="quickValue(50)">R$50</button>
   </div>
+
+  <div class="quick">
+   <button onclick="quickValue(2)">R$2</button>
+   <button onclick="quickValue(15)">R$15</button>
+   <button onclick="quickValue(30)">R$30</button>
+   <button onclick="quickValue(100)">R$100</button>
+  </div>
+
+  <div class="field" style="margin-top:14px">
+   <label>Valor</label>
+   <input id="saleValue" type="number" step="0.01" placeholder="0,00">
+  </div>
+
+  <div class="field">
+   <label>Produto</label>
+   <select id="saleProduct"></select>
+  </div>
+
+  <div class="form-grid">
+   <div class="field">
+    <label>Quantidade</label>
+    <input id="saleQuantity" type="number" value="1" min="1">
+   </div>
+
+   <div class="field">
+    <label>Pagamento</label>
+    <select id="salePayment">
+     <option value="pix">PIX</option>
+     <option value="dinheiro">Dinheiro</option>
+     <option value="cartao">Cartão</option>
+     <option value="outro">Outro</option>
+    </select>
+   </div>
+  </div>
+
+  <div class="field">
+   <label>Status</label>
+   <select id="saleStatus">
+    <option value="pago">Pago</option>
+    <option value="pendente">Pendente</option>
+   </select>
+  </div>
+
+  <button class="btn btn-green full" onclick="registerSale()">Registrar venda</button>
+ </div>
+
+ <div class="stats">
+  <div class="stat">
+   <small>Hoje</small>
+   <strong id="salesTodayValue">R$ 0,00</strong>
+  </div>
+  <div class="stat">
+   <small>Quantidade</small>
+   <strong id="salesTodayCount">0</strong>
+  </div>
+ </div>
+
+ <div class="card">
+  <h2>Vendas de hoje</h2>
+  <div id="todaySales"></div>
+ </div>
 
 </section>
 
+<!-- PRODUTOS -->
+<section id="products" class="page">
+
+ <div class="card">
+  <h2>📦 Produtos</h2>
+  <div class="card-sub">Cadastre preço de venda e custo para calcular lucro.</div>
+
+  <div class="field">
+   <label>Nome do produto</label>
+   <input id="productName" placeholder="Ex.: Pavê de maracujá">
+  </div>
+
+  <div class="form-grid">
+   <div class="field">
+    <label>Preço de venda</label>
+    <input id="productPrice" type="number" step="0.01" placeholder="13">
+   </div>
+   <div class="field">
+    <label>Custo</label>
+    <input id="productCost" type="number" step="0.01" placeholder="5">
+   </div>
+  </div>
+
+  <button class="btn btn-green full" onclick="addProduct()">Adicionar produto</button>
+ </div>
+
+ <div class="card">
+  <h2>Meus produtos</h2>
+  <div id="productsList"></div>
+ </div>
+
+</section>
+
+<!-- DESPESAS -->
+<section id="expenses" class="page">
+
+ <div class="stats">
+  <div class="stat">
+   <small>Hoje</small>
+   <strong id="expenseToday">R$ 0,00</strong>
+  </div>
+  <div class="stat">
+   <small>Este mês</small>
+   <strong id="expenseMonth">R$ 0,00</strong>
+  </div>
+ </div>
+
+ <div class="card">
+  <h2>💸 Nova despesa</h2>
+
+  <div class="field">
+   <label>Valor</label>
+   <input id="expenseValue" type="number" step="0.01" placeholder="0,00">
+  </div>
+
+  <div class="field">
+   <label>Categoria</label>
+   <select id="expenseCategory">
+    <option>Transporte</option>
+    <option>Alimentação</option>
+    <option>Material</option>
+    <option>Publicidade</option>
+    <option>Taxas</option>
+    <option>Outros</option>
+   </select>
+  </div>
+
+  <div class="field">
+   <label>Descrição</label>
+   <input id="expenseDescription" placeholder="Ex.: gasolina">
+  </div>
+
+  <button class="btn btn-green full" onclick="addExpense()">Registrar despesa</button>
+ </div>
+
+ <div class="card">
+  <h2>Despesas recentes</h2>
+  <div id="expensesList"></div>
+ </div>
+
+</section>
+
+<!-- HISTÓRICO -->
 <section id="history" class="page">
 
-  <div class="card">
+ <div class="card">
+  <h2>📚 Histórico</h2>
+  <div class="card-sub">Todas as suas movimentações salvas neste aparelho.</div>
 
-    <div class="card-title">
-      Resumo
-    </div>
-
-    <div class="card-subtitle">
-      Uma visão simples do seu desempenho recente.
-    </div>
-
-    <div class="stats">
-
-      <div class="stat">
-        <small>Vendas registradas</small>
-        <strong id="salesCount">0</strong>
-      </div>
-
-      <div class="stat">
-        <small>Total vendido</small>
-        <strong id="historyTotal">R$ 0,00</strong>
-      </div>
-
-    </div>
-
+  <div class="stats">
+   <div class="stat">
+    <small>Faturamento</small>
+    <strong id="historyRevenue">R$ 0,00</strong>
+   </div>
+   <div class="stat">
+    <small>Despesas</small>
+    <strong id="historyExpenses">R$ 0,00</strong>
+   </div>
+   <div class="stat">
+    <small>Lucro</small>
+    <strong id="historyProfit">R$ 0,00</strong>
+   </div>
+   <div class="stat">
+    <small>Vendas</small>
+    <strong id="historySales">0</strong>
+   </div>
   </div>
+ </div>
 
-  <div class="card">
+ <div class="card">
+  <h2>Movimentações</h2>
+  <div id="historyList"></div>
+ </div>
 
-    <div class="card-title">
-      Evolução
-    </div>
-
-    <div class="card-subtitle">
-      O gráfico básico mostra seu ritmo recente.
-    </div>
-
-    <div class="chart" id="chartHistory"></div>
-
-  </div>
-
-  <div class="card pro-card">
-
-    <div class="pro-top">
-
-      <span style="font-size:13px;font-weight:800">
-        HISTÓRICO COMPLETO
-      </span>
-
-      <span class="pro-badge">
-        PRO
-      </span>
-
-    </div>
-
-    <h3>
-      Não perca seus resultados.
-    </h3>
-
-    <p>
-      No PRO você poderá acompanhar períodos maiores e comparar sua evolução.
-    </p>
-
-    <button
-      class="pro-button"
-      onclick="showPro()"
-      style="margin-top:16px"
-    >
-      Desbloquear histórico completo
-    </button>
-
-  </div>
+ <div class="card">
+  <h2>⚠️ Dados</h2>
+  <div class="card-sub">Faça um backup antes de limpar seus dados.</div>
+  <button class="btn btn-blue full" onclick="backupData()">⬇️ Fazer backup</button>
+  <button class="btn btn-red full" style="margin-top:8px" onclick="clearAllData()">Apagar todos os dados</button>
+ </div>
 
 </section>
 
-<section id="profile" class="page">
+<!-- RELATÓRIOS -->
+<section id="reports" class="page">
 
-  <div class="card">
+ <div class="card">
+  <h2>📊 Relatório</h2>
+  <div class="card-sub">Resumo geral do seu desempenho.</div>
 
-    <div class="card-title">
-      Seu perfil
-    </div>
-
-    <div class="card-subtitle">
-      Guarde seu e-mail para facilitar sua identificação no Sellium.
-    </div>
-
-    <div class="field">
-
-      <label>
-        Seu e-mail
-      </label>
-
-      <input
-        id="profileEmail"
-        type="email"
-        inputmode="email"
-        autocomplete="email"
-        placeholder="seu@email.com"
-      >
-
-      <div
-        class="email-saved"
-        id="emailStatus"
-      ></div>
-
-    </div>
-
+  <div class="stats">
+   <div class="stat">
+    <small>Receita</small>
+    <strong id="reportRevenue">R$ 0,00</strong>
+   </div>
+   <div class="stat">
+    <small>Despesas</small>
+    <strong id="reportExpenses">R$ 0,00</strong>
+   </div>
+   <div class="stat">
+    <small>Lucro</small>
+    <strong id="reportProfit">R$ 0,00</strong>
+   </div>
+   <div class="stat">
+    <small>Ticket médio</small>
+    <strong id="reportTicket">R$ 0,00</strong>
+   </div>
   </div>
 
-  <div class="card">
-
-    <div class="card-title">
-      Sua meta
-    </div>
-
-    <div class="card-subtitle">
-      Esses valores são usados para calcular sua meta diária.
-    </div>
-
-    <div class="field">
-
-      <label>
-        Quanto quer ganhar por mês?
-      </label>
-
-      <input
-        id="profileIncome"
-        type="number"
-      >
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        Despesas mensais do trabalho
-      </label>
-
-      <input
-        id="profileExpenses"
-        type="number"
-      >
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        Dias de trabalho por mês
-      </label>
-
-      <input
-        id="profileDays"
-        type="number"
-      >
-
-    </div>
-
-    <button
-      class="save-settings"
-      onclick="saveProfile()"
-    >
-      Salvar perfil e atualizar meta
-    </button>
-
+  <div class="item">
+   <div class="between">
+    <span>Vendas pagas</span>
+    <strong id="reportPaid">0</strong>
+   </div>
   </div>
 
-  <div class="card">
-
-    <div class="card-title">
-      Como calculamos?
-    </div>
-
-    <p style="color:#667085;font-size:14px;line-height:1.6">
-
-      Sua meta diária considera o valor que você deseja ganhar,
-      suas despesas mensais e quantos dias pretende trabalhar.
-
-    </p>
-
-    <div style="
-      margin-top:15px;
-      padding:14px;
-      border-radius:13px;
-      background:#f8fafc;
-      font-weight:800;
-      font-size:14px;
-    ">
-
-      Meta diária = (ganho desejado + despesas) ÷ dias trabalhados
-
-    </div>
-
+  <div class="item">
+   <div class="between">
+    <span>Vendas pendentes</span>
+    <strong id="reportPending">0</strong>
+   </div>
   </div>
 
-  <div class="card pro-card">
-
-    <div class="pro-top">
-
-      <span style="font-size:13px;font-weight:800">
-        RECURSOS EXTRAS
-      </span>
-
-      <span class="pro-badge">
-        PRO
-      </span>
-
-    </div>
-
-    <h3>
-      Mais controle sobre seu dinheiro.
-    </h3>
-
-    <p>
-      Controle custos, lucro, produtos, metas e resultados em um só lugar.
-    </p>
-
-    <button
-      class="pro-button"
-      onclick="showPro()"
-      style="margin-top:16px"
-    >
-      Conhecer o PRO
-    </button>
-
+  <div class="item">
+   <div class="between">
+    <span>Total de despesas</span>
+    <strong id="reportExpenseCount">0</strong>
+   </div>
   </div>
+
+  <div class="item">
+   <div class="between">
+    <span>Margem estimada</span>
+    <strong id="reportMargin">0%</strong>
+   </div>
+  </div>
+ </div>
+
+ <div class="card">
+  <h2>🎯 Principal meta</h2>
+  <div id="reportMainGoal"></div>
+ </div>
+
+ <div class="share-card card">
+  <h2>📤 Compartilhar resultado</h2>
+  <div class="card-sub">
+   Compartilhe seu resultado do Sellium com um amigo.
+  </div>
+  <button class="btn btn-green full" onclick="shareResult()">
+   📤 Compartilhar meu resultado
+  </button>
+ </div>
 
 </section>
 
 </main>
 
 <nav class="nav">
-
-  <button
-    class="active"
-    onclick="showPage('home',this)"
-  >
-
-    <span class="nav-icon">🏠</span>
-
-    Início
-
-  </button>
-
-  <button
-    onclick="showPage('sales',this)"
-  >
-
-    <span class="nav-icon">💰</span>
-
-    Vendas
-
-  </button>
-
-  <button
-    onclick="showPage('history',this)"
-  >
-
-    <span class="nav-icon">📊</span>
-
-    Histórico
-
-  </button>
-
-  <button
-    onclick="showPage('profile',this)"
-  >
-
-    <span class="nav-icon">👤</span>
-
-    Perfil
-
-  </button>
-
+ <button class="active" onclick="goPage('dashboard',this)">
+  <span class="nav-icon">🏠</span>Início
+ </button>
+ <button onclick="goPage('goals',this)">
+  <span class="nav-icon">🎯</span>Metas
+ </button>
+ <button onclick="goPage('sales',this)">
+  <span class="nav-icon">💰</span>Vendas
+ </button>
+ <button onclick="goPage('products',this)">
+  <span class="nav-icon">📦</span>Produtos
+ </button>
+ <button onclick="goPage('expenses',this)">
+  <span class="nav-icon">💸</span>Despesas
+ </button>
+ <button onclick="goPage('reports',this)">
+  <span class="nav-icon">📊</span>Relatórios
+ </button>
 </nav>
 
-</div>
-
-<div
-  class="modal"
-  id="settingsModal"
-  onclick="closeSettings(event)"
->
-
-  <div
-    class="modal-box"
-    onclick="event.stopPropagation()"
-  >
-
-    <button
-      class="close"
-      onclick="closeSettings()"
-    >
-      ✕
-    </button>
-
-    <div class="modal-title">
-      Configurar minha meta
-    </div>
-
-    <div class="field">
-
-      <label>
-        Quanto você quer ganhar por mês?
-      </label>
-
-      <input
-        id="incomeInput"
-        type="number"
-      >
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        Despesas mensais
-      </label>
-
-      <input
-        id="expensesInput"
-        type="number"
-      >
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        Dias de trabalho por mês
-      </label>
-
-      <input
-        id="daysInput"
-        type="number"
-      >
-
-    </div>
-
-    <button
-      class="save-settings"
-      onclick="saveSettings()"
-    >
-      Salvar minha meta
-    </button>
-
-  </div>
-
-</div>
+<div class="toast" id="toast"></div>
 
 <script>
-
 const money = value =>
-  Number(value || 0).toLocaleString(
-    'pt-BR',
-    {
-      style:'currency',
-      currency:'BRL'
-    }
-  );
+ Number(value || 0).toLocaleString('pt-BR',{
+  style:'currency',
+  currency:'BRL'
+});
 
-/* Mantido para preservar os dados existentes */
+const todayISO = () =>
+ new Date().toISOString().slice(0,10);
+
+const formatDate = date =>
+ new Date(date+'T12:00:00').toLocaleDateString('pt-BR');
+
+const uid = () =>
+ Date.now().toString(36)+Math.random().toString(36).slice(2);
+
 let sales = JSON.parse(
-  localStorage.getItem('qvh_sales') || '[]'
+ localStorage.getItem('qvh_sales') || '[]'
+);
+
+let products = JSON.parse(
+ localStorage.getItem('qvh_products') || '[]'
+);
+
+let goals = JSON.parse(
+ localStorage.getItem('qvh_goals') || '[]'
+);
+
+let expenses = JSON.parse(
+ localStorage.getItem('qvh_expenses') || '[]'
 );
 
 let settings = JSON.parse(
-  localStorage.getItem('qvh_settings') ||
-  JSON.stringify({
-    income:4000,
-    expenses:1200,
-    days:26
-  })
+ localStorage.getItem('qvh_settings') ||
+ '{"income":4000,"expenses":1200,"days":26}'
 );
 
-function goal(){
-
-  const days =
-    Number(settings.days) || 1;
-
-  return (
-    Number(settings.income) +
-    Number(settings.expenses)
-  ) / days;
-
+function saveSales(){
+ localStorage.setItem('qvh_sales',JSON.stringify(sales));
 }
 
-function total(){
-
-  return sales.reduce(
-    (sum,sale)=>
-      sum + Number(sale),
-    0
-  );
-
+function saveProducts(){
+ localStorage.setItem('qvh_products',JSON.stringify(products));
 }
 
-function remaining(){
-
-  return Math.max(
-    0,
-    goal() - total()
-  );
-
+function saveGoals(){
+ localStorage.setItem('qvh_goals',JSON.stringify(goals));
 }
 
-function saveData(){
-
-  localStorage.setItem(
-    'qvh_sales',
-    JSON.stringify(sales)
-  );
-
-  localStorage.setItem(
-    'qvh_settings',
-    JSON.stringify(settings)
-  );
-
-}
-
-function update(){
-
-  const g = goal();
-  const t = total();
-  const r = remaining();
-
-  document.getElementById(
-    'remaining'
-  ).textContent = money(r);
-
-  document.getElementById(
-    'todayTotal'
-  ).textContent = money(t);
-
-  document.getElementById(
-    'goalText'
-  ).textContent =
-    'Meta: ' + money(g);
-
-  const percent =
-    g > 0
-      ? Math.min(100,(t/g)*100)
-      : 0;
-
-  document.getElementById(
-    'progressBar'
-  ).style.width =
-    percent + '%';
-
-  document.getElementById(
-    'progressText'
-  ).textContent =
-    Math.round(percent) +
-    '% da meta';
-
-  if(t >= g){
-
-    document
-      .getElementById('remaining')
-      .classList.add('ok');
-
-    document.getElementById(
-      'heroText'
-    ).textContent =
-      '🎉 Meta atingida! Você conseguiu bater sua meta de hoje.';
-
-    document.getElementById(
-      'insightTitle'
-    ).textContent =
-      'Meta do dia atingida!';
-
-    document.getElementById(
-      'insightText'
-    ).textContent =
-      'Parabéns. Você chegou ao valor que precisava vender hoje.';
-
-  }else{
-
-    document
-      .getElementById('remaining')
-      .classList.remove('ok');
-
-    if(t === 0){
-
-      document.getElementById(
-        'heroText'
-      ).textContent =
-        'Você está começando o dia. Vamos buscar sua meta?';
-
-    }else{
-
-      document.getElementById(
-        'heroText'
-      ).textContent =
-        'Continue vendendo. Ainda faltam ' +
-        money(r) +
-        '.';
-
-    }
-
-    if(sales.length === 0){
-
-      document.getElementById(
-        'insightTitle'
-      ).textContent =
-        'Comece sua primeira venda';
-
-      document.getElementById(
-        'insightText'
-      ).textContent =
-        'Cada venda registrada atualiza automaticamente o quanto falta para sua meta.';
-
-    }else{
-
-      document.getElementById(
-        'insightTitle'
-      ).textContent =
-        'Você já vendeu ' +
-        money(t);
-
-      document.getElementById(
-        'insightText'
-      ).textContent =
-        'Faltam ' +
-        money(r) +
-        ' para alcançar sua meta diária.';
-
-    }
-
-  }
-
-  const average =
-    sales.length
-      ? t / sales.length
-      : 0;
-
-  document.getElementById(
-    'average'
-  ).textContent =
-    money(average);
-
-  document.getElementById(
-    'salesCount'
-  ).textContent =
-    sales.length;
-
-  document.getElementById(
-    'historyTotal'
-  ).textContent =
-    money(t);
-
-  renderSales();
-  renderChart();
-  renderChartHistory();
-  calculateSeller();
-
-}
-
-function addSale(value=null){
-
-  const input =
-    document.getElementById(
-      'saleInput'
-    );
-
-  const amount =
-    value !== null
-      ? Number(value)
-      : Number(input.value);
-
-  if(!amount || amount <= 0){
-
-    alert(
-      'Digite um valor válido.'
-    );
-
-    return;
-
-  }
-
-  sales.push(amount);
-
-  input.value = '';
-
-  saveData();
-  update();
-
-}
-
-function quickSale(value){
-
-  addSale(value);
-
-}
-
-function renderSales(){
-
-  const box =
-    document.getElementById(
-      'salesList'
-    );
-
-  if(!sales.length){
-
-    box.innerHTML = `
-      <div class="empty">
-        Nenhuma venda registrada ainda.<br>
-        Adicione sua primeira venda acima.
-      </div>
-    `;
-
-    return;
-
-  }
-
-  box.innerHTML =
-    sales
-      .slice()
-      .reverse()
-      .map(
-        (sale,index)=>{
-
-          const realIndex =
-            sales.length - 1 - index;
-
-          return `
-            <div class="sale-item">
-
-              <div>
-
-                <span>
-                  Venda ${realIndex + 1}
-                </span>
-
-                <br>
-
-                <strong>
-                  ${money(sale)}
-                </strong>
-
-              </div>
-
-              <button
-                class="delete"
-                onclick="deleteSale(${realIndex})"
-              >
-                ✕
-              </button>
-
-            </div>
-          `;
-
-        }
-      )
-      .join('');
-
-}
-
-function deleteSale(index){
-
-  sales.splice(index,1);
-
-  saveData();
-  update();
-
-}
-
-function clearSales(){
-
-  if(!sales.length)
-    return;
-
-  if(
-    confirm(
-      'Apagar todas as vendas de hoje?'
-    )
-  ){
-
-    sales = [];
-
-    saveData();
-    update();
-
-  }
-
-}
-
-function renderChart(){
-
-  const chart =
-    document.getElementById(
-      'chart'
-    );
-
-  const values = [
-    35,
-    20,
-    15.5,
-    25,
-    18,
-    22,
-    total()
-  ];
-
-  const max =
-    Math.max(
-      ...values,
-      goal(),
-      1
-    );
-
-  chart.innerHTML =
-    values
-      .map(
-        (value,index)=>{
-
-          const height =
-            Math.max(
-              4,
-              (value/max)*105
-            );
-
-          return `
-            <div class="bar-wrap">
-
-              <div
-                class="bar"
-                style="height:${height}px"
-                title="${money(value)}"
-              ></div>
-
-              <div class="bar-label">
-
-                ${
-                  index === 6
-                    ? 'Hoje'
-                    : 'D'+(index+1)
-                }
-
-              </div>
-
-            </div>
-          `;
-
-        }
-      )
-      .join('');
-
-}
-
-function renderChartHistory(){
-
-  document.getElementById(
-    'chartHistory'
-  ).innerHTML =
-    document.getElementById(
-      'chart'
-    ).innerHTML;
-
-}
-
-function toggleSellerMode(){
-
-  document
-    .getElementById(
-      'sellerBox'
-    )
-    .classList.toggle('show');
-
-}
-
-document
-  .getElementById(
-    'productPrice'
-  )
-  .addEventListener(
-    'input',
-    calculateSeller
-  );
-
-document
-  .getElementById(
-    'sellerSold'
-  )
-  .addEventListener(
-    'input',
-    calculateSeller
-  );
-
-function calculateSeller(){
-
-  const price =
-    Number(
-      document.getElementById(
-        'productPrice'
-      ).value
-    );
-
-  const sold =
-    Number(
-      document.getElementById(
-        'sellerSold'
-      ).value
-    );
-
-  const box =
-    document.getElementById(
-      'sellerResult'
-    );
-
-  if(!price || price <= 0){
-
-    box.textContent =
-      'Informe o preço do seu produto para calcular.';
-
-    return;
-
-  }
-
-  const missing =
-    Math.max(
-      0,
-      goal() - sold
-    );
-
-  const units =
-    Math.ceil(
-      missing / price
-    );
-
-  if(missing <= 0){
-
-    box.textContent =
-      '🎉 Pela meta informada, você já atingiu o valor necessário.';
-
-  }else{
-
-    box.innerHTML =
-      `Faltam <strong>${money(missing)}</strong>.
-      Vendendo por ${money(price)} cada,
-      você precisa de aproximadamente
-      <strong>${units} unidade${units > 1 ? 's' : ''}</strong>.`;
-
-  }
-
-}
-
-function showPage(page,button){
-
-  document
-    .querySelectorAll('.page')
-    .forEach(
-      p=>
-        p.classList.remove(
-          'active'
-        )
-    );
-
-  document
-    .getElementById(page)
-    .classList.add('active');
-
-  document
-    .querySelectorAll('.nav button')
-    .forEach(
-      b=>
-        b.classList.remove(
-          'active'
-        )
-    );
-
-  if(button)
-    button.classList.add(
-      'active'
-    );
-
-  window.scrollTo({
-    top:0,
-    behavior:'smooth'
-  });
-
-}
-
-function openSettings(){
-
-  document.getElementById(
-    'incomeInput'
-  ).value =
-    settings.income;
-
-  document.getElementById(
-    'expensesInput'
-  ).value =
-    settings.expenses;
-
-  document.getElementById(
-    'daysInput'
-  ).value =
-    settings.days;
-
-  document
-    .getElementById(
-      'settingsModal'
-    )
-    .classList.add('show');
-
-}
-
-function closeSettings(event){
-
-  if(
-    event &&
-    event.target.id !==
-      'settingsModal'
-  )
-    return;
-
-  document
-    .getElementById(
-      'settingsModal'
-    )
-    .classList.remove(
-      'show'
-    );
-
+function saveExpenses(){
+ localStorage.setItem('qvh_expenses',JSON.stringify(expenses));
 }
 
 function saveSettings(){
-
-  settings.income =
-    Number(
-      document.getElementById(
-        'incomeInput'
-      ).value
-    ) || 0;
-
-  settings.expenses =
-    Number(
-      document.getElementById(
-        'expensesInput'
-      ).value
-    ) || 0;
-
-  settings.days =
-    Number(
-      document.getElementById(
-        'daysInput'
-      ).value
-    ) || 1;
-
-  saveData();
-  update();
-
-  closeSettings();
-
+ localStorage.setItem('qvh_settings',JSON.stringify(settings));
 }
 
-/* PERFIL */
+function goPage(page,button){
+ document.querySelectorAll('.page').forEach(p=>{
+  p.classList.remove('active');
+ });
+ document.getElementById(page).classList.add('active');
 
-function loadProfile(){
+ document.querySelectorAll('.nav button').forEach(b=>{
+  b.classList.remove('active');
+ });
 
-  document.getElementById(
-    'profileIncome'
-  ).value =
-    settings.income;
+ if(button) button.classList.add('active');
 
-  document.getElementById(
-    'profileExpenses'
-  ).value =
-    settings.expenses;
-
-  document.getElementById(
-    'profileDays'
-  ).value =
-    settings.days;
-
-  const email =
-    localStorage.getItem(
-      'qvh_email'
-    ) || '';
-
-  document.getElementById(
-    'profileEmail'
-  ).value =
-    email;
-
-  updateEmailStatus();
-
+ renderAll();
+ window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function saveProfile(){
-
-  const emailInput =
-    document.getElementById(
-      'profileEmail'
-    );
-
-  const email =
-    (
-      emailInput.value || ''
-    )
-    .trim()
-    .toLowerCase();
-
-  if(email){
-
-    localStorage.setItem(
-      'qvh_email',
-      email
-    );
-
-  }else{
-
-    localStorage.removeItem(
-      'qvh_email'
-    );
-
-  }
-
-  settings.income =
-    Number(
-      document.getElementById(
-        'profileIncome'
-      ).value
-    ) || 0;
-
-  settings.expenses =
-    Number(
-      document.getElementById(
-        'profileExpenses'
-      ).value
-    ) || 0;
-
-  settings.days =
-    Number(
-      document.getElementById(
-        'profileDays'
-      ).value
-    ) || 1;
-
-  saveData();
-
-  updateEmailStatus();
-
-  update();
-
-  alert(
-    'Perfil e meta atualizados!'
-  );
-
+function showToast(text){
+ const el=document.getElementById('toast');
+ el.textContent=text;
+ el.classList.add('show');
+ setTimeout(()=>el.classList.remove('show'),2500);
 }
 
-function updateEmailStatus(){
+function showMotivation(){
+ const paid=paidSales();
+ const revenue=paid.reduce((a,b)=>a+b.value,0);
 
-  const status =
-    document.getElementById(
-      'emailStatus'
-    );
+ let title='Vamos começar!';
+ let text='Cada venda registrada aproxima você da sua meta.';
 
-  if(!status)
-    return;
+ if(revenue>0 && revenue<100){
+  title='🔥 Primeiro passo dado!';
+  text='Você já começou. Continue acumulando vendas.';
+ }
 
-  const email =
-    localStorage.getItem(
-      'qvh_email'
-    ) || '';
+ if(revenue>=100){
+  title='🚀 Você está avançando!';
+  text='Seu esforço já está aparecendo nos números.';
+ }
 
-  status.textContent =
-    email
-      ? '✓ E-mail salvo neste aparelho.'
-      : '';
+ if(revenue>=goalRevenue()){
+  title='🏆 Meta alcançada!';
+  text='Parabéns! Você atingiu sua meta de vendas.';
+ }
 
+ document.getElementById('motivationTitle').textContent=title;
+ document.getElementById('motivationText').textContent=text;
 }
 
-/* COMPARTILHAMENTO */
-
-function compartilharSellium(){
-
-  const url =
-    'https://quantovenderhoje.onrender.com';
-
-  const texto =
-    'Conheça o Sellium — organize suas vendas e acompanhe sua meta.';
-
-  if(
-    navigator.share
-  ){
-
-    navigator
-      .share({
-        title:'Sellium',
-        text:texto,
-        url:url
-      })
-      .catch(
-        ()=>{}
-      );
-
-    return;
-
-  }
-
-  copiarLinkSellium(url);
-
+function selectPayment(value){
+ document.getElementById('salePayment').value=value;
 }
 
-function copiarLinkSellium(url){
-
-  if(
-    navigator.clipboard &&
-    window.isSecureContext
-  ){
-
-    navigator.clipboard
-      .writeText(url)
-      .then(
-        ()=>{
-          alert(
-            'Link do Sellium copiado! Agora é só enviar para seu amigo.'
-          );
-        }
-      )
-      .catch(
-        ()=>{
-          fallbackCopySellium(url);
-        }
-      );
-
-  }else{
-
-    fallbackCopySellium(url);
-
-  }
-
+function selectStatus(value){
+ document.getElementById('saleStatus').value=value;
 }
 
-function fallbackCopySellium(url){
-
-  const area =
-    document.createElement(
-      'textarea'
-    );
-
-  area.value = url;
-
-  area.style.position =
-    'fixed';
-
-  area.style.left =
-    '-9999px';
-
-  document.body.appendChild(
-    area
-  );
-
-  area.focus();
-  area.select();
-
-  try{
-
-    document.execCommand(
-      'copy'
-    );
-
-    alert(
-      'Link do Sellium copiado! Agora é só enviar para seu amigo.'
-    );
-
-  }catch(e){
-
-    alert(
-      'Copie este link: ' +
-      url
-    );
-
-  }
-
-  document.body.removeChild(
-    area
-  );
-
+function normalizeSale(s){
+ return {
+  id:s.id||uid(),
+  date:s.date||todayISO(),
+  value:Number(s.value)||0,
+  product:s.product||'',
+  quantity:Number(s.quantity)||1,
+  payment:s.payment||'pix',
+  status:s.status||'pago'
+ };
 }
 
-/* SELLIUM PRO
-   Temporariamente mantém o botão separado.
-   O fluxo PRO será reconstruído depois.
-*/
+sales=sales.map(normalizeSale);
 
-function showPro(){
-
-  window.location.href =
-    './area-pro.html';
-
+function quickValue(value){
+ document.getElementById('saleValue').value=value;
+ document.getElementById('saleQuantity').value=1;
 }
 
-document
-  .getElementById(
-    'saleInput'
-  )
-  .addEventListener(
-    'keydown',
-    e=>{
+function quickSale(value){
+ document.getElementById('saleValue').value=value;
+ registerSale();
+}
 
-      if(
-        e.key === 'Enter'
-      )
-        addSale();
+function registerSale(){
+ const value=Number(document.getElementById('saleValue').value);
+ const product=document.getElementById('saleProduct').value;
+ const quantity=Number(document.getElementById('saleQuantity').value)||1;
+ const payment=document.getElementById('salePayment').value;
+ const status=document.getElementById('saleStatus').value;
 
+ if(!value || value<=0){
+  showToast('Digite um valor válido.');
+  return;
+ }
+
+ sales.push({
+  id:uid(),
+  date:todayISO(),
+  value:value,
+  product:product,
+  quantity:quantity,
+  payment:payment,
+  status:status
+ });
+
+ saveSales();
+
+ document.getElementById('saleValue').value='';
+ document.getElementById('saleQuantity').value=1;
+
+ showToast('✅ Venda registrada!');
+ renderAll();
+}
+
+function markPaid(id){
+ const s=sales.find(x=>x.id===id);
+ if(!s)return;
+ s.status='pago';
+ saveSales();
+ renderAll();
+ showToast('Venda marcada como paga.');
+}
+
+function markPending(id){
+ const s=sales.find(x=>x.id===id);
+ if(!s)return;
+ s.status='pendente';
+ saveSales();
+ renderAll();
+ showToast('Venda marcada como pendente.');
+}
+
+function cancelSale(id){
+ const s=sales.find(x=>x.id===id);
+ if(!s)return;
+ s.status='cancelada';
+ saveSales();
+ renderAll();
+ showToast('Venda cancelada.');
+}
+
+function deleteSale(id){
+ if(!confirm('Excluir esta venda?'))return;
+ sales=sales.filter(x=>x.id!==id);
+ saveSales();
+ renderAll();
+}
+
+function paidSales(){
+ return sales.filter(s=>s.status==='pago');
+}
+
+function pendingSales(){
+ return sales.filter(s=>s.status==='pendente');
+}
+
+function getSaleProfit(sale){
+ const product=products.find(p=>p.name===sale.product);
+
+ if(product){
+  return (product.price-product.cost)*sale.quantity;
+ }
+
+ return sale.value*0.4;
+}
+
+function addProduct(){
+ const name=document.getElementById('productName').value.trim();
+ const price=Number(document.getElementById('productPrice').value);
+ const cost=Number(document.getElementById('productCost').value);
+
+ if(!name || !price){
+  showToast('Preencha nome e preço.');
+  return;
+ }
+
+ products.push({
+  id:uid(),
+  name:name,
+  price:price,
+  cost:cost||0
+ });
+
+ saveProducts();
+
+ document.getElementById('productName').value='';
+ document.getElementById('productPrice').value='';
+ document.getElementById('productCost').value='';
+
+ showToast('📦 Produto adicionado!');
+ renderAll();
+}
+
+function deleteProduct(id){
+ if(!confirm('Excluir este produto?'))return;
+ products=products.filter(p=>p.id!==id);
+ saveProducts();
+ renderAll();
+}
+
+function renderProductOptions(){
+ const select=document.getElementById('saleProduct');
+
+ select.innerHTML='<option value="">Produto não informado</option>';
+
+ products.forEach(p=>{
+  select.innerHTML+=
+   `<option value="${escapeHTML(p.name)}">
+    ${escapeHTML(p.name)} — ${money(p.price)}
+   </option>`;
+ });
+}
+
+function addGoal(){
+ const name=document.getElementById('goalName').value.trim();
+ const value=Number(document.getElementById('goalValue').value);
+ const start=Number(document.getElementById('goalStart').value)||0;
+ const end=document.getElementById('goalEnd').value;
+
+ if(!name || !value){
+  showToast('Preencha nome e valor da meta.');
+  return;
+ }
+
+ goals.push({
+  id:uid(),
+  name:name,
+  value:value,
+  start:start,
+  end:end
+ });
+
+ saveGoals();
+
+ document.getElementById('goalName').value='';
+ document.getElementById('goalValue').value='';
+ document.getElementById('goalStart').value='';
+ document.getElementById('goalEnd').value='';
+
+ showToast('🎯 Meta criada!');
+ renderAll();
+}
+
+function deleteGoal(id){
+ if(!confirm('Excluir esta meta?'))return;
+ goals=goals.filter(g=>g.id!==id);
+ saveGoals();
+ renderAll();
+}
+
+function goalRevenue(goal){
+ return paidSales().reduce((sum,s)=>{
+  return sum+s.value;
+ },0)+Number(goal.start||0);
+}
+
+function mainGoal(){
+ return goals[0]||null;
+}
+
+function addExpense(){
+ const value=Number(document.getElementById('expenseValue').value);
+ const category=document.getElementById('expenseCategory').value;
+ const description=document.getElementById('expenseDescription').value.trim();
+
+ if(!value || value<=0){
+  showToast('Digite o valor da despesa.');
+  return;
+ }
+
+ expenses.push({
+  id:uid(),
+  date:todayISO(),
+  value:value,
+  category:category,
+  description:description
+ });
+
+ saveExpenses();
+
+ document.getElementById('expenseValue').value='';
+ document.getElementById('expenseDescription').value='';
+
+ showToast('💸 Despesa registrada!');
+ renderAll();
+}
+
+function deleteExpense(id){
+ if(!confirm('Excluir esta despesa?'))return;
+ expenses=expenses.filter(e=>e.id!==id);
+ saveExpenses();
+ renderAll();
+}
+
+function totalExpenses(){
+ return expenses.reduce((sum,e)=>sum+Number(e.value||0),0);
+}
+
+function todayExpenses(){
+ return expenses
+  .filter(e=>e.date===todayISO())
+  .reduce((sum,e)=>sum+Number(e.value||0),0);
+}
+
+function monthExpenses(){
+ const month=todayISO().slice(0,7);
+ return expenses
+  .filter(e=>e.date.startsWith(month))
+  .reduce((sum,e)=>sum+Number(e.value||0),0);
+}
+
+function monthRevenue(){
+ const month=todayISO().slice(0,7);
+ return paidSales()
+  .filter(s=>s.date.startsWith(month))
+  .reduce((sum,s)=>sum+s.value,0);
+}
+
+function goalRevenue(){
+ const income=Number(settings.income)||0;
+ const expensesValue=Number(settings.expenses)||0;
+ const days=Number(settings.days)||1;
+ return (income+expensesValue)/days;
+}
+
+function getMotivation(){
+ const revenue=paidSales()
+  .filter(s=>s.date===todayISO())
+  .reduce((a,b)=>a+b.value,0);
+
+ if(revenue===0)return ['Comece agora!','A primeira venda é o primeiro passo.'];
+ if(revenue<goalRevenue())return ['Continue!','Você está construindo seu resultado venda por venda.'];
+ return ['Você conseguiu!','Sua meta diária foi alcançada.'];
+}
+
+function renderMotivation(){
+ const [title,text]=getMotivation();
+ document.getElementById('motivationTitle').textContent=title;
+ document.getElementById('motivationText').textContent=text;
+}
+
+function renderDashboard(){
+ const today=paidSales().filter(s=>s.date===todayISO());
+
+ const revenue=today.reduce((a,b)=>a+b.value,0);
+ const goal=goalRevenue();
+ const remaining=Math.max(0,goal-revenue);
+ const percent=goal?Math.min(100,revenue/goal*100):0;
+
+ document.getElementById('dashRevenue').textContent=money(revenue);
+
+ document.getElementById('dashGoalText').textContent=
+  remaining>0
+   ? `Faltam ${money(remaining)} para sua meta de hoje.`
+   : '🎉 Sua meta de hoje foi alcançada!';
+
+ document.getElementById('dashProgress').style.width=percent+'%';
+ document.getElementById('dashPercent').textContent=Math.round(percent)+'%';
+ document.getElementById('dashGoal').textContent='Meta: '+money(goal);
+
+ document.getElementById('statPaid').textContent=today.length;
+ document.getElementById('statExpenses').textContent=money(todayExpenses());
+
+ const profit=today.reduce((sum,s)=>sum+getSaleProfit(s),0)-todayExpenses();
+
+ document.getElementById('statProfit').textContent=money(profit);
+ document.getElementById('statTicket').textContent=
+  money(today.length?revenue/today.length:0);
+
+ renderMotivation();
+ renderChart();
+ renderMainGoal();
+ renderRecent();
+}
+
+function renderChart(){
+ const chart=document.getElementById('chart');
+ if(!chart)return;
+
+ const days=[];
+
+ for(let i=6;i>=0;i--){
+  const d=new Date();
+  d.setDate(d.getDate()-i);
+  const iso=d.toISOString().slice(0,10);
+
+  const value=paidSales()
+   .filter(s=>s.date===iso)
+   .reduce((a,b)=>a+b.value,0);
+
+  days.push({
+   iso:iso,
+   value:value,
+   label:i===0?'Hoje':
+    d.toLocaleDateString('pt-BR',{weekday:'short'}).replace('.','')
+  });
+ }
+
+ const max=Math.max(...days.map(x=>x.value),1);
+
+ chart.innerHTML=days.map(d=>{
+  const h=Math.max(4,d.value/max*125);
+
+  return `
+   <div class="bar-wrap">
+    <div class="bar"
+      style="height:${h}px"
+      title="${money(d.value)}"></div>
+    <div class="bar-label">${d.label}</div>
+   </div>
+  `;
+ }).join('');
+}
+
+function renderRecent(){
+ const box=document.getElementById('recent');
+
+ const list=[
+  ...sales.map(s=>({
+   type:'sale',
+   date:s.date,
+   value:s.value,
+   text:s.product||'Venda'
+  })),
+  ...expenses.map(e=>({
+   type:'expense',
+   date:e.date,
+   value:e.value,
+   text:e.description||e.category
+  }))
+ ]
+ .sort((a,b)=>b.date.localeCompare(a.date))
+ .slice(0,8);
+
+ if(!list.length){
+  box.innerHTML='<div class="empty">Nenhuma movimentação ainda.</div>';
+  return;
+ }
+
+ box.innerHTML=list.map(x=>`
+  <div class="item">
+   <div class="between">
+    <div>
+     <div class="item-title">${escapeHTML(x.text)}</div>
+     <div class="item-sub">${formatDate(x.date)}</div>
+    </div>
+    <strong style="color:${x.type==='sale'?'var(--green)':'var(--red)'}">
+     ${x.type==='sale'?'+':'-'} ${money(x.value)}
+    </strong>
+   </div>
+  </div>
+ `).join('');
+}
+
+function renderGoals(){
+ const box=document.getElementById('goalsList');
+
+ if(!goals.length){
+  box.innerHTML='<div class="empty">Você ainda não criou nenhuma meta.</div>';
+  return;
+ }
+
+ box.innerHTML=goals.map(g=>{
+  const current=goalRevenue(g);
+  const percent=Math.min(100,current/g.value*100);
+  const remaining=Math.max(0,g.value-current);
+
+  return `
+   <div class="item">
+    <div class="between">
+     <div>
+      <div class="item-title">🎯 ${escapeHTML(g.name)}</div>
+      <div class="item-sub">
+       ${money(current)} de ${money(g.value)}
+      </div>
+     </div>
+     <button class="btn btn-red" onclick="deleteGoal('${g.id}')">Excluir</button>
+    </div>
+
+    <div class="goal-progress">
+     <div style="width:${percent}%"></div>
+    </div>
+
+    <div class="between">
+     <span style="font-size:11px;color:var(--muted)">
+      ${Math.round(percent)}%
+     </span>
+     <span style="font-size:11px;color:var(--muted)">
+      ${remaining>0?'Falta '+money(remaining):'Meta alcançada 🎉'}
+     </span>
+    </div>
+   </div>
+  `;
+ }).join('');
+}
+
+function renderMainGoal(){
+ const box=document.getElementById('mainGoalBox');
+ const g=mainGoal();
+
+ if(!g){
+  box.innerHTML=`
+   <div class="empty">
+    Nenhuma meta criada.<br>
+    Vá em <b>Metas</b> para criar uma.
+   </div>
+  `;
+  return;
+ }
+
+ const current=goalRevenue(g);
+ const percent=Math.min(100,current/g.value*100);
+
+ box.innerHTML=`
+  <div class="item">
+   <div class="item-title">${escapeHTML(g.name)}</div>
+   <div class="item-sub">
+    ${money(current)} de ${money(g.value)}
+   </div>
+   <div class="goal-progress">
+    <div style="width:${percent}%"></div>
+   </div>
+   <div class="item-sub">
+    ${Math.round(percent)}% concluído
+   </div>
+  </div>
+ `;
+}
+
+function saleHTML(s){
+ const status=
+  s.status==='pago'
+   ? '<span class="badge badge-green">PAGO</span>'
+   : s.status==='pendente'
+    ? '<span class="badge badge-yellow">PENDENTE</span>'
+    : '<span class="badge badge-red">CANCELADA</span>';
+
+ return `
+  <div class="item">
+   <div class="between">
+    <div>
+     <div class="item-title">${money(s.value)}</div>
+     <div class="item-sub">
+      ${escapeHTML(s.product||'Produto não informado')}
+      · ${s.quantity} un.
+      · ${escapeHTML(s.payment)}
+     </div>
+    </div>
+
+    ${status}
+   </div>
+
+   <div class="row" style="margin-top:10px;flex-wrap:wrap">
+    ${
+     s.status==='pendente'
+      ? `<button class="btn btn-green" onclick="markPaid('${s.id}')">Marcar pago</button>`
+      : `<button class="btn btn-dark" onclick="markPending('${s.id}')">Pendente</button>`
     }
-  );
 
-loadProfile();
-update();
+    <button class="btn btn-red" onclick="cancelSale('${s.id}')">Cancelar</button>
+    <button class="btn btn-red" onclick="deleteSale('${s.id}')">Excluir</button>
+   </div>
+  </div>
+ `;
+}
 
+function renderTodaySales(){
+ const box=document.getElementById('todaySales');
+
+ const list=sales.filter(s=>s.date===todayISO());
+
+ if(!list.length){
+  box.innerHTML='<div class="empty">Nenhuma venda registrada hoje.</div>';
+ }else{
+  box.innerHTML=list.slice().reverse().map(saleHTML).join('');
+ }
+
+ const paid=list.filter(s=>s.status==='pago');
+ const value=paid.reduce((a,b)=>a+b.value,0);
+
+ document.getElementById('salesTodayValue').textContent=money(value);
+ document.getElementById('salesTodayCount').textContent=paid.length;
+}
+
+function renderSalesStats(){
+ renderTodaySales();
+}
+
+function renderProducts(){
+ const box=document.getElementById('productsList');
+
+ if(!products.length){
+  box.innerHTML='<div class="empty">Nenhum produto cadastrado.</div>';
+  return;
+ }
+
+ box.innerHTML=products.map(p=>{
+  const profit=p.price-p.cost;
+  const margin=p.price?profit/p.price*100:0;
+
+  return `
+   <div class="item">
+    <div class="between">
+     <div>
+      <div class="item-title">${escapeHTML(p.name)}</div>
+      <div class="item-sub">
+       Venda: ${money(p.price)} · Custo: ${money(p.cost)}
+      </div>
+     </div>
+     <button class="btn btn-red" onclick="deleteProduct('${p.id}')">Excluir</button>
+    </div>
+
+    <div style="margin-top:9px">
+     <span class="badge badge-green">
+      Lucro ${money(profit)} · Margem ${margin.toFixed(1)}%
+     </span>
+    </div>
+   </div>
+  `;
+ }).join('');
+}
+
+function renderExpenses(){
+ const today=todayExpenses();
+ const month=monthExpenses();
+
+ document.getElementById('expenseToday').textContent=money(today);
+ document.getElementById('expenseMonth').textContent=money(month);
+
+ const box=document.getElementById('expensesList');
+
+ if(!expenses.length){
+  box.innerHTML='<div class="empty">Nenhuma despesa registrada.</div>';
+  return;
+ }
+
+ box.innerHTML=expenses
+  .slice()
+  .reverse()
+  .slice(0,30)
+  .map(e=>`
+   <div class="item">
+    <div class="between">
+     <div>
+      <div class="item-title">${money(e.value)}</div>
+      <div class="item-sub">
+       ${escapeHTML(e.category)}
+       ${e.description?' · '+escapeHTML(e.description):''}
+       · ${formatDate(e.date)}
+      </div>
+     </div>
+
+     <button class="btn btn-red" onclick="deleteExpense('${e.id}')">
+      Excluir
+     </button>
+    </div>
+   </div>
+  `).join('');
+}
+
+function renderHistory(){
+ const revenue=paidSales().reduce((a,b)=>a+b.value,0);
+ const exp=totalExpenses();
+ const profit=paidSales().reduce((a,b)=>a+getSaleProfit(b),0)-exp;
+
+ document.getElementById('historyRevenue').textContent=money(revenue);
+ document.getElementById('historyExpenses').textContent=money(exp);
+ document.getElementById('historyProfit').textContent=money(profit);
+ document.getElementById('historySales').textContent=sales.length;
+
+ const box=document.getElementById('historyList');
+
+ const list=[
+  ...sales.map(s=>({
+   date:s.date,
+   text:'Venda',
+   detail:s.product||'Produto',
+   value:s.value,
+   positive:true
+  })),
+  ...expenses.map(e=>({
+   date:e.date,
+   text:'Despesa',
+   detail:e.description||e.category,
+   value:e.value,
+   positive:false
+  }))
+ ].sort((a,b)=>b.date.localeCompare(a.date));
+
+ if(!list.length){
+  box.innerHTML='<div class="empty">Histórico vazio.</div>';
+  return;
+ }
+
+ box.innerHTML=list.slice(0,50).map(x=>`
+  <div class="item">
+   <div class="between">
+    <div>
+     <div class="item-title">${x.text}</div>
+     <div class="item-sub">
+      ${escapeHTML(x.detail)} · ${formatDate(x.date)}
+     </div>
+    </div>
+    <strong style="color:${x.positive?'var(--green)':'var(--red)'}">
+     ${x.positive?'+':'-'} ${money(x.value)}
+    </strong>
+   </div>
+  </div>
+ `).join('');
+}
+
+function renderReports(){
+ const revenue=paidSales().reduce((a,b)=>a+b.value,0);
+ const exp=totalExpenses();
+ const profit=paidSales().reduce((a,b)=>a+getSaleProfit(b),0)-exp;
+ const paid=paidSales().length;
+ const pending=pendingSales().length;
+ const ticket=paid?revenue/paid:0;
+ const margin=revenue?profit/revenue*100:0;
+
+ document.getElementById('reportRevenue').textContent=money(revenue);
+ document.getElementById('reportExpenses').textContent=money(exp);
+ document.getElementById('reportProfit').textContent=money(profit);
+ document.getElementById('reportTicket').textContent=money(ticket);
+ document.getElementById('reportPaid').textContent=paid;
+ document.getElementById('reportPending').textContent=pending;
+ document.getElementById('reportExpenseCount').textContent=expenses.length;
+ document.getElementById('reportMargin').textContent=margin.toFixed(1)+'%';
+
+ const g=mainGoal();
+
+ document.getElementById('reportMainGoal').innerHTML=
+  g
+   ? `<div class="item">
+       <div class="item-title">${escapeHTML(g.name)}</div>
+       <div class="item-sub">${money(g.value)}</div>
+      </div>`
+   : '<div class="empty">Nenhuma meta cadastrada.</div>';
+}
+
+function backupData(){
+ const data={
+  app:'Sellium',
+  version:'PRO',
+  price:'R$ 9,90/mês',
+  exportedAt:new Date().toISOString(),
+  sales:sales,
+  products:products,
+  goals:goals,
+  expenses:expenses,
+  settings:settings,
+  email:localStorage.getItem('qvh_email')||''
+ };
+
+ const blob=new Blob(
+  [JSON.stringify(data,null,2)],
+  {type:'application/json'}
+ );
+
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement('a');
+
+ a.href=url;
+ a.download='sellium-backup.json';
+ a.click();
+
+ URL.revokeObjectURL(url);
+
+ showToast('✅ Backup criado!');
+}
+
+function shareResult(){
+ const revenue=paidSales().reduce((a,b)=>a+b.value,0);
+ const exp=totalExpenses();
+ const profit=paidSales().reduce((a,b)=>a+getSaleProfit(b),0)-exp;
+
+ const url='https://quantovenderhoje.onrender.com';
+
+ const text=
+  `📊 Meu resultado no Sellium\n\n`+
+  `💰 Vendas: ${money(revenue)}\n`+
+  `💸 Despesas: ${money(exp)}\n`+
+  `📈 Lucro estimado: ${money(profit)}\n\n`+
+  `Acompanhe suas vendas com o Sellium:\n${url}`;
+
+ if(navigator.share){
+  navigator.share({
+   title:'Sellium',
+   text:text,
+   url:url
+  }).catch(()=>{});
+  return;
+ }
+
+ if(navigator.clipboard){
+  navigator.clipboard.writeText(text)
+   .then(()=>showToast('📤 Resultado copiado!'))
+   .catch(()=>fallbackShare(text));
+  return;
+ }
+
+ fallbackShare(text);
+}
+
+function fallbackShare(text){
+ const area=document.createElement('textarea');
+ area.value=text;
+ area.style.position='fixed';
+ area.style.left='-9999px';
+
+ document.body.appendChild(area);
+ area.select();
+
+ try{
+  document.execCommand('copy');
+  showToast('📤 Resultado copiado!');
+ }catch(e){
+  prompt('Copie o resultado:',text);
+ }
+
+ document.body.removeChild(area);
+}
+
+function clearAllData(){
+ if(!confirm(
+  'ATENÇÃO: isso apagará vendas, produtos, metas, despesas e configurações deste aparelho. Continuar?'
+ ))return;
+
+ localStorage.removeItem('qvh_sales');
+ localStorage.removeItem('qvh_products');
+ localStorage.removeItem('qvh_goals');
+ localStorage.removeItem('qvh_expenses');
+ localStorage.removeItem('qvh_settings');
+
+ sales=[];
+ products=[];
+ goals=[];
+ expenses=[];
+
+ settings={
+  income:4000,
+  expenses:1200,
+  days:26
+ };
+
+ renderAll();
+
+ showToast('Dados apagados.');
+}
+
+function escapeHTML(value){
+ return String(value??'')
+  .replace(/&/g,'&amp;')
+  .replace(/</g,'&lt;')
+  .replace(/>/g,'&gt;')
+  .replace(/"/g,'&quot;')
+  .replace(/'/g,'&#039;');
+}
+
+function renderAll(){
+ renderProductOptions();
+ renderDashboard();
+ renderGoals();
+ renderSalesStats();
+ renderProducts();
+ renderExpenses();
+ renderHistory();
+ renderReports();
+}
+
+renderAll();
 </script>
 
 </body>
-      </html>
+  </html>
