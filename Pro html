@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
+
+  <title>Sellium PRO</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #07111f;
+      color: #f5f8fb;
+    }
+
+    .top {
+      background: linear-gradient(135deg, #07111f, #102b45, #0f5f42);
+      padding: 35px 20px 30px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 78px;
+      height: 78px;
+      border-radius: 22px;
+      object-fit: cover;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 5px 0;
+      font-size: 30px;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      color: #c9d5e0;
+      font-size: 15px;
+    }
+
+    .pro-badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 7px 15px;
+      border-radius: 999px;
+      background: #21d47b;
+      color: #07111f;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #0d1b2d;
+      border: 1px solid #20354d;
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,.18);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #21d47b;
+      font-size: 21px;
+    }
+
+    .price {
+      text-align: center;
+      padding: 18px 0;
+    }
+
+    .price strong {
+      display: block;
+      font-size: 38px;
+      color: #21d47b;
+    }
+
+    .price span {
+      color: #91a4b9;
+      font-size: 14px;
+    }
+
+    .feature {
+      display: flex;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid #20354d;
+    }
+
+    .feature:last-child {
+      border-bottom: 0;
+    }
+
+    .icon {
+      font-size: 23px;
+      min-width: 28px;
+    }
+
+    .feature strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .feature small {
+      color: #91a4b9;
+      line-height: 1.4;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 8px 0;
+      border-radius: 12px;
+      border: 1px solid #20354d;
+      background: #102238;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #21d47b;
+    }
+
+    input::placeholder {
+      color: #71869d;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: 0;
+      border-radius: 12px;
+      margin-top: 9px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-green {
+      background: #21d47b;
+      color: #07111f;
+    }
+
+    .btn-green:hover {
+      background: #16b866;
+    }
+
+    .btn-dark {
+      background: #102238;
+      color: #f5f8fb;
+      border: 1px solid #20354d;
+    }
+
+    .link-button {
+      background: transparent;
+      color: #3da5ff;
+      font-size: 14px;
+      padding: 10px;
+    }
+
+    .status {
+      text-align: center;
+      padding: 13px;
+      margin-top: 12px;
+      border-radius: 12px;
+      background: #102238;
+      color: #91a4b9;
+      font-size: 14px;
+    }
+
+    .success {
+      background: rgba(33,212,123,.12);
+      color: #21d47b;
+    }
+
+    .error {
+      background: rgba(255,93,115,.12);
+      color: #ff7184;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 30px 10px;
+    }
+
+    .small {
+      text-align: center;
+      color: #71869d;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 12px;
+    }
+
+    .back {
+      text-align: center;
+      margin: 25px 0;
+    }
+
+    .back a {
+      color: #3da5ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .secure {
+      text-align: center;
+      color: #71869d;
+      font-size: 13px;
+      margin-top: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top">
+
+    <img
+      src="./icon-192.png"
+      class="logo"
+      alt="Sellium"
+      onerror="this.style.display='none'"
+    >
+
+    <h1>Sellium PRO</h1>
+
+    <div class="subtitle">
+      Mais controle para vender, organizar e acompanhar seu negócio.
+    </div>
+
+    <div class="pro-badge">
+      ✦ ÁREA PRO
+    </div>
+
+  </div>
+
+
+  <div class="container">
+
+    <!-- BENEFÍCIOS -->
+
+    <div class="card">
+
+      <h2>🚀 Tenha o Sellium PRO</h2>
+
+      <div class="price">
+        <strong>R$ 9,90</strong>
+        <span>por mês</span>
+      </div>
+
+      <div class="feature">
+        <div class="icon">📊</div>
+        <div>
+          <strong>Dashboard completo</strong>
+          <small>
+            Acompanhe vendas, despesas, lucro e desempenho.
+          </small>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="icon">🎯</div>
+        <div>
+          <strong>Metas</strong>
+          <small>
+            Crie e acompanhe suas metas de faturamento.
+          </small>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="icon">💵</div>
+        <div>
+          <strong>Controle de vendas</strong>
+          <small>
+            Registre suas vendas e acompanhe pagamentos.
+          </small>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="icon">📦</div>
+        <div>
+          <strong>Produtos</strong>
+          <small>
+            Cadastre preços, custos, lucro e margem.
+          </small>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="icon">💸</div>
+        <div>
+          <strong>Despesas</strong>
+          <small>
+            Registre seus gastos e veja o impacto no resultado.
+          </small>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="icon">📈</div>
+        <div>
+          <strong>Relatórios</strong>
+          <small>
+            Tenha uma visão mais completa do seu negócio.
+          </small>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="icon">💾</div>
+        <div>
+          <strong>Backup dos dados</strong>
+          <small>
+            Faça uma cópia dos seus dados quando quiser.
+          </small>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ÁREA DE ACESSO -->
+
+    <div class="card">
+
+      <h2 id="formTitle">
+        🔐 Acessar o Sellium PRO
+      </h2>
+
+      <p id="formDescription">
+        Crie sua conta ou entre para acessar sua Área PRO.
+      </p>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Seu e-mail"
+        autocomplete="email"
+      >
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Senha"
+        autocomplete="current-password"
+      >
+
+      <div id="confirmArea" class="hidden">
+
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="Confirme sua senha"
+          autocomplete="new-password"
+        >
+
+      </div>
+
+
+      <button
+        id="mainButton"
+        class="btn-green"
+        onclick="continuar()"
+      >
+        🚀 CRIAR CONTA PRO
+      </button>
+
+
+      <button
+        id="toggleButton"
+        class="link-button"
+        onclick="alternarModo()"
+      >
+        Já tenho uma conta → Entrar
+      </button>
+
+
+      <div id="status" class="status">
+        Preencha seus dados para continuar.
+      </div>
+
+
+      <div class="secure">
+        🔒 Seus dados ficam neste dispositivo.
+      </div>
+
+    </div>
+
+
+    <!-- ACESSO CONFIRMADO -->
+
+    <div
+      id="successArea"
+      class="card hidden"
+    >
+
+      <h2>🎉 Tudo certo!</h2>
+
+      <p>
+        Seu acesso foi confirmado. Você será encaminhado para a Área PRO.
+      </p>
+
+      <div class="status success">
+        ✓ Acesso PRO confirmado
+      </div>
+
+      <button
+        class="btn-green"
+        onclick="irParaPro()"
+      >
+        🚀 ENTRAR NA ÁREA PRO
+      </button>
+
+    </div>
+
+
+    <div class="back">
+
+      <a href="./index.html">
+        ← Voltar para o Sellium
+      </a>
+
+    </div>
+
+  </div>
+
+
+<script>
+
+  /*
+   * =========================================
+   * SELLium PRO
+   * =========================================
+   *
+   * Esta página é separada da area-pro.html.
+   *
+   * O pagamento/validação automática será
+   * conectado posteriormente.
+   *
+   * =========================================
+   */
+
+
+  const EMAIL_KEY = "sellium_email";
+  const PRO_KEY = "sellium_pro";
+
+  let modoCriarConta = true;
+
+
+  /* ================================
+     UTILIDADES
+  ================================= */
+
+  function normalizarEmail(email) {
+
+    return String(email || "")
+      .trim()
+      .toLowerCase();
+
+  }
+
+
+  function salvarEmail(email) {
+
+    try {
+
+      localStorage.setItem(
+        EMAIL_KEY,
+        normalizarEmail(email)
+      );
+
+    } catch (erro) {
+
+      console.log(
+        "Não foi possível salvar o e-mail."
+      );
+
+    }
+
+  }
+
+
+  function salvarPro() {
+
+    try {
+
+      localStorage.setItem(
+        PRO_KEY,
+        "true"
+      );
+
+    } catch (erro) {}
+
+  }
+
+
+  function mostrarStatus(
+    mensagem,
+    tipo = ""
+  ) {
+
+    const status =
+      document.getElementById("status");
+
+    status.className = "status";
+
+    if (tipo) {
+
+      status.classList.add(tipo);
+
+    }
+
+    status.textContent = mensagem;
+
+  }
+
+
+  /* ================================
+     ALTERNAR MODO
+  ================================= */
+
+  function alternarModo() {
+
+    modoCriarConta =
+      !modoCriarConta;
+
+
+    const title =
+      document.getElementById(
+        "formTitle"
+      );
+
+    const description =
+      document.getElementById(
+        "formDescription"
+      );
+
+    const confirmArea =
+      document.getElementById(
+        "confirmArea"
+      );
+
+    const mainButton =
+      document.getElementById(
+        "mainButton"
+      );
+
+    const toggleButton =
+      document.getElementById(
+        "toggleButton"
+      );
+
+
+    if (modoCriarConta) {
+
+      title.textContent =
+        "🔐 Criar minha conta PRO";
+
+      description.textContent =
+        "Crie sua conta para continuar.";
+
+      confirmArea.classList.remove(
+        "hidden"
+      );
+
+      mainButton.textContent =
+        "🚀 CRIAR CONTA PRO";
+
+      toggleButton.textContent =
+        "Já tenho uma conta → Entrar";
+
+
+    } else {
+
+      title.textContent =
+        "🔐 Entrar no Sellium PRO";
+
+      description.textContent =
+        "Entre com seu e-mail e senha.";
+
+      confirmArea.classList.add(
+        "hidden"
+      );
+
+      mainButton.textContent =
+        "🔐 ENTRAR NO PRO";
+
+      toggleButton.textContent =
+        "Primeiro acesso? Criar minha conta";
+
+    }
+
+  }
+
+
+  /* ================================
+     CONTINUAR
+  ================================= */
+
+  function continuar() {
+
+    const email =
+      normalizarEmail(
+        document.getElementById(
+          "email"
+        ).value
+      );
+
+    const password =
+      document.getElementById(
+        "password"
+      ).value;
+
+
+    if (!email) {
+
+      mostrarStatus(
+        "Digite seu e-mail.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if (!email.includes("@")) {
+
+      mostrarStatus(
+        "Digite um e-mail válido.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if (!password) {
+
+      mostrarStatus(
+        "Digite uma senha.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if (password.length < 6) {
+
+      mostrarStatus(
+        "A senha precisa ter pelo menos 6 caracteres.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if (modoCriarConta) {
+
+      const confirmPassword =
+        document.getElementById(
+          "confirmPassword"
+        ).value;
+
+
+      if (!confirmPassword) {
+
+        mostrarStatus(
+          "Confirme sua senha.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (password !== confirmPassword) {
+
+        mostrarStatus(
+          "As senhas não são iguais.",
+          "error"
+        );
+
+        return;
+
+      }
+
+    }
+
+
+    /*
+     * Por enquanto salvamos o e-mail
+     * e preparamos o acesso.
+     *
+     * O pagamento e a validação real
+     * serão conectados na próxima etapa.
+     */
+
+    salvarEmail(email);
+
+    salvarPro();
+
+
+    document.getElementById(
+      "formTitle"
+    ).textContent =
+      "🎉 Acesso preparado!";
+
+
+    document.getElementById(
+      "formDescription"
+    ).textContent =
+      "Agora você pode entrar na sua Área PRO.";
+
+
+    document.getElementById(
+      "mainButton"
+    ).classList.add(
+      "hidden"
+    );
+
+
+    document.getElementById(
+      "toggleButton"
+    ).classList.add(
+      "hidden"
+    );
+
+
+    mostrarStatus(
+      "✓ Dados confirmados. Entrando no PRO...",
+      "success"
+    );
+
+
+    setTimeout(
+      function() {
+
+        irParaPro();
+
+      },
+      700
+    );
+
+  }
+
+
+  /* ================================
+     IR PARA ÁREA PRO
+  ================================= */
+
+  function irParaPro() {
+
+    window.location.href =
+      "./area-pro.html";
+
+  }
+
+
+  /* ================================
+     INÍCIO
+  ================================= */
+
+  window.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+      try {
+
+        const email =
+          localStorage.getItem(
+            EMAIL_KEY
+          );
+
+        if (email) {
+
+          document.getElementById(
+            "email"
+          ).value = email;
+
+        }
+
+      } catch (erro) {
+
+        console.log(erro);
+
+      }
+
+    }
+  );
+
+</script>
+
+</body>
+</html>
