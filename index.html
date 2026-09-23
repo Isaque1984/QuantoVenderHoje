@@ -546,6 +546,71 @@ main{
   font-size:15px;
 }
 
+/* COMPARTILHAMENTO */
+.share-card{
+  background:linear-gradient(135deg,#effdf4,#ffffff);
+  border:1px solid #bbf7d0;
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:16px;
+  box-shadow:0 3px 12px rgba(15,23,42,.04);
+}
+
+.share-content{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.share-icon{
+  width:52px;
+  height:52px;
+  border-radius:16px;
+  background:#16a34a;
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:26px;
+  flex:none;
+  box-shadow:0 6px 16px rgba(22,163,74,.25);
+}
+
+.share-card h3{
+  margin:0 0 4px;
+  font-size:18px;
+}
+
+.share-card p{
+  margin:0;
+  color:#667085;
+  font-size:13px;
+  line-height:1.45;
+}
+
+.share-btn{
+  width:100%;
+  margin-top:14px;
+  border:0;
+  border-radius:14px;
+  padding:14px;
+  background:#16a34a;
+  color:#fff;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.share-btn:active{
+  transform:scale(.98);
+}
+
+.email-saved{
+  margin-top:7px;
+  color:#15803d;
+  font-size:12px;
+  font-weight:700;
+}
+
 @media(max-width:390px){
   .remaining{font-size:42px}
   .quick button{font-size:12px}
@@ -635,6 +700,7 @@ main{
     </div>
 
     <div class="seller-box" id="sellerBox">
+
       <div class="field">
         <label>Preço do produto</label>
         <input id="productPrice" type="number" step="0.01" placeholder="Ex.: 13">
@@ -648,39 +714,88 @@ main{
       <div class="seller-result" id="sellerResult">
         Informe os valores para calcular.
       </div>
+
     </div>
   </div>
 
   <div class="card insight">
     <div class="insight-icon">💡</div>
-    <strong id="insightTitle">Comece sua primeira venda</strong>
+
+    <strong id="insightTitle">
+      Comece sua primeira venda
+    </strong>
+
     <p id="insightText">
       Cada venda registrada atualiza automaticamente o quanto falta para sua meta.
     </p>
   </div>
 
   <div class="card">
-    <div class="card-title">Últimos 7 dias</div>
+
+    <div class="card-title">
+      Últimos 7 dias
+    </div>
+
     <div class="card-subtitle">
       Uma visão rápida do seu ritmo de vendas.
     </div>
 
     <div class="chart" id="chart"></div>
+
+  </div>
+
+  <!-- COMPARTILHAR -->
+  <div class="share-card">
+
+    <div class="share-content">
+
+      <div class="share-icon">
+        📤
+      </div>
+
+      <div>
+        <h3>Compartilhe o Sellium</h3>
+
+        <p>
+          Convide um amigo para organizar as vendas e acompanhar a meta.
+        </p>
+      </div>
+
+    </div>
+
+    <button
+      class="share-btn"
+      onclick="compartilharSellium()"
+    >
+      📤 Compartilhar com um amigo
+    </button>
+
   </div>
 
   <div class="card pro-card">
+
     <div class="pro-top">
-      <span style="font-size:13px;font-weight:800">SELLIUM</span>
-      <span class="pro-badge">PRO</span>
+
+      <span style="font-size:13px;font-weight:800">
+        SELLIUM
+      </span>
+
+      <span class="pro-badge">
+        PRO
+      </span>
+
     </div>
 
-    <h3>Quer enxergar seu negócio de verdade?</h3>
+    <h3>
+      Quer enxergar seu negócio de verdade?
+    </h3>
 
     <p>
       Desbloqueie ferramentas para acompanhar sua evolução e entender onde seu dinheiro está.
     </p>
 
     <div class="pro-list">
+
       <div class="pro-item">
         <span class="lock">🔒</span>
         Histórico completo
@@ -700,11 +815,13 @@ main{
         <span class="lock">🔒</span>
         Insights inteligentes
       </div>
+
     </div>
 
     <button class="pro-button" onclick="showPro()">
       Conhecer o Sellium PRO
     </button>
+
   </div>
 
 </section>
@@ -712,7 +829,11 @@ main{
 <section id="sales" class="page">
 
   <div class="card">
-    <div class="card-title">Vendas de hoje</div>
+
+    <div class="card-title">
+      Vendas de hoje
+    </div>
+
     <div class="card-subtitle">
       Tudo que você registrar durante o dia aparece aqui.
     </div>
@@ -722,6 +843,7 @@ main{
     <button class="clear" onclick="clearSales()">
       Limpar vendas de hoje
     </button>
+
   </div>
 
 </section>
@@ -729,12 +851,17 @@ main{
 <section id="history" class="page">
 
   <div class="card">
-    <div class="card-title">Resumo</div>
+
+    <div class="card-title">
+      Resumo
+    </div>
+
     <div class="card-subtitle">
       Uma visão simples do seu desempenho recente.
     </div>
 
     <div class="stats">
+
       <div class="stat">
         <small>Vendas registradas</small>
         <strong id="salesCount">0</strong>
@@ -744,33 +871,55 @@ main{
         <small>Total vendido</small>
         <strong id="historyTotal">R$ 0,00</strong>
       </div>
+
     </div>
+
   </div>
 
   <div class="card">
-    <div class="card-title">Evolução</div>
+
+    <div class="card-title">
+      Evolução
+    </div>
+
     <div class="card-subtitle">
       O gráfico básico mostra seu ritmo recente.
     </div>
 
     <div class="chart" id="chartHistory"></div>
+
   </div>
 
   <div class="card pro-card">
+
     <div class="pro-top">
-      <span style="font-size:13px;font-weight:800">HISTÓRICO COMPLETO</span>
-      <span class="pro-badge">PRO</span>
+
+      <span style="font-size:13px;font-weight:800">
+        HISTÓRICO COMPLETO
+      </span>
+
+      <span class="pro-badge">
+        PRO
+      </span>
+
     </div>
 
-    <h3>Não perca seus resultados.</h3>
+    <h3>
+      Não perca seus resultados.
+    </h3>
 
     <p>
       No PRO você poderá acompanhar períodos maiores e comparar sua evolução.
     </p>
 
-    <button class="pro-button" onclick="showPro()" style="margin-top:16px">
+    <button
+      class="pro-button"
+      onclick="showPro()"
+      style="margin-top:16px"
+    >
       Desbloquear histórico completo
     </button>
+
   </div>
 
 </section>
@@ -778,36 +927,107 @@ main{
 <section id="profile" class="page">
 
   <div class="card">
-    <div class="card-title">Sua meta</div>
+
+    <div class="card-title">
+      Seu perfil
+    </div>
+
+    <div class="card-subtitle">
+      Guarde seu e-mail para facilitar sua identificação no Sellium.
+    </div>
+
+    <div class="field">
+
+      <label>
+        Seu e-mail
+      </label>
+
+      <input
+        id="profileEmail"
+        type="email"
+        inputmode="email"
+        autocomplete="email"
+        placeholder="seu@email.com"
+      >
+
+      <div
+        class="email-saved"
+        id="emailStatus"
+      ></div>
+
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="card-title">
+      Sua meta
+    </div>
+
     <div class="card-subtitle">
       Esses valores são usados para calcular sua meta diária.
     </div>
 
     <div class="field">
-      <label>Quanto quer ganhar por mês?</label>
-      <input id="profileIncome" type="number">
+
+      <label>
+        Quanto quer ganhar por mês?
+      </label>
+
+      <input
+        id="profileIncome"
+        type="number"
+      >
+
     </div>
 
     <div class="field">
-      <label>Despesas mensais do trabalho</label>
-      <input id="profileExpenses" type="number">
+
+      <label>
+        Despesas mensais do trabalho
+      </label>
+
+      <input
+        id="profileExpenses"
+        type="number"
+      >
+
     </div>
 
     <div class="field">
-      <label>Dias de trabalho por mês</label>
-      <input id="profileDays" type="number">
+
+      <label>
+        Dias de trabalho por mês
+      </label>
+
+      <input
+        id="profileDays"
+        type="number"
+      >
+
     </div>
 
-    <button class="save-settings" onclick="saveProfile()">
-      Atualizar minha meta
+    <button
+      class="save-settings"
+      onclick="saveProfile()"
+    >
+      Salvar perfil e atualizar meta
     </button>
+
   </div>
 
   <div class="card">
-    <div class="card-title">Como calculamos?</div>
+
+    <div class="card-title">
+      Como calculamos?
+    </div>
+
     <p style="color:#667085;font-size:14px;line-height:1.6">
+
       Sua meta diária considera o valor que você deseja ganhar,
       suas despesas mensais e quantos dias pretende trabalhar.
+
     </p>
 
     <div style="
@@ -818,25 +1038,43 @@ main{
       font-weight:800;
       font-size:14px;
     ">
+
       Meta diária = (ganho desejado + despesas) ÷ dias trabalhados
+
     </div>
+
   </div>
 
   <div class="card pro-card">
+
     <div class="pro-top">
-      <span style="font-size:13px;font-weight:800">RECURSOS EXTRAS</span>
-      <span class="pro-badge">PRO</span>
+
+      <span style="font-size:13px;font-weight:800">
+        RECURSOS EXTRAS
+      </span>
+
+      <span class="pro-badge">
+        PRO
+      </span>
+
     </div>
 
-    <h3>Mais controle sobre seu dinheiro.</h3>
+    <h3>
+      Mais controle sobre seu dinheiro.
+    </h3>
 
     <p>
       Controle custos, lucro, produtos, metas e resultados em um só lugar.
     </p>
 
-    <button class="pro-button" onclick="showPro()" style="margin-top:16px">
+    <button
+      class="pro-button"
+      onclick="showPro()"
+      style="margin-top:16px"
+    >
       Conhecer o PRO
     </button>
+
   </div>
 
 </section>
@@ -844,68 +1082,139 @@ main{
 </main>
 
 <nav class="nav">
-  <button class="active" onclick="showPage('home',this)">
+
+  <button
+    class="active"
+    onclick="showPage('home',this)"
+  >
+
     <span class="nav-icon">🏠</span>
+
     Início
+
   </button>
 
-  <button onclick="showPage('sales',this)">
+  <button
+    onclick="showPage('sales',this)"
+  >
+
     <span class="nav-icon">💰</span>
+
     Vendas
+
   </button>
 
-  <button onclick="showPage('history',this)">
+  <button
+    onclick="showPage('history',this)"
+  >
+
     <span class="nav-icon">📊</span>
+
     Histórico
+
   </button>
 
-  <button onclick="showPage('profile',this)">
+  <button
+    onclick="showPage('profile',this)"
+  >
+
     <span class="nav-icon">👤</span>
+
     Perfil
+
   </button>
+
 </nav>
 
 </div>
 
-<div class="modal" id="settingsModal" onclick="closeSettings(event)">
-  <div class="modal-box" onclick="event.stopPropagation()">
+<div
+  class="modal"
+  id="settingsModal"
+  onclick="closeSettings(event)"
+>
 
-    <button class="close" onclick="closeSettings()">✕</button>
+  <div
+    class="modal-box"
+    onclick="event.stopPropagation()"
+  >
 
-    <div class="modal-title">Configurar minha meta</div>
+    <button
+      class="close"
+      onclick="closeSettings()"
+    >
+      ✕
+    </button>
 
-    <div class="field">
-      <label>Quanto você quer ganhar por mês?</label>
-      <input id="incomeInput" type="number">
+    <div class="modal-title">
+      Configurar minha meta
     </div>
 
     <div class="field">
-      <label>Despesas mensais</label>
-      <input id="expensesInput" type="number">
+
+      <label>
+        Quanto você quer ganhar por mês?
+      </label>
+
+      <input
+        id="incomeInput"
+        type="number"
+      >
+
     </div>
 
     <div class="field">
-      <label>Dias de trabalho por mês</label>
-      <input id="daysInput" type="number">
+
+      <label>
+        Despesas mensais
+      </label>
+
+      <input
+        id="expensesInput"
+        type="number"
+      >
+
     </div>
 
-    <button class="save-settings" onclick="saveSettings()">
+    <div class="field">
+
+      <label>
+        Dias de trabalho por mês
+      </label>
+
+      <input
+        id="daysInput"
+        type="number"
+      >
+
+    </div>
+
+    <button
+      class="save-settings"
+      onclick="saveSettings()"
+    >
       Salvar minha meta
     </button>
 
   </div>
+
 </div>
 
 <script>
 
 const money = value =>
-  Number(value || 0).toLocaleString('pt-BR',{
-    style:'currency',
-    currency:'BRL'
-  });
+  Number(value || 0).toLocaleString(
+    'pt-BR',
+    {
+      style:'currency',
+      currency:'BRL'
+    }
+  );
 
 /* Mantido para preservar os dados existentes */
-let sales = JSON.parse(localStorage.getItem('qvh_sales') || '[]');
+let sales = JSON.parse(
+  localStorage.getItem('qvh_sales') || '[]'
+);
 
 let settings = JSON.parse(
   localStorage.getItem('qvh_settings') ||
@@ -917,21 +1226,48 @@ let settings = JSON.parse(
 );
 
 function goal(){
-  const days = Number(settings.days) || 1;
-  return (Number(settings.income) + Number(settings.expenses)) / days;
+
+  const days =
+    Number(settings.days) || 1;
+
+  return (
+    Number(settings.income) +
+    Number(settings.expenses)
+  ) / days;
+
 }
 
 function total(){
-  return sales.reduce((sum,sale)=>sum + Number(sale),0);
+
+  return sales.reduce(
+    (sum,sale)=>
+      sum + Number(sale),
+    0
+  );
+
 }
 
 function remaining(){
-  return Math.max(0,goal() - total());
+
+  return Math.max(
+    0,
+    goal() - total()
+  );
+
 }
 
 function saveData(){
-  localStorage.setItem('qvh_sales',JSON.stringify(sales));
-  localStorage.setItem('qvh_settings',JSON.stringify(settings));
+
+  localStorage.setItem(
+    'qvh_sales',
+    JSON.stringify(sales)
+  );
+
+  localStorage.setItem(
+    'qvh_settings',
+    JSON.stringify(settings)
+  );
+
 }
 
 function update(){
@@ -940,79 +1276,158 @@ function update(){
   const t = total();
   const r = remaining();
 
-  document.getElementById('remaining').textContent = money(r);
-  document.getElementById('todayTotal').textContent = money(t);
-  document.getElementById('goalText').textContent = 'Meta: ' + money(g);
+  document.getElementById(
+    'remaining'
+  ).textContent = money(r);
 
-  const percent = g > 0 ? Math.min(100,(t/g)*100) : 0;
+  document.getElementById(
+    'todayTotal'
+  ).textContent = money(t);
 
-  document.getElementById('progressBar').style.width = percent + '%';
-  document.getElementById('progressText').textContent =
-    Math.round(percent) + '% da meta';
+  document.getElementById(
+    'goalText'
+  ).textContent =
+    'Meta: ' + money(g);
+
+  const percent =
+    g > 0
+      ? Math.min(100,(t/g)*100)
+      : 0;
+
+  document.getElementById(
+    'progressBar'
+  ).style.width =
+    percent + '%';
+
+  document.getElementById(
+    'progressText'
+  ).textContent =
+    Math.round(percent) +
+    '% da meta';
 
   if(t >= g){
-    document.getElementById('remaining').classList.add('ok');
 
-    document.getElementById('heroText').textContent =
+    document
+      .getElementById('remaining')
+      .classList.add('ok');
+
+    document.getElementById(
+      'heroText'
+    ).textContent =
       '🎉 Meta atingida! Você conseguiu bater sua meta de hoje.';
 
-    document.getElementById('insightTitle').textContent =
+    document.getElementById(
+      'insightTitle'
+    ).textContent =
       'Meta do dia atingida!';
 
-    document.getElementById('insightText').textContent =
+    document.getElementById(
+      'insightText'
+    ).textContent =
       'Parabéns. Você chegou ao valor que precisava vender hoje.';
+
   }else{
 
-    document.getElementById('remaining').classList.remove('ok');
+    document
+      .getElementById('remaining')
+      .classList.remove('ok');
 
     if(t === 0){
-      document.getElementById('heroText').textContent =
+
+      document.getElementById(
+        'heroText'
+      ).textContent =
         'Você está começando o dia. Vamos buscar sua meta?';
+
     }else{
-      document.getElementById('heroText').textContent =
-        'Continue vendendo. Ainda faltam ' + money(r) + '.';
+
+      document.getElementById(
+        'heroText'
+      ).textContent =
+        'Continue vendendo. Ainda faltam ' +
+        money(r) +
+        '.';
+
     }
 
     if(sales.length === 0){
-      document.getElementById('insightTitle').textContent =
+
+      document.getElementById(
+        'insightTitle'
+      ).textContent =
         'Comece sua primeira venda';
 
-      document.getElementById('insightText').textContent =
+      document.getElementById(
+        'insightText'
+      ).textContent =
         'Cada venda registrada atualiza automaticamente o quanto falta para sua meta.';
-    }else{
-      document.getElementById('insightTitle').textContent =
-        'Você já vendeu ' + money(t);
 
-      document.getElementById('insightText').textContent =
-        'Faltam ' + money(r) + ' para alcançar sua meta diária.';
+    }else{
+
+      document.getElementById(
+        'insightTitle'
+      ).textContent =
+        'Você já vendeu ' +
+        money(t);
+
+      document.getElementById(
+        'insightText'
+      ).textContent =
+        'Faltam ' +
+        money(r) +
+        ' para alcançar sua meta diária.';
+
     }
+
   }
 
   const average =
-    sales.length ? t / sales.length : 0;
+    sales.length
+      ? t / sales.length
+      : 0;
 
-  document.getElementById('average').textContent = money(average);
+  document.getElementById(
+    'average'
+  ).textContent =
+    money(average);
 
-  document.getElementById('salesCount').textContent = sales.length;
-  document.getElementById('historyTotal').textContent = money(t);
+  document.getElementById(
+    'salesCount'
+  ).textContent =
+    sales.length;
+
+  document.getElementById(
+    'historyTotal'
+  ).textContent =
+    money(t);
 
   renderSales();
   renderChart();
   renderChartHistory();
   calculateSeller();
+
 }
 
 function addSale(value=null){
 
-  const input = document.getElementById('saleInput');
+  const input =
+    document.getElementById(
+      'saleInput'
+    );
 
-  const amount = value !== null
-    ? Number(value)
-    : Number(input.value);
+  const amount =
+    value !== null
+      ? Number(value)
+      : Number(input.value);
 
   if(!amount || amount <= 0){
-    alert('Digite um valor válido.');
+
+    alert(
+      'Digite um valor válido.'
+    );
+
     return;
+
   }
 
   sales.push(amount);
@@ -1021,48 +1436,76 @@ function addSale(value=null){
 
   saveData();
   update();
+
 }
 
 function quickSale(value){
+
   addSale(value);
+
 }
 
 function renderSales(){
 
-  const box = document.getElementById('salesList');
+  const box =
+    document.getElementById(
+      'salesList'
+    );
 
   if(!sales.length){
+
     box.innerHTML = `
       <div class="empty">
         Nenhuma venda registrada ainda.<br>
         Adicione sua primeira venda acima.
       </div>
     `;
+
     return;
+
   }
 
-  box.innerHTML = sales
-    .slice()
-    .reverse()
-    .map((sale,index)=>{
+  box.innerHTML =
+    sales
+      .slice()
+      .reverse()
+      .map(
+        (sale,index)=>{
 
-      const realIndex = sales.length - 1 - index;
+          const realIndex =
+            sales.length - 1 - index;
 
-      return `
-        <div class="sale-item">
-          <div>
-            <span>Venda ${realIndex + 1}</span><br>
-            <strong>${money(sale)}</strong>
-          </div>
+          return `
+            <div class="sale-item">
 
-          <button
-            class="delete"
-            onclick="deleteSale(${realIndex})"
-          >✕</button>
-        </div>
-      `;
+              <div>
 
-    }).join('');
+                <span>
+                  Venda ${realIndex + 1}
+                </span>
+
+                <br>
+
+                <strong>
+                  ${money(sale)}
+                </strong>
+
+              </div>
+
+              <button
+                class="delete"
+                onclick="deleteSale(${realIndex})"
+              >
+                ✕
+              </button>
+
+            </div>
+          `;
+
+        }
+      )
+      .join('');
+
 }
 
 function deleteSale(index){
@@ -1071,90 +1514,171 @@ function deleteSale(index){
 
   saveData();
   update();
+
 }
 
 function clearSales(){
 
-  if(!sales.length) return;
+  if(!sales.length)
+    return;
 
-  if(confirm('Apagar todas as vendas de hoje?')){
+  if(
+    confirm(
+      'Apagar todas as vendas de hoje?'
+    )
+  ){
+
     sales = [];
+
     saveData();
     update();
+
   }
+
 }
 
 function renderChart(){
 
-  const chart = document.getElementById('chart');
+  const chart =
+    document.getElementById(
+      'chart'
+    );
 
-  const values = [35,20,15.5,25,18,22,total()];
+  const values = [
+    35,
+    20,
+    15.5,
+    25,
+    18,
+    22,
+    total()
+  ];
 
-  const max = Math.max(...values,goal(),1);
+  const max =
+    Math.max(
+      ...values,
+      goal(),
+      1
+    );
 
-  chart.innerHTML = values.map((value,index)=>{
+  chart.innerHTML =
+    values
+      .map(
+        (value,index)=>{
 
-    const height = Math.max(4,(value/max)*105);
+          const height =
+            Math.max(
+              4,
+              (value/max)*105
+            );
 
-    return `
-      <div class="bar-wrap">
-        <div
-          class="bar"
-          style="height:${height}px"
-          title="${money(value)}"
-        ></div>
+          return `
+            <div class="bar-wrap">
 
-        <div class="bar-label">
-          ${index === 6 ? 'Hoje' : 'D'+(index+1)}
-        </div>
-      </div>
-    `;
+              <div
+                class="bar"
+                style="height:${height}px"
+                title="${money(value)}"
+              ></div>
 
-  }).join('');
+              <div class="bar-label">
+
+                ${
+                  index === 6
+                    ? 'Hoje'
+                    : 'D'+(index+1)
+                }
+
+              </div>
+
+            </div>
+          `;
+
+        }
+      )
+      .join('');
+
 }
 
 function renderChartHistory(){
 
-  document.getElementById('chartHistory').innerHTML =
-    document.getElementById('chart').innerHTML;
+  document.getElementById(
+    'chartHistory'
+  ).innerHTML =
+    document.getElementById(
+      'chart'
+    ).innerHTML;
+
 }
 
 function toggleSellerMode(){
 
   document
-    .getElementById('sellerBox')
+    .getElementById(
+      'sellerBox'
+    )
     .classList.toggle('show');
 
 }
 
 document
-  .getElementById('productPrice')
-  .addEventListener('input',calculateSeller);
+  .getElementById(
+    'productPrice'
+  )
+  .addEventListener(
+    'input',
+    calculateSeller
+  );
 
 document
-  .getElementById('sellerSold')
-  .addEventListener('input',calculateSeller);
+  .getElementById(
+    'sellerSold'
+  )
+  .addEventListener(
+    'input',
+    calculateSeller
+  );
 
 function calculateSeller(){
 
-  const price = Number(
-    document.getElementById('productPrice').value
-  );
+  const price =
+    Number(
+      document.getElementById(
+        'productPrice'
+      ).value
+    );
 
-  const sold = Number(
-    document.getElementById('sellerSold').value
-  );
+  const sold =
+    Number(
+      document.getElementById(
+        'sellerSold'
+      ).value
+    );
 
-  const box = document.getElementById('sellerResult');
+  const box =
+    document.getElementById(
+      'sellerResult'
+    );
 
   if(!price || price <= 0){
+
     box.textContent =
       'Informe o preço do seu produto para calcular.';
+
     return;
+
   }
 
-  const missing = Math.max(0,goal() - sold);
-  const units = Math.ceil(missing / price);
+  const missing =
+    Math.max(
+      0,
+      goal() - sold
+    );
+
+  const units =
+    Math.ceil(
+      missing / price
+    );
 
   if(missing <= 0){
 
@@ -1168,14 +1692,21 @@ function calculateSeller(){
       Vendendo por ${money(price)} cada,
       você precisa de aproximadamente
       <strong>${units} unidade${units > 1 ? 's' : ''}</strong>.`;
+
   }
+
 }
 
 function showPage(page,button){
 
   document
     .querySelectorAll('.page')
-    .forEach(p=>p.classList.remove('active'));
+    .forEach(
+      p=>
+        p.classList.remove(
+          'active'
+        )
+    );
 
   document
     .getElementById(page)
@@ -1183,97 +1714,352 @@ function showPage(page,button){
 
   document
     .querySelectorAll('.nav button')
-    .forEach(b=>b.classList.remove('active'));
+    .forEach(
+      b=>
+        b.classList.remove(
+          'active'
+        )
+    );
 
-  if(button) button.classList.add('active');
+  if(button)
+    button.classList.add(
+      'active'
+    );
 
   window.scrollTo({
     top:0,
     behavior:'smooth'
   });
+
 }
 
 function openSettings(){
 
-  document.getElementById('incomeInput').value =
+  document.getElementById(
+    'incomeInput'
+  ).value =
     settings.income;
 
-  document.getElementById('expensesInput').value =
+  document.getElementById(
+    'expensesInput'
+  ).value =
     settings.expenses;
 
-  document.getElementById('daysInput').value =
+  document.getElementById(
+    'daysInput'
+  ).value =
     settings.days;
 
   document
-    .getElementById('settingsModal')
+    .getElementById(
+      'settingsModal'
+    )
     .classList.add('show');
+
 }
 
 function closeSettings(event){
 
-  if(event && event.target.id !== 'settingsModal') return;
+  if(
+    event &&
+    event.target.id !==
+      'settingsModal'
+  )
+    return;
 
   document
-    .getElementById('settingsModal')
-    .classList.remove('show');
+    .getElementById(
+      'settingsModal'
+    )
+    .classList.remove(
+      'show'
+    );
+
 }
 
 function saveSettings(){
 
   settings.income =
-    Number(document.getElementById('incomeInput').value) || 0;
+    Number(
+      document.getElementById(
+        'incomeInput'
+      ).value
+    ) || 0;
 
   settings.expenses =
-    Number(document.getElementById('expensesInput').value) || 0;
+    Number(
+      document.getElementById(
+        'expensesInput'
+      ).value
+    ) || 0;
 
   settings.days =
-    Number(document.getElementById('daysInput').value) || 1;
+    Number(
+      document.getElementById(
+        'daysInput'
+      ).value
+    ) || 1;
 
   saveData();
   update();
 
   closeSettings();
+
+}
+
+/* PERFIL */
+
+function loadProfile(){
+
+  document.getElementById(
+    'profileIncome'
+  ).value =
+    settings.income;
+
+  document.getElementById(
+    'profileExpenses'
+  ).value =
+    settings.expenses;
+
+  document.getElementById(
+    'profileDays'
+  ).value =
+    settings.days;
+
+  const email =
+    localStorage.getItem(
+      'qvh_email'
+    ) || '';
+
+  document.getElementById(
+    'profileEmail'
+  ).value =
+    email;
+
+  updateEmailStatus();
+
 }
 
 function saveProfile(){
 
+  const emailInput =
+    document.getElementById(
+      'profileEmail'
+    );
+
+  const email =
+    (
+      emailInput.value || ''
+    )
+    .trim()
+    .toLowerCase();
+
+  if(email){
+
+    localStorage.setItem(
+      'qvh_email',
+      email
+    );
+
+  }else{
+
+    localStorage.removeItem(
+      'qvh_email'
+    );
+
+  }
+
   settings.income =
-    Number(document.getElementById('profileIncome').value) || 0;
+    Number(
+      document.getElementById(
+        'profileIncome'
+      ).value
+    ) || 0;
 
   settings.expenses =
-    Number(document.getElementById('profileExpenses').value) || 0;
+    Number(
+      document.getElementById(
+        'profileExpenses'
+      ).value
+    ) || 0;
 
   settings.days =
-    Number(document.getElementById('profileDays').value) || 1;
+    Number(
+      document.getElementById(
+        'profileDays'
+      ).value
+    ) || 1;
 
   saveData();
+
+  updateEmailStatus();
+
   update();
 
-  alert('Meta atualizada!');
+  alert(
+    'Perfil e meta atualizados!'
+  );
+
 }
 
-function loadProfile(){
+function updateEmailStatus(){
 
-  document.getElementById('profileIncome').value =
-    settings.income;
+  const status =
+    document.getElementById(
+      'emailStatus'
+    );
 
-  document.getElementById('profileExpenses').value =
-    settings.expenses;
+  if(!status)
+    return;
 
-  document.getElementById('profileDays').value =
-    settings.days;
+  const email =
+    localStorage.getItem(
+      'qvh_email'
+    ) || '';
+
+  status.textContent =
+    email
+      ? '✓ E-mail salvo neste aparelho.'
+      : '';
+
 }
 
-/* Sellium PRO — Mercado Pago */
+/* COMPARTILHAMENTO */
+
+function compartilharSellium(){
+
+  const url =
+    'https://quantovenderhoje.onrender.com';
+
+  const texto =
+    'Conheça o Sellium — organize suas vendas e acompanhe sua meta.';
+
+  if(
+    navigator.share
+  ){
+
+    navigator
+      .share({
+        title:'Sellium',
+        text:texto,
+        url:url
+      })
+      .catch(
+        ()=>{}
+      );
+
+    return;
+
+  }
+
+  copiarLinkSellium(url);
+
+}
+
+function copiarLinkSellium(url){
+
+  if(
+    navigator.clipboard &&
+    window.isSecureContext
+  ){
+
+    navigator.clipboard
+      .writeText(url)
+      .then(
+        ()=>{
+          alert(
+            'Link do Sellium copiado! Agora é só enviar para seu amigo.'
+          );
+        }
+      )
+      .catch(
+        ()=>{
+          fallbackCopySellium(url);
+        }
+      );
+
+  }else{
+
+    fallbackCopySellium(url);
+
+  }
+
+}
+
+function fallbackCopySellium(url){
+
+  const area =
+    document.createElement(
+      'textarea'
+    );
+
+  area.value = url;
+
+  area.style.position =
+    'fixed';
+
+  area.style.left =
+    '-9999px';
+
+  document.body.appendChild(
+    area
+  );
+
+  area.focus();
+  area.select();
+
+  try{
+
+    document.execCommand(
+      'copy'
+    );
+
+    alert(
+      'Link do Sellium copiado! Agora é só enviar para seu amigo.'
+    );
+
+  }catch(e){
+
+    alert(
+      'Copie este link: ' +
+      url
+    );
+
+  }
+
+  document.body.removeChild(
+    area
+  );
+
+}
+
+/* SELLIUM PRO
+   Temporariamente mantém o botão separado.
+   O fluxo PRO será reconstruído depois.
+*/
+
 function showPro(){
-  window.location.href = 'https://mpago.la/1g96R1u';
+
+  window.location.href =
+    './area-pro.html';
+
 }
 
 document
-  .getElementById('saleInput')
-  .addEventListener('keydown',e=>{
-    if(e.key === 'Enter') addSale();
-  });
+  .getElementById(
+    'saleInput'
+  )
+  .addEventListener(
+    'keydown',
+    e=>{
+
+      if(
+        e.key === 'Enter'
+      )
+        addSale();
+
+    }
+  );
 
 loadProfile();
 update();
@@ -1281,4 +2067,4 @@ update();
 </script>
 
 </body>
-  </html>
+      </html>
