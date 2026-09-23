@@ -13,7 +13,7 @@ from pydantic import BaseModel, EmailStr
 
 
 # =========================================================
-# SELLium PRO API
+# SELLIUM PRO API
 # =========================================================
 
 APP_NAME = "Sellium PRO API"
