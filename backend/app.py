@@ -26,10 +26,7 @@ MP_ACCESS_TOKEN = os.getenv("MP_ACCESS_TOKEN", "")
 MP_PLAN_ID = os.getenv("MP_PLAN_ID", "")
 MP_WEBHOOK_SECRET = os.getenv("MP_WEBHOOK_SECRET", "")
 
-DATABASE_PATH = os.getenv(
-    "DATABASE_PATH",
-    "/var/data/sellium.db"
-)
+DATABASE_PATH = os.getenv("DATABASE_PATH", "sellium.db")
 
 MP_API = "https://api.mercadopago.com"
 
