@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0b1020">
 <meta name="description" content="Sellium PRO — ferramentas avançadas para vender melhor.">
-<title>Sellium PRO</title>
-
-<style>
+<title>Sellium PRO</title><style>
 *{
   box-sizing:border-box;
   margin:0;
@@ -177,7 +174,8 @@ input:focus{
   margin-top:14px;
   text-align:center;
   font-size:13px;
-  line-height:1.4;
+  line-height:1.5;
+  word-break:break-word;
 }
 
 .status.ok{
@@ -200,124 +198,95 @@ input:focus{
   line-height:1.5;
 }
 
-.mode{
-  text-align:center;
-  margin-top:16px;
-  color:#94a3b8;
-  font-size:13px;
-}
-
-.mode button{
-  border:0;
-  background:none;
-  color:#38bdf8;
-  font-weight:800;
-  cursor:pointer;
-}
-
 .hidden{
   display:none;
 }
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-  <div class="logo">
+</style></head><body><div class="container">  <div class="logo">
     Sellium<span>.</span>
-  </div>
-
-  <div class="subtitle">
+  </div>  <div class="subtitle">
     Venda melhor. Tenha mais controle.
-  </div>
+  </div>  <div class="card"><div class="badge">⚡ SELLIUM PRO</div>
 
-  <div class="card">
+<h1>Área PRO</h1>
 
-    <div class="badge">⚡ SELLlUM PRO</div>
+<div class="description">
+  Tenha acesso às ferramentas avançadas do Sellium
+  para organizar suas vendas e calcular seus preços.
+</div>
 
-    <h1>Área PRO</h1>
+<div class="price">
+  <strong>R$ 9,90</strong>
+  <span>/mês</span>
+</div>
 
-    <div class="description">
-      Tenha acesso às ferramentas avançadas do Sellium
-      para organizar suas vendas e calcular seus preços.
-    </div>
+<div class="features">
+  <div class="feature">✓ <b>Calculadora PRO</b> para suas vendas</div>
+  <div class="feature">✓ Recursos avançados</div>
+  <div class="feature">✓ Área exclusiva para assinantes</div>
+  <div class="feature">✓ Acesso contínuo enquanto a assinatura estiver ativa</div>
+</div>
 
-    <div class="price">
-      <strong>R$ 9,90</strong>
-      <span>/mês</span>
-    </div>
+<div id="criarArea">
 
-    <div class="features">
-      <div class="feature">✓ <b>Calculadora PRO</b> para suas vendas</div>
-      <div class="feature">✓ Recursos avançados</div>
-      <div class="feature">✓ Área exclusiva para assinantes</div>
-      <div class="feature">✓ Acesso contínuo enquanto a assinatura estiver ativa</div>
-    </div>
+  <label for="email">E-mail</label>
 
-    <div id="criarArea">
+  <input
+    id="email"
+    type="email"
+    autocomplete="email"
+    placeholder="seuemail@email.com"
+  >
 
-      <label for="email">E-mail</label>
-      <input
-        id="email"
-        type="email"
-        autocomplete="email"
-        placeholder="seuemail@email.com"
-      >
+  <label for="password">Senha</label>
 
-      <label for="password">Senha</label>
-      <input
-        id="password"
-        type="password"
-        autocomplete="new-password"
-        placeholder="Mínimo de 6 caracteres"
-      >
+  <input
+    id="password"
+    type="password"
+    autocomplete="new-password"
+    placeholder="Mínimo de 6 caracteres"
+  >
 
-      <div id="confirmArea">
+  <div id="confirmArea">
 
-        <label for="confirmPassword">Confirmar senha</label>
-        <input
-          id="confirmPassword"
-          type="password"
-          autocomplete="new-password"
-          placeholder="Digite a senha novamente"
-        >
+    <label for="confirmPassword">Confirmar senha</label>
 
-      </div>
-
-      <button
-        id="mainButton"
-        class="main-btn"
-        onclick="acaoPrincipal()"
-      >
-        CRIAR CONTA PRO
-      </button>
-
-      <button
-        id="loginButton"
-        class="secondary-btn"
-        onclick="alternarModo()"
-      >
-        JÁ TENHO UMA CONTA
-      </button>
-
-    </div>
-
-    <div
-      id="status"
-      class="status"
-    ></div>
-
-    <div class="small">
-      Pagamento processado pelo Mercado Pago.
-    </div>
+    <input
+      id="confirmPassword"
+      type="password"
+      autocomplete="new-password"
+      placeholder="Digite a senha novamente"
+    >
 
   </div>
+
+  <button
+    id="mainButton"
+    class="main-btn"
+    onclick="acaoPrincipal()"
+  >
+    CRIAR CONTA PRO
+  </button>
+
+  <button
+    id="loginButton"
+    class="secondary-btn"
+    onclick="alternarModo()"
+  >
+    JÁ TENHO UMA CONTA
+  </button>
 
 </div>
 
-<script>
+<div
+  id="status"
+  class="status"
+></div>
+
+<div class="small">
+  Pagamento processado pelo Mercado Pago.
+</div>
+
+  </div></div><script>
 
 const API_URL =
   "https://sellium-api.onrender.com";
@@ -369,11 +338,197 @@ function mostrarStatus(
   tipo = "info"
 ){
 
+  if(
+    mensagem === null ||
+    mensagem === undefined
+  ){
+    mensagem = "";
+  }
+
+  if(
+    typeof mensagem !== "string"
+  ){
+    mensagem =
+      extrairMensagemErro(mensagem);
+  }
+
   statusBox.textContent =
     mensagem;
 
   statusBox.className =
     "status " + tipo;
+}
+
+
+// ======================================================
+// EXTRAIR MENSAGEM DE ERRO
+// ======================================================
+
+function extrairMensagemErro(
+  erro
+){
+
+  if(
+    erro === null ||
+    erro === undefined
+  ){
+    return "Ocorreu um erro.";
+  }
+
+  if(
+    typeof erro === "string"
+  ){
+
+    return erro;
+  }
+
+  if(
+    typeof erro === "number" ||
+    typeof erro === "boolean"
+  ){
+
+    return String(erro);
+  }
+
+  if(
+    typeof erro === "object"
+  ){
+
+    /*
+      Mercado Pago pode devolver erros
+      em diferentes estruturas.
+
+      Tentamos primeiro as mensagens
+      mais importantes.
+    */
+
+    const possibilidades = [
+
+      erro.message,
+
+      erro.error,
+
+      erro.description,
+
+      erro.detail,
+
+      erro.cause,
+
+      erro.data,
+
+      erro.mercadopago
+
+    ];
+
+    for(
+      const item of possibilidades
+    ){
+
+      if(
+        item === erro
+      ){
+        continue;
+      }
+
+      const mensagem =
+        extrairMensagemErro(item);
+
+      if(
+        mensagem &&
+        mensagem !== "[object Object]" &&
+        mensagem !== "Ocorreu um erro."
+      ){
+
+        return mensagem;
+      }
+    }
+
+    /*
+      Tratamento específico para
+      erros do Mercado Pago em "cause".
+    */
+
+    if(
+      Array.isArray(erro.cause) &&
+      erro.cause.length > 0
+    ){
+
+      for(
+        const causa of erro.cause
+      ){
+
+        const mensagem =
+          extrairMensagemErro(causa);
+
+        if(
+          mensagem &&
+          mensagem !== "[object Object]" &&
+          mensagem !== "Ocorreu um erro."
+        ){
+
+          return mensagem;
+        }
+      }
+    }
+
+    /*
+      Última tentativa:
+      transformar o objeto em JSON legível.
+    */
+
+    try{
+
+      const json =
+        JSON.stringify(erro);
+
+      if(
+        json &&
+        json !== "{}"
+      ){
+
+        return json;
+      }
+
+    }catch(e){
+
+      console.error(
+        "Erro ao converter objeto:",
+        e
+      );
+    }
+  }
+
+  return "Ocorreu um erro.";
+}
+
+
+// ======================================================
+// LER JSON COM SEGURANÇA
+// ======================================================
+
+async function lerRespostaJSON(
+  response
+){
+
+  const texto =
+    await response.text();
+
+  if(!texto){
+
+    return {};
+  }
+
+  try{
+
+    return JSON.parse(texto);
+
+  }catch(e){
+
+    return {
+      detail:
+        texto
+    };
+  }
 }
 
 
@@ -397,6 +552,9 @@ function alternarModo(){
     mainButton.textContent =
       "CRIAR CONTA PRO";
 
+    mainButton.onclick =
+      acaoPrincipal;
+
     loginButton.textContent =
       "JÁ TENHO UMA CONTA";
 
@@ -414,6 +572,9 @@ function alternarModo(){
 
     mainButton.textContent =
       "ENTRAR";
+
+    mainButton.onclick =
+      acaoPrincipal;
 
     loginButton.textContent =
       "CRIAR NOVA CONTA";
@@ -518,31 +679,16 @@ async function acaoPrincipal(){
       );
 
     const data =
-      await response.json();
+      await lerRespostaJSON(
+        response
+      );
 
     if(!response.ok){
 
-      let mensagem =
-        "Não foi possível continuar.";
-
-      if(
-        typeof data.detail === "string"
-      ){
-
-        mensagem =
-          data.detail;
-
-      }else if(
-        data.detail &&
-        typeof data.detail === "object"
-      ){
-
-        mensagem =
-          data.detail.message ||
-          JSON.stringify(
-            data.detail
-          );
-      }
+      const mensagem =
+        extrairMensagemErro(
+          data.detail || data
+        );
 
       throw new Error(
         mensagem
@@ -579,20 +725,12 @@ async function acaoPrincipal(){
       return;
     }
 
-    if(modoCriarConta){
-
-      mostrarStatus(
-        "✓ Conta criada. Agora vamos para a assinatura PRO.",
-        "ok"
-      );
-
-    }else{
-
-      mostrarStatus(
-        "✓ Login realizado. Agora vamos para a assinatura PRO.",
-        "ok"
-      );
-    }
+    mostrarStatus(
+      modoCriarConta
+        ? "✓ Conta criada. Agora vamos para a assinatura PRO."
+        : "✓ Login realizado. Agora vamos para a assinatura PRO.",
+      "ok"
+    );
 
     mainButton.textContent =
       "💳 ASSINAR PRO";
@@ -606,9 +744,13 @@ async function acaoPrincipal(){
 
   }catch(error){
 
+    console.error(
+      "Erro na conta:",
+      error
+    );
+
     mostrarStatus(
-      error.message ||
-      "Ocorreu um erro.",
+      extrairMensagemErro(error),
       "error"
     );
 
@@ -652,15 +794,13 @@ async function assinarPro(){
   try{
 
     /*
-      IMPORTANTE:
-      O backend atual recebe o token
-      dentro do JSON:
+      O backend recebe:
 
       {
         "token": "..."
       }
 
-      e não no header Authorization.
+      Não alteramos esse formato.
     */
 
     const response =
@@ -681,39 +821,66 @@ async function assinarPro(){
       );
 
     const data =
-      await response.json();
+      await lerRespostaJSON(
+        response
+      );
+
+    console.log(
+      "Resposta /assinar:",
+      data
+    );
 
     if(!response.ok){
 
+      /*
+        Aqui está a principal correção.
+
+        O backend pode retornar:
+
+        detail: {
+          message: "...",
+          mercadopago: {
+            message: "...",
+            cause: [...]
+          }
+        }
+
+        Antes um objeto podia acabar
+        sendo convertido para:
+
+        [object Object]
+
+        Agora procuramos a mensagem
+        dentro de todos esses níveis.
+      */
+
+      let detalhe =
+        data.detail || data;
+
       let mensagem =
-        "Não foi possível criar a assinatura.";
+        extrairMensagemErro(
+          detalhe
+        );
+
+      /*
+        Se ainda não encontrou uma mensagem
+        específica, mostramos uma mensagem
+        clara em vez de [object Object].
+      */
 
       if(
-        typeof data.detail === "string"
+        !mensagem ||
+        mensagem === "[object Object]"
       ){
 
         mensagem =
-          data.detail;
-
-      }else if(
-        data.detail &&
-        typeof data.detail === "object"
-      ){
-
-        mensagem =
-          data.detail.message ||
-          "Mercado Pago recusou a criação da assinatura.";
-
-        if(
-          data.detail.mercadopago
-        ){
-
-          console.error(
-            "Mercado Pago:",
-            data.detail.mercadopago
-          );
-        }
+          "O Mercado Pago recusou a criação da assinatura. Verifique as credenciais e a configuração da assinatura.";
       }
+
+      console.error(
+        "Erro retornado pelo /assinar:",
+        data
+      );
 
       throw new Error(
         mensagem
@@ -733,6 +900,11 @@ async function assinarPro(){
       return;
     }
 
+    /*
+      Aceitamos todos os formatos
+      usados pelo backend atual.
+    */
+
     const checkoutUrl =
       data.init_point ||
       data.checkout_url ||
@@ -751,6 +923,17 @@ async function assinarPro(){
       return;
     }
 
+    /*
+      Se o backend respondeu corretamente,
+      mas não mandou URL, mostramos uma
+      mensagem clara.
+    */
+
+    console.error(
+      "Mercado Pago não retornou checkout:",
+      data
+    );
+
     throw new Error(
       "O Mercado Pago não retornou o link de pagamento."
     );
@@ -763,8 +946,7 @@ async function assinarPro(){
     );
 
     mostrarStatus(
-      error.message ||
-      "Erro ao iniciar a assinatura.",
+      extrairMensagemErro(error),
       "error"
     );
 
@@ -812,6 +994,11 @@ async function verificarSessao(){
         encodeURIComponent(token)
       );
 
+    const data =
+      await lerRespostaJSON(
+        response
+      );
+
     if(!response.ok){
 
       localStorage.removeItem(
@@ -825,9 +1012,6 @@ async function verificarSessao(){
       return;
     }
 
-    const data =
-      await response.json();
-
     if(data.pro === true){
 
       localStorage.setItem(
@@ -840,12 +1024,6 @@ async function verificarSessao(){
 
       return;
     }
-
-    /*
-      Usuário já possui sessão válida,
-      então mostramos diretamente o botão
-      de assinatura.
-    */
 
     if(data.email){
 
@@ -884,7 +1062,5 @@ async function verificarSessao(){
 
 verificarSessao();
 
-</script>
-
-</body>
+</script></body>
 </html>
