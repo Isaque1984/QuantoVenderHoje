@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Sellium PRO</title>
-
-<style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Sellium PRO</title><style>
 *{
     box-sizing:border-box;
 }
@@ -202,144 +197,134 @@ button{
     opacity:.6;
     pointer-events:none;
 }
-</style>
-</head>
+</style></head><body><div class="card"><div class="logo">
+    Sellium <span>PRO</span>
+</div>
 
-<body>
+<div class="subtitle">
+    Mais controle para vender mais.
+</div>
 
-<div class="card">
+<div id="mensagem" class="message"></div>
 
-    <div class="logo">
-        Sellium <span>PRO</span>
-    </div>
+<!-- LOGIN -->
+<div id="loginArea">
 
-    <div class="subtitle">
-        Mais controle para vender mais.
-    </div>
+    <h2>Entrar</h2>
 
-    <div id="mensagem" class="message"></div>
+    <input
+        type="email"
+        id="email"
+        placeholder="Seu e-mail"
+        autocomplete="email"
+    >
 
-    <!-- LOGIN -->
-    <div id="loginArea">
+    <input
+        type="password"
+        id="senha"
+        placeholder="Sua senha"
+        autocomplete="current-password"
+    >
 
-        <h2>Entrar</h2>
+    <button
+        class="btn-primary"
+        onclick="entrar()"
+    >
+        ENTRAR
+    </button>
 
-        <input
-            type="email"
-            id="email"
-            placeholder="Seu e-mail"
-            autocomplete="email"
-        >
-
-        <input
-            type="password"
-            id="senha"
-            placeholder="Sua senha"
-            autocomplete="current-password"
-        >
-
-        <button
-            class="btn-primary"
-            onclick="entrar()"
-        >
-            ENTRAR
-        </button>
-
-        <button
-            class="btn-secondary"
-            onclick="criarConta()"
-        >
-            CRIAR CONTA
-        </button>
-
-    </div>
-
-
-    <!-- ÁREA PRO -->
-    <div id="proArea" class="area">
-
-        <div class="account">
-            <strong>Conta:</strong>
-            <span id="contaEmail"></span>
-        </div>
-
-        <h2>Sellium PRO</h2>
-
-        <div class="price">
-            R$ 9,90
-            <small>/mês</small>
-        </div>
-
-        <div class="trial">
-            7 dias grátis
-        </div>
-
-        <div class="features">
-
-            <div>✅ Metas e controles avançados</div>
-
-            <div>✅ Dashboard completo</div>
-
-            <div>✅ Planos automáticos</div>
-
-            <div>✅ Lembretes</div>
-
-            <div>✅ Conquistas exclusivas</div>
-
-            <div>✅ Backup e sincronização</div>
-
-            <div>✅ Sem anúncios</div>
-
-        </div>
-
-
-        <div class="mp-box">
-
-            <div class="mp-title">
-                E-mail da conta do Mercado Pago
-            </div>
-
-            <div class="help">
-                Informe o mesmo e-mail que será usado no pagamento do Mercado Pago.
-            </div>
-
-            <input
-                type="email"
-                id="mpEmail"
-                placeholder="E-mail do Mercado Pago"
-                autocomplete="email"
-            >
-
-            <button
-                class="btn-pro"
-                onclick="assinar()"
-            >
-                💳 ASSINAR PRO
-            </button>
-
-            <button
-                class="btn-verify"
-                onclick="verificarPro()"
-            >
-                🔄 VERIFICAR MEU PRO
-            </button>
-
-        </div>
-
-
-        <button
-            class="btn-logout"
-            onclick="sair()"
-        >
-            SAIR
-        </button>
-
-    </div>
+    <button
+        class="btn-secondary"
+        onclick="criarConta()"
+    >
+        CRIAR CONTA
+    </button>
 
 </div>
 
 
-<script>
+<!-- ÁREA PRO -->
+<div id="proArea" class="area">
+
+    <div class="account">
+        <strong>Conta:</strong>
+        <span id="contaEmail"></span>
+    </div>
+
+    <h2>Sellium PRO</h2>
+
+    <div class="price">
+        R$ 9,90
+        <small>/mês</small>
+    </div>
+
+    <div class="trial">
+        7 dias grátis
+    </div>
+
+    <div class="features">
+
+        <div>✅ Metas e controles avançados</div>
+
+        <div>✅ Dashboard completo</div>
+
+        <div>✅ Planos automáticos</div>
+
+        <div>✅ Lembretes</div>
+
+        <div>✅ Conquistas exclusivas</div>
+
+        <div>✅ Backup e sincronização</div>
+
+        <div>✅ Sem anúncios</div>
+
+    </div>
+
+
+    <div class="mp-box">
+
+        <div class="mp-title">
+            E-mail da conta do Mercado Pago
+        </div>
+
+        <div class="help">
+            Informe o mesmo e-mail que será usado no pagamento do Mercado Pago.
+        </div>
+
+        <input
+            type="email"
+            id="mpEmail"
+            placeholder="E-mail do Mercado Pago"
+            autocomplete="email"
+        >
+
+        <button
+            class="btn-pro"
+            onclick="assinar()"
+        >
+            💳 ASSINAR PRO
+        </button>
+
+        <button
+            class="btn-verify"
+            onclick="verificarPro()"
+        >
+            🔄 VERIFICAR MEU PRO
+        </button>
+
+    </div>
+
+
+    <button
+        class="btn-logout"
+        onclick="sair()"
+    >
+        SAIR
+    </button>
+
+</div>
+
+</div><script>
 
 const API_URL = "https://sellium-api.onrender.com";
 
@@ -432,7 +417,7 @@ async function criarConta(){
     try{
 
         const response = await fetch(
-            API_URL + "/criar-conta",
+            API_URL + "/criar-conta-pro",
             {
                 method:"POST",
                 headers:{
@@ -515,7 +500,7 @@ async function entrar(){
     try{
 
         const response = await fetch(
-            API_URL + "/login",
+            API_URL + "/login-pro",
             {
                 method:"POST",
                 headers:{
@@ -750,14 +735,6 @@ async function verificarPro(){
 
     try{
 
-        /*
-         * IMPORTANTE:
-         * Agora enviamos também o e-mail do Mercado Pago.
-         * Isso permite ao backend localizar a assinatura
-         * mesmo quando ela não estiver vinculada ao usuário
-         * no banco de dados.
-         */
-
         const mpEmailAtual =
             document.getElementById("mpEmail").value.trim() ||
             mpEmailSalvo;
@@ -980,7 +957,5 @@ window.addEventListener(
     }
 );
 
-</script>
-
-</body>
+</script></body>
 </html>
