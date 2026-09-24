@@ -1,0 +1,11 @@
+{
+"name": "Sellium",
+"short_name": "Sellium",
+"description": "Transforme sua meta de vendas em resultados.",
+"start_url": "./",
+"scope": "./",
+"display": "standalone",
+"orientation": "portrait",
+"background_color": "#f5f7fb",
+"theme_color": "#0f172a"
+}
