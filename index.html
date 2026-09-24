@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0f172a">
 <meta name="description" content="Sellium: transforme sua meta de vendas em resultados.">
-
 <title>Sellium</title>
 
 <style>
@@ -130,9 +129,7 @@ header{
   margin-top:8px;
 }
 
-main{
-  padding:18px;
-}
+main{padding:18px}
 
 .stats{
   display:grid;
@@ -156,9 +153,7 @@ main{
   margin-bottom:7px;
 }
 
-.stat strong{
-  font-size:20px;
-}
+.stat strong{font-size:20px}
 
 .card{
   background:white;
@@ -394,9 +389,7 @@ main{
   font-size:13px;
 }
 
-.sale-item strong{
-  font-size:15px;
-}
+.sale-item strong{font-size:15px}
 
 .delete{
   border:0;
@@ -435,9 +428,7 @@ main{
 
 .seller-box.show{display:block}
 
-.field{
-  margin-bottom:13px;
-}
+.field{margin-bottom:13px}
 
 .field label{
   display:block;
@@ -546,7 +537,6 @@ main{
   font-size:15px;
 }
 
-/* COMPARTILHAMENTO */
 .share-card{
   background:linear-gradient(135deg,#effdf4,#ffffff);
   border:1px solid #bbf7d0;
@@ -600,9 +590,7 @@ main{
   cursor:pointer;
 }
 
-.share-btn:active{
-  transform:scale(.98);
-}
+.share-btn:active{transform:scale(.98)}
 
 .email-saved{
   margin-top:7px;
@@ -635,6 +623,7 @@ main{
   <div class="hero">
     <div class="hero-label">Falta vender hoje</div>
     <div class="remaining" id="remaining">R$ 200,00</div>
+
     <div class="hero-text" id="heroText">
       Você está começando o dia. Vamos buscar sua meta?
     </div>
@@ -668,6 +657,7 @@ main{
 
   <div class="card">
     <div class="card-title">Registrar venda</div>
+
     <div class="card-subtitle">
       Adicione cada venda e acompanhe sua meta em tempo real.
     </div>
@@ -680,7 +670,10 @@ main{
         min="0"
         placeholder="Valor da venda"
       >
-      <button class="btn btn-green" onclick="addSale()">Adicionar</button>
+
+      <button class="btn btn-green" onclick="addSale()">
+        Adicionar
+      </button>
     </div>
 
     <div class="quick">
@@ -744,7 +737,6 @@ main{
 
   </div>
 
-  <!-- COMPARTILHAR -->
   <div class="share-card">
 
     <div class="share-content">
@@ -1087,41 +1079,23 @@ main{
     class="active"
     onclick="showPage('home',this)"
   >
-
     <span class="nav-icon">🏠</span>
-
     Início
-
   </button>
 
-  <button
-    onclick="showPage('sales',this)"
-  >
-
+  <button onclick="showPage('sales',this)">
     <span class="nav-icon">💰</span>
-
     Vendas
-
   </button>
 
-  <button
-    onclick="showPage('history',this)"
-  >
-
+  <button onclick="showPage('history',this)">
     <span class="nav-icon">📊</span>
-
     Histórico
-
   </button>
 
-  <button
-    onclick="showPage('profile',this)"
-  >
-
+  <button onclick="showPage('profile',this)">
     <span class="nav-icon">👤</span>
-
     Perfil
-
   </button>
 
 </nav>
@@ -1211,7 +1185,6 @@ const money = value =>
     }
   );
 
-/* Mantido para preservar os dados existentes */
 let sales = JSON.parse(
   localStorage.getItem('qvh_sales') || '[]'
 );
@@ -1360,7 +1333,7 @@ function update(){
       document.getElementById(
         'insightText'
       ).textContent =
-        'Cada venda registrada atualiza automaticamente o quanto falta para sua meta.';
+        'Cada venda registrada atualiza automaticamente o quanto falta para sua meta diária.';
 
     }else{
 
@@ -1807,8 +1780,6 @@ function saveSettings(){
 
 }
 
-/* PERFIL */
-
 function loadProfile(){
 
   document.getElementById(
@@ -1924,8 +1895,6 @@ function updateEmailStatus(){
 
 }
 
-/* COMPARTILHAMENTO */
-
 function compartilharSellium(){
 
   const url =
@@ -2034,14 +2003,13 @@ function fallbackCopySellium(url){
 }
 
 /* SELLIUM PRO
-   Temporariamente mantém o botão separado.
-   O fluxo PRO será reconstruído depois.
+   Corrigido: o botão agora abre a página de cadastro/login PRO.
 */
 
 function showPro(){
 
   window.location.href =
-    './area-pro.html';
+    './pro.html';
 
 }
 
@@ -2067,4 +2035,4 @@ update();
 </script>
 
 </body>
-      </html>
+        </html>
