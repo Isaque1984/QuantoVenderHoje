@@ -1,9 +1,17 @@
-<!DOCTYPE html><html lang="pt-BR"><head>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#111827">
-<title>Sellium PRO</title><style>
-*{box-sizing:border-box}
+
+<title>Sellium PRO</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
 body{
     margin:0;
     font-family:Arial,sans-serif;
@@ -15,10 +23,12 @@ body{
     justify-content:center;
     padding:20px;
 }
+
 .container{
     width:100%;
     max-width:430px;
 }
+
 .card{
     background:#fff;
     color:#111827;
@@ -26,22 +36,29 @@ body{
     padding:28px 22px;
     box-shadow:0 20px 50px rgba(0,0,0,.35);
 }
+
 .logo{
     text-align:center;
     font-size:34px;
     font-weight:900;
     margin-bottom:5px;
 }
-.logo span{color:#16a34a}
+
+.logo span{
+    color:#16a34a;
+}
+
 .subtitle{
     text-align:center;
     color:#64748b;
     margin-bottom:25px;
 }
+
 h2{
     text-align:center;
     margin:10px 0 20px;
 }
+
 input{
     width:100%;
     padding:14px;
@@ -51,9 +68,11 @@ input{
     margin-bottom:12px;
     outline:none;
 }
+
 input:focus{
     border-color:#16a34a;
 }
+
 button{
     width:100%;
     border:0;
@@ -64,18 +83,27 @@ button{
     cursor:pointer;
     margin-top:5px;
 }
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
 .btn-green{
     background:#16a34a;
     color:#fff;
 }
+
 .btn-dark{
     background:#111827;
     color:#fff;
 }
+
 .btn-gray{
     background:#e5e7eb;
     color:#111827;
 }
+
 .info{
     background:#f0fdf4;
     border:1px solid #bbf7d0;
@@ -84,6 +112,7 @@ button{
     margin-bottom:18px;
     color:#166534;
 }
+
 .price{
     text-align:center;
     font-size:30px;
@@ -91,12 +120,14 @@ button{
     color:#16a34a;
     margin:15px 0;
 }
+
 .small{
     font-size:13px;
     color:#64748b;
     text-align:center;
     margin-top:8px;
 }
+
 .message{
     margin-top:15px;
     padding:12px;
@@ -105,27 +136,54 @@ button{
     display:none;
     font-size:14px;
 }
+
 .error{
     background:#fef2f2;
     color:#b91c1c;
 }
+
 .success{
     background:#f0fdf4;
     color:#15803d;
 }
-.hidden{display:none}
+
+.hidden{
+    display:none;
+}
+
 .features{
     margin:20px 0;
     padding:0;
     list-style:none;
 }
+
 .features li{
     padding:8px 0;
     color:#334155;
 }
-</style></head><body><div class="container">
-<div class="card"><div class="logo">Sellium <span>PRO</span></div>
-<div class="subtitle">Venda mais com inteligência.</div><div id="loginArea"><h2>Entrar na sua conta</h2>
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<div class="logo">
+    Sellium <span>PRO</span>
+</div>
+
+<div class="subtitle">
+    Venda mais com inteligência.
+</div>
+
+
+<!-- LOGIN -->
+
+<div id="loginArea">
+
+<h2>Entrar na sua conta</h2>
 
 <input
     id="email"
@@ -141,33 +199,57 @@ button{
     autocomplete="current-password"
 >
 
-<button class="btn-dark" onclick="entrar()">
+<button
+    class="btn-dark"
+    onclick="entrar()"
+>
     ENTRAR
 </button>
 
-<button class="btn-gray" onclick="criarConta()">
+<button
+    class="btn-gray"
+    onclick="criarConta()"
+>
     CRIAR CONTA
 </button>
 
-</div><div id="proArea" class="hidden"><div class="info">
-    <strong>Conta conectada</strong><br>
-    <span id="contaEmail"></span>
 </div>
+
+
+<!-- ÁREA PRO -->
+
+<div id="proArea" class="hidden">
+
+<div class="info">
+
+<strong>Conta conectada</strong><br>
+
+<span id="contaEmail"></span>
+
+</div>
+
 
 <div class="price">
     R$ 9,90/mês
 </div>
 
+
 <ul class="features">
-    <li>✅ Recursos PRO do Sellium</li>
-    <li>✅ Ferramentas avançadas</li>
-    <li>✅ Mais controle das suas vendas</li>
-    <li>✅ Acesso à Área PRO</li>
+
+<li>✅ Recursos PRO do Sellium</li>
+<li>✅ Ferramentas avançadas</li>
+<li>✅ Mais controle das suas vendas</li>
+<li>✅ Acesso à Área PRO</li>
+
 </ul>
 
-<label style="display:block;margin-bottom:7px;font-weight:bold;">
+
+<label
+    style="display:block;margin-bottom:7px;font-weight:bold;"
+>
     E-mail da conta do Mercado Pago
 </label>
+
 
 <input
     id="mpEmail"
@@ -176,366 +258,931 @@ button{
     autocomplete="email"
 >
 
+
 <div class="small">
-    Use o mesmo e-mail que você utiliza na sua conta do Mercado Pago.
+
+Use o mesmo e-mail que você utiliza na sua conta do Mercado Pago.
+
 </div>
 
-<button class="btn-green" onclick="assinar()">
+
+<button
+    class="btn-green"
+    onclick="assinar()"
+>
     💳 ASSINAR PRO
 </button>
 
-<button class="btn-dark" onclick="verificarPro()">
+
+<button
+    class="btn-dark"
+    onclick="verificarPro()"
+>
     🔄 VERIFICAR MEU PRO
 </button>
 
-<button class="btn-gray" onclick="sair()">
+
+<button
+    class="btn-gray"
+    onclick="sair()"
+>
     SAIR
 </button>
 
-</div><div id="mensagem" class="message"></div></div>
-</div><script>const API_URL = "https://sellium-api.onrender.com";
 
-let token = localStorage.getItem("sellium_token") || "";
-let contaEmail = localStorage.getItem("sellium_email") || "";
-let mpEmailSalvo = localStorage.getItem("sellium_mp_email") || "";
+</div>
 
-function mostrarMensagem(texto, tipo="error"){
-const el = document.getElementById("mensagem");
-el.textContent = texto;
-el.className = "message " + tipo;
-el.style.display = "block";
+
+<div
+    id="mensagem"
+    class="message"
+></div>
+
+
+</div>
+</div>
+
+
+<script>
+
+const API_URL =
+    "https://sellium-api.onrender.com";
+
+
+let token =
+    localStorage.getItem("sellium_token") || "";
+
+let contaEmail =
+    localStorage.getItem("sellium_email") || "";
+
+let mpEmailSalvo =
+    localStorage.getItem("sellium_mp_email") || "";
+
+
+
+/* =====================================================
+   MENSAGENS
+===================================================== */
+
+function mostrarMensagem(
+    texto,
+    tipo="error"
+){
+
+    const el =
+        document.getElementById("mensagem");
+
+    el.textContent = texto;
+
+    el.className =
+        "message " + tipo;
+
+    el.style.display = "block";
 }
+
 
 function esconderMensagem(){
-const el = document.getElementById("mensagem");
-el.style.display = "none";
+
+    const el =
+        document.getElementById("mensagem");
+
+    el.style.display = "none";
 }
+
+
+
+/* =====================================================
+   LER JSON
+===================================================== */
 
 async function lerRespostaJSON(response){
 
-const texto = await response.text();
+    const texto =
+        await response.text();
 
-if(!texto){
-    return {};
+    if(!texto){
+        return {};
+    }
+
+    try{
+
+        return JSON.parse(texto);
+
+    }catch{
+
+        return {
+            detail:texto
+        };
+
+    }
 }
 
-try{
-    return JSON.parse(texto);
-}catch{
-    return {detail:texto};
-}
 
-}
+
+/* =====================================================
+   ERROS
+===================================================== */
 
 function extrairMensagemErro(data){
 
-if(!data) return "Ocorreu um erro.";
+    if(!data){
 
-if(typeof data === "string"){
-    return data;
-}
+        return "Ocorreu um erro.";
 
-if(data.detail){
-
-    if(typeof data.detail === "string"){
-        return data.detail;
     }
 
-    if(Array.isArray(data.detail)){
-        return data.detail
-            .map(x => x.msg || JSON.stringify(x))
-            .join(" | ");
+
+    if(typeof data === "string"){
+
+        return data;
+
     }
 
-    if(typeof data.detail === "object"){
-        return data.detail.message ||
-               data.detail.msg ||
-               JSON.stringify(data.detail);
+
+    if(data.detail){
+
+        if(typeof data.detail === "string"){
+
+            return data.detail;
+
+        }
+
+
+        if(Array.isArray(data.detail)){
+
+            return data.detail
+                .map(
+                    x => x.msg ||
+                    JSON.stringify(x)
+                )
+                .join(" | ");
+
+        }
+
+
+        if(typeof data.detail === "object"){
+
+            return data.detail.message ||
+                   data.detail.msg ||
+                   JSON.stringify(data.detail);
+
+        }
+
     }
+
+
+    if(data.message){
+
+        return data.message;
+
+    }
+
+
+    return JSON.stringify(data);
+
 }
 
-if(data.message){
-    return data.message;
-}
 
-return JSON.stringify(data);
 
-}
+/* =====================================================
+   CRIAR CONTA
+===================================================== */
 
 async function criarConta(){
 
-esconderMensagem();
+    esconderMensagem();
 
-const email = document.getElementById("email").value.trim();
-const senha = document.getElementById("senha").value;
+    const email =
+        document
+        .getElementById("email")
+        .value
+        .trim();
 
-if(!email || !senha){
-    mostrarMensagem("Digite seu e-mail e sua senha.");
-    return;
-}
+    const senha =
+        document
+        .getElementById("senha")
+        .value;
 
-try{
 
-    const response = await fetch(API_URL + "/criar-conta-pro",{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-            email:email,
-            password:senha
-        })
-    });
+    if(!email || !senha){
 
-    const data = await lerRespostaJSON(response);
+        mostrarMensagem(
+            "Digite seu e-mail e sua senha."
+        );
 
-    if(!response.ok){
-        mostrarMensagem(extrairMensagemErro(data));
         return;
+
     }
 
-    if(data.token){
 
-        token = data.token;
-        contaEmail = data.email || email;
+    try{
 
-        localStorage.setItem("sellium_token",token);
-        localStorage.setItem("sellium_email",contaEmail);
+        const response =
+            await fetch(
+                API_URL +
+                "/criar-conta-pro",
+                {
+                    method:"POST",
 
-        abrirArea();
-        mostrarMensagem("Conta criada com sucesso!","success");
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
 
-    }else{
-        mostrarMensagem("Conta criada. Agora faça login.","success");
+                    body:JSON.stringify({
+
+                        email:email,
+
+                        password:senha
+
+                    })
+                }
+            );
+
+
+        const data =
+            await lerRespostaJSON(response);
+
+
+        if(!response.ok){
+
+            mostrarMensagem(
+                extrairMensagemErro(data)
+            );
+
+            return;
+
+        }
+
+
+        if(data.token){
+
+            token =
+                data.token;
+
+            contaEmail =
+                data.email ||
+                email;
+
+
+            localStorage.setItem(
+                "sellium_token",
+                token
+            );
+
+
+            localStorage.setItem(
+                "sellium_email",
+                contaEmail
+            );
+
+
+            abrirArea();
+
+
+            mostrarMensagem(
+                "Conta criada com sucesso!",
+                "success"
+            );
+
+        }else{
+
+            mostrarMensagem(
+                "Conta criada. Agora faça login.",
+                "success"
+            );
+
+        }
+
+
+    }catch(e){
+
+        mostrarMensagem(
+            "Não foi possível conectar ao servidor."
+        );
+
     }
 
-}catch(e){
-
-    mostrarMensagem("Não foi possível conectar ao servidor.");
 }
 
-}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
 
 async function entrar(){
 
-esconderMensagem();
+    esconderMensagem();
 
-const email = document.getElementById("email").value.trim();
-const senha = document.getElementById("senha").value;
 
-if(!email || !senha){
-    mostrarMensagem("Digite seu e-mail e sua senha.");
-    return;
-}
+    const email =
+        document
+        .getElementById("email")
+        .value
+        .trim();
 
-try{
 
-    const response = await fetch(API_URL + "/login-pro",{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-            email:email,
-            password:senha
-        })
-    });
+    const senha =
+        document
+        .getElementById("senha")
+        .value;
 
-    const data = await lerRespostaJSON(response);
 
-    if(!response.ok){
-        mostrarMensagem(extrairMensagemErro(data));
+    if(!email || !senha){
+
+        mostrarMensagem(
+            "Digite seu e-mail e sua senha."
+        );
+
         return;
+
     }
 
-    if(!data.token){
-        mostrarMensagem("Login realizado, mas o servidor não retornou o token.");
-        return;
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL +
+                "/login-pro",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        email:email,
+
+                        password:senha
+
+                    })
+                }
+            );
+
+
+        const data =
+            await lerRespostaJSON(response);
+
+
+        if(!response.ok){
+
+            mostrarMensagem(
+                extrairMensagemErro(data)
+            );
+
+            return;
+
+        }
+
+
+        if(!data.token){
+
+            mostrarMensagem(
+                "Login realizado, mas o servidor não retornou o token."
+            );
+
+            return;
+
+        }
+
+
+        token =
+            data.token;
+
+
+        contaEmail =
+            data.email ||
+            email;
+
+
+        localStorage.setItem(
+            "sellium_token",
+            token
+        );
+
+
+        localStorage.setItem(
+            "sellium_email",
+            contaEmail
+        );
+
+
+        abrirArea();
+
+
+        await verificarPro();
+
+
+    }catch(e){
+
+        mostrarMensagem(
+            "Não foi possível conectar ao servidor."
+        );
+
     }
 
-    token = data.token;
-    contaEmail = data.email || email;
-
-    localStorage.setItem("sellium_token",token);
-    localStorage.setItem("sellium_email",contaEmail);
-
-    abrirArea();
-
-    await verificarPro();
-
-}catch(e){
-
-    mostrarMensagem("Não foi possível conectar ao servidor.");
 }
 
-}
+
+
+/* =====================================================
+   ABRIR ÁREA
+===================================================== */
 
 function abrirArea(){
 
-document.getElementById("loginArea").classList.add("hidden");
-document.getElementById("proArea").classList.remove("hidden");
+    document
+        .getElementById("loginArea")
+        .classList
+        .add("hidden");
 
-document.getElementById("contaEmail").textContent = contaEmail;
 
-document.getElementById("mpEmail").value = mpEmailSalvo;
+    document
+        .getElementById("proArea")
+        .classList
+        .remove("hidden");
+
+
+    document
+        .getElementById("contaEmail")
+        .textContent =
+            contaEmail;
+
+
+    document
+        .getElementById("mpEmail")
+        .value =
+            mpEmailSalvo;
 
 }
+
+
+
+/* =====================================================
+   ASSINAR PRO
+===================================================== */
 
 async function assinar(){
 
-esconderMensagem();
+    esconderMensagem();
 
-if(!token){
-    mostrarMensagem("Faça login primeiro.");
-    return;
-}
 
-const mpEmail = document.getElementById("mpEmail").value.trim();
+    if(!token){
 
-if(!mpEmail){
-    mostrarMensagem("Digite o e-mail da sua conta do Mercado Pago.");
-    return;
-}
+        mostrarMensagem(
+            "Faça login primeiro."
+        );
 
-if(!mpEmail.includes("@")){
-    mostrarMensagem("Digite um e-mail válido do Mercado Pago.");
-    return;
-}
+        return;
 
-const botao = document.querySelector(".btn-green");
+    }
 
-botao.disabled = true;
-botao.textContent = "ABRINDO MERCADO PAGO...";
 
-try{
+    const mpEmail =
+        document
+        .getElementById("mpEmail")
+        .value
+        .trim();
 
-    const response = await fetch(API_URL + "/assinar",{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-            token:token,
-            mp_email:mpEmail
-        })
-    });
 
-    const data = await lerRespostaJSON(response);
+    if(!mpEmail){
 
-    if(!response.ok){
+        mostrarMensagem(
+            "Digite o e-mail da sua conta do Mercado Pago."
+        );
 
-        mostrarMensagem(extrairMensagemErro(data));
+        return;
+
+    }
+
+
+    if(!mpEmail.includes("@")){
+
+        mostrarMensagem(
+            "Digite um e-mail válido do Mercado Pago."
+        );
+
+        return;
+
+    }
+
+
+    const botao =
+        document.querySelector(".btn-green");
+
+
+    botao.disabled = true;
+
+    botao.textContent =
+        "ABRINDO MERCADO PAGO...";
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL +
+                "/assinar",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        token:token,
+
+                        mp_email:mpEmail
+
+                    })
+                }
+            );
+
+
+        const data =
+            await lerRespostaJSON(response);
+
+
+        if(!response.ok){
+
+            mostrarMensagem(
+                extrairMensagemErro(data)
+            );
+
+
+            botao.disabled = false;
+
+            botao.textContent =
+                "💳 ASSINAR PRO";
+
+            return;
+
+        }
+
+
+        localStorage.setItem(
+            "sellium_mp_email",
+            mpEmail
+        );
+
+
+        mpEmailSalvo =
+            mpEmail;
+
+
+        const checkoutUrl =
+            data.init_point ||
+            data.checkout_url ||
+            data.url ||
+            data.redirect_url;
+
+
+        if(checkoutUrl){
+
+            window.location.href =
+                checkoutUrl;
+
+            return;
+
+        }
+
+
+        if(
+            data.pro === true ||
+            data.status === "authorized"
+        ){
+
+            window.location.href =
+                "./area-pro.html";
+
+            return;
+
+        }
+
+
+        mostrarMensagem(
+            "Assinatura criada, mas o link do Mercado Pago não foi retornado.",
+            "success"
+        );
+
 
         botao.disabled = false;
-        botao.textContent = "💳 ASSINAR PRO";
 
-        return;
+        botao.textContent =
+            "💳 ASSINAR PRO";
+
+
+    }catch(e){
+
+        mostrarMensagem(
+            "Não foi possível conectar ao servidor."
+        );
+
+
+        botao.disabled = false;
+
+        botao.textContent =
+            "💳 ASSINAR PRO";
+
     }
 
-    localStorage.setItem("sellium_mp_email",mpEmail);
-    mpEmailSalvo = mpEmail;
-
-    const checkoutUrl =
-        data.init_point ||
-        data.checkout_url ||
-        data.url ||
-        data.redirect_url;
-
-    if(checkoutUrl){
-
-        window.location.href = checkoutUrl;
-        return;
-    }
-
-    if(data.pro === true || data.status === "authorized"){
-
-        window.location.href = "./area-pro.html";
-        return;
-    }
-
-    mostrarMensagem(
-        "Assinatura criada, mas o link do Mercado Pago não foi retornado.",
-        "success"
-    );
-
-    botao.disabled = false;
-    botao.textContent = "💳 ASSINAR PRO";
-
-}catch(e){
-
-    mostrarMensagem("Não foi possível conectar ao servidor.");
-
-    botao.disabled = false;
-    botao.textContent = "💳 ASSINAR PRO";
 }
 
-}
+
+
+/* =====================================================
+   VERIFICAR PRO
+===================================================== */
 
 async function verificarPro(){
 
-if(!token) return;
+    if(!token){
 
-try{
+        mostrarMensagem(
+            "Faça login primeiro."
+        );
 
-    const response = await fetch(
-        API_URL + "/verificar-sessao?token=" +
-        encodeURIComponent(token)
-    );
+        return;
 
-    const data = await lerRespostaJSON(response);
+    }
 
-    if(response.ok){
 
-        if(data.email){
-            contaEmail = data.email;
-            localStorage.setItem("sellium_email",contaEmail);
-            document.getElementById("contaEmail").textContent = contaEmail;
+    esconderMensagem();
+
+
+    let botao = null;
+
+
+    document
+        .querySelectorAll("button")
+        .forEach(b => {
+
+            if(
+                b.textContent
+                .includes("VERIFICAR MEU PRO")
+            ){
+
+                botao = b;
+
+            }
+
+        });
+
+
+    if(botao){
+
+        botao.disabled = true;
+
+        botao.textContent =
+            "🔄 VERIFICANDO...";
+
+    }
+
+
+    try{
+
+        /*
+         * PRIMEIRO:
+         * sincroniza diretamente com o
+         * Mercado Pago através do backend.
+         */
+
+        const syncResponse =
+            await fetch(
+                API_URL +
+                "/sincronizar-pro?token=" +
+                encodeURIComponent(token),
+                {
+                    method:"POST"
+                }
+            );
+
+
+        const syncData =
+            await lerRespostaJSON(
+                syncResponse
+            );
+
+
+        if(!syncResponse.ok){
+
+            mostrarMensagem(
+                extrairMensagemErro(syncData)
+            );
+
+
+            if(botao){
+
+                botao.disabled = false;
+
+                botao.textContent =
+                    "🔄 VERIFICAR MEU PRO";
+
+            }
+
+            return;
+
         }
 
-        if(data.pro === true){
 
-            localStorage.setItem("sellium_pro","true");
-            window.location.href = "./area-pro.html";
+        /*
+         * SE O BACKEND CONFIRMOU O PRO
+         */
+
+        if(syncData.pro === true){
+
+            localStorage.setItem(
+                "sellium_pro",
+                "true"
+            );
+
+
+            window.location.href =
+                "./area-pro.html";
+
             return;
+
+        }
+
+
+        /*
+         * SEGUNDA CONFIRMAÇÃO:
+         * verifica a sessão.
+         */
+
+        const response =
+            await fetch(
+                API_URL +
+                "/verificar-sessao?token=" +
+                encodeURIComponent(token)
+            );
+
+
+        const data =
+            await lerRespostaJSON(response);
+
+
+        if(response.ok){
+
+            if(data.email){
+
+                contaEmail =
+                    data.email;
+
+
+                localStorage.setItem(
+                    "sellium_email",
+                    contaEmail
+                );
+
+
+                document
+                    .getElementById("contaEmail")
+                    .textContent =
+                        contaEmail;
+
+            }
+
+
+            if(data.pro === true){
+
+                localStorage.setItem(
+                    "sellium_pro",
+                    "true"
+                );
+
+
+                window.location.href =
+                    "./area-pro.html";
+
+                return;
+
+            }
+
+        }
+
+
+        /*
+         * AINDA NÃO CONFIRMADO
+         */
+
+        mostrarMensagem(
+            "Seu PRO ainda não foi confirmado pelo Mercado Pago. Aguarde alguns instantes e tente novamente."
+        );
+
+
+        if(botao){
+
+            botao.disabled = false;
+
+            botao.textContent =
+                "🔄 VERIFICAR MEU PRO";
+
+        }
+
+
+    }catch(e){
+
+        mostrarMensagem(
+            "Não foi possível verificar seu PRO agora."
+        );
+
+
+        if(botao){
+
+            botao.disabled = false;
+
+            botao.textContent =
+                "🔄 VERIFICAR MEU PRO";
+
         }
 
     }
 
-}catch(e){
-    // Não interrompe a página se a verificação falhar.
 }
 
-}
+
+
+/* =====================================================
+   SAIR
+===================================================== */
 
 function sair(){
 
-localStorage.removeItem("sellium_token");
-localStorage.removeItem("sellium_email");
-localStorage.removeItem("sellium_pro");
+    localStorage.removeItem(
+        "sellium_token"
+    );
 
-token = "";
-contaEmail = "";
 
-document.getElementById("proArea").classList.add("hidden");
-document.getElementById("loginArea").classList.remove("hidden");
+    localStorage.removeItem(
+        "sellium_email"
+    );
 
-document.getElementById("email").value = "";
-document.getElementById("senha").value = "";
 
-esconderMensagem();
+    localStorage.removeItem(
+        "sellium_pro"
+    );
+
+
+    token = "";
+
+    contaEmail = "";
+
+
+    document
+        .getElementById("proArea")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("loginArea")
+        .classList
+        .remove("hidden");
+
+
+    document
+        .getElementById("email")
+        .value = "";
+
+
+    document
+        .getElementById("senha")
+        .value = "";
+
+
+    esconderMensagem();
 
 }
+
+
+
+/* =====================================================
+   ABRIR AUTOMATICAMENTE
+===================================================== */
 
 if(token && contaEmail){
 
-abrirArea();
+    abrirArea();
 
-setTimeout(() => {
-    verificarPro();
-},300);
+
+    setTimeout(() => {
+
+        verificarPro();
+
+    },300);
 
 }
 
-</script></body>
+</script>
 
+</body>
 </html>
