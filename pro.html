@@ -1,1066 +1,963 @@
-<!DOCTYPE html><html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b1020">
-<meta name="description" content="Sellium PRO — ferramentas avançadas para vender melhor.">
-<title>Sellium PRO</title><style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:
-    radial-gradient(circle at top,#172554 0,#0b1020 45%,#050812 100%);
-  color:#fff;
-  min-height:100vh;
-  padding:20px;
-}
-
-.container{
-  width:100%;
-  max-width:480px;
-  margin:0 auto;
-}
-
-.logo{
-  text-align:center;
-  font-size:32px;
-  font-weight:900;
-  letter-spacing:-1px;
-  margin:18px 0 6px;
-}
-
-.logo span{
-  color:#38bdf8;
-}
-
-.subtitle{
-  text-align:center;
-  color:#aeb9cf;
-  font-size:14px;
-  margin-bottom:24px;
-}
-
-.card{
-  background:rgba(15,23,42,.94);
-  border:1px solid rgba(148,163,184,.18);
-  border-radius:24px;
-  padding:24px;
-  box-shadow:0 20px 50px rgba(0,0,0,.35);
-}
-
-.badge{
-  display:block;
-  width:max-content;
-  margin:0 auto 14px;
-  padding:7px 13px;
-  border-radius:999px;
-  background:rgba(34,197,94,.12);
-  border:1px solid rgba(34,197,94,.35);
-  color:#4ade80;
-  font-size:12px;
-  font-weight:800;
-}
-
-h1{
-  text-align:center;
-  font-size:25px;
-  margin-bottom:8px;
-}
-
-.description{
-  text-align:center;
-  color:#aeb9cf;
-  font-size:14px;
-  line-height:1.5;
-  margin-bottom:22px;
-}
-
-.price{
-  text-align:center;
-  margin-bottom:22px;
-}
-
-.price strong{
-  font-size:38px;
-  color:#fff;
-}
-
-.price span{
-  color:#94a3b8;
-  font-size:14px;
-}
-
-.features{
-  display:grid;
-  gap:10px;
-  margin-bottom:24px;
-}
-
-.feature{
-  padding:12px 14px;
-  border-radius:14px;
-  background:rgba(30,41,59,.7);
-  color:#dbeafe;
-  font-size:14px;
-}
-
-.feature b{
-  color:#4ade80;
-}
-
-label{
-  display:block;
-  margin:14px 0 7px;
-  font-size:13px;
-  color:#cbd5e1;
-  font-weight:700;
-}
-
-input{
-  width:100%;
-  padding:14px;
-  border-radius:13px;
-  border:1px solid #334155;
-  background:#0b1220;
-  color:#fff;
-  font-size:15px;
-  outline:none;
-}
-
-input:focus{
-  border-color:#38bdf8;
-  box-shadow:0 0 0 3px rgba(56,189,248,.1);
-}
-
-.main-btn{
-  width:100%;
-  border:0;
-  border-radius:14px;
-  padding:15px;
-  margin-top:20px;
-  background:linear-gradient(135deg,#22c55e,#16a34a);
-  color:#fff;
-  font-size:15px;
-  font-weight:900;
-  cursor:pointer;
-  box-shadow:0 10px 25px rgba(22,163,74,.25);
-}
-
-.main-btn:disabled{
-  opacity:.6;
-  cursor:wait;
-}
-
-.secondary-btn{
-  width:100%;
-  border:1px solid #334155;
-  border-radius:14px;
-  padding:13px;
-  margin-top:10px;
-  background:#111827;
-  color:#cbd5e1;
-  font-size:14px;
-  font-weight:700;
-  cursor:pointer;
-}
-
-.status{
-  min-height:22px;
-  margin-top:14px;
-  text-align:center;
-  font-size:13px;
-  line-height:1.5;
-  word-break:break-word;
-}
-
-.status.ok{
-  color:#4ade80;
-}
-
-.status.error{
-  color:#f87171;
-}
-
-.status.info{
-  color:#60a5fa;
-}
-
-.small{
-  text-align:center;
-  color:#64748b;
-  font-size:11px;
-  margin-top:18px;
-  line-height:1.5;
-}
-
-.hidden{
-  display:none;
-}
-</style></head><body><div class="container">  <div class="logo">
-    Sellium<span>.</span>
-  </div>  <div class="subtitle">
-    Venda melhor. Tenha mais controle.
-  </div>  <div class="card"><div class="badge">⚡ SELLIUM PRO</div>
-
-<h1>Área PRO</h1>
-
-<div class="description">
-  Tenha acesso às ferramentas avançadas do Sellium
-  para organizar suas vendas e calcular seus preços.
-</div>
-
-<div class="price">
-  <strong>R$ 9,90</strong>
-  <span>/mês</span>
-</div>
-
-<div class="features">
-  <div class="feature">✓ <b>Calculadora PRO</b> para suas vendas</div>
-  <div class="feature">✓ Recursos avançados</div>
-  <div class="feature">✓ Área exclusiva para assinantes</div>
-  <div class="feature">✓ Acesso contínuo enquanto a assinatura estiver ativa</div>
-</div>
-
-<div id="criarArea">
-
-  <label for="email">E-mail</label>
-
-  <input
-    id="email"
-    type="email"
-    autocomplete="email"
-    placeholder="seuemail@email.com"
-  >
-
-  <label for="password">Senha</label>
-
-  <input
-    id="password"
-    type="password"
-    autocomplete="new-password"
-    placeholder="Mínimo de 6 caracteres"
-  >
-
-  <div id="confirmArea">
-
-    <label for="confirmPassword">Confirmar senha</label>
-
-    <input
-      id="confirmPassword"
-      type="password"
-      autocomplete="new-password"
-      placeholder="Digite a senha novamente"
-    >
-
-  </div>
-
-  <button
-    id="mainButton"
-    class="main-btn"
-    onclick="acaoPrincipal()"
-  >
-    CRIAR CONTA PRO
-  </button>
-
-  <button
-    id="loginButton"
-    class="secondary-btn"
-    onclick="alternarModo()"
-  >
-    JÁ TENHO UMA CONTA
-  </button>
-
-</div>
-
-<div
-  id="status"
-  class="status"
-></div>
-
-<div class="small">
-  Pagamento processado pelo Mercado Pago.
-</div>
-
-  </div></div><script>
-
-const API_URL =
-  "https://sellium-api.onrender.com";
-
-const EMAIL_KEY =
-  "sellium_email";
-
-const TOKEN_KEY =
-  "sellium_token";
-
-const PRO_KEY =
-  "sellium_pro";
-
-let modoCriarConta = true;
-
-
-// ======================================================
-// ELEMENTOS
-// ======================================================
-
-const emailInput =
-  document.getElementById("email");
-
-const passwordInput =
-  document.getElementById("password");
-
-const confirmPasswordInput =
-  document.getElementById("confirmPassword");
-
-const confirmArea =
-  document.getElementById("confirmArea");
-
-const mainButton =
-  document.getElementById("mainButton");
-
-const loginButton =
-  document.getElementById("loginButton");
-
-const statusBox =
-  document.getElementById("status");
-
-
-// ======================================================
-// STATUS
-// ======================================================
-
-function mostrarStatus(
-  mensagem,
-  tipo = "info"
-){
-
-  if(
-    mensagem === null ||
-    mensagem === undefined
-  ){
-    mensagem = "";
-  }
-
-  if(
-    typeof mensagem !== "string"
-  ){
-    mensagem =
-      extrairMensagemErro(mensagem);
-  }
-
-  statusBox.textContent =
-    mensagem;
-
-  statusBox.className =
-    "status " + tipo;
-}
-
-
-// ======================================================
-// EXTRAIR MENSAGEM DE ERRO
-// ======================================================
-
-function extrairMensagemErro(
-  erro
-){
-
-  if(
-    erro === null ||
-    erro === undefined
-  ){
-    return "Ocorreu um erro.";
-  }
-
-  if(
-    typeof erro === "string"
-  ){
-
-    return erro;
-  }
-
-  if(
-    typeof erro === "number" ||
-    typeof erro === "boolean"
-  ){
-
-    return String(erro);
-  }
-
-  if(
-    typeof erro === "object"
-  ){
-
-    /*
-      Mercado Pago pode devolver erros
-      em diferentes estruturas.
-
-      Tentamos primeiro as mensagens
-      mais importantes.
-    */
-
-    const possibilidades = [
-
-      erro.message,
-
-      erro.error,
-
-      erro.description,
-
-      erro.detail,
-
-      erro.cause,
-
-      erro.data,
-
-      erro.mercadopago
-
-    ];
-
-    for(
-      const item of possibilidades
-    ){
-
-      if(
-        item === erro
-      ){
-        continue;
-      }
-
-      const mensagem =
-        extrairMensagemErro(item);
-
-      if(
-        mensagem &&
-        mensagem !== "[object Object]" &&
-        mensagem !== "Ocorreu um erro."
-      ){
-
-        return mensagem;
-      }
-    }
-
-    /*
-      Tratamento específico para
-      erros do Mercado Pago em "cause".
-    */
-
-    if(
-      Array.isArray(erro.cause) &&
-      erro.cause.length > 0
-    ){
-
-      for(
-        const causa of erro.cause
-      ){
-
-        const mensagem =
-          extrairMensagemErro(causa);
-
-        if(
-          mensagem &&
-          mensagem !== "[object Object]" &&
-          mensagem !== "Ocorreu um erro."
-        ){
-
-          return mensagem;
-        }
-      }
-    }
-
-    /*
-      Última tentativa:
-      transformar o objeto em JSON legível.
-    */
-
-    try{
-
-      const json =
-        JSON.stringify(erro);
-
-      if(
-        json &&
-        json !== "{}"
-      ){
-
-        return json;
-      }
-
-    }catch(e){
-
-      console.error(
-        "Erro ao converter objeto:",
-        e
-      );
-    }
-  }
-
-  return "Ocorreu um erro.";
-}
-
-
-// ======================================================
-// LER JSON COM SEGURANÇA
-// ======================================================
-
-async function lerRespostaJSON(
-  response
-){
-
-  const texto =
-    await response.text();
-
-  if(!texto){
-
-    return {};
-  }
-
-  try{
-
-    return JSON.parse(texto);
-
-  }catch(e){
+import os
+import hmac
+import hashlib
+import secrets
+import sqlite3
+from datetime import datetime, timezone
+from typing import Optional
+
+import requests
+from fastapi import FastAPI, Request, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, EmailStr
+
+
+APP_URL = os.getenv(
+    "APP_URL",
+    "https://quantovenderhoje.onrender.com"
+)
+
+MP_ACCESS_TOKEN = os.getenv("MP_ACCESS_TOKEN", "")
+MP_PLAN_ID = os.getenv("MP_PLAN_ID", "")
+MP_WEBHOOK_SECRET = os.getenv("MP_WEBHOOK_SECRET", "")
+
+DATABASE_PATH = os.getenv("DATABASE_PATH", "sellium.db")
+
+MP_API = "https://api.mercadopago.com"
+PRO_PRICE = 9.90
+
+
+app = FastAPI(
+    title="Sellium PRO API",
+    version="1.0.0"
+)
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+# =========================================================
+# BANCO DE DADOS
+# =========================================================
+
+def get_db():
+    db = sqlite3.connect(DATABASE_PATH)
+    db.row_factory = sqlite3.Row
+    return db
+
+
+def init_db():
+    db = get_db()
+
+    db.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email TEXT UNIQUE NOT NULL,
+            password_hash TEXT NOT NULL,
+            pro INTEGER DEFAULT 0,
+            subscription_id TEXT,
+            subscription_status TEXT,
+            created_at TEXT NOT NULL
+        )
+    """)
+
+    db.execute("""
+        CREATE TABLE IF NOT EXISTS sessions (
+            token TEXT PRIMARY KEY,
+            user_id INTEGER NOT NULL,
+            created_at TEXT NOT NULL
+        )
+    """)
+
+    db.execute("""
+        CREATE TABLE IF NOT EXISTS webhook_events (
+            id TEXT PRIMARY KEY,
+            created_at TEXT NOT NULL
+        )
+    """)
+
+    db.commit()
+    db.close()
+
+
+init_db()
+
+
+# =========================================================
+# UTILITÁRIOS
+# =========================================================
+
+def now_iso():
+    return datetime.now(timezone.utc).isoformat()
+
+
+def normalize_email(email: str):
+    return email.strip().lower()
+
+
+def hash_password(password: str):
+    salt = secrets.token_bytes(16)
+
+    derived = hashlib.pbkdf2_hmac(
+        "sha256",
+        password.encode("utf-8"),
+        salt,
+        200000
+    )
+
+    return (
+        salt.hex()
+        + ":"
+        + derived.hex()
+    )
+
+
+def verify_password(password: str, stored: str):
+    try:
+        salt_hex, hash_hex = stored.split(":")
+
+        salt = bytes.fromhex(salt_hex)
+
+        derived = hashlib.pbkdf2_hmac(
+            "sha256",
+            password.encode("utf-8"),
+            salt,
+            200000
+        )
+
+        return hmac.compare_digest(
+            derived.hex(),
+            hash_hex
+        )
+
+    except Exception:
+        return False
+
+
+def create_session(user_id: int):
+    token = secrets.token_urlsafe(32)
+
+    db = get_db()
+
+    db.execute(
+        """
+        INSERT INTO sessions
+        (token, user_id, created_at)
+        VALUES (?, ?, ?)
+        """,
+        (
+            token,
+            user_id,
+            now_iso()
+        )
+    )
+
+    db.commit()
+    db.close()
+
+    return token
+
+
+def get_user_by_token(token: str):
+    db = get_db()
+
+    user = db.execute(
+        """
+        SELECT users.*
+        FROM users
+        JOIN sessions
+        ON sessions.user_id = users.id
+        WHERE sessions.token = ?
+        """,
+        (token,)
+    ).fetchone()
+
+    db.close()
+
+    return user
+
+
+def update_user_pro(
+    user_id: int,
+    pro: bool,
+    subscription_id: Optional[str] = None,
+    subscription_status: Optional[str] = None
+):
+    db = get_db()
+
+    db.execute(
+        """
+        UPDATE users
+        SET
+            pro = ?,
+            subscription_id = COALESCE(?, subscription_id),
+            subscription_status = COALESCE(
+                ?,
+                subscription_status
+            )
+        WHERE id = ?
+        """,
+        (
+            1 if pro else 0,
+            subscription_id,
+            subscription_status,
+            user_id
+        )
+    )
+
+    db.commit()
+    db.close()
+
+
+# =========================================================
+# MERCADO PAGO
+# =========================================================
+
+def mp_headers():
+    if not MP_ACCESS_TOKEN:
+        raise HTTPException(
+            status_code=500,
+            detail="MP_ACCESS_TOKEN não configurado."
+        )
 
     return {
-      detail:
-        texto
-    };
-  }
-}
+        "Authorization": f"Bearer {MP_ACCESS_TOKEN}",
+        "Content-Type": "application/json"
+    }
 
 
-// ======================================================
-// ALTERNAR LOGIN / CRIAR CONTA
-// ======================================================
+def consultar_assinatura(subscription_id: str):
+    response = requests.get(
+        f"{MP_API}/preapproval/{subscription_id}",
+        headers=mp_headers(),
+        timeout=20
+    )
 
-function alternarModo(){
+    if response.status_code != 200:
+        return None
 
-  modoCriarConta =
-    !modoCriarConta;
-
-  mostrarStatus("");
-
-  if(modoCriarConta){
-
-    confirmArea.classList.remove(
-      "hidden"
-    );
-
-    mainButton.textContent =
-      "CRIAR CONTA PRO";
-
-    mainButton.onclick =
-      acaoPrincipal;
-
-    loginButton.textContent =
-      "JÁ TENHO UMA CONTA";
-
-    passwordInput.autocomplete =
-      "new-password";
-
-    confirmPasswordInput.value =
-      "";
-
-  }else{
-
-    confirmArea.classList.add(
-      "hidden"
-    );
-
-    mainButton.textContent =
-      "ENTRAR";
-
-    mainButton.onclick =
-      acaoPrincipal;
-
-    loginButton.textContent =
-      "CRIAR NOVA CONTA";
-
-    passwordInput.autocomplete =
-      "current-password";
-  }
-}
+    return response.json()
 
 
-// ======================================================
-// AÇÃO PRINCIPAL
-// ======================================================
+def status_pro(status: Optional[str]):
+    return status in (
+        "authorized",
+        "active"
+    )
 
-async function acaoPrincipal(){
 
-  const email =
-    emailInput.value.trim().toLowerCase();
+# =========================================================
+# WEBHOOK
+# =========================================================
 
-  const password =
-    passwordInput.value;
+def validar_webhook(
+    body: bytes,
+    request: Request,
+    data_id: Optional[str]
+):
+    if not MP_WEBHOOK_SECRET:
+        return True
 
-  const confirmPassword =
-    confirmPasswordInput.value;
+    x_signature = request.headers.get(
+        "x-signature",
+        ""
+    )
 
-  if(!email){
+    x_request_id = request.headers.get(
+        "x-request-id",
+        ""
+    )
 
-    mostrarStatus(
-      "Digite seu e-mail.",
-      "error"
-    );
+    if not x_signature:
+        return False
 
-    return;
-  }
+    parts = {}
 
-  if(!password){
+    for item in x_signature.split(","):
+        if "=" in item:
+            key, value = item.split(
+                "=",
+                1
+            )
+            parts[key.strip()] = value.strip()
 
-    mostrarStatus(
-      "Digite sua senha.",
-      "error"
-    );
+    ts = parts.get("ts")
+    v1 = parts.get("v1")
 
-    return;
-  }
+    if not ts or not v1:
+        return False
 
-  if(password.length < 6){
+    manifest = (
+        f"id:{data_id or ''};"
+        f"request-id:{x_request_id};"
+        f"ts:{ts};"
+    )
 
-    mostrarStatus(
-      "A senha deve ter pelo menos 6 caracteres.",
-      "error"
-    );
+    generated = hmac.new(
+        MP_WEBHOOK_SECRET.encode("utf-8"),
+        manifest.encode("utf-8"),
+        hashlib.sha256
+    ).hexdigest()
 
-    return;
-  }
+    return hmac.compare_digest(
+        generated,
+        v1
+    )
 
-  if(
-    modoCriarConta &&
-    password !== confirmPassword
-  ){
 
-    mostrarStatus(
-      "As senhas não são iguais.",
-      "error"
-    );
+# =========================================================
+# MODELOS
+# =========================================================
 
-    return;
-  }
+class CriarConta(BaseModel):
+    email: EmailStr
+    password: str
 
-  mainButton.disabled =
-    true;
 
-  mostrarStatus(
-    modoCriarConta
-      ? "Criando sua conta..."
-      : "Entrando...",
-    "info"
-  );
+class Login(BaseModel):
+    email: EmailStr
+    password: str
 
-  try{
 
-    const endpoint =
-      modoCriarConta
-        ? "/criar-conta-pro"
-        : "/login-pro";
+class Assinar(BaseModel):
+    token: str
+    mp_email: EmailStr
 
-    const response =
-      await fetch(
-        API_URL + endpoint,
-        {
-          method:"POST",
 
-          headers:{
-            "Content-Type":
-              "application/json"
-          },
+# =========================================================
+# ROTAS BÁSICAS
+# =========================================================
 
-          body:JSON.stringify({
-            email:email,
-            password:password
-          })
+@app.get("/")
+def root():
+    return {
+        "app": "Sellium PRO API",
+        "status": "online"
+    }
+
+
+@app.get("/health")
+def health():
+    return {
+        "ok": True,
+        "app": "Sellium PRO API"
+    }
+
+
+# =========================================================
+# CRIAR CONTA
+# =========================================================
+
+@app.post("/criar-conta-pro")
+def criar_conta(data: CriarConta):
+    email = normalize_email(
+        str(data.email)
+    )
+
+    if len(data.password) < 6:
+        raise HTTPException(
+            status_code=400,
+            detail="A senha precisa ter pelo menos 6 caracteres."
+        )
+
+    db = get_db()
+
+    existing = db.execute(
+        """
+        SELECT id
+        FROM users
+        WHERE email = ?
+        """,
+        (email,)
+    ).fetchone()
+
+    if existing:
+        db.close()
+
+        raise HTTPException(
+            status_code=400,
+            detail="Este e-mail já possui uma conta."
+        )
+
+    db.execute(
+        """
+        INSERT INTO users
+        (
+            email,
+            password_hash,
+            pro,
+            created_at
+        )
+        VALUES (?, ?, 0, ?)
+        """,
+        (
+            email,
+            hash_password(data.password),
+            now_iso()
+        )
+    )
+
+    db.commit()
+
+    user_id = db.execute(
+        """
+        SELECT id
+        FROM users
+        WHERE email = ?
+        """,
+        (email,)
+    ).fetchone()["id"]
+
+    db.close()
+
+    token = create_session(user_id)
+
+    return {
+        "ok": True,
+        "token": token,
+        "email": email,
+        "pro": False
+    }
+
+
+# =========================================================
+# LOGIN
+# =========================================================
+
+@app.post("/login-pro")
+def login(data: Login):
+    email = normalize_email(
+        str(data.email)
+    )
+
+    db = get_db()
+
+    user = db.execute(
+        """
+        SELECT *
+        FROM users
+        WHERE email = ?
+        """,
+        (email,)
+    ).fetchone()
+
+    db.close()
+
+    if not user:
+        raise HTTPException(
+            status_code=401,
+            detail="E-mail ou senha incorretos."
+        )
+
+    if not verify_password(
+        data.password,
+        user["password_hash"]
+    ):
+        raise HTTPException(
+            status_code=401,
+            detail="E-mail ou senha incorretos."
+        )
+
+    token = create_session(
+        user["id"]
+    )
+
+    return {
+        "ok": True,
+        "token": token,
+        "email": user["email"],
+        "pro": bool(user["pro"])
+    }
+
+
+# =========================================================
+# VERIFICAR SESSÃO
+# =========================================================
+
+@app.get("/verificar-sessao")
+def verificar_sessao(token: str):
+    user = get_user_by_token(token)
+
+    if not user:
+        raise HTTPException(
+            status_code=401,
+            detail="Sessão inválida ou expirada."
+        )
+
+    return {
+        "ok": True,
+        "email": user["email"],
+        "pro": bool(user["pro"]),
+        "subscription_id": user["subscription_id"],
+        "subscription_status": user["subscription_status"]
+    }
+
+
+# =========================================================
+# ASSINAR PRO
+# =========================================================
+
+@app.post("/assinar")
+def assinar(data: Assinar):
+    user = get_user_by_token(
+        data.token
+    )
+
+    if not user:
+        raise HTTPException(
+            status_code=401,
+            detail="Sessão inválida ou expirada."
+        )
+
+    if not MP_ACCESS_TOKEN:
+        raise HTTPException(
+            status_code=500,
+            detail="Mercado Pago não configurado no servidor."
+        )
+
+    mp_email = normalize_email(
+        str(data.mp_email)
+    )
+
+    # Se já possui assinatura, consulta o status
+    if user["subscription_id"]:
+        subscription = consultar_assinatura(
+            user["subscription_id"]
+        )
+
+        if subscription:
+            status = subscription.get(
+                "status"
+            )
+
+            update_user_pro(
+                user["id"],
+                status_pro(status),
+                user["subscription_id"],
+                status
+            )
+
+            if status_pro(status):
+                return {
+                    "ok": True,
+                    "pro": True,
+                    "already_pro": True,
+                    "subscription_id": user["subscription_id"],
+                    "status": status,
+                    "checkout_url": None
+                }
+
+    payload = {
+        "reason": "Sellium PRO",
+        "external_reference": (
+            f"SELLIUM_USER_{user['id']}"
+        ),
+        "payer_email": mp_email,
+        "auto_recurring": {
+            "frequency": 1,
+            "frequency_type": "months",
+            "transaction_amount": PRO_PRICE,
+            "currency_id": "BRL"
+        },
+        "back_url": (
+            f"{APP_URL}/area-pro.html"
+        )
+    }
+
+    if MP_PLAN_ID:
+        payload["preapproval_plan_id"] = MP_PLAN_ID
+
+    try:
+        response = requests.post(
+            f"{MP_API}/preapproval",
+            headers=mp_headers(),
+            json=payload,
+            timeout=30
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=502,
+            detail={
+                "message": "Erro ao conectar ao Mercado Pago.",
+                "error": str(e)
+            }
+        )
+
+    try:
+        subscription = response.json()
+    except Exception:
+        subscription = {
+            "raw": response.text
         }
-      );
 
-    const data =
-      await lerRespostaJSON(
-        response
-      );
+    if response.status_code not in (
+        200,
+        201
+    ):
+        raise HTTPException(
+            status_code=502,
+            detail={
+                "message": (
+                    "Mercado Pago recusou "
+                    "a criação da assinatura."
+                ),
+                "mercadopago": subscription
+            }
+        )
 
-    if(!response.ok){
+    subscription_id = subscription.get(
+        "id"
+    )
 
-      const mensagem =
-        extrairMensagemErro(
-          data.detail || data
-        );
+    status = subscription.get(
+        "status"
+    )
 
-      throw new Error(
-        mensagem
-      );
+    checkout_url = (
+        subscription.get("init_point")
+        or subscription.get("checkout_url")
+        or subscription.get("sandbox_init_point")
+    )
+
+    update_user_pro(
+        user["id"],
+        status_pro(status),
+        subscription_id,
+        status
+    )
+
+    return {
+        "ok": True,
+        "pro": status_pro(status),
+        "subscription_id": subscription_id,
+        "status": status,
+        "checkout_url": checkout_url,
+        "init_point": subscription.get(
+            "init_point"
+        ),
+        "sandbox_init_point": subscription.get(
+            "sandbox_init_point"
+        )
     }
 
-    if(!data.token){
 
-      throw new Error(
-        "O servidor não retornou a sessão da conta."
-      );
-    }
+# =========================================================
+# VERIFICAR PRO
+# =========================================================
 
-    localStorage.setItem(
-      EMAIL_KEY,
-      email
-    );
+@app.get("/verificar-pro")
+def verificar_pro(email: EmailStr):
+    email = normalize_email(
+        str(email)
+    )
 
-    localStorage.setItem(
-      TOKEN_KEY,
-      data.token
-    );
+    db = get_db()
 
-    localStorage.setItem(
-      PRO_KEY,
-      data.pro ? "true" : "false"
-    );
+    user = db.execute(
+        """
+        SELECT *
+        FROM users
+        WHERE email = ?
+        """,
+        (email,)
+    ).fetchone()
 
-    if(data.pro === true){
+    db.close()
 
-      window.location.href =
-        "./area-pro.html";
-
-      return;
-    }
-
-    mostrarStatus(
-      modoCriarConta
-        ? "✓ Conta criada. Agora vamos para a assinatura PRO."
-        : "✓ Login realizado. Agora vamos para a assinatura PRO.",
-      "ok"
-    );
-
-    mainButton.textContent =
-      "💳 ASSINAR PRO";
-
-    mainButton.onclick =
-      assinarPro;
-
-    loginButton.classList.add(
-      "hidden"
-    );
-
-  }catch(error){
-
-    console.error(
-      "Erro na conta:",
-      error
-    );
-
-    mostrarStatus(
-      extrairMensagemErro(error),
-      "error"
-    );
-
-  }finally{
-
-    mainButton.disabled =
-      false;
-  }
-}
-
-
-// ======================================================
-// ASSINAR PRO
-// ======================================================
-
-async function assinarPro(){
-
-  const token =
-    localStorage.getItem(
-      TOKEN_KEY
-    );
-
-  if(!token){
-
-    mostrarStatus(
-      "Sua sessão expirou. Entre novamente.",
-      "error"
-    );
-
-    return;
-  }
-
-  mainButton.disabled =
-    true;
-
-  mostrarStatus(
-    "Preparando o pagamento...",
-    "info"
-  );
-
-  try{
-
-    /*
-      O backend recebe:
-
-      {
-        "token": "..."
-      }
-
-      Não alteramos esse formato.
-    */
-
-    const response =
-      await fetch(
-        API_URL + "/assinar",
-        {
-          method:"POST",
-
-          headers:{
-            "Content-Type":
-              "application/json"
-          },
-
-          body:JSON.stringify({
-            token:token
-          })
-        }
-      );
-
-    const data =
-      await lerRespostaJSON(
-        response
-      );
-
-    console.log(
-      "Resposta /assinar:",
-      data
-    );
-
-    if(!response.ok){
-
-      /*
-        Aqui está a principal correção.
-
-        O backend pode retornar:
-
-        detail: {
-          message: "...",
-          mercadopago: {
-            message: "...",
-            cause: [...]
-          }
+    if not user:
+        return {
+            "ok": True,
+            "pro": False,
+            "status": "inactive"
         }
 
-        Antes um objeto podia acabar
-        sendo convertido para:
+    if user["subscription_id"]:
+        subscription = consultar_assinatura(
+            user["subscription_id"]
+        )
 
-        [object Object]
+        if subscription:
+            status = subscription.get(
+                "status"
+            )
 
-        Agora procuramos a mensagem
-        dentro de todos esses níveis.
-      */
+            update_user_pro(
+                user["id"],
+                status_pro(status),
+                user["subscription_id"],
+                status
+            )
 
-      let detalhe =
-        data.detail || data;
+            return {
+                "ok": True,
+                "pro": status_pro(status),
+                "status": status
+            }
 
-      let mensagem =
-        extrairMensagemErro(
-          detalhe
-        );
-
-      /*
-        Se ainda não encontrou uma mensagem
-        específica, mostramos uma mensagem
-        clara em vez de [object Object].
-      */
-
-      if(
-        !mensagem ||
-        mensagem === "[object Object]"
-      ){
-
-        mensagem =
-          "O Mercado Pago recusou a criação da assinatura. Verifique as credenciais e a configuração da assinatura.";
-      }
-
-      console.error(
-        "Erro retornado pelo /assinar:",
-        data
-      );
-
-      throw new Error(
-        mensagem
-      );
+    return {
+        "ok": True,
+        "pro": bool(user["pro"]),
+        "status": user["subscription_status"]
+        or "inactive"
     }
 
-    if(data.pro === true){
 
-      localStorage.setItem(
-        PRO_KEY,
-        "true"
-      );
+# =========================================================
+# WEBHOOK MERCADO PAGO
+# =========================================================
 
-      window.location.href =
-        "./area-pro.html";
+@app.post("/webhook/mercadopago")
+async def webhook_mercadopago(
+    request: Request
+):
+    body = await request.body()
 
-      return;
+    try:
+        data = await request.json()
+    except Exception:
+        data = {}
+
+    data_id = None
+
+    if isinstance(data, dict):
+        if isinstance(
+            data.get("data"),
+            dict
+        ):
+            data_id = data["data"].get("id")
+
+    if not validar_webhook(
+        body,
+        request,
+        str(data_id) if data_id else None
+    ):
+        raise HTTPException(
+            status_code=401,
+            detail="Webhook inválido."
+        )
+
+    event_id = (
+        request.headers.get(
+            "x-request-id"
+        )
+        or hashlib.sha256(body).hexdigest()
+    )
+
+    db = get_db()
+
+    existing = db.execute(
+        """
+        SELECT id
+        FROM webhook_events
+        WHERE id = ?
+        """,
+        (event_id,)
+    ).fetchone()
+
+    if existing:
+        db.close()
+
+        return {
+            "ok": True,
+            "duplicate": True
+        }
+
+    db.execute(
+        """
+        INSERT INTO webhook_events
+        (id, created_at)
+        VALUES (?, ?)
+        """,
+        (
+            event_id,
+            now_iso()
+        )
+    )
+
+    db.commit()
+    db.close()
+
+    event_type = (
+        data.get("type")
+        or data.get("action")
+        or ""
+    )
+
+    object_id = (
+        str(data_id)
+        if data_id
+        else None
+    )
+
+    # -----------------------------------------------------
+    # ASSINATURA
+    # -----------------------------------------------------
+
+    if event_type in (
+        "subscription_preapproval",
+        "preapproval"
+    ):
+        if object_id:
+            subscription = consultar_assinatura(
+                object_id
+            )
+
+            if subscription:
+                external_reference = subscription.get(
+                    "external_reference"
+                )
+
+                if external_reference and external_reference.startswith(
+                    "SELLIUM_USER_"
+                ):
+                    try:
+                        user_id = int(
+                            external_reference.replace(
+                                "SELLIUM_USER_",
+                                ""
+                            )
+                        )
+
+                        status = subscription.get(
+                            "status"
+                        )
+
+                        update_user_pro(
+                            user_id,
+                            status_pro(status),
+                            object_id,
+                            status
+                        )
+
+                    except Exception:
+                        pass
+
+    # -----------------------------------------------------
+    # PAGAMENTO AUTORIZADO
+    # -----------------------------------------------------
+
+    elif event_type == "subscription_authorized_payment":
+        if object_id:
+            try:
+                payment_response = requests.get(
+                    f"{MP_API}/authorized_payments/{object_id}",
+                    headers=mp_headers(),
+                    timeout=20
+                )
+
+                if payment_response.status_code == 200:
+                    payment = payment_response.json()
+
+                    subscription_id = (
+                        payment.get(
+                            "preapproval_id"
+                        )
+                        or payment.get(
+                            "subscription_id"
+                        )
+                    )
+
+                    if subscription_id:
+                        subscription = consultar_assinatura(
+                            subscription_id
+                        )
+
+                        if subscription:
+                            external_reference = subscription.get(
+                                "external_reference"
+                            )
+
+                            if (
+                                external_reference
+                                and external_reference.startswith(
+                                    "SELLIUM_USER_"
+                                )
+                            ):
+                                try:
+                                    user_id = int(
+                                        external_reference.replace(
+                                            "SELLIUM_USER_",
+                                            ""
+                                        )
+                                    )
+
+                                    status = subscription.get(
+                                        "status"
+                                    )
+
+                                    update_user_pro(
+                                        user_id,
+                                        status_pro(status),
+                                        subscription_id,
+                                        status
+                                    )
+
+                                except Exception:
+                                    pass
+
+            except Exception:
+                pass
+
+    return {
+        "ok": True
     }
 
-    /*
-      Aceitamos todos os formatos
-      usados pelo backend atual.
-    */
 
-    const checkoutUrl =
-      data.init_point ||
-      data.checkout_url ||
-      data.sandbox_init_point;
+# =========================================================
+# SINCRONIZAR PRO
+# =========================================================
 
-    if(checkoutUrl){
+@app.post("/sincronizar-pro")
+def sincronizar_pro(token: str):
+    user = get_user_by_token(
+        token
+    )
 
-      mostrarStatus(
-        "Abrindo o Mercado Pago...",
-        "ok"
-      );
+    if not user:
+        raise HTTPException(
+            status_code=401,
+            detail="Sessão inválida ou expirada."
+        )
 
-      window.location.href =
-        checkoutUrl;
+    if not user["subscription_id"]:
+        return {
+            "ok": True,
+            "pro": bool(user["pro"]),
+            "status": user["subscription_status"]
+            or "inactive"
+        }
 
-      return;
+    subscription = consultar_assinatura(
+        user["subscription_id"]
+    )
+
+    if not subscription:
+        return {
+            "ok": True,
+            "pro": bool(user["pro"]),
+            "status": user["subscription_status"]
+            or "inactive"
+        }
+
+    status = subscription.get(
+        "status"
+    )
+
+    update_user_pro(
+        user["id"],
+        status_pro(status),
+        user["subscription_id"],
+        status
+    )
+
+    return {
+        "ok": True,
+        "pro": status_pro(status),
+        "status": status
     }
-
-    /*
-      Se o backend respondeu corretamente,
-      mas não mandou URL, mostramos uma
-      mensagem clara.
-    */
-
-    console.error(
-      "Mercado Pago não retornou checkout:",
-      data
-    );
-
-    throw new Error(
-      "O Mercado Pago não retornou o link de pagamento."
-    );
-
-  }catch(error){
-
-    console.error(
-      "Erro ao assinar:",
-      error
-    );
-
-    mostrarStatus(
-      extrairMensagemErro(error),
-      "error"
-    );
-
-  }finally{
-
-    mainButton.disabled =
-      false;
-  }
-}
-
-
-// ======================================================
-// VERIFICAR SESSÃO AO ABRIR A PÁGINA
-// ======================================================
-
-async function verificarSessao(){
-
-  const token =
-    localStorage.getItem(
-      TOKEN_KEY
-    );
-
-  const email =
-    localStorage.getItem(
-      EMAIL_KEY
-    );
-
-  if(email){
-
-    emailInput.value =
-      email;
-  }
-
-  if(!token){
-
-    return;
-  }
-
-  try{
-
-    const response =
-      await fetch(
-        API_URL +
-        "/verificar-sessao?token=" +
-        encodeURIComponent(token)
-      );
-
-    const data =
-      await lerRespostaJSON(
-        response
-      );
-
-    if(!response.ok){
-
-      localStorage.removeItem(
-        TOKEN_KEY
-      );
-
-      localStorage.removeItem(
-        PRO_KEY
-      );
-
-      return;
-    }
-
-    if(data.pro === true){
-
-      localStorage.setItem(
-        PRO_KEY,
-        "true"
-      );
-
-      window.location.href =
-        "./area-pro.html";
-
-      return;
-    }
-
-    if(data.email){
-
-      emailInput.value =
-        data.email;
-    }
-
-    mostrarStatus(
-      "Conta encontrada. Você pode continuar para a assinatura PRO.",
-      "info"
-    );
-
-    mainButton.textContent =
-      "💳 ASSINAR PRO";
-
-    mainButton.onclick =
-      assinarPro;
-
-    loginButton.classList.add(
-      "hidden"
-    );
-
-  }catch(error){
-
-    console.error(
-      "Erro ao verificar sessão:",
-      error
-    );
-  }
-}
-
-
-// ======================================================
-// INÍCIO
-// ======================================================
-
-verificarSessao();
-
-</script></body>
-</html>
