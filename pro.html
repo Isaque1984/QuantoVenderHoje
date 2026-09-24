@@ -135,6 +135,7 @@ button:disabled{
     text-align:center;
     display:none;
     font-size:14px;
+    word-break:break-word;
 }
 
 .error{
@@ -949,11 +950,9 @@ async function verificarPro(){
 
     try{
 
-        /*
-         * PRIMEIRO:
-         * sincroniza diretamente com o
-         * Mercado Pago através do backend.
-         */
+        /* =================================================
+           SINCRONIZA COM O MERCADO PAGO
+        ================================================= */
 
         const syncResponse =
             await fetch(
@@ -975,6 +974,7 @@ async function verificarPro(){
         if(!syncResponse.ok){
 
             mostrarMensagem(
+                "Erro na sincronização: " +
                 extrairMensagemErro(syncData)
             );
 
@@ -993,9 +993,9 @@ async function verificarPro(){
         }
 
 
-        /*
-         * SE O BACKEND CONFIRMOU O PRO
-         */
+        /* =================================================
+           SE O PRO FOI CONFIRMADO
+        ================================================= */
 
         if(syncData.pro === true){
 
@@ -1005,18 +1005,113 @@ async function verificarPro(){
             );
 
 
-            window.location.href =
-                "./area-pro.html";
+            mostrarMensagem(
+                "PRO confirmado! Abrindo sua Área PRO...",
+                "success"
+            );
+
+
+            setTimeout(() => {
+
+                window.location.href =
+                    "./area-pro.html";
+
+            },700);
 
             return;
 
         }
 
 
-        /*
-         * SEGUNDA CONFIRMAÇÃO:
-         * verifica a sessão.
-         */
+        /* =================================================
+           MOSTRA O STATUS REAL
+        ================================================= */
+
+        let status =
+            syncData.status ||
+            "não informado";
+
+        status =
+            String(status).toLowerCase();
+
+
+        let diagnostico =
+            "";
+
+
+        if(
+            status === "pending"
+        ){
+
+            diagnostico =
+                "A assinatura ainda está pendente no Mercado Pago.";
+
+        }else if(
+            status === "authorized" ||
+            status === "active"
+        ){
+
+            diagnostico =
+                "O Mercado Pago informou uma assinatura ativa, mas o Sellium ainda não marcou sua conta como PRO.";
+
+        }else if(
+            status === "paused"
+        ){
+
+            diagnostico =
+                "A assinatura está pausada no Mercado Pago.";
+
+        }else if(
+            status === "cancelled" ||
+            status === "cancelled_by_user"
+        ){
+
+            diagnostico =
+                "A assinatura aparece como cancelada no Mercado Pago.";
+
+        }else if(
+            status === "rejected"
+        ){
+
+            diagnostico =
+                "O Mercado Pago informou que a assinatura foi rejeitada.";
+
+        }else if(
+            status === "inactive"
+        ){
+
+            diagnostico =
+                "Não existe uma assinatura PRO ativa vinculada a esta conta no sistema.";
+
+        }else{
+
+            diagnostico =
+                "O Mercado Pago retornou um status que ainda precisamos analisar.";
+
+        }
+
+
+        mostrarMensagem(
+            "STATUS DO MERCADO PAGO: " +
+            status.toUpperCase() +
+            " — " +
+            diagnostico
+        );
+
+
+        if(botao){
+
+            botao.disabled = false;
+
+            botao.textContent =
+                "🔄 VERIFICAR MEU PRO";
+
+        }
+
+
+        /* =================================================
+           CONFIRMAÇÃO EXTRA DA SESSÃO
+        ================================================= */
 
         const response =
             await fetch(
@@ -1070,29 +1165,11 @@ async function verificarPro(){
         }
 
 
-        /*
-         * AINDA NÃO CONFIRMADO
-         */
-
-        mostrarMensagem(
-            "Seu PRO ainda não foi confirmado pelo Mercado Pago. Aguarde alguns instantes e tente novamente."
-        );
-
-
-        if(botao){
-
-            botao.disabled = false;
-
-            botao.textContent =
-                "🔄 VERIFICAR MEU PRO";
-
-        }
-
-
     }catch(e){
 
         mostrarMensagem(
-            "Não foi possível verificar seu PRO agora."
+            "Não foi possível verificar seu PRO agora. Erro: " +
+            (e.message || e)
         );
 
 
@@ -1185,4 +1262,4 @@ if(token && contaEmail){
 </script>
 
 </body>
-</html>
+    </html>
