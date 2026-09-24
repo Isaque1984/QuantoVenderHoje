@@ -1763,6 +1763,100 @@ function renderAll(){
  renderReports();
 }
 
+// =====================================================
+// VERIFICAÇÃO PRO EM SEGUNDO PLANO
+// Não bloqueia a abertura da Área PRO.
+// Só bloqueia se o servidor confirmar que o PRO não está ativo.
+// =====================================================
+
+const SELLIUM_API = 'https://sellium-api.onrender.com';
+
+async function verificarPROEmSegundoPlano() {
+  try {
+    const token = localStorage.getItem('sellium_token');
+
+    if (!token) {
+      return;
+    }
+
+    const mpEmail =
+      localStorage.getItem('sellium_mp_email') ||
+      localStorage.getItem('sellium_email') ||
+      '';
+
+    const controller = new AbortController();
+
+    // Evita ficar esperando indefinidamente
+    const timeout = setTimeout(() => {
+      controller.abort();
+    }, 8000);
+
+    let url =
+      SELLIUM_API +
+      '/sincronizar-pro?token=' +
+      encodeURIComponent(token);
+
+    if (mpEmail) {
+      url += '&mp_email=' + encodeURIComponent(mpEmail);
+    }
+
+    const resposta = await fetch(url, {
+      method: 'GET',
+      cache: 'no-store',
+      signal: controller.signal
+    });
+
+    clearTimeout(timeout);
+
+    if (!resposta.ok) {
+      // Erro temporário: não bloqueia o usuário
+      return;
+    }
+
+    const dados = await resposta.json();
+
+    // Só bloqueia quando o backend confirmar explicitamente
+    // que a assinatura PRO não está ativa.
+    if (dados && dados.pro === false) {
+
+      localStorage.setItem('sellium_pro', 'false');
+
+      alert(
+        'Sua assinatura Sellium PRO não está mais ativa. ' +
+        'Você será direcionado para a página do PRO.'
+      );
+
+      window.location.href = './pro.html';
+      return;
+    }
+
+    // PRO confirmado
+    if (dados && dados.pro === true) {
+      localStorage.setItem('sellium_pro', 'true');
+    }
+
+  } catch (erro) {
+    // Internet lenta, API temporariamente indisponível,
+    // timeout etc. NÃO bloqueia o acesso.
+    console.log(
+      'Verificação PRO em segundo plano:',
+      erro
+    );
+  }
+}
+
+// A Área PRO abre primeiro.
+// A verificação acontece depois, sem travar a interface.
+setTimeout(() => {
+  verificarPROEmSegundoPlano();
+}, 1500);
+
+// Verifica novamente após 10 minutos,
+// sem ficar fazendo requisições continuamente.
+setInterval(() => {
+  verificarPROEmSegundoPlano();
+}, 10 * 60 * 1000);
+
 renderAll();
 </script>
 
