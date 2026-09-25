@@ -47,8 +47,19 @@ app.add_middleware(
 # =========================================================
 
 def get_db():
-    db = sqlite3.connect(DATABASE_PATH)
+    db = sqlite3.connect(
+        DATABASE_PATH,
+        timeout=30
+    )
     db.row_factory = sqlite3.Row
+
+    # Proteção contra concorrência do SQLite.
+    # Aguarda até 30 segundos quando outra operação
+    # estiver usando o banco, em vez de falhar imediatamente.
+    db.execute("PRAGMA busy_timeout = 30000")
+    db.execute("PRAGMA journal_mode = WAL")
+    db.execute("PRAGMA synchronous = NORMAL")
+
     return db
 
 
@@ -141,23 +152,26 @@ def create_session(user_id: int):
 
     db = get_db()
 
-    db.execute(
-        """
-        INSERT INTO sessions
-        (token, user_id, created_at)
-        VALUES (?, ?, ?)
-        """,
-        (
-            token,
-            user_id,
-            now_iso()
+    try:
+        db.execute(
+            """
+            INSERT INTO sessions
+            (token, user_id, created_at)
+            VALUES (?, ?, ?)
+            """,
+            (
+                token,
+                user_id,
+                now_iso()
+            )
         )
-    )
 
-    db.commit()
-    db.close()
+        db.commit()
 
-    return token
+        return token
+
+    finally:
+        db.close()
 
 
 def get_user_by_token(token: str):
@@ -1168,4 +1182,4 @@ def sincronizar_pro(
         "status":
             user["subscription_status"]
             or "inactive"
-            }
+    }
