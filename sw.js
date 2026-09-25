@@ -1,11 +1,13 @@
-const CACHE_NAME = "sellium-v2";
+const CACHE_NAME = "sellium-v3";
 
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
   "./pro.html",
   "./area-pro.html",
-  "./manifest.json"
+  "./manifest.json",
+  "./icon-192.png",
+  "./icon-512.png"
 ];
 
 self.addEventListener("install", event => {
