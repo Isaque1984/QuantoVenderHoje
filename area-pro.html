@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#07111f">
+<link rel="manifest" href="./manifest.json">
 <title>Sellium — Área PRO</title>
 
 <style>
@@ -440,6 +441,17 @@ th{color:var(--muted)}
   </div>
 
   <div class="row">
+
+   <button
+    id="installButton"
+    class="logout-btn"
+    onclick="instalarSellium()"
+    style="display:none"
+    title="Instalar Sellium"
+   >
+    📲 Instalar
+   </button>
+
    <div class="pro-badge">PRO</div>
 
    <button
@@ -449,6 +461,7 @@ th{color:var(--muted)}
    >
     🚪 Sair
    </button>
+
   </div>
  </div>
 </header>
@@ -1533,6 +1546,42 @@ function renderProducts(){
    </div>
   `;
  }).join('');
+}function renderSalesStats(){
+ renderTodaySales();
+}
+
+function renderProducts(){
+ const box=document.getElementById('productsList');
+
+ if(!products.length){
+  box.innerHTML='<div class="empty">Nenhum produto cadastrado.</div>';
+  return;
+ }
+
+ box.innerHTML=products.map(p=>{
+  const profit=p.price-p.cost;
+  const margin=p.price?profit/p.price*100:0;
+
+  return `
+   <div class="item">
+    <div class="between">
+     <div>
+      <div class="item-title">${escapeHTML(p.name)}</div>
+      <div class="item-sub">
+       Venda: ${money(p.price)} · Custo: ${money(p.cost)}
+      </div>
+     </div>
+     <button class="btn btn-red" onclick="deleteProduct('${p.id}')">Excluir</button>
+    </div>
+
+    <div style="margin-top:9px">
+     <span class="badge badge-green">
+      Lucro ${money(profit)} · Margem ${margin.toFixed(1)}%
+     </span>
+    </div>
+   </div>
+  `;
+ }).join('');
 }
 
 function renderExpenses(){
@@ -1805,8 +1854,6 @@ function renderAll(){
 
 // =====================================================
 // VERIFICAÇÃO PRO EM SEGUNDO PLANO
-// Não bloqueia a abertura da Área PRO.
-// Só bloqueia se o servidor confirmar que o PRO não está ativo.
 // =====================================================
 
 const SELLIUM_API = 'https://sellium-api.onrender.com';
@@ -1826,7 +1873,6 @@ async function verificarPROEmSegundoPlano() {
 
     const controller = new AbortController();
 
-    // Evita ficar esperando indefinidamente
     const timeout = setTimeout(() => {
       controller.abort();
     }, 8000);
@@ -1849,14 +1895,11 @@ async function verificarPROEmSegundoPlano() {
     clearTimeout(timeout);
 
     if (!resposta.ok) {
-      // Erro temporário: não bloqueia o usuário
       return;
     }
 
     const dados = await resposta.json();
 
-    // Só bloqueia quando o backend confirmar explicitamente
-    // que a assinatura PRO não está ativa.
     if (dados && dados.pro === false) {
 
       localStorage.setItem('sellium_pro', 'false');
@@ -1870,14 +1913,11 @@ async function verificarPROEmSegundoPlano() {
       return;
     }
 
-    // PRO confirmado
     if (dados && dados.pro === true) {
       localStorage.setItem('sellium_pro', 'true');
     }
 
   } catch (erro) {
-    // Internet lenta, API temporariamente indisponível,
-    // timeout etc. NÃO bloqueia o acesso.
     console.log(
       'Verificação PRO em segundo plano:',
       erro
@@ -1885,20 +1925,94 @@ async function verificarPROEmSegundoPlano() {
   }
 }
 
-// A Área PRO abre primeiro.
-// A verificação acontece depois, sem travar a interface.
 setTimeout(() => {
   verificarPROEmSegundoPlano();
 }, 1500);
 
-// Verifica novamente após 10 minutos,
-// sem ficar fazendo requisições continuamente.
 setInterval(() => {
   verificarPROEmSegundoPlano();
 }, 10 * 60 * 1000);
+
+
+/* =========================================
+   SELLIUM PWA
+   Instalação do aplicativo
+========================================= */
+
+let deferredInstallPrompt = null;
+
+window.addEventListener("beforeinstallprompt", event => {
+
+  event.preventDefault();
+
+  deferredInstallPrompt = event;
+
+  const button = document.getElementById("installButton");
+
+  if(button){
+    button.style.display = "block";
+  }
+
+});
+
+async function instalarSellium(){
+
+  if(!deferredInstallPrompt){
+
+    alert(
+      'Se o botão de instalação não aparecer, ' +
+      'use o menu do navegador e escolha ' +
+      '"Adicionar à tela inicial" ou "Instalar aplicativo".'
+    );
+
+    return;
+  }
+
+  deferredInstallPrompt.prompt();
+
+  try{
+    await deferredInstallPrompt.userChoice;
+  }catch(e){}
+
+  deferredInstallPrompt = null;
+
+  const button = document.getElementById("installButton");
+
+  if(button){
+    button.style.display = "none";
+  }
+
+}
+
+window.addEventListener("appinstalled", () => {
+
+  deferredInstallPrompt = null;
+
+  const button = document.getElementById("installButton");
+
+  if(button){
+    button.style.display = "none";
+  }
+
+});
+
+if("serviceWorker" in navigator){
+
+  window.addEventListener("load", () => {
+
+    navigator.serviceWorker
+      .register("./sw.js")
+      .then(registration => {
+        registration.update().catch(() => {});
+      })
+      .catch(() => {});
+
+  });
+
+}
 
 renderAll();
 </script>
 
 </body>
- </html>
+</html>
