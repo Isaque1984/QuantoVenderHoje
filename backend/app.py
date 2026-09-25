@@ -51,13 +51,14 @@ def get_db():
         DATABASE_PATH,
         timeout=30
     )
+
     db.row_factory = sqlite3.Row
 
-    # Proteção contra concorrência do SQLite.
-    # Aguarda até 30 segundos quando outra operação
-    # estiver usando o banco, em vez de falhar imediatamente.
+    # Aguarda até 30 segundos se o banco estiver ocupado.
     db.execute("PRAGMA busy_timeout = 30000")
-    db.execute("PRAGMA journal_mode = WAL")
+
+    # Evita alterar o modo de journal a cada requisição.
+    # Isso reduz conflitos de escrita no SQLite.
     db.execute("PRAGMA synchronous = NORMAL")
 
     return db
@@ -177,20 +178,22 @@ def create_session(user_id: int):
 def get_user_by_token(token: str):
     db = get_db()
 
-    user = db.execute(
-        """
-        SELECT users.*
-        FROM users
-        JOIN sessions
-        ON sessions.user_id = users.id
-        WHERE sessions.token = ?
-        """,
-        (token,)
-    ).fetchone()
+    try:
+        user = db.execute(
+            """
+            SELECT users.*
+            FROM users
+            JOIN sessions
+            ON sessions.user_id = users.id
+            WHERE sessions.token = ?
+            """,
+            (token,)
+        ).fetchone()
 
-    db.close()
+        return user
 
-    return user
+    finally:
+        db.close()
 
 
 def update_user_pro(
@@ -201,25 +204,28 @@ def update_user_pro(
 ):
     db = get_db()
 
-    db.execute(
-        """
-        UPDATE users
-        SET
-            pro = ?,
-            subscription_id = COALESCE(?, subscription_id),
-            subscription_status = COALESCE(?, subscription_status)
-        WHERE id = ?
-        """,
-        (
-            1 if pro else 0,
-            subscription_id,
-            subscription_status,
-            user_id
+    try:
+        db.execute(
+            """
+            UPDATE users
+            SET
+                pro = ?,
+                subscription_id = COALESCE(?, subscription_id),
+                subscription_status = COALESCE(?, subscription_status)
+            WHERE id = ?
+            """,
+            (
+                1 if pro else 0,
+                subscription_id,
+                subscription_status,
+                user_id
+            )
         )
-    )
 
-    db.commit()
-    db.close()
+        db.commit()
+
+    finally:
+        db.close()
 
 
 # =========================================================
@@ -320,64 +326,96 @@ def criar_conta(data: CriarConta):
         str(data.email)
     )
 
-    if len(data.password) < 6:
+    password = data.password
+
+    if len(password) < 6:
 
         raise HTTPException(
             status_code=400,
             detail="A senha precisa ter pelo menos 6 caracteres."
         )
 
+    # Gera o hash antes de abrir a transação.
+    password_hash = hash_password(password)
+
     db = get_db()
 
-    existing = db.execute(
-        """
-        SELECT id
-        FROM users
-        WHERE email = ?
-        """,
-        (email,)
-    ).fetchone()
+    try:
 
-    if existing:
+        existing = db.execute(
+            """
+            SELECT id
+            FROM users
+            WHERE email = ?
+            """,
+            (email,)
+        ).fetchone()
 
-        db.close()
+        if existing:
+
+            raise HTTPException(
+                status_code=400,
+                detail="Este e-mail já possui uma conta."
+            )
+
+        cursor = db.execute(
+            """
+            INSERT INTO users
+            (
+                email,
+                password_hash,
+                pro,
+                created_at
+            )
+            VALUES (?, ?, 0, ?)
+            """,
+            (
+                email,
+                password_hash,
+                now_iso()
+            )
+        )
+
+        user_id = cursor.lastrowid
+
+        db.commit()
+
+    except HTTPException:
+
+        db.rollback()
+        raise
+
+    except sqlite3.IntegrityError:
+
+        db.rollback()
 
         raise HTTPException(
             status_code=400,
             detail="Este e-mail já possui uma conta."
         )
 
-    db.execute(
-        """
-        INSERT INTO users
-        (
-            email,
-            password_hash,
-            pro,
-            created_at
+    except sqlite3.OperationalError as e:
+
+        db.rollback()
+
+        if "locked" in str(e).lower():
+
+            raise HTTPException(
+                status_code=503,
+                detail="O banco está ocupado. Tente novamente em alguns segundos."
+            )
+
+        raise HTTPException(
+            status_code=500,
+            detail="Não foi possível criar a conta."
         )
-        VALUES (?, ?, 0, ?)
-        """,
-        (
-            email,
-            hash_password(data.password),
-            now_iso()
-        )
-    )
 
-    db.commit()
+    finally:
 
-    user_id = db.execute(
-        """
-        SELECT id
-        FROM users
-        WHERE email = ?
-        """,
-        (email,)
-    ).fetchone()["id"]
+        db.close()
 
-    db.close()
-
+    # Só cria a sessão depois de fechar
+    # a conexão usada para criar a conta.
     token = create_session(user_id)
 
     return {
@@ -401,16 +439,20 @@ def login(data: Login):
 
     db = get_db()
 
-    user = db.execute(
-        """
-        SELECT *
-        FROM users
-        WHERE email = ?
-        """,
-        (email,)
-    ).fetchone()
+    try:
 
-    db.close()
+        user = db.execute(
+            """
+            SELECT *
+            FROM users
+            WHERE email = ?
+            """,
+            (email,)
+        ).fetchone()
+
+    finally:
+
+        db.close()
 
     if not user:
 
@@ -667,16 +709,20 @@ def verificar_pro(email: EmailStr):
 
     db = get_db()
 
-    user = db.execute(
-        """
-        SELECT *
-        FROM users
-        WHERE email = ?
-        """,
-        (email,)
-    ).fetchone()
+    try:
 
-    db.close()
+        user = db.execute(
+            """
+            SELECT *
+            FROM users
+            WHERE email = ?
+            """,
+            (email,)
+        ).fetchone()
+
+    finally:
+
+        db.close()
 
     if not user:
 
@@ -732,9 +778,11 @@ async def webhook_mercadopago(
     body = await request.body()
 
     try:
+
         data = await request.json()
 
     except Exception:
+
         data = {}
 
     data_id = None
@@ -761,38 +809,41 @@ async def webhook_mercadopago(
 
     db = get_db()
 
-    existing = db.execute(
-        """
-        SELECT id
-        FROM webhook_events
-        WHERE id = ?
-        """,
-        (event_id,)
-    ).fetchone()
+    try:
 
-    if existing:
+        existing = db.execute(
+            """
+            SELECT id
+            FROM webhook_events
+            WHERE id = ?
+            """,
+            (event_id,)
+        ).fetchone()
+
+        if existing:
+
+            return {
+                "ok": True,
+                "duplicate": True
+            }
+
+        db.execute(
+            """
+            INSERT INTO webhook_events
+            (id, created_at)
+            VALUES (?, ?)
+            """,
+            (
+                event_id,
+                now_iso()
+            )
+        )
+
+        db.commit()
+
+    finally:
 
         db.close()
-
-        return {
-            "ok": True,
-            "duplicate": True
-        }
-
-    db.execute(
-        """
-        INSERT INTO webhook_events
-        (id, created_at)
-        VALUES (?, ?)
-        """,
-        (
-            event_id,
-            now_iso()
-        )
-    )
-
-    db.commit()
-    db.close()
 
     event_type = (
         data.get("type")
@@ -857,6 +908,7 @@ async def webhook_mercadopago(
                         )
 
                     except Exception:
+
                         pass
 
     return {
@@ -884,7 +936,6 @@ def sincronizar_pro(
             status_code=401,
             detail="Sessão inválida ou expirada."
         )
-
 
     # =====================================================
     # SE JÁ EXISTE SUBSCRIPTION ID
@@ -916,7 +967,6 @@ def sincronizar_pro(
                 "subscription_id":
                     user["subscription_id"]
             }
-
 
     # =====================================================
     # SE NÃO EXISTE ID, TENTA RECUPERAR PELO
@@ -1000,8 +1050,8 @@ def sincronizar_pro(
                         }
 
     except Exception:
-        pass
 
+        pass
 
     # =====================================================
     # TENTA PELO E-MAIL DO MERCADO PAGO
@@ -1027,7 +1077,6 @@ def sincronizar_pro(
             conta_email
         )
 
-
     for email in emails:
 
         try:
@@ -1046,6 +1095,7 @@ def sincronizar_pro(
             )
 
             if response.status_code != 200:
+
                 continue
 
             data = response.json()
@@ -1165,8 +1215,8 @@ def sincronizar_pro(
                     }
 
         except Exception:
-            continue
 
+            continue
 
     # =====================================================
     # NADA ENCONTRADO
@@ -1182,4 +1232,4 @@ def sincronizar_pro(
         "status":
             user["subscription_status"]
             or "inactive"
-    }
+        }
