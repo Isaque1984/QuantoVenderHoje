@@ -620,7 +620,21 @@ main{padding:18px}
       <div class="subtitle">Transforme sua meta em vendas.</div>
     </div>
 
-    <button class="settings" onclick="openSettings()">⚙️</button>
+    <div style="display:flex;gap:7px;align-items:center">
+
+      <button
+        id="installButton"
+        class="settings"
+        onclick="instalarSellium()"
+        style="display:none;font-size:17px"
+      >📲</button>
+
+      <button
+        class="settings"
+        onclick="openSettings()"
+      >⚙️</button>
+
+    </div>
   </div>
 
   <div class="hero">
@@ -1103,9 +1117,7 @@ main{padding:18px}
 
 </nav>
 
-</div>
-
-<div
+</div><div
   class="modal"
   id="settingsModal"
   onclick="closeSettings(event)"
@@ -2035,15 +2047,127 @@ document
 loadProfile();
 update();
 
-/* SELLIUM PWA */
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js")
-      .catch(() => {});
-  });
+/* =========================================
+   SELLIUM PWA
+   Instalação do aplicativo
+========================================= */
+
+let deferredInstallPrompt = null;
+
+window.addEventListener(
+  "beforeinstallprompt",
+  event => {
+
+    event.preventDefault();
+
+    deferredInstallPrompt = event;
+
+    const button =
+      document.getElementById(
+        "installButton"
+      );
+
+    if(button){
+
+      button.style.display =
+        "block";
+
+    }
+
+  }
+);
+
+async function instalarSellium(){
+
+  if(!deferredInstallPrompt){
+
+    alert(
+      'Se o botão de instalação não aparecer, ' +
+      'use o menu do navegador e escolha ' +
+      '"Adicionar à tela inicial" ou "Instalar aplicativo".'
+    );
+
+    return;
+
+  }
+
+  deferredInstallPrompt.prompt();
+
+  try{
+
+    await deferredInstallPrompt.userChoice;
+
+  }catch(e){}
+
+  deferredInstallPrompt = null;
+
+  const button =
+    document.getElementById(
+      "installButton"
+    );
+
+  if(button){
+
+    button.style.display =
+      "none";
+
+  }
+
+}
+
+window.addEventListener(
+  "appinstalled",
+  () => {
+
+    deferredInstallPrompt = null;
+
+    const button =
+      document.getElementById(
+        "installButton"
+      );
+
+    if(button){
+
+      button.style.display =
+        "none";
+
+    }
+
+  }
+);
+
+if(
+  "serviceWorker" in navigator
+){
+
+  window.addEventListener(
+    "load",
+    () => {
+
+      navigator
+        .serviceWorker
+        .register("./sw.js")
+        .then(
+          registration => {
+
+            registration
+              .update()
+              .catch(
+                () => {}
+              );
+
+          }
+        )
+        .catch(
+          () => {}
+        );
+
+    }
+  );
+
 }
 
 </script>
 
 </body>
-  </html>
+</html>
