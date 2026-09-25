@@ -65,6 +65,15 @@ header{
  padding:6px 10px;
  border-radius:999px;
 }
+.logout-btn{
+ background:transparent;
+ color:var(--muted);
+ border:1px solid var(--line);
+ border-radius:999px;
+ padding:6px 9px;
+ font-size:11px;
+ font-weight:800;
+}
 main{padding:16px}
 .page{display:none}
 .page.active{display:block}
@@ -429,7 +438,18 @@ th{color:var(--muted)}
    Sellium
    <small>Área de Membros</small>
   </div>
-  <div class="pro-badge">PRO</div>
+
+  <div class="row">
+   <div class="pro-badge">PRO</div>
+
+   <button
+    class="logout-btn"
+    onclick="sairDaConta()"
+    title="Sair da conta"
+   >
+    🚪 Sair
+   </button>
+  </div>
  </div>
 </header>
 
@@ -1752,6 +1772,26 @@ function escapeHTML(value){
   .replace(/'/g,'&#039;');
 }
 
+/* =====================================================
+   SAIR DA CONTA
+   Não apaga vendas, metas, produtos ou despesas.
+   Apenas encerra a sessão da conta.
+===================================================== */
+
+function sairDaConta(){
+
+ if(!confirm('Deseja sair da sua conta?')){
+  return;
+ }
+
+ localStorage.removeItem('sellium_token');
+ localStorage.removeItem('sellium_email');
+ localStorage.removeItem('sellium_mp_email');
+ localStorage.removeItem('sellium_pro');
+
+ window.location.href='./pro.html';
+}
+
 function renderAll(){
  renderProductOptions();
  renderDashboard();
@@ -1861,4 +1901,4 @@ renderAll();
 </script>
 
 </body>
-  </html>
+ </html>
