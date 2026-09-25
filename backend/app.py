@@ -26,6 +26,8 @@ DATABASE_PATH = os.getenv("DATABASE_PATH", "sellium.db")
 MP_API = "https://api.mercadopago.com"
 PRO_PRICE = 9.90
 
+MP_TIMEOUT = 8
+
 
 app = FastAPI(
     title="Sellium PRO API",
@@ -54,11 +56,7 @@ def get_db():
 
     db.row_factory = sqlite3.Row
 
-    # Aguarda até 30 segundos se o banco estiver ocupado.
     db.execute("PRAGMA busy_timeout = 30000")
-
-    # Evita alterar o modo de journal a cada requisição.
-    # Isso reduz conflitos de escrita no SQLite.
     db.execute("PRAGMA synchronous = NORMAL")
 
     return db
@@ -253,7 +251,7 @@ def consultar_assinatura(subscription_id: str):
         response = requests.get(
             f"{MP_API}/preapproval/{subscription_id}",
             headers=mp_headers(),
-            timeout=20
+            timeout=MP_TIMEOUT
         )
 
         if response.status_code != 200:
@@ -272,6 +270,79 @@ def status_pro(status: Optional[str]):
         "authorized",
         "active"
     )
+
+
+def escolher_assinatura(resultados):
+
+    if not resultados:
+        return None
+
+    # Primeiro procura uma assinatura realmente ativa.
+    for subscription in resultados:
+
+        status = str(
+            subscription.get("status") or ""
+        ).lower()
+
+        if status in (
+            "authorized",
+            "active"
+        ):
+            return subscription
+
+    # Se não existe ativa, procura uma do Sellium.
+    for subscription in resultados:
+
+        reason = str(
+            subscription.get("reason") or ""
+        ).lower()
+
+        external_reference = str(
+            subscription.get("external_reference") or ""
+        )
+
+        if (
+            "sellium" in reason
+            or external_reference.startswith(
+                "SELLIUM_USER_"
+            )
+        ):
+            return subscription
+
+    # Por último, se existir apenas uma,
+    # permite identificar essa assinatura.
+    if len(resultados) == 1:
+        return resultados[0]
+
+    return None
+
+
+def buscar_assinaturas_por_email(email: str):
+
+    try:
+
+        response = requests.get(
+            f"{MP_API}/preapproval/search",
+            headers=mp_headers(),
+            params={
+                "payer_email": email
+            },
+            timeout=MP_TIMEOUT
+        )
+
+        if response.status_code != 200:
+            return None
+
+        data = response.json()
+
+        return data.get(
+            "results",
+            []
+        )
+
+    except Exception:
+
+        return None
 
 
 # =========================================================
@@ -335,7 +406,6 @@ def criar_conta(data: CriarConta):
             detail="A senha precisa ter pelo menos 6 caracteres."
         )
 
-    # Gera o hash antes de abrir a transação.
     password_hash = hash_password(password)
 
     db = get_db()
@@ -414,8 +484,6 @@ def criar_conta(data: CriarConta):
 
         db.close()
 
-    # Só cria a sessão depois de fechar
-    # a conexão usada para criar a conta.
     token = create_session(user_id)
 
     return {
@@ -537,36 +605,56 @@ def assinar(data: Assinar):
         str(data.mp_email)
     )
 
-    # Se já possui assinatura, verifica primeiro.
-    if user["subscription_id"]:
+    # =====================================================
+    # PRIMEIRO: PROCURA UMA ASSINATURA JÁ EXISTENTE
+    # =====================================================
 
-        subscription = consultar_assinatura(
-            user["subscription_id"]
+    resultados = buscar_assinaturas_por_email(
+        mp_email
+    )
+
+    if resultados is not None:
+
+        assinatura_existente = escolher_assinatura(
+            resultados
         )
 
-        if subscription:
+        if assinatura_existente:
 
-            status = subscription.get(
-                "status"
+            subscription_id = (
+                assinatura_existente.get("id")
             )
 
-            update_user_pro(
-                user["id"],
-                status_pro(status),
-                user["subscription_id"],
-                status
+            status = (
+                assinatura_existente.get("status")
             )
 
-            if status_pro(status):
+            if (
+                subscription_id
+                and status_pro(status)
+            ):
+
+                update_user_pro(
+                    user["id"],
+                    True,
+                    str(subscription_id),
+                    status
+                )
 
                 return {
                     "ok": True,
                     "pro": True,
                     "already_pro": True,
-                    "subscription_id": user["subscription_id"],
+                    "subscription_id":
+                        str(subscription_id),
                     "status": status,
                     "checkout_url": None
                 }
+
+    # =====================================================
+    # NÃO ENCONTROU PRO ATIVO
+    # ENTÃO CRIA UMA NOVA ASSINATURA
+    # =====================================================
 
     payload = {
 
@@ -606,21 +694,26 @@ def assinar(data: Assinar):
 
             json=payload,
 
-            timeout=30
+            timeout=MP_TIMEOUT
+
         )
 
-    except Exception as e:
+    except requests.Timeout:
+
+        raise HTTPException(
+
+            status_code=504,
+
+            detail="O Mercado Pago demorou para responder. Tente novamente."
+        )
+
+    except Exception:
 
         raise HTTPException(
 
             status_code=502,
 
-            detail={
-                "message":
-                    "Erro ao conectar ao Mercado Pago.",
-
-                "error": str(e)
-            }
+            detail="Erro ao conectar ao Mercado Pago."
         )
 
     try:
@@ -857,10 +950,6 @@ async def webhook_mercadopago(
         else None
     )
 
-    # -----------------------------------------------------
-    # ASSINATURA
-    # -----------------------------------------------------
-
     if event_type in (
         "subscription_preapproval",
         "preapproval"
@@ -938,7 +1027,75 @@ def sincronizar_pro(
         )
 
     # =====================================================
-    # SE JÁ EXISTE SUBSCRIPTION ID
+    # COM E-MAIL DO MERCADO PAGO:
+    # FAZ UMA ÚNICA BUSCA
+    # =====================================================
+
+    if mp_email:
+
+        email = normalize_email(
+            str(mp_email)
+        )
+
+        resultados = buscar_assinaturas_por_email(
+            email
+        )
+
+        if resultados is not None:
+
+            assinatura = escolher_assinatura(
+                resultados
+            )
+
+            if assinatura:
+
+                subscription_id = (
+                    assinatura.get("id")
+                )
+
+                status = (
+                    assinatura.get("status")
+                )
+
+                if subscription_id:
+
+                    update_user_pro(
+                        user["id"],
+                        status_pro(status),
+                        str(subscription_id),
+                        status
+                    )
+
+                    return {
+                        "ok": True,
+                        "pro":
+                            status_pro(status),
+                        "status":
+                            status,
+                        "subscription_id":
+                            str(subscription_id),
+                        "recovered":
+                            True
+                    }
+
+        # Nenhuma assinatura encontrada.
+        update_user_pro(
+            user["id"],
+            False,
+            None,
+            "inactive"
+        )
+
+        return {
+            "ok": True,
+            "pro": False,
+            "status": "inactive",
+            "subscription_id": None
+        }
+
+    # =====================================================
+    # SEM E-MAIL INFORMADO:
+    # USA A ASSINATURA SALVA
     # =====================================================
 
     if user["subscription_id"]:
@@ -962,274 +1119,22 @@ def sincronizar_pro(
 
             return {
                 "ok": True,
-                "pro": status_pro(status),
-                "status": status,
+                "pro":
+                    status_pro(status),
+                "status":
+                    status,
                 "subscription_id":
                     user["subscription_id"]
             }
 
     # =====================================================
-    # SE NÃO EXISTE ID, TENTA RECUPERAR PELO
-    # EXTERNAL REFERENCE DO USUÁRIO
-    # =====================================================
-
-    try:
-
-        response = requests.get(
-
-            f"{MP_API}/preapproval/search",
-
-            headers=mp_headers(),
-
-            params={
-                "q":
-                    f"SELLIUM_USER_{user['id']}"
-            },
-
-            timeout=20
-        )
-
-        if response.status_code == 200:
-
-            data = response.json()
-
-            resultados = data.get(
-                "results",
-                []
-            )
-
-            for subscription in resultados:
-
-                external_reference = str(
-                    subscription.get(
-                        "external_reference"
-                    )
-                    or ""
-                )
-
-                if external_reference == (
-                    f"SELLIUM_USER_{user['id']}"
-                ):
-
-                    subscription_id = (
-                        subscription.get("id")
-                    )
-
-                    status = (
-                        subscription.get("status")
-                    )
-
-                    if subscription_id:
-
-                        update_user_pro(
-
-                            user["id"],
-
-                            status_pro(status),
-
-                            str(subscription_id),
-
-                            status
-                        )
-
-                        return {
-
-                            "ok": True,
-
-                            "pro":
-                                status_pro(status),
-
-                            "status":
-                                status,
-
-                            "subscription_id":
-                                str(subscription_id),
-
-                            "recovered":
-                                True
-                        }
-
-    except Exception:
-
-        pass
-
-    # =====================================================
-    # TENTA PELO E-MAIL DO MERCADO PAGO
-    # =====================================================
-
-    emails = []
-
-    if mp_email:
-
-        emails.append(
-            normalize_email(
-                str(mp_email)
-            )
-        )
-
-    conta_email = normalize_email(
-        user["email"]
-    )
-
-    if conta_email not in emails:
-
-        emails.append(
-            conta_email
-        )
-
-    for email in emails:
-
-        try:
-
-            response = requests.get(
-
-                f"{MP_API}/preapproval/search",
-
-                headers=mp_headers(),
-
-                params={
-                    "payer_email": email
-                },
-
-                timeout=20
-            )
-
-            if response.status_code != 200:
-
-                continue
-
-            data = response.json()
-
-            resultados = data.get(
-                "results",
-                []
-            )
-
-            # Primeiro procura uma assinatura
-            # claramente do Sellium.
-
-            for subscription in resultados:
-
-                reason = str(
-                    subscription.get(
-                        "reason"
-                    )
-                    or ""
-                ).lower()
-
-                external_reference = str(
-                    subscription.get(
-                        "external_reference"
-                    )
-                    or ""
-                )
-
-                if (
-                    "sellium" in reason
-                    or external_reference.startswith(
-                        "SELLIUM_USER_"
-                    )
-                ):
-
-                    subscription_id = (
-                        subscription.get("id")
-                    )
-
-                    status = (
-                        subscription.get("status")
-                    )
-
-                    if subscription_id:
-
-                        update_user_pro(
-
-                            user["id"],
-
-                            status_pro(status),
-
-                            str(subscription_id),
-
-                            status
-                        )
-
-                        return {
-
-                            "ok": True,
-
-                            "pro":
-                                status_pro(status),
-
-                            "status":
-                                status,
-
-                            "subscription_id":
-                                str(subscription_id),
-
-                            "recovered":
-                                True
-                        }
-
-            # Se houver apenas uma assinatura
-            # para esse e-mail, usa ela.
-
-            if len(resultados) == 1:
-
-                subscription = resultados[0]
-
-                subscription_id = (
-                    subscription.get("id")
-                )
-
-                status = (
-                    subscription.get("status")
-                )
-
-                if subscription_id:
-
-                    update_user_pro(
-
-                        user["id"],
-
-                        status_pro(status),
-
-                        str(subscription_id),
-
-                        status
-                    )
-
-                    return {
-
-                        "ok": True,
-
-                        "pro":
-                            status_pro(status),
-
-                        "status":
-                            status,
-
-                        "subscription_id":
-                            str(subscription_id),
-
-                        "recovered":
-                            True
-                    }
-
-        except Exception:
-
-            continue
-
-    # =====================================================
-    # NADA ENCONTRADO
+    # SEM ASSINATURA
     # =====================================================
 
     return {
-
         "ok": True,
-
-        "pro":
-            bool(user["pro"]),
-
+        "pro": bool(user["pro"]),
         "status":
             user["subscription_status"]
             or "inactive"
-        }
+    }
