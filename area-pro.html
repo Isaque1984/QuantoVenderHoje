@@ -1546,45 +1546,7 @@ function renderProducts(){
    </div>
   `;
  }).join('');
-}function renderSalesStats(){
- renderTodaySales();
-}
-
-function renderProducts(){
- const box=document.getElementById('productsList');
-
- if(!products.length){
-  box.innerHTML='<div class="empty">Nenhum produto cadastrado.</div>';
-  return;
- }
-
- box.innerHTML=products.map(p=>{
-  const profit=p.price-p.cost;
-  const margin=p.price?profit/p.price*100:0;
-
-  return `
-   <div class="item">
-    <div class="between">
-     <div>
-      <div class="item-title">${escapeHTML(p.name)}</div>
-      <div class="item-sub">
-       Venda: ${money(p.price)} · Custo: ${money(p.cost)}
-      </div>
-     </div>
-     <button class="btn btn-red" onclick="deleteProduct('${p.id}')">Excluir</button>
-    </div>
-
-    <div style="margin-top:9px">
-     <span class="badge badge-green">
-      Lucro ${money(profit)} · Margem ${margin.toFixed(1)}%
-     </span>
-    </div>
-   </div>
-  `;
- }).join('');
-}
-
-function renderExpenses(){
+}function renderExpenses(){
  const today=todayExpenses();
  const month=monthExpenses();
 
