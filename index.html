@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0f172a">
 <meta name="description" content="Sellium: transforme sua meta de vendas em resultados.">
-
 <link rel="manifest" href="./manifest.json">
-
-<title>Sellium</title>
-
-<style>
+<title>Sellium</title><style>
 *{box-sizing:border-box;margin:0;padding:0}
 
 :root{
@@ -25,6 +20,7 @@
   --orange:#f59e0b;
   --red:#ef4444;
   --blue:#2563eb;
+  --purple:#7c3aed;
 }
 
 body{
@@ -33,6 +29,8 @@ body{
   color:var(--text);
   min-height:100vh;
 }
+
+button,input{font-family:inherit}
 
 .app{
   max-width:760px;
@@ -195,7 +193,8 @@ main{padding:18px}
   outline:none;
 }
 
-.sale-row input:focus{
+.sale-row input:focus,
+.field input:focus{
   border-color:var(--green);
   box-shadow:0 0 0 3px rgba(34,197,94,.1);
 }
@@ -280,11 +279,214 @@ main{padding:18px}
   min-height:4px;
   background:linear-gradient(180deg,#22c55e,#15803d);
   border-radius:8px 8px 3px 3px;
+  transition:.3s;
 }
 
 .bar-label{
   color:#98a2b3;
   font-size:10px;
+}
+
+.mini-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.mini{
+  padding:14px;
+  border-radius:15px;
+  background:#f8fafc;
+  border:1px solid #edf0f4;
+}
+
+.mini small{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:6px;
+}
+
+.mini strong{
+  font-size:17px;
+}
+
+.progress-light{
+  height:9px;
+  background:#e8edf2;
+  border-radius:99px;
+  overflow:hidden;
+  margin-top:9px;
+}
+
+.progress-light div{
+  height:100%;
+  background:linear-gradient(90deg,#16a34a,#4ade80);
+  border-radius:99px;
+  transition:.3s;
+}
+
+.challenge{
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:14px;
+  margin-bottom:10px;
+}
+
+.challenge:last-child{margin-bottom:0}
+
+.challenge-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+}
+
+.challenge-title{
+  font-weight:800;
+  font-size:14px;
+}
+
+.challenge-value{
+  color:var(--green);
+  font-weight:900;
+  font-size:12px;
+}
+
+.badge-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.badge{
+  text-align:center;
+  padding:13px 5px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:#f8fafc;
+}
+
+.badge.locked{
+  opacity:.4;
+  filter:grayscale(1);
+}
+
+.badge-icon{
+  font-size:26px;
+  margin-bottom:5px;
+}
+
+.badge small{
+  font-size:10px;
+  line-height:1.3;
+  display:block;
+  font-weight:700;
+}
+
+.level-box{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.level-circle{
+  width:62px;
+  height:62px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#16a34a,#22c55e);
+  color:white;
+  font-size:21px;
+  font-weight:900;
+  flex:none;
+}
+
+.level-info{
+  flex:1;
+}
+
+.level-info strong{
+  display:block;
+  font-size:17px;
+  margin-bottom:4px;
+}
+
+.level-info span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.xpbar{
+  height:8px;
+  background:#e8edf2;
+  border-radius:99px;
+  overflow:hidden;
+  margin-top:9px;
+}
+
+.xpbar div{
+  height:100%;
+  background:#22c55e;
+  border-radius:99px;
+}
+
+.goal-box{
+  background:linear-gradient(135deg,#fff7ed,#fffbeb);
+  border:1px solid #fed7aa;
+}
+
+.goal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.goal-name{
+  font-size:19px;
+  font-weight:900;
+}
+
+.goal-percent{
+  color:#c2410c;
+  font-weight:900;
+}
+
+.goal-big{
+  font-size:28px;
+  font-weight:900;
+  margin:12px 0 4px;
+}
+
+.goal-small{
+  color:#9a3412;
+  font-size:12px;
+}
+
+.action-btn{
+  width:100%;
+  border:0;
+  border-radius:13px;
+  padding:13px;
+  background:#16a34a;
+  color:#fff;
+  font-size:14px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.secondary-btn{
+  width:100%;
+  border:1px solid #d9dee7;
+  border-radius:13px;
+  padding:12px;
+  background:white;
+  color:#344054;
+  font-size:14px;
+  font-weight:800;
+  cursor:pointer;
 }
 
 .pro-card{
@@ -441,12 +643,14 @@ main{padding:18px}
   margin-bottom:6px;
 }
 
-.field input{
+.field input,
+.field select{
   width:100%;
   border:1px solid #d9dee7;
   border-radius:13px;
   padding:13px;
   font-size:16px;
+  background:white;
 }
 
 .seller-result{
@@ -469,8 +673,8 @@ main{padding:18px}
   backdrop-filter:blur(12px);
   border-top:1px solid var(--line);
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+  grid-template-columns:repeat(5,1fr);
+  padding:8px 7px calc(8px + env(safe-area-inset-bottom));
   z-index:20;
 }
 
@@ -479,7 +683,7 @@ main{padding:18px}
   background:transparent;
   color:#98a2b3;
   padding:7px 2px;
-  font-size:12px;
+  font-size:11px;
   font-weight:700;
 }
 
@@ -487,7 +691,7 @@ main{padding:18px}
 
 .nav-icon{
   display:block;
-  font-size:21px;
+  font-size:20px;
   margin-bottom:2px;
 }
 
@@ -510,6 +714,8 @@ main{padding:18px}
   background:white;
   width:100%;
   max-width:760px;
+  max-height:92vh;
+  overflow:auto;
   border-radius:25px 25px 0 0;
   padding:22px;
 }
@@ -593,8 +799,6 @@ main{padding:18px}
   cursor:pointer;
 }
 
-.share-btn:active{transform:scale(.98)}
-
 .email-saved{
   margin-top:7px;
   color:#15803d;
@@ -602,594 +806,897 @@ main{padding:18px}
   font-weight:700;
 }
 
+.reminder-option{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid #edf0f4;
+}
+
+.reminder-option:last-child{border-bottom:0}
+
+.reminder-option div:first-child{
+  flex:1;
+}
+
+.reminder-option strong{
+  font-size:14px;
+  display:block;
+}
+
+.reminder-option small{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.3;
+}
+
+.switch{
+  position:relative;
+  width:48px;
+  height:28px;
+  flex:none;
+}
+
+.switch input{
+  opacity:0;
+  width:0;
+  height:0;
+}
+
+.slider{
+  position:absolute;
+  inset:0;
+  background:#d0d5dd;
+  border-radius:99px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.slider:before{
+  content:"";
+  position:absolute;
+  width:22px;
+  height:22px;
+  left:3px;
+  top:3px;
+  background:white;
+  border-radius:50%;
+  transition:.2s;
+  box-shadow:0 2px 5px rgba(0,0,0,.2);
+}
+
+.switch input:checked + .slider{
+  background:#16a34a;
+}
+
+.switch input:checked + .slider:before{
+  transform:translateX(20px);
+}
+
+.day-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:5px;
+}
+
+.day-btn{
+  border:1px solid #d9dee7;
+  background:white;
+  border-radius:10px;
+  padding:8px 2px;
+  font-size:10px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.day-btn.active{
+  background:#dcfce7;
+  border-color:#86efac;
+  color:#15803d;
+}
+
+.notification-preview{
+  padding:14px;
+  border-radius:14px;
+  background:#0f172a;
+  color:white;
+  margin-top:14px;
+}
+
+.notification-preview small{
+  color:#94a3b8;
+  display:block;
+  margin-bottom:5px;
+}
+
+.notification-preview strong{
+  display:block;
+  font-size:14px;
+}
+
+.notification-preview p{
+  color:#cbd5e1;
+  font-size:12px;
+  margin-top:5px;
+  line-height:1.4;
+}
+
+.record{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:13px 0;
+  border-bottom:1px solid #edf0f4;
+}
+
+.record:last-child{border-bottom:0}
+
+.record span{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.record strong{
+  font-size:16px;
+}
+
+.tip-box{
+  background:#eff6ff;
+  border:1px solid #bfdbfe;
+  color:#1e3a8a;
+  border-radius:15px;
+  padding:14px;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.mood-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+}
+
+.mood{
+  border:1px solid #e4e7ec;
+  background:white;
+  border-radius:12px;
+  padding:9px 2px;
+  font-size:21px;
+  cursor:pointer;
+}
+
+.mood.selected{
+  border-color:#22c55e;
+  background:#f0fdf4;
+}
+
+.calendar{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:5px;
+}
+
+.cal-head{
+  text-align:center;
+  color:#98a2b3;
+  font-size:9px;
+  font-weight:800;
+}
+
+.cal-day{
+  min-height:34px;
+  border-radius:8px;
+  background:#f8fafc;
+  display:grid;
+  place-items:center;
+  font-size:10px;
+  color:#475467;
+}
+
+.cal-day.worked{
+  background:#dcfce7;
+  color:#15803d;
+  font-weight:900;
+}
+
+.cal-day.today{
+  outline:2px solid #22c55e;
+  outline-offset:-2px;
+}
+
 @media(max-width:390px){
   .remaining{font-size:42px}
   .quick button{font-size:12px}
+  .badge-grid{grid-template-columns:repeat(3,1fr)}
 }
-</style>
-</head>
-
-<body>
-
-<div class="app">
-
-<header>
+</style></head><body><div class="app"><header>
   <div class="top">
     <div>
       <div class="brand">Sellium</div>
       <div class="subtitle">Transforme sua meta em vendas.</div>
-    </div>
+    </div><div style="display:flex;gap:7px;align-items:center">
+  <button
+    id="installButton"
+    class="settings"
+    onclick="instalarSellium()"
+    style="display:none;font-size:17px"
+  >📲</button>
 
-    <div style="display:flex;gap:7px;align-items:center">
+  <button class="settings" onclick="openSettings()">⚙️</button>
+</div>
 
-      <button
-        id="installButton"
-        class="settings"
-        onclick="instalarSellium()"
-        style="display:none;font-size:17px"
-      >📲</button>
-
-      <button
-        class="settings"
-        onclick="openSettings()"
-      >⚙️</button>
-
-    </div>
-  </div>
-
-  <div class="hero">
+  </div>  <div class="hero">
     <div class="hero-label">Falta vender hoje</div>
-    <div class="remaining" id="remaining">R$ 200,00</div>
+    <div class="remaining" id="remaining">R$ 200,00</div><div class="hero-text" id="heroText">
+  Você está começando o dia. Vamos buscar sua meta?
+</div>
 
-    <div class="hero-text" id="heroText">
-      Você está começando o dia. Vamos buscar sua meta?
-    </div>
+<div class="progress">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
 
-    <div class="progress">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
+<div class="progress-info">
+  <span id="progressText">0% da meta</span>
+  <span id="goalText">Meta: R$ 200,00</span>
+</div>
 
-    <div class="progress-info">
-      <span id="progressText">0% da meta</span>
-      <span id="goalText">Meta: R$ 200,00</span>
-    </div>
   </div>
-</header>
-
-<main>
-
-<section id="home" class="page active">
-
-  <div class="stats">
+</header><main><section id="home" class="page active">  <div class="stats">
     <div class="stat">
       <small>Vendido hoje</small>
       <strong id="todayTotal">R$ 0,00</strong>
-    </div>
-
-    <div class="stat">
-      <small>Ticket médio</small>
-      <strong id="average">R$ 0,00</strong>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">Registrar venda</div>
-
-    <div class="card-subtitle">
-      Adicione cada venda e acompanhe sua meta em tempo real.
-    </div>
-
-    <div class="sale-row">
-      <input
-        id="saleInput"
-        type="number"
-        step="0.01"
-        min="0"
-        placeholder="Valor da venda"
-      >
-
-      <button class="btn btn-green" onclick="addSale()">
-        Adicionar
-      </button>
-    </div>
-
-    <div class="quick">
-      <button onclick="quickSale(5)">R$ 5</button>
-      <button onclick="quickSale(10)">R$ 10</button>
-      <button onclick="quickSale(20)">R$ 20</button>
-      <button onclick="quickSale(50)">R$ 50</button>
-    </div>
-
-    <div style="margin-top:13px">
-      <button
-        onclick="toggleSellerMode()"
-        style="border:0;background:none;color:#2563eb;font-weight:800;font-size:13px"
-      >
-        🧮 Modo vendedor
-      </button>
-    </div>
-
-    <div class="seller-box" id="sellerBox">
-
-      <div class="field">
-        <label>Preço do produto</label>
-        <input id="productPrice" type="number" step="0.01" placeholder="Ex.: 13">
-      </div>
-
-      <div class="field">
-        <label>Quanto você já vendeu</label>
-        <input id="sellerSold" type="number" step="0.01" placeholder="Ex.: 65">
-      </div>
-
-      <div class="seller-result" id="sellerResult">
-        Informe os valores para calcular.
-      </div>
-
-    </div>
-  </div>
-
-  <div class="card insight">
-    <div class="insight-icon">💡</div>
-
-    <strong id="insightTitle">
-      Comece sua primeira venda
-    </strong>
-
-    <p id="insightText">
-      Cada venda registrada atualiza automaticamente o quanto falta para sua meta.
-    </p>
-  </div>
-
-  <div class="card">
-
-    <div class="card-title">
-      Últimos 7 dias
-    </div>
-
-    <div class="card-subtitle">
-      Uma visão rápida do seu ritmo de vendas.
-    </div>
-
-    <div class="chart" id="chart"></div>
-
-  </div>
-
-  <div class="share-card">
-
-    <div class="share-content">
-
-      <div class="share-icon">
-        📤
-      </div>
-
-      <div>
-        <h3>Compartilhe o Sellium</h3>
-
-        <p>
-          Convide um amigo para organizar as vendas e acompanhar a meta.
-        </p>
-      </div>
-
-    </div>
-
-    <button
-      class="share-btn"
-      onclick="compartilharSellium()"
-    >
-      📤 Compartilhar com um amigo
-    </button>
-
-  </div>
-
-  <div class="card pro-card">
-
-    <div class="pro-top">
-
-      <span style="font-size:13px;font-weight:800">
-        SELLIUM
-      </span>
-
-      <span class="pro-badge">
-        PRO
-      </span>
-
-    </div>
-
-    <h3>
-      Quer enxergar seu negócio de verdade?
-    </h3>
-
-    <p>
-      Desbloqueie ferramentas para acompanhar sua evolução e entender onde seu dinheiro está.
-    </p>
-
-    <div class="pro-list">
-
-      <div class="pro-item">
-        <span class="lock">🔒</span>
-        Histórico completo
-      </div>
-
-      <div class="pro-item">
-        <span class="lock">🔒</span>
-        Relatórios e gráficos avançados
-      </div>
-
-      <div class="pro-item">
-        <span class="lock">🔒</span>
-        Custos, lucro e produtos
-      </div>
-
-      <div class="pro-item">
-        <span class="lock">🔒</span>
-        Insights inteligentes
-      </div>
-
-    </div>
-
-    <button class="pro-button" onclick="showPro()">
-      Conhecer o Sellium PRO
-    </button>
-
-  </div>
-
-</section>
-
-<section id="sales" class="page">
-
-  <div class="card">
-
-    <div class="card-title">
-      Vendas de hoje
-    </div>
-
-    <div class="card-subtitle">
-      Tudo que você registrar durante o dia aparece aqui.
-    </div>
-
-    <div class="sales-list" id="salesList"></div>
-
-    <button class="clear" onclick="clearSales()">
-      Limpar vendas de hoje
-    </button>
-
-  </div>
-
-</section>
-
-<section id="history" class="page">
-
-  <div class="card">
-
-    <div class="card-title">
-      Resumo
-    </div>
-
-    <div class="card-subtitle">
-      Uma visão simples do seu desempenho recente.
-    </div>
-
-    <div class="stats">
-
-      <div class="stat">
-        <small>Vendas registradas</small>
-        <strong id="salesCount">0</strong>
-      </div>
-
-      <div class="stat">
-        <small>Total vendido</small>
-        <strong id="historyTotal">R$ 0,00</strong>
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="card">
-
-    <div class="card-title">
-      Evolução
-    </div>
-
-    <div class="card-subtitle">
-      O gráfico básico mostra seu ritmo recente.
-    </div>
-
-    <div class="chart" id="chartHistory"></div>
-
-  </div>
-
-  <div class="card pro-card">
-
-    <div class="pro-top">
-
-      <span style="font-size:13px;font-weight:800">
-        HISTÓRICO COMPLETO
-      </span>
-
-      <span class="pro-badge">
-        PRO
-      </span>
-
-    </div>
-
-    <h3>
-      Não perca seus resultados.
-    </h3>
-
-    <p>
-      No PRO você poderá acompanhar períodos maiores e comparar sua evolução.
-    </p>
-
-    <button
-      class="pro-button"
-      onclick="showPro()"
-      style="margin-top:16px"
-    >
-      Desbloquear histórico completo
-    </button>
-
-  </div>
-
-</section>
-
-<section id="profile" class="page">
-
-  <div class="card">
-
-    <div class="card-title">
-      Seu perfil
-    </div>
-
-    <div class="card-subtitle">
-      Guarde seu e-mail para facilitar sua identificação no Sellium.
-    </div>
-
-    <div class="field">
-
-      <label>
-        Seu e-mail
-      </label>
-
-      <input
-        id="profileEmail"
-        type="email"
-        inputmode="email"
-        autocomplete="email"
-        placeholder="seu@email.com"
-      >
-
-      <div
-        class="email-saved"
-        id="emailStatus"
-      ></div>
-
-    </div>
-
-  </div>
-
-  <div class="card">
-
-    <div class="card-title">
-      Sua meta
-    </div>
-
-    <div class="card-subtitle">
-      Esses valores são usados para calcular sua meta diária.
-    </div>
-
-    <div class="field">
-
-      <label>
-        Quanto quer ganhar por mês?
-      </label>
-
-      <input
-        id="profileIncome"
-        type="number"
-      >
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        Despesas mensais do trabalho
-      </label>
-
-      <input
-        id="profileExpenses"
-        type="number"
-      >
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        Dias de trabalho por mês
-      </label>
-
-      <input
-        id="profileDays"
-        type="number"
-      >
-
-    </div>
-
-    <button
-      class="save-settings"
-      onclick="saveProfile()"
-    >
-      Salvar perfil e atualizar meta
-    </button>
-
-  </div>
-
-  <div class="card">
-
-    <div class="card-title">
-      Como calculamos?
-    </div>
-
-    <p style="color:#667085;font-size:14px;line-height:1.6">
-
-      Sua meta diária considera o valor que você deseja ganhar,
-      suas despesas mensais e quantos dias pretende trabalhar.
-
-    </p>
-
-    <div style="
-      margin-top:15px;
-      padding:14px;
-      border-radius:13px;
-      background:#f8fafc;
-      font-weight:800;
-      font-size:14px;
-    ">
-
-      Meta diária = (ganho desejado + despesas) ÷ dias trabalhados
-
-    </div>
-
-  </div>
-
-  <div class="card pro-card">
-
-    <div class="pro-top">
-
-      <span style="font-size:13px;font-weight:800">
-        RECURSOS EXTRAS
-      </span>
-
-      <span class="pro-badge">
-        PRO
-      </span>
-
-    </div>
-
-    <h3>
-      Mais controle sobre seu dinheiro.
-    </h3>
-
-    <p>
-      Controle custos, lucro, produtos, metas e resultados em um só lugar.
-    </p>
-
-    <button
-      class="pro-button"
-      onclick="showPro()"
-      style="margin-top:16px"
-    >
-      Conhecer o PRO
-    </button>
-
-  </div>
-
-</section>
-
-</main>
-
-<nav class="nav">
-
+    </div><div class="stat">
+  <small>Ticket médio</small>
+  <strong id="average">R$ 0,00</strong>
+</div>
+
+<div class="stat">
+  <small>Vendas hoje</small>
+  <strong id="todaySalesCount">0</strong>
+</div>
+
+<div class="stat">
+  <small>Sequência 🔥</small>
+  <strong id="streakHome">0 dias</strong>
+</div>
+
+  </div>  <div class="card">
+    <div class="card-title">Registrar venda</div><div class="card-subtitle">
+  Adicione cada venda e acompanhe sua meta em tempo real.
+</div>
+
+<div class="sale-row">
+  <input
+    id="saleInput"
+    type="number"
+    step="0.01"
+    min="0"
+    placeholder="Valor da venda"
+  >
+
+  <button class="btn btn-green" onclick="addSale()">
+    Adicionar
+  </button>
+</div>
+
+<div class="quick">
+  <button onclick="quickSale(5)">R$ 5</button>
+  <button onclick="quickSale(10)">R$ 10</button>
+  <button onclick="quickSale(20)">R$ 20</button>
+  <button onclick="quickSale(50)">R$ 50</button>
+</div>
+
+<div style="margin-top:13px">
   <button
-    class="active"
-    onclick="showPage('home',this)"
+    onclick="toggleSellerMode()"
+    style="border:0;background:none;color:#2563eb;font-weight:800;font-size:13px"
   >
-    <span class="nav-icon">🏠</span>
-    Início
+    🧮 Modo vendedor
   </button>
+</div>
 
-  <button onclick="showPage('sales',this)">
-    <span class="nav-icon">💰</span>
-    Vendas
-  </button>
+<div class="seller-box" id="sellerBox">
 
-  <button onclick="showPage('history',this)">
-    <span class="nav-icon">📊</span>
-    Histórico
-  </button>
+  <div class="field">
+    <label>Preço do produto</label>
+    <input id="productPrice" type="number" step="0.01" placeholder="Ex.: 13">
+  </div>
 
-  <button onclick="showPage('profile',this)">
-    <span class="nav-icon">👤</span>
-    Perfil
-  </button>
+  <div class="field">
+    <label>Quanto você já vendeu</label>
+    <input id="sellerSold" type="number" step="0.01" placeholder="Ex.: 65">
+  </div>
 
-</nav>
-
-</div><div
-  class="modal"
-  id="settingsModal"
-  onclick="closeSettings(event)"
->
-
-  <div
-    class="modal-box"
-    onclick="event.stopPropagation()"
-  >
-
-    <button
-      class="close"
-      onclick="closeSettings()"
-    >
-      ✕
-    </button>
-
-    <div class="modal-title">
-      Configurar minha meta
-    </div>
-
-    <div class="field">
-
-      <label>
-        Quanto você quer ganhar por mês?
-      </label>
-
-      <input
-        id="incomeInput"
-        type="number"
-      >
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        Despesas mensais
-      </label>
-
-      <input
-        id="expensesInput"
-        type="number"
-      >
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        Dias de trabalho por mês
-      </label>
-
-      <input
-        id="daysInput"
-        type="number"
-      >
-
-    </div>
-
-    <button
-      class="save-settings"
-      onclick="saveSettings()"
-    >
-      Salvar minha meta
-    </button>
-
+  <div class="seller-result" id="sellerResult">
+    Informe os valores para calcular.
   </div>
 
 </div>
 
-<script>
+  </div>  <div class="card insight">
+    <div class="insight-icon">💡</div>
+    <strong id="insightTitle">Comece sua primeira venda</strong>
+    <p id="insightText">
+      Cada venda registrada atualiza automaticamente o quanto falta para sua meta.
+    </p>
+  </div>  <div class="card">
+    <div class="card-title">Seu próximo passo</div>
+    <div class="card-subtitle">
+      O Sellium acompanha o que falta para você chegar ao objetivo do dia.
+    </div><div class="tip-box" id="nextStep">
+  Registre sua primeira venda para começar.
+</div>
+
+  </div>  <div class="card">
+    <div class="card-title">Seu nível</div><div class="level-box">
+  <div class="level-circle" id="levelNumber">1</div>
+
+  <div class="level-info">
+    <strong id="levelName">Começando</strong>
+    <span id="xpText">0 XP</span>
+
+    <div class="xpbar">
+      <div id="xpBar" style="width:0%"></div>
+    </div>
+  </div>
+</div>
+
+  </div>  <div class="card">
+    <div class="card-title">Últimos 7 dias</div><div class="card-subtitle">
+  Uma visão rápida do seu ritmo de vendas.
+</div>
+
+<div class="chart" id="chart"></div>
+
+  </div>  <div class="card">
+    <div class="card-title">Resumo da semana</div><div class="mini-grid">
+  <div class="mini">
+    <small>Total vendido</small>
+    <strong id="weekTotal">R$ 0,00</strong>
+  </div>
+
+  <div class="mini">
+    <small>Média por dia</small>
+    <strong id="weekAverage">R$ 0,00</strong>
+  </div>
+
+  <div class="mini">
+    <small>Melhor dia</small>
+    <strong id="bestDay">R$ 0,00</strong>
+  </div>
+
+  <div class="mini">
+    <small>Dias ativos</small>
+    <strong id="weekDays">0</strong>
+  </div>
+</div>
+
+  </div>  <div class="card goal-box">
+    <div class="goal-header">
+      <div>
+        <div style="font-size:12px;color:#9a3412;font-weight:800">MEU OBJETIVO</div>
+        <div class="goal-name" id="goalNameHome">Meu objetivo</div>
+      </div>  <div class="goal-percent" id="goalPercentHome">0%</div>
+</div>
+
+<div class="goal-big" id="goalSavedHome">R$ 0,00</div>
+
+<div class="goal-small" id="goalRemainingHome">
+  Defina um objetivo para começar.
+</div>
+
+<div class="progress-light">
+  <div id="goalProgressHome" style="width:0%"></div>
+</div>
+
+<button
+  class="secondary-btn"
+  style="margin-top:12px"
+  onclick="showPage('goal',document.querySelectorAll('.nav button')[2])"
+>
+  🎯 Ver meu objetivo
+</button>
+
+  </div>  <div class="card">
+    <div class="card-title">Desafio de hoje</div><div class="challenge">
+  <div class="challenge-top">
+    <div class="challenge-title">🎯 Bater sua meta diária</div>
+    <div class="challenge-value" id="challengeDailyValue">0%</div>
+  </div>
+
+  <div class="progress-light">
+    <div id="challengeDailyBar" style="width:0%"></div>
+  </div>
+</div>
+
+  </div>  <div class="share-card"><div class="share-content">
+  <div class="share-icon">📤</div>
+
+  <div>
+    <h3>Compartilhe o Sellium</h3>
+    <p>
+      Convide um amigo para organizar as vendas e acompanhar a meta.
+    </p>
+  </div>
+</div>
+
+<button class="share-btn" onclick="compartilharSellium()">
+  📤 Compartilhar com um amigo
+</button>
+
+  </div>  <div class="card pro-card"><div class="pro-top">
+  <span style="font-size:13px;font-weight:800">SELLIUM</span>
+  <span class="pro-badge">PRO</span>
+</div>
+
+<h3>Quer enxergar seu negócio de verdade?</h3>
+
+<p>
+  Desbloqueie ferramentas para acompanhar sua evolução e entender onde seu dinheiro está.
+</p>
+
+<div class="pro-list">
+  <div class="pro-item"><span class="lock">🔒</span> Histórico completo</div>
+  <div class="pro-item"><span class="lock">🔒</span> Relatórios e gráficos avançados</div>
+  <div class="pro-item"><span class="lock">🔒</span> Custos, lucro e produtos</div>
+  <div class="pro-item"><span class="lock">🔒</span> Insights inteligentes</div>
+</div>
+
+<button class="pro-button" onclick="showPro()">
+  Conhecer o Sellium PRO
+</button>
+
+  </div></section><section id="sales" class="page">  <div class="card"><div class="card-title">Vendas de hoje</div>
+
+<div class="card-subtitle">
+  Tudo que você registrar durante o dia aparece aqui.
+</div>
+
+<div class="sales-list" id="salesList"></div>
+
+<button class="clear" onclick="clearSales()">
+  Limpar vendas de hoje
+</button>
+
+  </div>  <div class="card">
+    <div class="card-title">Seus recordes</div><div class="record">
+  <span>🏆 Maior venda</span>
+  <strong id="recordSale">R$ 0,00</strong>
+</div>
+
+<div class="record">
+  <span>📈 Melhor dia</span>
+  <strong id="recordDay">R$ 0,00</strong>
+</div>
+
+<div class="record">
+  <span>🔥 Maior sequência</span>
+  <strong id="recordStreak">0 dias</strong>
+</div>
+
+  </div></section><section id="goal" class="page">  <div class="card goal-box"><div class="card-title">🎯 Meu objetivo</div>
+
+<div class="card-subtitle">
+  Transforme suas vendas em algo que você realmente quer conquistar.
+</div>
+
+<div class="field">
+  <label>O que você quer conquistar?</label>
+  <input id="goalNameInput" placeholder="Ex.: Moto, viagem, reserva...">
+</div>
+
+<div class="field">
+  <label>Valor do objetivo</label>
+  <input id="goalTargetInput" type="number" step="0.01" placeholder="Ex.: 5000">
+</div>
+
+<div class="field">
+  <label>Quanto já guardou?</label>
+  <input id="goalSavedInput" type="number" step="0.01" placeholder="Ex.: 300">
+</div>
+
+<button class="action-btn" onclick="saveGoal()">
+  Salvar objetivo
+</button>
+
+  </div>  <div class="card"><div class="goal-header">
+  <div>
+    <div style="font-size:12px;color:#9a3412;font-weight:800">PROGRESSO</div>
+    <div class="goal-name" id="goalNameDisplay">Meu objetivo</div>
+  </div>
+
+  <div class="goal-percent" id="goalPercentDisplay">0%</div>
+</div>
+
+<div class="goal-big" id="goalSavedDisplay">R$ 0,00</div>
+
+<div class="goal-small" id="goalRemainingDisplay">
+  Defina seu objetivo.
+</div>
+
+<div class="progress-light">
+  <div id="goalProgressDisplay" style="width:0%"></div>
+</div>
+
+<div class="mini-grid" style="margin-top:14px">
+
+  <div class="mini">
+    <small>Meta</small>
+    <strong id="goalTargetDisplay">R$ 0,00</strong>
+  </div>
+
+  <div class="mini">
+    <small>Falta</small>
+    <strong id="goalMissingDisplay">R$ 0,00</strong>
+  </div>
+
+</div>
+
+  </div>  <div class="card"><div class="card-title">💡 Sugestão</div>
+
+<div class="tip-box" id="goalTip">
+  Defina um objetivo para receber uma sugestão.
+</div>
+
+  </div></section><section id="challenges" class="page">  <div class="card"><div class="card-title">🔥 Desafios</div>
+
+<div class="card-subtitle">
+  Pequenas metas ajudam a manter o ritmo.
+</div>
+
+<div class="challenge">
+
+  <div class="challenge-top">
+    <div class="challenge-title">🎯 Meta de hoje</div>
+    <div class="challenge-value" id="challenge1Text">0%</div>
+  </div>
+
+  <div class="progress-light">
+    <div id="challenge1Bar" style="width:0%"></div>
+  </div>
+
+</div>
+
+<div class="challenge">
+
+  <div class="challenge-top">
+    <div class="challenge-title">📅 Trabalhar 5 dias</div>
+    <div class="challenge-value" id="challenge2Text">0/5</div>
+  </div>
+
+  <div class="progress-light">
+    <div id="challenge2Bar" style="width:0%"></div>
+  </div>
+
+</div>
+
+<div class="challenge">
+
+  <div class="challenge-top">
+    <div class="challenge-title">💰 Vender R$ 500</div>
+    <div class="challenge-value" id="challenge3Text">R$ 0</div>
+  </div>
+
+  <div class="progress-light">
+    <div id="challenge3Bar" style="width:0%"></div>
+  </div>
+
+</div>
+
+  </div>  <div class="card"><div class="card-title">🏆 Conquistas</div>
+
+<div class="card-subtitle">
+  Continue usando o Sellium para desbloquear novas conquistas.
+</div>
+
+<div class="badge-grid" id="badgeGrid"></div>
+
+  </div>  <div class="card"><div class="card-title">📅 Seu calendário</div>
+
+<div class="card-subtitle">
+  Dias em que você registrou vendas.
+</div>
+
+<div class="calendar" id="calendar"></div>
+
+  </div></section><section id="more" class="page">  <div class="card"><div class="card-title">🔔 Lembretes</div>
+
+<div class="card-subtitle">
+  Não deixe a rotina fazer você esquecer suas metas.
+</div>
+
+<button class="action-btn" onclick="openReminders()">
+  Configurar meus lembretes
+</button>
+
+  </div>  <div class="card"><div class="card-title">🧮 Calculadora de vendas</div>
+
+<div class="field">
+  <label>Quanto quer atingir?</label>
+  <input id="calcTarget" type="number" placeholder="Ex.: 200">
+</div>
+
+<div class="field">
+  <label>Valor médio de cada venda</label>
+  <input id="calcTicket" type="number" placeholder="Ex.: 10">
+</div>
+
+<button class="secondary-btn" onclick="calculateSalesNeeded()">
+  Calcular
+</button>
+
+<div class="seller-result" id="calcResult" style="margin-top:12px">
+  Informe os valores acima.
+</div>
+
+  </div>  <div class="card"><div class="card-title">📤 Seus dados</div>
+
+<div class="card-subtitle">
+  Faça uma cópia dos dados salvos neste aparelho.
+</div>
+
+<button class="secondary-btn" onclick="exportData()">
+  Exportar meus dados
+</button>
+
+  </div>  <div class="card"><div class="card-title">❤️ Como foi seu dia?</div>
+
+<div class="card-subtitle">
+  Escolha uma reação rápida. Ela fica salva apenas neste aparelho.
+</div>
+
+<div class="mood-grid">
+  <button class="mood" onclick="saveMood('😄',this)">😄</button>
+  <button class="mood" onclick="saveMood('🙂',this)">🙂</button>
+  <button class="mood" onclick="saveMood('😐',this)">😐</button>
+  <button class="mood" onclick="saveMood('😓',this)">😓</button>
+  <button class="mood" onclick="saveMood('😤',this)">😤</button>
+</div>
+
+  </div>  <div class="card"><div class="card-title">👤 Perfil</div>
+
+<div class="card-subtitle">
+  Ajuste seus dados e sua meta.
+</div>
+
+<button class="secondary-btn" onclick="showPage('profile',document.querySelectorAll('.nav button')[4])">
+  Abrir meu perfil
+</button>
+
+  </div>  <div class="card pro-card"><div class="pro-top">
+  <span style="font-size:13px;font-weight:800">RECURSOS EXTRAS</span>
+  <span class="pro-badge">PRO</span>
+</div>
+
+<h3>Mais controle sobre seu dinheiro.</h3>
+
+<p>
+  Controle custos, lucro, produtos, metas e resultados em um só lugar.
+</p>
+
+<button
+  class="pro-button"
+  onclick="showPro()"
+  style="margin-top:16px"
+>
+  Conhecer o PRO
+</button>
+
+  </div></section><section id="profile" class="page">  <div class="card"><div class="card-title">Seu perfil</div>
+
+<div class="card-subtitle">
+  Guarde seu e-mail para facilitar sua identificação no Sellium.
+</div>
+
+<div class="field">
+
+  <label>Seu e-mail</label>
+
+  <input
+    id="profileEmail"
+    type="email"
+    inputmode="email"
+    autocomplete="email"
+    placeholder="seu@email.com"
+  >
+
+  <div class="email-saved" id="emailStatus"></div>
+
+</div>
+
+  </div>  <div class="card"><div class="card-title">Sua meta</div>
+
+<div class="card-subtitle">
+  Esses valores são usados para calcular sua meta diária.
+</div>
+
+<div class="field">
+  <label>Quanto quer ganhar por mês?</label>
+  <input id="profileIncome" type="number">
+</div>
+
+<div class="field">
+  <label>Despesas mensais do trabalho</label>
+  <input id="profileExpenses" type="number">
+</div>
+
+<div class="field">
+  <label>Dias de trabalho por mês</label>
+  <input id="profileDays" type="number">
+</div>
+
+<button class="save-settings" onclick="saveProfile()">
+  Salvar perfil e atualizar meta
+</button>
+
+  </div>  <div class="card"><div class="card-title">Como calculamos?</div>
+
+<p style="color:#667085;font-size:14px;line-height:1.6">
+  Sua meta diária considera o valor que você deseja ganhar,
+  suas despesas mensais e quantos dias pretende trabalhar.
+</p>
+
+<div style="
+  margin-top:15px;
+  padding:14px;
+  border-radius:13px;
+  background:#f8fafc;
+  font-weight:800;
+  font-size:14px;
+">
+  Meta diária = (ganho desejado + despesas) ÷ dias trabalhados
+</div>
+
+  </div></section></main><nav class="nav">  <button class="active" onclick="showPage('home',this)">
+    <span class="nav-icon">🏠</span>
+    Início
+  </button>  <button onclick="showPage('sales',this)">
+    <span class="nav-icon">💰</span>
+    Vendas
+  </button>  <button onclick="showPage('goal',this)">
+    <span class="nav-icon">🎯</span>
+    Objetivo
+  </button>  <button onclick="showPage('challenges',this)">
+    <span class="nav-icon">🔥</span>
+    Desafios
+  </button>  <button onclick="showPage('more',this)">
+    <span class="nav-icon">☰</span>
+    Mais
+  </button></nav></div><div class="modal" id="settingsModal" onclick="closeSettings(event)">  <div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeSettings()">✕</button>
+
+<div class="modal-title">Configurar minha meta</div>
+
+<div class="field">
+  <label>Quanto você quer ganhar por mês?</label>
+  <input id="incomeInput" type="number">
+</div>
+
+<div class="field">
+  <label>Despesas mensais</label>
+  <input id="expensesInput" type="number">
+</div>
+
+<div class="field">
+  <label>Dias de trabalho por mês</label>
+  <input id="daysInput" type="number">
+</div>
+
+<button class="save-settings" onclick="saveSettings()">
+  Salvar minha meta
+</button>
+
+  </div></div><div class="modal" id="reminderModal" onclick="closeReminderModal(event)">  <div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeReminderModal()">✕</button>
+
+<div class="modal-title">🔔 Meus lembretes</div>
+
+<div class="card-subtitle">
+  Escolha quando o Sellium deve lembrar você de continuar sua rotina.
+</div>
+
+<div class="reminder-option">
+
+  <div>
+    <strong>Ativar lembretes</strong>
+    <small>Permite que o Sellium envie lembretes quando possível.</small>
+  </div>
+
+  <label class="switch">
+    <input id="reminderEnabled" type="checkbox" onchange="saveReminderSettings()">
+    <span class="slider"></span>
+  </label>
+
+</div>
+
+<div class="field" style="margin-top:15px">
+  <label>Horário principal</label>
+  <input id="reminderTime" type="time" onchange="saveReminderSettings()">
+</div>
+
+<div style="font-size:13px;font-weight:800;margin:8px 0">
+  Dias
+</div>
+
+<div class="day-grid">
+
+  <button class="day-btn" data-day="1" onclick="toggleReminderDay(1)">SEG</button>
+  <button class="day-btn" data-day="2" onclick="toggleReminderDay(2)">TER</button>
+  <button class="day-btn" data-day="3" onclick="toggleReminderDay(3)">QUA</button>
+  <button class="day-btn" data-day="4" onclick="toggleReminderDay(4)">QUI</button>
+  <button class="day-btn" data-day="5" onclick="toggleReminderDay(5)">SEX</button>
+  <button class="day-btn" data-day="6" onclick="toggleReminderDay(6)">SÁB</button>
+  <button class="day-btn" data-day="0" onclick="toggleReminderDay(0)">DOM</button>
+
+</div>
+
+<div style="margin-top:15px">
+
+  <div class="reminder-option">
+    <div>
+      <strong>🎯 Lembrar da meta</strong>
+      <small>“Sua meta de hoje está esperando você.”</small>
+    </div>
+
+    <label class="switch">
+      <input id="reminderGoal" type="checkbox" onchange="saveReminderSettings()">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="reminder-option">
+    <div>
+      <strong>🔥 Lembrar da sequência</strong>
+      <small>Ajuda a não perder seus dias ativos.</small>
+    </div>
+
+    <label class="switch">
+      <input id="reminderStreak" type="checkbox" onchange="saveReminderSettings()">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="reminder-option">
+    <div>
+      <strong>💰 Registrar vendas</strong>
+      <small>Um lembrete para não esquecer de lançar suas vendas.</small>
+    </div>
+
+    <label class="switch">
+      <input id="reminderSales" type="checkbox" onchange="saveReminderSettings()">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+</div>
+
+<div class="notification-preview">
+
+  <small>PRÉVIA</small>
+
+  <strong id="notificationTitle">
+    🔥 Sua meta está esperando você!
+  </strong>
+
+  <p id="notificationText">
+    Abra o Sellium e registre suas vendas de hoje.
+  </p>
+
+</div>
+
+<button
+  class="action-btn"
+  style="margin-top:14px"
+  onclick="testNotification()"
+>
+  🔔 Testar lembrete agora
+</button>
+
+  </div></div><script>
+
+/* =========================================
+   DADOS EXISTENTES DO SELLIUM
+   ========================================= */
 
 const money = value =>
   Number(value || 0).toLocaleString(
@@ -1212,6 +1719,52 @@ let settings = JSON.parse(
     days:26
   })
 );
+
+/* =========================================
+   NOVOS DADOS
+   ========================================= */
+
+let selliumGoal = JSON.parse(
+  localStorage.getItem('sellium_goal') ||
+  JSON.stringify({
+    name:'',
+    target:0,
+    saved:0
+  })
+);
+
+let reminderSettings = JSON.parse(
+  localStorage.getItem('sellium_reminders') ||
+  JSON.stringify({
+    enabled:false,
+    time:'18:00',
+    days:[1,2,3,4,5,6],
+    goal:true,
+    streak:true,
+    sales:true
+  })
+);
+
+let mood = localStorage.getItem('sellium_mood') || '';
+
+/*
+  Registro diário separado.
+  O qvh_sales continua sendo usado normalmente
+  para as vendas do dia atual.
+*/
+
+let activityDays = JSON.parse(
+  localStorage.getItem('sellium_activity_days') || '{}'
+);
+
+let maxStreakSaved =
+  Number(
+    localStorage.getItem('sellium_max_streak') || 0
+  );
+
+/* =========================================
+   META EXISTENTE
+   ========================================= */
 
 function goal(){
 
@@ -1244,6 +1797,18 @@ function remaining(){
 
 }
 
+function todayKey(){
+
+  const d = new Date();
+
+  return d.getFullYear() +
+    '-' +
+    String(d.getMonth()+1).padStart(2,'0') +
+    '-' +
+    String(d.getDate()).padStart(2,'0');
+
+}
+
 function saveData(){
 
   localStorage.setItem(
@@ -1258,7 +1823,235 @@ function saveData(){
 
 }
 
+function saveNewData(){
+
+  localStorage.setItem(
+    'sellium_goal',
+    JSON.stringify(selliumGoal)
+  );
+
+  localStorage.setItem(
+    'sellium_reminders',
+    JSON.stringify(reminderSettings)
+  );
+
+  localStorage.setItem(
+    'sellium_activity_days',
+    JSON.stringify(activityDays)
+  );
+
+  localStorage.setItem(
+    'sellium_max_streak',
+    String(maxStreakSaved)
+  );
+
+}
+
+/* =========================================
+   ATIVIDADE / SEQUÊNCIA
+   ========================================= */
+
+function markTodayActive(){
+
+  if(total() > 0){
+
+    activityDays[todayKey()] = total();
+
+    saveNewData();
+
+  }
+
+}
+
+function dateKeyOffset(offset){
+
+  const d = new Date();
+
+  d.setDate(
+    d.getDate() + offset
+  );
+
+  return d.getFullYear() +
+    '-' +
+    String(d.getMonth()+1).padStart(2,'0') +
+    '-' +
+    String(d.getDate()).padStart(2,'0');
+
+}
+
+function getStreak(){
+
+  let streak = 0;
+
+  for(let i=0;i<366;i++){
+
+    const key =
+      dateKeyOffset(-i);
+
+    if(
+      Number(activityDays[key] || 0) > 0
+    ){
+
+      streak++;
+
+    }else{
+
+      break;
+
+    }
+
+  }
+
+  if(streak > maxStreakSaved){
+
+    maxStreakSaved = streak;
+
+    saveNewData();
+
+  }
+
+  return streak;
+
+}
+
+/* =========================================
+   SEMANA
+   ========================================= */
+
+function getWeekData(){
+
+  const values = [];
+
+  for(let i=6;i>=0;i--){
+
+    const key =
+      dateKeyOffset(-i);
+
+    let value =
+      Number(activityDays[key] || 0);
+
+    if(i === 0){
+
+      value = total();
+
+    }
+
+    values.push(value);
+
+  }
+
+  return values;
+
+}
+
+function weekTotal(){
+
+  return getWeekData().reduce(
+    (a,b)=>a+b,
+    0
+  );
+
+}
+
+function weekDays(){
+
+  return getWeekData().filter(
+    v=>v>0
+  ).length;
+
+}
+
+function bestWeekDay(){
+
+  return Math.max(
+    ...getWeekData(),
+    0
+  );
+
+}
+
+/* =========================================
+   XP / NÍVEL
+   ========================================= */
+
+function getXP(){
+
+  let xp = 0;
+
+  xp += total();
+
+  xp += getStreak() * 25;
+
+  xp += sales.length * 5;
+
+  if(total() >= goal())
+    xp += 100;
+
+  if(selliumGoal.target > 0)
+    xp += Math.floor(
+      (
+        Math.min(
+          selliumGoal.saved /
+          selliumGoal.target,
+          1
+        )
+      ) * 100
+    );
+
+  return Math.floor(xp);
+
+}
+
+function getLevelData(){
+
+  const xp = getXP();
+
+  const level =
+    Math.max(
+      1,
+      Math.floor(xp / 250) + 1
+    );
+
+  const previous =
+    (level-1) * 250;
+
+  const next =
+    level * 250;
+
+  const percent =
+    Math.min(
+      100,
+      Math.max(
+        0,
+        ((xp-previous) /
+          (next-previous))*100
+      )
+    );
+
+  let name = 'Começando';
+
+  if(level >= 2) name = 'Vendedor';
+  if(level >= 4) name = 'Vendedor Ativo';
+  if(level >= 7) name = 'Vendedor Forte';
+  if(level >= 10) name = 'Mestre das Vendas';
+  if(level >= 15) name = 'Lenda do Sellium';
+
+  return {
+    xp,
+    level,
+    name,
+    percent
+  };
+
+}
+
+/* =========================================
+   ATUALIZAÇÃO PRINCIPAL
+   ========================================= */
+
 function update(){
+
+  markTodayActive();
 
   const g = goal();
   const t = total();
@@ -1293,6 +2086,29 @@ function update(){
     Math.round(percent) +
     '% da meta';
 
+  document.getElementById(
+    'todaySalesCount'
+  ).textContent =
+    sales.length;
+
+  const average =
+    sales.length
+      ? t / sales.length
+      : 0;
+
+  document.getElementById(
+    'average'
+  ).textContent =
+    money(average);
+
+  const streak =
+    getStreak();
+
+  document.getElementById(
+    'streakHome'
+  ).textContent =
+    streak + (streak === 1 ? ' dia' : ' dias');
+
   if(t >= g){
 
     document
@@ -1320,23 +2136,12 @@ function update(){
       .getElementById('remaining')
       .classList.remove('ok');
 
-    if(t === 0){
-
-      document.getElementById(
-        'heroText'
-      ).textContent =
-        'Você está começando o dia. Vamos buscar sua meta?';
-
-    }else{
-
-      document.getElementById(
-        'heroText'
-      ).textContent =
-        'Continue vendendo. Ainda faltam ' +
-        money(r) +
-        '.';
-
-    }
+    document.getElementById(
+      'heroText'
+    ).textContent =
+      t === 0
+        ? 'Você está começando o dia. Vamos buscar sua meta?'
+        : 'Continue vendendo. Ainda faltam ' + money(r) + '.';
 
     if(sales.length === 0){
 
@@ -1355,43 +2160,30 @@ function update(){
       document.getElementById(
         'insightTitle'
       ).textContent =
-        'Você já vendeu ' +
-        money(t);
+        'Você já vendeu ' + money(t);
 
       document.getElementById(
         'insightText'
       ).textContent =
-        'Faltam ' +
-        money(r) +
+        'Faltam ' + money(r) +
         ' para alcançar sua meta diária.';
 
     }
 
   }
 
-  const average =
-    sales.length
-      ? t / sales.length
-      : 0;
-
-  document.getElementById(
-    'average'
-  ).textContent =
-    money(average);
-
-  document.getElementById(
-    'salesCount'
-  ).textContent =
-    sales.length;
-
-  document.getElementById(
-    'historyTotal'
-  ).textContent =
-    money(t);
+  updateNextStep();
+  updateLevel();
+  updateWeek();
+  updateGoal();
+  updateChallenges();
+  updateRecords();
 
   renderSales();
   renderChart();
   renderChartHistory();
+  renderBadges();
+  renderCalendar();
   calculateSeller();
 
 }
@@ -1423,6 +2215,9 @@ function addSale(value=null){
   input.value = '';
 
   saveData();
+
+  markTodayActive();
+
   update();
 
 }
@@ -1467,17 +2262,11 @@ function renderSales(){
             <div class="sale-item">
 
               <div>
-
                 <span>
                   Venda ${realIndex + 1}
                 </span>
-
                 <br>
-
-                <strong>
-                  ${money(sale)}
-                </strong>
-
+                <strong>${money(sale)}</strong>
               </div>
 
               <button
@@ -1501,6 +2290,21 @@ function deleteSale(index){
   sales.splice(index,1);
 
   saveData();
+
+  if(!sales.length){
+
+    delete activityDays[todayKey()];
+
+    saveNewData();
+
+  }else{
+
+    activityDays[todayKey()] = total();
+
+    saveNewData();
+
+  }
+
   update();
 
 }
@@ -1518,29 +2322,27 @@ function clearSales(){
 
     sales = [];
 
+    delete activityDays[todayKey()];
+
     saveData();
+    saveNewData();
     update();
 
   }
 
 }
 
+/* =========================================
+   GRÁFICO
+   ========================================= */
+
 function renderChart(){
 
   const chart =
-    document.getElementById(
-      'chart'
-    );
+    document.getElementById('chart');
 
-  const values = [
-    35,
-    20,
-    15.5,
-    25,
-    18,
-    22,
-    total()
-  ];
+  const values =
+    getWeekData();
 
   const max =
     Math.max(
@@ -1548,6 +2350,10 @@ function renderChart(){
       goal(),
       1
     );
+
+  const labels = [
+    '6d','5d','4d','3d','2d','Ont','Hoje'
+  ];
 
   chart.innerHTML =
     values
@@ -1570,13 +2376,7 @@ function renderChart(){
               ></div>
 
               <div class="bar-label">
-
-                ${
-                  index === 6
-                    ? 'Hoje'
-                    : 'D'+(index+1)
-                }
-
+                ${labels[index]}
               </div>
 
             </div>
@@ -1590,42 +2390,640 @@ function renderChart(){
 
 function renderChartHistory(){
 
-  document.getElementById(
-    'chartHistory'
-  ).innerHTML =
+  const chart =
+    document.getElementById(
+      'chartHistory'
+    );
+
+  if(!chart)
+    return;
+
+  chart.innerHTML =
     document.getElementById(
       'chart'
     ).innerHTML;
 
 }
 
-function toggleSellerMode(){
+/* =========================================
+   PRÓXIMO PASSO
+   ========================================= */
 
-  document
-    .getElementById(
-      'sellerBox'
-    )
-    .classList.toggle('show');
+function updateNextStep(){
+
+  const box =
+    document.getElementById(
+      'nextStep'
+    );
+
+  const r =
+    remaining();
+
+  const t =
+    total();
+
+  if(t === 0){
+
+    box.innerHTML =
+      '💰 <strong>Primeiro passo:</strong> faça sua primeira venda e registre aqui.';
+
+    return;
+
+  }
+
+  if(r <= 0){
+
+    box.innerHTML =
+      '🏆 <strong>Você venceu o desafio de hoje!</strong> Se quiser, use o restante do dia para criar uma nova meta pessoal.';
+
+    return;
+
+  }
+
+  const ticket =
+    sales.length
+      ? t / sales.length
+      : 0;
+
+  if(ticket > 0){
+
+    const needed =
+      Math.ceil(r/ticket);
+
+    box.innerHTML =
+      `🎯 Faltam <strong>${money(r)}</strong>.
+      No seu ticket médio atual, aproximadamente
+      <strong>${needed}</strong> venda${needed>1?'s':''}
+      podem levar você até a meta.`;
+
+  }
 
 }
 
-document
-  .getElementById(
-    'productPrice'
-  )
-  .addEventListener(
-    'input',
-    calculateSeller
+/* =========================================
+   NÍVEL
+   ========================================= */
+
+function updateLevel(){
+
+  const data =
+    getLevelData();
+
+  document.getElementById(
+    'levelNumber'
+  ).textContent =
+    data.level;
+
+  document.getElementById(
+    'levelName'
+  ).textContent =
+    data.name;
+
+  document.getElementById(
+    'xpText'
+  ).textContent =
+    data.xp + ' XP';
+
+  document.getElementById(
+    'xpBar'
+  ).style.width =
+    data.percent + '%';
+
+}
+
+/* =========================================
+   RESUMO SEMANAL
+   ========================================= */
+
+function updateWeek(){
+
+  const wt =
+    weekTotal();
+
+  document.getElementById(
+    'weekTotal'
+  ).textContent =
+    money(wt);
+
+  document.getElementById(
+    'weekAverage'
+  ).textContent =
+    money(
+      weekDays()
+        ? wt/weekDays()
+        : 0
+    );
+
+  document.getElementById(
+    'bestDay'
+  ).textContent =
+    money(bestWeekDay());
+
+  document.getElementById(
+    'weekDays'
+  ).textContent =
+    weekDays();
+
+}
+
+/* =========================================
+   OBJETIVO
+   ========================================= */
+
+function updateGoal(){
+
+  const target =
+    Number(selliumGoal.target || 0);
+
+  const saved =
+    Number(selliumGoal.saved || 0);
+
+  const percent =
+    target > 0
+      ? Math.min(100,(saved/target)*100)
+      : 0;
+
+  const missing =
+    Math.max(0,target-saved);
+
+  const name =
+    selliumGoal.name ||
+    'Meu objetivo';
+
+  document.getElementById(
+    'goalNameHome'
+  ).textContent =
+    name;
+
+  document.getElementById(
+    'goalPercentHome'
+  ).textContent =
+    Math.round(percent) + '%';
+
+  document.getElementById(
+    'goalSavedHome'
+  ).textContent =
+    money(saved);
+
+  document.getElementById(
+    'goalRemainingHome'
+  ).textContent =
+    target > 0
+      ? 'Faltam ' + money(missing) + ' para chegar ao objetivo.'
+      : 'Defina um objetivo para começar.';
+
+  document.getElementById(
+    'goalProgressHome'
+  ).style.width =
+    percent + '%';
+
+  document.getElementById(
+    'goalNameDisplay'
+  ).textContent =
+    name;
+
+  document.getElementById(
+    'goalPercentDisplay'
+  ).textContent =
+    Math.round(percent) + '%';
+
+  document.getElementById(
+    'goalSavedDisplay'
+  ).textContent =
+    money(saved);
+
+  document.getElementById(
+    'goalRemainingDisplay'
+  ).textContent =
+    target > 0
+      ? 'Faltam ' + money(missing)
+      : 'Defina seu objetivo.';
+
+  document.getElementById(
+    'goalProgressDisplay'
+  ).style.width =
+    percent + '%';
+
+  document.getElementById(
+    'goalTargetDisplay'
+  ).textContent =
+    money(target);
+
+  document.getElementById(
+    'goalMissingDisplay'
+  ).textContent =
+    money(missing);
+
+  const tip =
+    document.getElementById('goalTip');
+
+  if(target <= 0){
+
+    tip.textContent =
+      'Defina um valor de objetivo e o Sellium poderá mostrar quanto falta.';
+
+  }else if(missing <= 0){
+
+    tip.textContent =
+      '🏆 Objetivo alcançado! Agora você pode escolher uma nova conquista.';
+
+  }else{
+
+    const suggested =
+      Math.max(
+        5,
+        Math.ceil(
+          missing /
+          Math.max(
+            Number(settings.days) || 26,
+            1
+          )
+        )
+      );
+
+    tip.innerHTML =
+      `💰 Uma sugestão simples é guardar cerca de
+      <strong>${money(suggested)}</strong>
+      por dia.`;
+
+  }
+
+}
+
+function saveGoal(){
+
+  selliumGoal.name =
+    (
+      document.getElementById(
+        'goalNameInput'
+      ).value || ''
+    ).trim();
+
+  selliumGoal.target =
+    Number(
+      document.getElementById(
+        'goalTargetInput'
+      ).value
+    ) || 0;
+
+  selliumGoal.saved =
+    Number(
+      document.getElementById(
+        'goalSavedInput'
+      ).value
+    ) || 0;
+
+  saveNewData();
+  update();
+
+  alert('Objetivo salvo! 🎯');
+
+}
+
+/* =========================================
+   DESAFIOS
+   ========================================= */
+
+function updateChallenges(){
+
+  const g =
+    goal();
+
+  const t =
+    total();
+
+  const daily =
+    g > 0
+      ? Math.min(100,(t/g)*100)
+      : 0;
+
+  const active =
+    weekDays();
+
+  const weekSales =
+    weekTotal();
+
+  document.getElementById(
+    'challengeDailyValue'
+  ).textContent =
+    Math.round(daily) + '%';
+
+  document.getElementById(
+    'challengeDailyBar'
+  ).style.width =
+    daily + '%';
+
+  document.getElementById(
+    'challenge1Text'
+  ).textContent =
+    Math.round(daily) + '%';
+
+  document.getElementById(
+    'challenge1Bar'
+  ).style.width =
+    daily + '%';
+
+  const daysPercent =
+    Math.min(100,(active/5)*100);
+
+  document.getElementById(
+    'challenge2Text'
+  ).textContent =
+    active + '/5';
+
+  document.getElementById(
+    'challenge2Bar'
+  ).style.width =
+    daysPercent + '%';
+
+  const moneyPercent =
+    Math.min(100,(weekSales/500)*100);
+
+  document.getElementById(
+    'challenge3Text'
+  ).textContent =
+    money(weekSales);
+
+  document.getElementById(
+    'challenge3Bar'
+  ).style.width =
+    moneyPercent + '%';
+
+}
+
+/* =========================================
+   CONQUISTAS
+   ========================================= */
+
+function renderBadges(){
+
+  const box =
+    document.getElementById(
+      'badgeGrid'
+    );
+
+  const allTimeTotal =
+    Object.values(activityDays)
+      .reduce(
+        (sum,v)=>sum+Number(v||0),
+        0
+      );
+
+  const streak =
+    getStreak();
+
+  const badges = [
+
+    {
+      icon:'🥇',
+      name:'Primeira venda',
+      unlocked:sales.length>0
+    },
+
+    {
+      icon:'💯',
+      name:'R$100 vendidos',
+      unlocked:allTimeTotal>=100
+    },
+
+    {
+      icon:'🔥',
+      name:'7 dias',
+      unlocked:streak>=7 || maxStreakSaved>=7
+    },
+
+    {
+      icon:'🎯',
+      name:'Meta diária',
+      unlocked:total()>=goal()
+    },
+
+    {
+      icon:'💰',
+      name:'R$500 vendidos',
+      unlocked:allTimeTotal>=500
+    },
+
+    {
+      icon:'🏆',
+      name:'Objetivo',
+      unlocked:
+        selliumGoal.target>0 &&
+        selliumGoal.saved>=selliumGoal.target
+    }
+
+  ];
+
+  box.innerHTML =
+    badges.map(
+      b=>`
+        <div class="badge ${b.unlocked?'':'locked'}">
+          <div class="badge-icon">${b.icon}</div>
+          <small>${b.name}</small>
+        </div>
+      `
+    ).join('');
+
+}
+
+/* =========================================
+   CALENDÁRIO
+   ========================================= */
+
+function renderCalendar(){
+
+  const box =
+    document.getElementById(
+      'calendar'
+    );
+
+  if(!box)
+    return;
+
+  let html =
+    ['D','S','T','Q','Q','S','S']
+      .map(
+        d=>`
+          <div class="cal-head">
+            ${d}
+          </div>
+        `
+      ).join('');
+
+  const now =
+    new Date();
+
+  const year =
+    now.getFullYear();
+
+  const month =
+    now.getMonth();
+
+  const first =
+    new Date(year,month,1);
+
+  const last =
+    new Date(year,month+1,0);
+
+  for(
+    let i=0;
+    i<first.getDay();
+    i++
+  ){
+
+    html +=
+      '<div></div>';
+
+  }
+
+  for(
+    let day=1;
+    day<=last.getDate();
+    day++
+  ){
+
+    const key =
+      year +
+      '-' +
+      String(month+1).padStart(2,'0') +
+      '-' +
+      String(day).padStart(2,'0');
+
+    const active =
+      Number(activityDays[key] || 0)>0;
+
+    const isToday =
+      day===now.getDate();
+
+    html += `
+      <div class="cal-day
+        ${active?'worked':''}
+        ${isToday?'today':''}">
+        ${day}
+      </div>
+    `;
+
+  }
+
+  box.innerHTML = html;
+
+}
+
+/* =========================================
+   HUMOR / DIÁRIO
+   ========================================= */
+
+function saveMood(value,button){
+
+  mood = value;
+
+  localStorage.setItem(
+    'sellium_mood',
+    value
   );
 
-document
-  .getElementById(
-    'sellerSold'
-  )
-  .addEventListener(
-    'input',
-    calculateSeller
-  );
+  document
+    .querySelectorAll('.mood')
+    .forEach(
+      b=>b.classList.remove('selected')
+    );
+
+  button.classList.add('selected');
+
+}
+
+/* =========================================
+   CALCULADORA
+   ========================================= */
+
+function calculateSalesNeeded(){
+
+  const target =
+    Number(
+      document.getElementById(
+        'calcTarget'
+      ).value
+    );
+
+  const ticket =
+    Number(
+      document.getElementById(
+        'calcTicket'
+      ).value
+    );
+
+  const box =
+    document.getElementById(
+      'calcResult'
+    );
+
+  if(
+    !target ||
+    !ticket ||
+    target<=0 ||
+    ticket<=0
+  ){
+
+    box.textContent =
+      'Informe valores válidos.';
+
+    return;
+
+  }
+
+  const needed =
+    Math.ceil(
+      target/ticket
+    );
+
+  box.innerHTML =
+    `🎯 Para atingir <strong>${money(target)}</strong>
+    com vendas médias de <strong>${money(ticket)}</strong>,
+    você precisa de aproximadamente
+    <strong>${needed} venda${needed>1?'s':''}</strong>.`;
+
+}
+
+/* =========================================
+   RECORDES
+   ========================================= */
+
+function updateRecords(){
+
+  const biggest =
+    Math.max(
+      ...sales.map(Number),
+      0
+    );
+
+  document.getElementById(
+    'recordSale'
+  ).textContent =
+    money(biggest);
+
+  document.getElementById(
+    'recordDay'
+  ).textContent =
+    money(bestWeekDay());
+
+  document.getElementById(
+    'recordStreak'
+  ).textContent =
+    maxStreakSaved + ' dias';
+
+}
+
+/* =========================================
+   MODO VENDEDOR
+   ========================================= */
+
+function toggleSellerMode(){
+
+  document
+    .getElementById('sellerBox')
+    .classList.toggle('show');
+
+}
 
 function calculateSeller(){
 
@@ -1648,7 +3046,7 @@ function calculateSeller(){
       'sellerResult'
     );
 
-  if(!price || price <= 0){
+  if(!price || price<=0){
 
     box.textContent =
       'Informe o preço do seu produto para calcular.';
@@ -1668,7 +3066,7 @@ function calculateSeller(){
       missing / price
     );
 
-  if(missing <= 0){
+  if(missing<=0){
 
     box.textContent =
       '🎉 Pela meta informada, você já atingiu o valor necessário.';
@@ -1679,40 +3077,38 @@ function calculateSeller(){
       `Faltam <strong>${money(missing)}</strong>.
       Vendendo por ${money(price)} cada,
       você precisa de aproximadamente
-      <strong>${units} unidade${units > 1 ? 's' : ''}</strong>.`;
+      <strong>${units} unidade${units>1?'s':''}</strong>.`;
 
   }
 
 }
+
+/* =========================================
+   NAVEGAÇÃO
+   ========================================= */
 
 function showPage(page,button){
 
   document
     .querySelectorAll('.page')
     .forEach(
-      p=>
-        p.classList.remove(
-          'active'
-        )
+      p=>p.classList.remove('active')
     );
 
-  document
-    .getElementById(page)
-    .classList.add('active');
+  const target =
+    document.getElementById(page);
+
+  if(target)
+    target.classList.add('active');
 
   document
     .querySelectorAll('.nav button')
     .forEach(
-      b=>
-        b.classList.remove(
-          'active'
-        )
+      b=>b.classList.remove('active')
     );
 
   if(button)
-    button.classList.add(
-      'active'
-    );
+    button.classList.add('active');
 
   window.scrollTo({
     top:0,
@@ -1720,6 +3116,10 @@ function showPage(page,button){
   });
 
 }
+
+/* =========================================
+   CONFIGURAÇÕES
+   ========================================= */
 
 function openSettings(){
 
@@ -1759,9 +3159,7 @@ function closeSettings(event){
     .getElementById(
       'settingsModal'
     )
-    .classList.remove(
-      'show'
-    );
+    .classList.remove('show');
 
 }
 
@@ -1795,6 +3193,10 @@ function saveSettings(){
 
 }
 
+/* =========================================
+   PERFIL
+   ========================================= */
+
 function loadProfile(){
 
   document.getElementById(
@@ -1822,7 +3224,31 @@ function loadProfile(){
   ).value =
     email;
 
+  document.getElementById(
+    'goalNameInput'
+  ).value =
+    selliumGoal.name || '';
+
+  document.getElementById(
+    'goalTargetInput'
+  ).value =
+    selliumGoal.target || '';
+
+  document.getElementById(
+    'goalSavedInput'
+  ).value =
+    selliumGoal.saved || '';
+
   updateEmailStatus();
+
+  document
+    .querySelectorAll('.mood')
+    .forEach(
+      b=>{
+        if(b.textContent===mood)
+          b.classList.add('selected');
+      }
+    );
 
 }
 
@@ -1910,6 +3336,10 @@ function updateEmailStatus(){
 
 }
 
+/* =========================================
+   COMPARTILHAR
+   ========================================= */
+
 function compartilharSellium(){
 
   const url =
@@ -1918,9 +3348,7 @@ function compartilharSellium(){
   const texto =
     'Conheça o Sellium — organize suas vendas e acompanhe sua meta.';
 
-  if(
-    navigator.share
-  ){
+  if(navigator.share){
 
     navigator
       .share({
@@ -1973,9 +3401,7 @@ function copiarLinkSellium(url){
 function fallbackCopySellium(url){
 
   const area =
-    document.createElement(
-      'textarea'
-    );
+    document.createElement('textarea');
 
   area.value = url;
 
@@ -1985,18 +3411,14 @@ function fallbackCopySellium(url){
   area.style.left =
     '-9999px';
 
-  document.body.appendChild(
-    area
-  );
+  document.body.appendChild(area);
 
   area.focus();
   area.select();
 
   try{
 
-    document.execCommand(
-      'copy'
-    );
+    document.execCommand('copy');
 
     alert(
       'Link do Sellium copiado! Agora é só enviar para seu amigo.'
@@ -2005,21 +3427,18 @@ function fallbackCopySellium(url){
   }catch(e){
 
     alert(
-      'Copie este link: ' +
-      url
+      'Copie este link: ' + url
     );
 
   }
 
-  document.body.removeChild(
-    area
-  );
+  document.body.removeChild(area);
 
 }
 
-/* SELLIUM PRO
-   Corrigido: o botão agora abre a página de cadastro/login PRO.
-*/
+/* =========================================
+   PRO
+   ========================================= */
 
 function showPro(){
 
@@ -2027,6 +3446,329 @@ function showPro(){
     './pro.html';
 
 }
+
+/* =========================================
+   LEMBRETES
+   ========================================= */
+
+function openReminders(){
+
+  document.getElementById(
+    'reminderEnabled'
+  ).checked =
+    !!reminderSettings.enabled;
+
+  document.getElementById(
+    'reminderTime'
+  ).value =
+    reminderSettings.time || '18:00';
+
+  document.getElementById(
+    'reminderGoal'
+  ).checked =
+    reminderSettings.goal !== false;
+
+  document.getElementById(
+    'reminderStreak'
+  ).checked =
+    reminderSettings.streak !== false;
+
+  document.getElementById(
+    'reminderSales'
+  ).checked =
+    reminderSettings.sales !== false;
+
+  renderReminderDays();
+  updateNotificationPreview();
+
+  document
+    .getElementById(
+      'reminderModal'
+    )
+    .classList.add('show');
+
+}
+
+function closeReminderModal(event){
+
+  if(
+    event &&
+    event.target.id !==
+      'reminderModal'
+  )
+    return;
+
+  document
+    .getElementById(
+      'reminderModal'
+    )
+    .classList.remove('show');
+
+}
+
+function renderReminderDays(){
+
+  document
+    .querySelectorAll('.day-btn')
+    .forEach(
+      button=>{
+
+        const day =
+          Number(
+            button.dataset.day
+          );
+
+        button.classList.toggle(
+          'active',
+          reminderSettings.days.includes(day)
+        );
+
+      }
+    );
+
+}
+
+function toggleReminderDay(day){
+
+  if(
+    reminderSettings.days.includes(day)
+  ){
+
+    reminderSettings.days =
+      reminderSettings.days.filter(
+        d=>d!==day
+      );
+
+  }else{
+
+    reminderSettings.days.push(day);
+
+  }
+
+  saveReminderSettings();
+
+  renderReminderDays();
+
+}
+
+async function saveReminderSettings(){
+
+  reminderSettings.enabled =
+    document.getElementById(
+      'reminderEnabled'
+    ).checked;
+
+  reminderSettings.time =
+    document.getElementById(
+      'reminderTime'
+    ).value || '18:00';
+
+  reminderSettings.goal =
+    document.getElementById(
+      'reminderGoal'
+    ).checked;
+
+  reminderSettings.streak =
+    document.getElementById(
+      'reminderStreak'
+    ).checked;
+
+  reminderSettings.sales =
+    document.getElementById(
+      'reminderSales'
+    ).checked;
+
+  saveNewData();
+
+  updateNotificationPreview();
+
+  if(
+    reminderSettings.enabled &&
+    'Notification' in window &&
+    Notification.permission !== 'granted'
+  ){
+
+    try{
+
+      await Notification.requestPermission();
+
+    }catch(e){}
+
+  }
+
+}
+
+function updateNotificationPreview(){
+
+  const streak =
+    getStreak();
+
+  const r =
+    remaining();
+
+  const title =
+    document.getElementById(
+      'notificationTitle'
+    );
+
+  const text =
+    document.getElementById(
+      'notificationText'
+    );
+
+  if(r<=0){
+
+    title.textContent =
+      '🏆 Meta alcançada!';
+
+    text.textContent =
+      'Mandou bem hoje. Sua meta já foi cumprida.';
+
+  }else if(streak>=3){
+
+    title.textContent =
+      '🔥 Não perca sua sequência!';
+
+    text.textContent =
+      `Você está há ${streak} dias no ritmo. Ainda faltam ${money(r)} hoje.`;
+
+  }else{
+
+    title.textContent =
+      '🎯 Sua meta está esperando você!';
+
+    text.textContent =
+      `Abra o Sellium e veja como estão suas vendas. Faltam ${money(r)}.`;
+
+  }
+
+}
+
+async function testNotification(){
+
+  if(
+    !('Notification' in window)
+  ){
+
+    alert(
+      'Seu navegador não disponibiliza notificações neste momento.'
+    );
+
+    return;
+
+  }
+
+  try{
+
+    if(
+      Notification.permission !== 'granted'
+    ){
+
+      const permission =
+        await Notification.requestPermission();
+
+      if(permission !== 'granted'){
+
+        alert(
+          'A permissão para notificações não foi concedida.'
+        );
+
+        return;
+
+      }
+
+    }
+
+    new Notification(
+      document.getElementById(
+        'notificationTitle'
+      ).textContent,
+      {
+        body:
+          document.getElementById(
+            'notificationText'
+          ).textContent
+      }
+    );
+
+  }catch(e){
+
+    alert(
+      'Não foi possível mostrar a notificação neste momento.'
+    );
+
+  }
+
+}
+
+/* =========================================
+   EXPORTAÇÃO
+   ========================================= */
+
+function exportData(){
+
+  const data = {
+    app:'Sellium',
+    exportedAt:new Date().toISOString(),
+    sales:sales,
+    settings:settings,
+    goal:selliumGoal,
+    activityDays:activityDays,
+    reminders:reminderSettings
+  };
+
+  const blob =
+    new Blob(
+      [
+        JSON.stringify(
+          data,
+          null,
+          2
+        )
+      ],
+      {
+        type:'application/json'
+      }
+    );
+
+  const url =
+    URL.createObjectURL(blob);
+
+  const a =
+    document.createElement('a');
+
+  a.href = url;
+
+  a.download =
+    'sellium-backup.json';
+
+  a.click();
+
+  URL.revokeObjectURL(url);
+
+}
+
+/* =========================================
+   EVENTOS
+   ========================================= */
+
+document
+  .getElementById(
+    'productPrice'
+  )
+  .addEventListener(
+    'input',
+    calculateSeller
+  );
+
+document
+  .getElementById(
+    'sellerSold'
+  )
+  .addEventListener(
+    'input',
+    calculateSeller
+  );
 
 document
   .getElementById(
@@ -2036,43 +3778,35 @@ document
     'keydown',
     e=>{
 
-      if(
-        e.key === 'Enter'
-      )
+      if(e.key==='Enter')
         addSale();
 
     }
   );
 
-loadProfile();
-update();
-
 /* =========================================
-   SELLIUM PWA
-   Instalação do aplicativo
-========================================= */
+   PWA
+   ========================================= */
 
 let deferredInstallPrompt = null;
 
 window.addEventListener(
-  "beforeinstallprompt",
-  event => {
+  'beforeinstallprompt',
+  event=>{
 
     event.preventDefault();
 
-    deferredInstallPrompt = event;
+    deferredInstallPrompt =
+      event;
 
     const button =
       document.getElementById(
-        "installButton"
+        'installButton'
       );
 
-    if(button){
-
+    if(button)
       button.style.display =
-        "block";
-
-    }
+        'block';
 
   }
 );
@@ -2082,9 +3816,7 @@ async function instalarSellium(){
   if(!deferredInstallPrompt){
 
     alert(
-      'Se o botão de instalação não aparecer, ' +
-      'use o menu do navegador e escolha ' +
-      '"Adicionar à tela inicial" ou "Instalar aplicativo".'
+      'Se o botão de instalação não aparecer, use o menu do navegador e escolha "Adicionar à tela inicial" ou "Instalar aplicativo".'
     );
 
     return;
@@ -2103,63 +3835,59 @@ async function instalarSellium(){
 
   const button =
     document.getElementById(
-      "installButton"
+      'installButton'
     );
 
-  if(button){
-
+  if(button)
     button.style.display =
-      "none";
-
-  }
+      'none';
 
 }
 
 window.addEventListener(
-  "appinstalled",
-  () => {
+  'appinstalled',
+  ()=>{
 
     deferredInstallPrompt = null;
 
     const button =
       document.getElementById(
-        "installButton"
+        'installButton'
       );
 
-    if(button){
-
+    if(button)
       button.style.display =
-        "none";
-
-    }
+        'none';
 
   }
 );
 
+/* =========================================
+   SERVICE WORKER
+   ========================================= */
+
 if(
-  "serviceWorker" in navigator
+  'serviceWorker' in navigator
 ){
 
   window.addEventListener(
-    "load",
-    () => {
+    'load',
+    ()=>{
 
       navigator
         .serviceWorker
-        .register("./sw.js")
+        .register('./sw.js')
         .then(
-          registration => {
-
+          registration=>{
             registration
               .update()
               .catch(
-                () => {}
+                ()=>{}
               );
-
           }
         )
         .catch(
-          () => {}
+          ()=>{}
         );
 
     }
@@ -2167,7 +3895,12 @@ if(
 
 }
 
-</script>
+/* =========================================
+   INICIALIZAÇÃO
+   ========================================= */
 
-</body>
-</html>
+loadProfile();
+update();
+
+</script></body>
+  </html>
