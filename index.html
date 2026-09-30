@@ -3902,5 +3902,123 @@ if(
 loadProfile();
 update();
 
-</script></body>
+</script>
+</script>
+
+<!-- CORREÇÃO: RESET DIÁRIO DAS VENDAS -->
+<script>
+(function(){
+
+  const SALES_DATE_KEY = 'sellium_sales_date';
+
+  function getSelliumTodayKey(){
+
+    const d = new Date();
+
+    return d.getFullYear() +
+      '-' +
+      String(d.getMonth() + 1).padStart(2,'0') +
+      '-' +
+      String(d.getDate()).padStart(2,'0');
+
+  }
+
+  function verificarTrocaDeDia(){
+
+    const hoje = getSelliumTodayKey();
+    const ultimaData = localStorage.getItem(SALES_DATE_KEY);
+
+    if(!ultimaData){
+
+      localStorage.setItem(
+        SALES_DATE_KEY,
+        hoje
+      );
+
+      return;
+
+    }
+
+    if(ultimaData === hoje){
+      return;
+    }
+
+    const vendasAtuais = Array.isArray(sales)
+      ? sales
+      : [];
+
+    const totalAnterior =
+      vendasAtuais.reduce(
+        (sum, venda) =>
+          sum + Number(venda || 0),
+        0
+      );
+
+    if(totalAnterior > 0){
+
+      activityDays[ultimaData] = totalAnterior;
+
+    }else{
+
+      delete activityDays[ultimaData];
+
+    }
+
+    sales = [];
+
+    localStorage.setItem(
+      'qvh_sales',
+      JSON.stringify(sales)
+    );
+
+    localStorage.setItem(
+      'sellium_activity_days',
+      JSON.stringify(activityDays)
+    );
+
+    localStorage.setItem(
+      SALES_DATE_KEY,
+      hoje
+    );
+
+  }
+
+  verificarTrocaDeDia();
+
+  const updateOriginal = update;
+
+  window.update = function(){
+
+    verificarTrocaDeDia();
+
+    updateOriginal();
+
+  };
+
+  document.addEventListener(
+    'visibilitychange',
+    function(){
+
+      if(document.visibilityState === 'visible'){
+        update();
+      }
+
+    }
+  );
+
+  window.addEventListener(
+    'focus',
+    function(){
+      update();
+    }
+  );
+
+  update();
+
+})();
+</script>
+
+</body>
+</html>
+</body>
   </html>
